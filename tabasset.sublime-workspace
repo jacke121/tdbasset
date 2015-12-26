@@ -1,0 +1,396 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "resources/views/member/index.blade.php",
+			"settings":
+			{
+				"buffer_size": 1197,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/themes/default/top.blade.php",
+			"settings":
+			{
+				"buffer_size": 2486,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/Auth/AuthController.php",
+			"settings":
+			{
+				"buffer_size": 5227,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 212.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"About"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 500.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/laravel/tdbasset",
+		"/var/www/laravel/tdbasset/app",
+		"/var/www/laravel/tdbasset/app/Http/Controllers",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/Auth",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend",
+		"/var/www/laravel/tdbasset/resources",
+		"/var/www/laravel/tdbasset/resources/views/auth",
+		"/var/www/laravel/tdbasset/resources/views/backend/user",
+		"/var/www/laravel/tdbasset/resources/views/themes",
+		"/var/www/laravel/tdbasset/resources/views/themes/default"
+	],
+	"file_history":
+	[
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/HomeController.php",
+		"/var/www/laravel/tdbasset/app/Http/routes.php",
+		"/var/www/laravel/tdbasset/resources/views/themes/default/index.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/app.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/user/index.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/Auth/AdminController.php",
+		"/var/www/laravel/tdbasset/resources/views/auth/register.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/Auth/AuthController.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/Auth/AuthController.php",
+		"/home/lbg/桌面/study/qq_msg.sh",
+		"/var/www/laravel/phphub-server/app/Http/Controllers/UserController.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/Controller.php",
+		"/var/www/laravel/tdbasset/resources/views/member/common.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/_menu.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/app.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/create.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/setting/_menu.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member/HomeController.php",
+		"/var/www/laravel/tdbasset/resources/views/welcome.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/themes/default/top.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Middleware/Authenticate.php",
+		"/var/www/laravel/tdbasset/resources/views/member/index.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member/SystemController.php",
+		"/var/www/laravel/tdbasset/resources/views/member/system/index.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/system/create.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/SystemController.php",
+		"/var/www/laravel/tdbasset/resources/views/member/links/index.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/auth/login.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Kernel.php",
+		"/var/www/laravel/tdbasset/app/Http/Middleware/BackAuthenticate.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/auth/login.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/navigation/index.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/home.blade.php",
+		"/var/www/laravel/tdbasset/database/seeds/SystemSeeder.php",
+		"/var/www/laravel/tdbasset/resources/views/app.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/member/links/create.blade.php",
+		"/var/www/laravel/tdbasset/database/seeds/UserSeeder.php",
+		"/var/www/laravel/tdbasset/resources/views/pages/show.blade.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/PagesController.php",
+		"/var/www/laravel/tdbasset/resources/views/backend/setting/system/index.blade.php",
+		"/var/www/laravel/assetdemo/app/Http/routes.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/AuthController.php",
+		"/var/www/laravel/tdbasset/resources/views/auth/registertype.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/themes/default/layouts.blade.php",
+		"/var/www/laravel/assetdemo/resources/views/pages/show.blade.php",
+		"/var/www/laravel/assetdemo/app/Http/Controllers/PagesController.php",
+		"/var/www/laravel/tdbasset/app/User.php",
+		"/var/www/laravel/tdbasset/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/var/www/laravel/tdbasset/app/Http/Requests/ArticleForm.php",
+		"/var/www/laravel/tdbasset/app/Http/Requests/BackendForm.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/UserController.php",
+		"/var/www/laravel/tdbasset/app/Http/Middleware/VerifyCsrfToken.php",
+		"/var/www/laravel/tdbasset/app/Http/Requests/SystemForm.php",
+		"/var/www/laravel/tdbasset/app/Http/Requests/Request.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/AboutController.php",
+		"/var/www/laravel/tdbasset/app/Http/Requests/CateForm.php",
+		"/opt/sublime_text/changelog.txt",
+		"/opt/sublime_text/sublime_text",
+		"/var/www/laravel/tdbasset/storage/logs/laravel-2015-12-19.log",
+		"/home/lbg/桌面/study/sublime/无标题文档",
+		"/var/www/laravel/tdbasset/app/libs/LbgCurl.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/themes/default/index.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/auth/register.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/auth/login.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/public/css/index.css",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/app.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/themes/default/layouts.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/themes/default/foot.blade.php",
+		"/home/lbg/桌面/laravel/qq_msg.sh",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/themes/default/top.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/auth/registertype.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/public/html/index.html",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/app/Http/routes.php",
+		"/home/lbg/下载/╩╫╥│/html/index.html",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/app/Http/Controllers/AboutController.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/app/Http/Controllers/Auth/AuthController.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/app/User.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/resources/views/themes/default/right.blade.php",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/public/css/app.css",
+		"/var/www/laravel/larave5-blog/laravel-5-blog/public/html/index.txt"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"home",
+			"handle",
+			"login",
+			" ‘",
+			"email",
+			"checkUser",
+			"mobilediv",
+			"SetRemainTime",
+			"uid",
+			"array",
+			"mobile",
+			"login",
+			"enda",
+			"一键免费发布",
+			".css",
+			"Session"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "resources/views/member/index.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1197,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "resources/views/themes/default/top.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								473,
+								473
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/Http/Controllers/Auth/AuthController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								679,
+								679
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tabasset.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
