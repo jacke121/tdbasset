@@ -1,53 +1,158 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>新用户注册</title>
+<meta name="_token" content="{{ csrf_token() }}"/>
+<title>用户注册</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/register.css') }}">
+<script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
+<!-- <script src="{{ asset('/js/register.js') }}"></script> -->
+<script type="text/javascript">
+
+var InterValObj; //timer变量，控制时间
+var count = 15; //间隔函数，1秒执行
+var curCount;//当前剩余秒数
+function sendMessage() {
+  　curCount = count;
+　　//设置button效果，开始计时
+     $("#btnSendCode").attr("disabled", "true");
+     $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+var code="122345";
+var url="/auth/sendsms";
+     $.ajax({
+	type: "POST", //用POST方式传输
+	url: url, //目标地址
+	headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+	  data:{type_data:"register",mobile:$("#mobile").val(),msg:code
+	},
+     　　dataType: "json", //数据格式:JSON
+    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
+	alert(errorThrown);
+ 	},
+     　　success: function (msg){
+     	if(msg['State']>0){
+     	//有异常
+     	alert(msg['MsgState']);
+     	curCount=0;
+     	}else{
+     	}
+     },
+     });
+}
+function checkUser(column,value) {
+var code="122345";
+     $.ajax({
+	type: "POST", //用POST方式传输
+	url: "/auth/checkUser", //目标地址
+	headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+	  data:{type_data:"register",column:column,value:value
+	},
+     　　dataType: "json", //数据格式:JSON
+    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
+	alert(errorThrown);
+	return null;
+ 	},
+     　　success: function (msg){
+	     	if(msg['State']>0){
+	     		if(column=="name"){
+	     		$("#nameAlt").css({ color: "#E15F63"});
+	     	 	$("#nameAlt").html(msg['MsgState']);
+	     		}else if(column=="email"){
+	     		 $("#emaildiv").html(msg['MsgState']);
+	     		}
+	
+	     	}else{
+	     	 if(column=="name"){
+			$("#nameAlt").css({ color: "#008000"});
+	     	 	$("#nameAlt").html(msg['MsgState']);
+	     		}else if(column=="email"){
+ 			$("#emaildiv").html("");
+	     		}
+	     	}
+     	return msg;
+     },
+     });
+}
+//timer处理函数
+function SetRemainTime() {
+            if (curCount == 0) {
+                window.clearInterval(InterValObj);//停止计时器
+                $("#btnSendCode").removeAttr("disabled");//启用按钮
+                $("#btnSendCode").val("重新发送验证码");
+            }
+            else {
+                curCount--;
+                $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+            }
+        }
+        function checkMobile(){
+        	var mobile = $('#mobile').val();  //获取手机号
+   	var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+	        if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile)))
+	       { 
+	       	$("#mobileAlt").css({ color: "#E15F63"});
+	       	$("#mobileAlt").html("手机号格式不正确");
+	       } else{
+	       	$("#mobileAlt").css({ color: "#008000"});
+	       	$("#mobileAlt").html("");
+	       }
+	    checkUser("mobile",mobile);
+        }
+        $(function(){
+        	$("#mobile").blur(function(){
+        	checkMobile();
+        	   });
+        	  $("#username").blur(function(){
+        	var username = $('#username').val(); 
+	        if(username.length==0 ){
+	        	$("#nameAlt").css({ color: "#E15F63"});
+	       	$("#nameAlt").html("用户名不能为空");
+	       	return;
+	       }
+	       var column="name";
+	     checkUser(column,username);
+	 });
+        	  $("#password").blur(function(){
+        	var username = $('#password').val();  //获取手机号
+	        if(username.length==0 ){
+	       	$("#passwordAlt").css({ color: "#E15F63"});
+	       	$("#passwordAlt").html("密码必须是数字与字母组合");
+	       	return;
+	       }else if(username.length<6){
+		$("#passwordAlt").css({ color: "#E15F63"});
+	       	$("#passwordAlt").html("密码长度不能小于6");
+	       	return;
+	       }
+	 });
+        	 $("#pwdrepeat").blur(function(){
+        	var pwdrepeat = $('#pwdrepeat').val();  //获取手机号
+	        if(username.length==0 ){
+	       	$("#pwdrepeatAlt").css({ color: "#E15F63"});
+	       	$("#pwdrepeatAlt").html("密码必须是数字与字母组合");
+	       	return;
+	       }
+	        if(pwdrepeat!=$('#password').val()){
+		$("#pwdrepeatAlt").css({ color: "#E15F63"});
+	       	$("#pwdrepeatAlt").html("密码必须是数字与字母组合");
+	       }else{
+	       	$("#pwdrepeatAlt").css({ color: "#008000"});
+	       	$("#pwdrepeatAlt").html("密码输入一致");
+	       }
+	 });
+}) ;
+</script>
 </head>
 
 <body>
 <!--top部分-->
-    <div class="top">
-        <div class="center">
-        	<img src="../images/top_phone.jpg" width="16" height="16" style="margin-right:8px;">
-            <span class="f14" style="margin-right:15px;">服务热线：</span>
-            <span style="color:#ee8d0a; font-size:21px; margin-right:458px;">400-058-9555</span>
-            <a href="#" class="login" style="margin-right:10px;">登录</a>
-            <a href="#" class="login" style="background:#0092D7; margin-right:14px;">注册</a>
-            <a href="#" class="f14" style="margin-right:15px;">个人中心</a>
-            <a href="#"><img src="../images/top_qq.jpg" width="16" height="17" style="margin-right:5px;"></a>
-            <a href="#"><img src="../images/top_weixin.jpg" width="18" height="17"></a>
-        </div>
-    </div>
-<!--head部分-->
-    <div class="header">
-      <div class="center">
-        	<ul class="center_left">
-            	<li style="margin:19px 17px 0 0;"><a href="index.html"><img src="../images/head_logo.jpg" width="58" height="57"></a></li>
-                <li style="margin-top:35px;"><img src="../images/head_ldzc.jpg" width="219" height="25"></li>
-            </ul>
-            <dl class="center_right">
-            
-            	<dt class="inDex"><a href="index.html" class="current">首页</a></dt>
-                <dd></dd>
-            	<dt><a href="list.html">债务大厅</a></dt>
-                <dd></dd>
-            	<dt><a href="#">产品服务</a></dt>
-                <dd></dd>
-            	<dt><a href="#">加盟合作</a></dt>
-                <dd></dd>
-            	<dt><a href="#">用户指南</a></dt>
-                <dd></dd>
-            	<dt><a href="#">关于我们</a></dt>
-            </dl>
-      </div>
-    </div>
+       @include('themes.default.top')
 <!--广告位-->
 	<div class="banner">
     	<img src="../images/register—_gg.jpg">
-    </div>
+   	</div>
 <!--reg2-->
+<form class="form-horizontal" role="form" method="POST" action="/auth/store">
+	<input type="hidden" name="type" value="{{$type }}">
     <div class="reg2">
         <div class="reg2con">
             <div class="reg_step2"></div>
@@ -56,25 +161,29 @@
                 <p class="regp">请仔细填写下列信息</p>
                 <div class="int">
                     <span class="intface userface"></span>
-                    <input type="text" placeholder="用户名：字母、数字" class="user">
+                    <input type="text"  id="username" name="name"placeholder="用户名：字母、数字" class="user" onkeyup="value=value.replace(/^ +| +$/g,'')">
+                    <span id="nameAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个字符，区分大小写</span>
                 </div>
                 <div class="int">
                     <span class="intface pwdface"></span>
-                    <input type="password" placeholder="密码：字母或数字" class="pwd">
+                    <input type="password" id="password" placeholder="密码：字母或数字" class="pwd" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
+                      <span id="passwordAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个英文、数字组成，区分大小写</span>
                 </div>
                 <div class="int">
                     <span class="intface pwd1face"></span>
-                    <input type="password" placeholder="确认密码：重新输入上面填写的密码" class="pwd1">
+                    <input id="pwdrepeat" type="password" placeholder="确认密码：重新输入上面填写的密码" class="pwd1" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
+                     <span id="pwdrepeatAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个英文、数字组成，区分大小写</span>
                 </div>
-                <div class="int">
+             <!--    <div class="int">
                      <span class="intface renface1"></span>
                     <input class="ren1" type="text" placeholder="请输入验证码">                    
                     <img class="code" src="../images/randCheckCode.png" alt="看不清刷新" onclick="refreshRankCode()">
-                </div>
+                </div> -->
                 <div class="int">
                     <span class="intface phoface"></span>
-                    <input type="text" placeholder="手机号码" class="pho">
-                     <span class="code"><span>获取验证码</span></span>
+                    <input type="text" id="mobile"  placeholder="手机号码" class="pho">
+                     <span class="code"><a href="javascript:;" onclick="sendMessage()">获取验证码</a></span>
+                         <span id="mobileAlt" data-info="mobile"></span>
                 </div>
                 <div class="int">
                     <span class="intface renface"></span>
@@ -88,9 +197,9 @@
             <h3> 投贷宝用户服务协议</h3>
             <p>投贷宝（www.toudaibao.com）由润木财富集团北京投贷宝资本管理有限公司注册并负责运营（以下所称的“本网站”包括网站本身和润木财富集团北京投贷宝资本管理有限公司）。本网站提醒您在注册成为本网站用户前请认真阅读本协议，在充分理解各项条款内容后再选择是否接受本协议，用户一经注册或使用本网站服务即视为同意接受本网站的服务并受以下条款的约束。在您同意以下条款并注册后，将有权依据本协议的条款享受本网站的服务，同时有义务接受本协议条款的约束。</p>
 一、第一章 本网站使用说明
-			<p>1、本网站的注册用户必须是依据中华人民共和国法律规定具有完全民事权利能力和民事行为能力，能够独立承担民事责任的自然人，如果注册用户不符合资格，请勿注册，否则本网站有权随时终止您的注册进程及本网站服务，您应对您的注册行为给本网站带来的全部损失承担赔偿责任，且您的监护人对此应当承担连带责任。</p>
+	<p>1、本网站的注册用户必须是依据中华人民共和国法律规定具有完全民事权利能力和民事行为能力，能够独立承担民事责任的自然人，如果注册用户不符合资格，请勿注册，否则本网站有权随时终止您的注册进程及本网站服务，您应对您的注册行为给本网站带来的全部损失承担赔偿责任，且您的监护人对此应当承担连带责任。</p>
 </p>
-			<p>2、在使用本网站服务前，用户必须先在本网站完成注册，成为本网站的注册用户（以下简称“用户”）。</p>
+	<p>2、在使用本网站服务前，用户必须先在本网站完成注册，成为本网站的注册用户（以下简称“用户”）。</p>
             <p>3、在注册和使用本网站服务的所有期间，用户有义务确保个人资料信息的真实、完整且有效，并承诺对个人资料信息及时进行更新。用户所提交的资料和信息包括但不限于电子邮箱、联系电话、通讯地址、个人身份信息、邮政编码、征信信息等。</p>
             <p>4、若本网站经判断认定用户资料存在错误、虚假等嫌疑时，本网站有权终止用户账户，由此产生的任何损失，需用户自己独立承担责任，与本网站无关。在用户向本网站提供的相关信息资料发生变更时，其应当及时向本网站更新相应的信息和资料，如因用户未及时更新信息和资料而导致本网站无法向其提供服务或发生错误，由此产生的一切后果将由用户自己独立承担，与本网站无关。</p>
             <p>5、本网站的协议内容包括但不限于本网站已经发布的或将来可能发布的各类规则。所有规则均是本协议不可分割的一部分，与本协议具有同等的法律效力。本网站有权根据实际需要不时地修改本网站的相关协议，一旦协议内容发生变动，本网站将公布最新的协议内容，请您随时关注本网站，本网站不再单独通知用户。若您在本网站最新协议内容公告变更后继续使用本网站相关服务的，表示您已充分阅读、理解并接受修改后的协议及具体规则内容，您应遵照修改后的协议行使权利和履行义务，若您不同意修改后的协议内容，请停止使用本网站的服务。</p>
@@ -101,7 +210,7 @@
             <p>1、用户同意本网站在业务运营中收集和储存其信息，包括但不限于其自行提供的资料和信息，以及本网站自行收集、取得的其在本网站的交易记录和使用信息等。本网站收集和储存您的用户信息的主要目的在于可以更好的为其提供服务。</p>
             <p>2、用户承诺，本网站可从公开及私人资料中收集用户的额外信息，以更好地了解用户的实际情况，为用户提供更优质的服务。</p>
             <p>3、本网站对于用户提供的或自行收集的用户个人信息享有使用和披露的权利。本网站基于履行协议、提供服务、解决争议、保障交易安全等目的使用用户个人信息资料时，无需告知用户。</p>
-            <p4、本网站有义务根据有关法律要求向公安机关、司法机关等国家机关提供用户的个人资料。</p>
+            <p>4、本网站有义务根据有关法律要求向公安机关、司法机关等国家机关提供用户的个人资料。</p>
             <p>5、本网站将不定期对用户信息进行抽查、核实以识别问题或解决争议，若发现用户提供信息虚假或有其他疑点，本网站有权对其信息进行披露。</p>
             <p>6、本网站采用行业标准和惯例保护用户的个人信息。本网站不会将用户信息恶意出售或免费共享给任何第三方。但由于技术等方面的限制，本网站无法保证用户的个人信息完全不被泄露。</p>
             <p>7、用户未能按照其与本网站及网站其他用户签订的协议等法律文本的约定履行其义务，则网站有权披露用户个人信息及违约事实。由此给用户造成的任何损失，由用户自行承担，本网站不承担任何责任。</p>
@@ -112,56 +221,12 @@
         </div>
             <div style="clear:both;"></div>
             <p class="reg2next">
-            <button onclick="registerUser()" class="reg2btn">提交</button>
+            <button   type="submit"  class="reg2btn">提交</button>
             </p>
         </div>
     </div>
-
-
+    </form>
 <!--foot部分-->
-	<div class="foot">
-		<div class="footcon">
-			<div class="foot1">
-				<h3 class="footh3">关于某某</h3>
-				<ul>
-					<li><a href="#">公司简介</a></li>
-					<li><a href="#">隐私规则</a></li>
-					<li><a href="#">投资机构</a></li>
-					<li><a href="#">人才招聘</a></li>
-				</ul>
-				<ul>
-					<li><a href="#">产品介绍</a></li>
-					<li><a href="#">联系我们</a></li>
-					<li><a href="#">法律声明</a></li>
-					<li><a href="#">帮助中心</a></li>
-				</ul>
-			</div>
-			<div class="foot2">
-            	<div><img src="../images/bigphone.jpg" width="38" height="58" style=" position:absolute; top:15px; left:-3px;"></div>
-				<h3 class="foot4h">
-					服务热线<br> <span class="foot4p1">400-058-9555</span>
-				</h3>
-				<p>周一到周五9:00-18:00</p>
-				<p class="foot4p3">
-					<div style="float:left;padding-right:5px;"><img src="../images/bigzuobiao.jpg" width="13" height="21"></div>
-					企业坐标
-				</p>
-				<p class="foot4p4">北京市朝阳区三元西桥时间国际八号楼南区1910</p>
-			</div>
-			<div class="foot3">
-				<h3 class="foot3h">官方微信</h3>
-				<img src="../images/erweima.jpg" width="106" height="106">
-			</div>
-		</div>
-	</div>
-	<div class="footlink">
-    	<div style=" height:40px; line-height:40px; padding:0 0 0 370px;">
-            <a href="#">友情链接</a>
-            <a href="#">百度</a>
-            <a href="#">清债公司</a>
-            <a href="#">清欠公司</a>
-            <a href="#">思科培训</a>
-        </div>
-	</div>
+     @include('themes.default.foot')
 </body>
 </html>

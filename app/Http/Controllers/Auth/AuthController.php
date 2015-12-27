@@ -31,49 +31,44 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 		$this->middleware('auth', ['except' => 'getLogout']);
 	}
-
-
-  public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
-    {
+        public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
+        {
           return view('auth.login');
-    }
-public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
-    {
-    //调用validate验证前端数据
-
-         $this->validate($request, ['email'=> 'required|email', 'password'=> 'required']);
-        $credentials = $request->only('email', 'password');//过滤掉前端数据，只留下email和password
+        }
+        public function getLogin(Request $request){
+         //调用validate验证前端数据
+         $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
+        $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
          if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
                 Log::error('lbg11111');
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');
-       return redirect($this->loginPath())
+               return redirect($this->loginPath())
                    //withInput(),负责数据写入session
-                   ->withInput($request->only('email', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
-                    //withErrors(),
+                   ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
                     ->withErrors([
-                       'email‘'=> $this->getFailedLoginMessage(),
+                       'name'=> $this->getFailedLoginMessage(),
                     ]);
      }
      public function registertype(){
      return view('auth.registertype');
      }  
           public function getRegister($type){
-       // var_dump($type);
-     return view('auth.register',['type'=>$type,'content'=>$type]);
-     }  
+         return view('auth.register',['type'=>$type,'content'=>$type]);
+         }  
        public function checkUser(Request $request){
+        Log::error("checkUser");
         $column=$request->input('column');
-$value=$request->input('value');
+      $value=$request->input('value');
       $username = Input::get('username');
          $data= DB::select("select * from members where lifestatus=1 and ". $column." ='".$value."'");
          $code=0;
-         $msg="用户名可以使用";
+         $msg="用户名可用";
       if(sizeof($data)>0){
          $code=1;
-           $msg="用户名已经注册";
+           $msg="用户名已存在";
       }
        return parent::returnJson($code, $msg);
 }  

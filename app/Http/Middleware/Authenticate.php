@@ -31,11 +31,11 @@ class Authenticate {
 	public function handle($request, Closure $next)
 	    {
 	    	$mpath=$request->path();
+	    	   // Log::error("handle-1111".$mpath);
 	        	if ($this->auth->check()) {
-	        	if ($request->ajax()){
-			return response('Unauthorized.', 401);
-		}
-	        	  Log::error("lbg".$request->path());
+	 //        	if ($request->ajax()){
+		// 	return response('Unauthorized.', 401);
+		// }
 		    $needle="login";
 		    $pos = strpos($mpath, $needle);
 		    if( $pos ){
@@ -52,24 +52,21 @@ class Authenticate {
 	            //我一般使用这个，成功后登录我想使用的控制器
 	            return redirect()->action('ArticleController@index');
 	       }else{
-
-		$urls= array('login','register'); 
+		$urls= array("login","register","checkUser"); 
 		$iscontains=false;
 		  foreach ($urls as $url){ 
 		        if (strpos($mpath, $url)) {
-				    $iscontains = true;
-				    break;
-				}
+				$iscontains = true;
+				break;
+			}
 		    } 
 		    if( $iscontains ){
-		    	    Log::error("lbgnext");
-		    	 return $next($request);
+		    	Log::error("handle-222-next");
+		    	return $next($request);
 		    }else {
-		    Log::error("lbg".$request->path());
 	        	  return redirect('/auth/login');
 	        	}
 	        }
-
 	        return $next($request);
 	    }
 }

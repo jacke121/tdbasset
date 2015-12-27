@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>个人中心</title>
-<link rel="stylesheet" type="text/css" href="../css/personal center.css">
+<link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 </head>
 
 <body>
