@@ -21,24 +21,6 @@ use anlutro\cURL\cURL;
     use Illuminate\Foundation\Auth\ThrottlesLogins;
 class AuthController extends Controller {
 
-use AuthenticatesAndRegistersUsers, ThrottlesLogins;
- private $redirectTo = '/';
-public function handle($request, Closure $next)
-    {
-        return redirect('/');
-        // if ($this->auth->check()) {
-        //     //跳转到／home页
-        //     return redirect('/home');
-            
-        //     //登录成功后跳转登录前的那页，但一般我不这么用根据情况使用
-        //     return redirect()->back();
-            
-        //     //我一般使用这个，成功后登录我想使用的控制器
-        //     return redirect()->action('IndexController@index');
-        // }
-
-        // return $next($request);
-    }
 	/**
 	 * Create a new authentication controller instance.
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
@@ -50,37 +32,38 @@ public function handle($request, Closure $next)
 		$this->middleware('auth', ['except' => 'getLogout']);
 	}
 
-  
+
   public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
     {
           return view('auth.login');
-
-      
     }
-// public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
-//     {
-//     //调用validate验证前端数据
-//          $this->validate($request, ['email'=> 'required|email', 'password'=> 'required']);
-//         $credentials = $request->only('email', 'password');//过滤掉前端数据，只留下email和password
-//          if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
-//          {
-//              return redirect()->intended($this->redirectPath());//验证通过则跳入主页
-//          }
-//        return redirect($this->loginPath())
-//                    //withInput(),负责数据写入session
-//                    ->withInput($request->only('email', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
-//                     //withErrors(),
-//                     ->withErrors([
-//                        'email‘'=> $this->getFailedLoginMessage(),
-//                     ]);
-//      }
+public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
+    {
+    //调用validate验证前端数据
+
+         $this->validate($request, ['email'=> 'required|email', 'password'=> 'required']);
+        $credentials = $request->only('email', 'password');//过滤掉前端数据，只留下email和password
+         if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
+         {
+                Log::error('lbg11111');
+             return redirect()->intended("member/index");//验证通过则跳入主页
+         }
+               Log::error('lbg22222');
+       return redirect($this->loginPath())
+                   //withInput(),负责数据写入session
+                   ->withInput($request->only('email', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
+                    //withErrors(),
+                    ->withErrors([
+                       'email‘'=> $this->getFailedLoginMessage(),
+                    ]);
+     }
      public function registertype(){
      return view('auth.registertype');
-     }
+     }  
           public function getRegister($type){
        // var_dump($type);
      return view('auth.register',['type'=>$type,'content'=>$type]);
-     }
+     }  
        public function checkUser(Request $request){
         $column=$request->input('column');
 $value=$request->input('value');
@@ -93,7 +76,7 @@ $value=$request->input('value');
            $msg="用户名已经注册";
       }
        return parent::returnJson($code, $msg);
-}
+}  
     public function sendsms(Request $request){
 
       $mobile = Input::get('mobile');
@@ -102,7 +85,7 @@ $value=$request->input('value');
           //手机号码格式不对    
                return parent::returnJson(1,"手机号码格式不对".$mobile);
       }
-
+  
    $data= DB::select("select * from members where lifestatus=1 and mobile =".$mobile);
     if(sizeof($data)>0){
         return parent::returnJson(1,"手机号已注册");
@@ -130,7 +113,7 @@ $value=$request->input('value');
  //  <MsgState>无效计费条数,号码不规则,过滤[1:186019249011,]</MsgState>
  //  <Reserve>0</Reserve>
 
-}
+} 
 public function store(Request $request){
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
  $username= Session::get('username');
@@ -142,5 +125,11 @@ public function store(Request $request){
                $member->email = Input::get('email');
                $member->password = Hash::make(Input::get('password'));
                $member->save();
+                   return redirect()->route('member.index');
+      
       }
+public function getLogout(Request $request){
+  $this->auth->logout();
+  return redirect('/');
+}
 }

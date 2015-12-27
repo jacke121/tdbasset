@@ -4,7 +4,6 @@
 | Application Routes | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to and give it the controller to call when that URI is requested.
 */
-
 Route::get('/', 'ArticleController@index');
 Route::get('/backend/login', 'backend\Auth\AuthController@toLogin');
  Route::get('/auth/login', 'Auth\AuthController@toLogin');
@@ -12,7 +11,7 @@ Route::get('auth/registertype', 'Auth\AuthController@registertype');
 
 Route::get('auth/register/{type}', 'Auth\AuthController@getRegister');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-// Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::post('auth/login', 'Auth\AuthController@getLogin');
 
 Route::get('auth/store', 'Auth\AuthController@store');
 Route::post('auth/store', 'Auth\AuthController@store');
@@ -49,15 +48,15 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     ]);
 
 });
+    // Route::get('/member/index', 'member\HomeController@index');
 Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
-    Route::any('/','member\HomeController@index');
-    Route::resource('index', 'member\HomeController@index');
+    Route::any('/{name?}','member\HomeController@index');
+    Route::get('index', 'member\HomeController@index');
     Route::resource('content','member\ContentController');
     Route::resource('article','member\ArticleController');
     Route::resource('tags','member\TagsController');
     Route::resource('user','member\UserController');
     Route::resource('comment','member\CommentController');
     Route::resource('nav','member\NavigationController');
-
 });
 

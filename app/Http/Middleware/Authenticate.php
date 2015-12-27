@@ -2,7 +2,7 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-
+use Log;
 class Authenticate {
 
 	/**
@@ -30,34 +30,46 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	    {
-	        if ($this->auth->check()) {
-	            //跳转到／home页
-	            return redirect('/home');
-	            
-	            //登录成功后跳转登录前的那页，但一般我不这么用根据情况使用
-	            return redirect()->back();
-	            
+	    	$mpath=$request->path();
+	        	if ($this->auth->check()) {
+	        	if ($request->ajax()){
+			return response('Unauthorized.', 401);
+		}
+	        	  Log::error("lbg".$request->path());
+		    $needle="login";
+		    $pos = strpos($mpath, $needle);
+		    if( $pos ){
+		    	   return redirect('/member/index');
+		    }else {
+		    	$needle="index";
+		    $pos = strpos($mpath, $needle);
+		    	if($pos){
+    				 return $next($request);
+		    	}else{
+		    	 	return redirect()->back();
+		    	}
+		    }
 	            //我一般使用这个，成功后登录我想使用的控制器
 	            return redirect()->action('ArticleController@index');
+	       }else{
+
+		$urls= array('login','register'); 
+		$iscontains=false;
+		  foreach ($urls as $url){ 
+		        if (strpos($mpath, $url)) {
+				    $iscontains = true;
+				    break;
+				}
+		    } 
+		    if( $iscontains ){
+		    	    Log::error("lbgnext");
+		    	 return $next($request);
+		    }else {
+		    Log::error("lbg".$request->path());
+	        	  return redirect('/auth/login');
+	        	}
 	        }
 
 	        return $next($request);
 	    }
-	// public function handle($request, Closure $next)
-	// {
-	// 	if ($this->auth->guest())
-	// 	{
-	// 		if ($request->ajax())
-	// 		{
-	// 			return response('Unauthorized.', 401);
-	// 		}
-	// 		else
-	// 		{
-	// 			return redirect()->guest('auth/login');
-	// 		}
-	// 	}
-
-	// 	return $next($request);
-	// }
-
 }
