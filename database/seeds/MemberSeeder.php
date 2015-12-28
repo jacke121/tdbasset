@@ -5,7 +5,7 @@
  */
 use Illuminate\Database\Seeder;
 use App\Services\Registrar;
-class UserSeeder extends Seeder{
+class MemberSeeder extends Seeder{
     public function run(){
         $data = [
             'name' => 'admin',
@@ -16,6 +16,6 @@ class UserSeeder extends Seeder{
             'desc'=>'管理员'
         ];
         $register = new Registrar();
-        $register->createUser($data);
+        $register->create($data);
     }
 }
