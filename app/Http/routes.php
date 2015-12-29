@@ -5,7 +5,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to and give it the controller to call when that URI is requested.
 */
 Route::get('/', 'ArticleController@index');
-Route::get('/backend/login', 'backend\Auth\AuthController@toLogin');
+
  Route::get('/auth/login', 'Auth\AuthController@toLogin');
 Route::get('auth/registertype', 'Auth\AuthController@registertype');
 
@@ -34,6 +34,7 @@ Route::controllers([
 Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::any('/','backend\HomeController@index');
     Route::post('auth/login', 'backend\Auth\AuthController@getLogin');
+    Route::get('/auth/login', 'backend\Auth\AuthController@toLogin');
     Route::resource('home', 'backend\HomeController');
     Route::resource('cate','backend\CateController');
     Route::resource('content','backend\ContentController');

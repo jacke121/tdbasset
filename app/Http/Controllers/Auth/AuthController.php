@@ -20,7 +20,7 @@ use anlutro\cURL\cURL;
     use Illuminate\Support\Facades\Session;  
     use Illuminate\Foundation\Auth\ThrottlesLogins;
 class AuthController extends Controller {
-
+use AuthenticatesAndRegistersUsers;
 	/**
 	 * Create a new authentication controller instance.
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
@@ -38,14 +38,14 @@ class AuthController extends Controller {
         public function getLogin(Request $request){
          //调用validate验证前端数据
          $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
-        $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
+        $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
          if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
                 Log::error('lbg11111');
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');
-               return redirect($this->loginPath())
+               return redirect($request->path())
                    //withInput(),负责数据写入session
                    ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
                     ->withErrors([
@@ -120,8 +120,17 @@ public function store(Request $request){
                $member->email = Input::get('email');
                $member->password = Hash::make(Input::get('password'));
                $member->save();
-                   return redirect()->route('member.index');
-      
+                if(Auth::attempt(array( 'username'=>$data['username'],'password' => $data['password']))) {
+         //登录成功
+        $userid = Auth::user()->id;
+       $ip = $_SERVER['REMOTE_ADDR'];
+      //后边就不写了，主要是拿到登录用户信息就好
+       return redirect()->route('member.index');
+        return redirect(action('admin\AdminController@index'));
+        return Redirect::to('profile');
+    }    else    {
+        return Redirect::to('login');
+    }
       }
 public function getLogout(Request $request){
   $this->auth->logout();

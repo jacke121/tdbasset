@@ -3,6 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Log;
+use Config;
 class BackAuthenticate {
 
 	/**
@@ -30,6 +31,8 @@ public function __construct(Guard $auth)
 	 */
 	public function handle($request, Closure $next)
 	    {
+	    	Config::set('auth.model', 'App\Model\User');
+		Config::set('auth.table', 'users');
 	    	$mpath=$request->path();
 	    	Log::error("handle-1111".$mpath);
 	        if ($this->auth->check()) {

@@ -13,6 +13,7 @@ use Redirect, Input;
 use App\User;
 use Log;
 use Hash;
+use Config;
 use Validator;
 use App\libs\common;
 use App\libs\LbgCurl;
@@ -40,7 +41,8 @@ class AuthController extends Controller {
         }
         public function getLogin(Request $request,Route $route)    {
 
-
+          Config::set('auth.model', 'App\Model\User');
+          Config::set('auth.table', 'users');
             //调用validate验证前端数据
           Log::error("getLogin: ".$request->path());
                  $this->validate($request, ['name'=> 'required', 'password'=> 'required']);

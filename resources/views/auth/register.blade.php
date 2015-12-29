@@ -152,7 +152,7 @@ function SetRemainTime() {
    	</div>
 <!--reg2-->
 <form class="form-horizontal" role="form" method="POST" action="/auth/store">
-	<input type="hidden" name="type" value="{{$type }}">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="reg2">
         <div class="reg2con">
             <div class="reg_step2"></div>
