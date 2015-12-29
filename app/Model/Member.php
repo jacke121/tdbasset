@@ -15,7 +15,6 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
 	 * @var array
 	 */
 	protected $fillable = ['name', 'type','mobile','email', 'password','photo','desc'];
-
 	protected $hidden = ['password', 'remember_token'];
 
     static $members = [];
@@ -25,7 +24,6 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
     }
 
     public static function getmemberArr($memberId){
-
         if(!isset(self::$members[$memberId])){
             $member = self::select('name')->find($memberId)->toArray();
             if(empty($member)){

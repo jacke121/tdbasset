@@ -161,12 +161,12 @@ function SetRemainTime() {
                 <p class="regp">请仔细填写下列信息</p>
                 <div class="int">
                     <span class="intface userface"></span>
-                    <input type="text"  id="username" name="name"placeholder="用户名：字母、数字" class="user" onkeyup="value=value.replace(/^ +| +$/g,'')">
+                    <input type="text"  id="username" name="name" placeholder="用户名：字母、数字" class="user" onkeyup="value=value.replace(/^ +| +$/g,'')">
                     <span id="nameAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个字符，区分大小写</span>
                 </div>
                 <div class="int">
                     <span class="intface pwdface"></span>
-                    <input type="password" id="password" placeholder="密码：字母或数字" class="pwd" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
+                    <input type="password" id="password" name="password" placeholder="密码：字母或数字" class="pwd" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
                       <span id="passwordAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个英文、数字组成，区分大小写</span>
                 </div>
                 <div class="int">
@@ -181,7 +181,7 @@ function SetRemainTime() {
                 </div> -->
                 <div class="int">
                     <span class="intface phoface"></span>
-                    <input type="text" id="mobile"  placeholder="手机号码" class="pho">
+                    <input type="text" id="mobile" name="mobile"  placeholder="手机号码" class="pho">
                      <span class="code"><a href="javascript:;" onclick="sendMessage()">获取验证码</a></span>
                          <span id="mobileAlt" data-info="mobile"></span>
                 </div>

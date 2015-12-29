@@ -9,6 +9,7 @@
                     <div class="right">
       <ul class="right">
                     @if (Auth::guest())
+                    <a href="{{ url('/auth/logout') }}">未登录</a>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>

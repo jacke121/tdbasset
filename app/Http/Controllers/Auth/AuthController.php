@@ -29,7 +29,7 @@ use AuthenticatesAndRegistersUsers;
 	public function __construct(Guard $auth, Registrar $registrar){
 		$this->auth = $auth;
 		$this->registrar = $registrar;
-		$this->middleware('auth', ['except' => 'getLogout']);
+		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
         public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
@@ -61,8 +61,8 @@ use AuthenticatesAndRegistersUsers;
        public function checkUser(Request $request){
         Log::error("checkUser");
         $column=$request->input('column');
-      $value=$request->input('value');
-      $username = Input::get('username');
+        $value=$request->input('value');
+        $username = Input::get('username');
          $data= DB::select("select * from members where lifestatus=1 and ". $column." ='".$value."'");
          $code=0;
          $msg="用户名可用";
@@ -111,29 +111,32 @@ use AuthenticatesAndRegistersUsers;
 } 
 public function store(Request $request){
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
- $username= Session::get('username');
+ // $username= Session::get('username');
 //$validator = Validator::make(Input::all(), User::$rules);
          // if ($validator->passes()){
                $member = new Member();
                $member->mobile = Input::get('mobile');
                $member->name = Input::get('name');
-               $member->email = Input::get('email');
+               $member->email = $member->name ."126.com";// Input::get('email');
                $member->password = Hash::make(Input::get('password'));
-               $member->save();
-                if(Auth::attempt(array( 'username'=>$data['username'],'password' => $data['password']))) {
+                      $member->password = Hash::make(Input::get('password'));
+             $member->created_at=  date("Y-m-d H:i:s", time());
+                         $member->save();
+                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>$member->password))) {
          //登录成功
-        $userid = Auth::user()->id;
+        $userid = $member ->id;
        $ip = $_SERVER['REMOTE_ADDR'];
       //后边就不写了，主要是拿到登录用户信息就好
-       return redirect()->route('member.index');
+       return redirect()->to('/member/index');
         return redirect(action('admin\AdminController@index'));
-        return Redirect::to('profile');
+        // return Redirect::to('profile');
     }    else    {
-        return Redirect::to('login');
+          return redirect()->to('/auto/login');
+        // return Redirect::to('auto/login');
     }
       }
-public function getLogout(Request $request){
-  $this->auth->logout();
-  return redirect('/');
-}
+        public function getLogout(Request $request){
+          $this->auth->logout();
+          return redirect('/');
+        }
 }
