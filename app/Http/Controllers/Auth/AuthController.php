@@ -41,12 +41,10 @@ use AuthenticatesAndRegistersUsers;
         $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
          if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
-                Log::error('lbg11111');
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');
                return redirect($request->path())
-                   //withInput(),负责数据写入session
                    ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
                     ->withErrors([
                        'name'=> $this->getFailedLoginMessage(),
@@ -110,12 +108,17 @@ use AuthenticatesAndRegistersUsers;
 
 } 
 public function store(Request $request){
+
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
  // $username= Session::get('username');
 //$validator = Validator::make(Input::all(), User::$rules);
          // if ($validator->passes()){
                $member = new Member();
                $member->mobile = Input::get('mobile');
+               $checkCode= Session::get($member->mobile);
+              if(!$checkCode ||  $checkCode!=Input::get('checkCode')){
+                  return redirect()->back()->withInput()->withErrors(['checkCode'=>"验证码输入错误"]);
+              }
                $member->name = Input::get('name');
                $member->email = $member->name ."126.com";// Input::get('email');
                $member->password = Hash::make(Input::get('password'));
@@ -131,7 +134,7 @@ public function store(Request $request){
         return redirect(action('admin\AdminController@index'));
         // return Redirect::to('profile');
     }    else    {
-          return redirect()->to('/auto/login');
+          return redirect()->to('/auth/login');
         // return Redirect::to('auto/login');
     }
       }

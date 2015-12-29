@@ -14,8 +14,11 @@ var curCount;//当前剩余秒数
 function sendMessage() {
   　curCount = count;
 　　//设置button效果，开始计时
-     $("#btnSendCode").attr("disabled", "true");
-     $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+if($('#btnSendCode').hasClass('disabled')) return;
+  $('#btnSendCode').addClass('disabled');
+
+     // $("#btnSendCode").attr("disabled", "true");
+     $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
 InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 var code="122345";
 var url="/auth/sendsms";
@@ -77,12 +80,13 @@ var code="122345";
 function SetRemainTime() {
             if (curCount == 0) {
                 window.clearInterval(InterValObj);//停止计时器
-                $("#btnSendCode").removeAttr("disabled");//启用按钮
-                $("#btnSendCode").val("重新发送验证码");
+               $("#btnSendCode").removeClass('disabled');
+                // $("#btnSendCode").removeAttr("disabled");//启用按钮
+                $("#btnSendCode").html("重新发送验证码");
             }
             else {
                 curCount--;
-                $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+                $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             }
         }
         function checkMobile(){
@@ -152,6 +156,7 @@ function SetRemainTime() {
    	</div>
 <!--reg2-->
 <form class="form-horizontal" role="form" method="POST" action="/auth/store">
+
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="reg2">
         <div class="reg2con">
@@ -182,12 +187,17 @@ function SetRemainTime() {
                 <div class="int">
                     <span class="intface phoface"></span>
                     <input type="text" id="mobile" name="mobile"  placeholder="手机号码" class="pho">
-                     <span class="code"><a href="javascript:;" onclick="sendMessage()">获取验证码</a></span>
-                         <span id="mobileAlt" data-info="mobile"></span>
+                     <span class="code"><a id="btnSendCode" href="javascript:;" onclick="sendMessage()">获取验证码</a></span>
+                         <span id="mobileAlt" data-info="mobile">
+                        
+                         </span>
                 </div>
                 <div class="int">
                     <span class="intface renface"></span>
                     <input type="text" placeholder="手机认证：请填写收到的验证码" class="ren">
+                         @if ($errors->any())
+                        <span id="checkcodeAlt" data-info="checkcode" style="color: #E15F63"> {{ $errors->getBag('default')->first('checkCode') }}</span>
+                        @endif 
                 </div>
                 <p class="regtt">
                 <input class="reg_check" type="checkbox" checked="checked">我已阅读并同意平台注册协议
