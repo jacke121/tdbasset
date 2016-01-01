@@ -8,7 +8,7 @@
             <a href="{{ url('/member/index') }}" class="f14" target="_blank" style="margin-right:15px;">个人中心</a>
                     <div class="right">
       <ul class="right">
-                    @if (Auth::member())
+                    @if (Auth::member()->get())
                      <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::member()->get()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
