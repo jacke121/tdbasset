@@ -27,21 +27,22 @@
    <div class="header">
       <div class="center">
             <ul class="center_left">
-                <li style="margin:19px 17px 0 0;"><a href="index.html"><img src="{{URL::asset('/')}}/images/head_logo.jpg" width="58" height="57"></a></li>
+                <li style="margin:19px 17px 0 0;"><a href="/"><img src="{{URL::asset('/')}}/images/head_logo.jpg" width="58" height="57"></a></li>
                 <li style="margin-top:35px;"><img src="{{URL::asset('/')}}/images/head_ldzc.jpg" width="219" height="25"></li>
             </ul>
             <dl class="center_right">
-                <dt class="inDex"><a href="/"  target="_blank" class="current">首页</a></dt>
+                <dt class="inDex">
+                    <a id="nav_home" href="{{ URL('/') }}">首页</a></dt>
                 <dd></dd>
-                <dt><a href="#" target="_blank">债务大厅</a></dt>
+                <dt><a id="nav_zq" href="{{ URL('zq') }}">债务大厅</a></dt>
                 <dd></dd>
-                <dt><a href="#">产品服务</a></dt>
+                <dt><a id="nav_service" href="{{ URL('service') }}">产品服务</a></dt>
                 <dd></dd>
-                <dt><a href="#">加盟合作</a></dt>
+                <dt><a id="nav_jion" href="{{ URL('jion') }}">加盟合作</a></dt>
                 <dd></dd>
-                <dt><a href="#">用户指南</a></dt>
+                <dt><a id="nav_users" href="{{ URL('users') }}">用户指南</a></dt>
                 <dd></dd>
-                <dt><a href="#">关于我们</a></dt>
+                <dt><a id="nav_about" href="{{ URL('about') }}">关于我们</a></dt>
             </dl>
       </div>
     </div>

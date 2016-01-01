@@ -10,17 +10,7 @@
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
-        <div class="mainl">
-            <ul>
-                <li class="cur tit"><a href="#">个人中心</a></li>
-                <li><a href="#">系统消息</a></li>
-                <li><a href="#">已申请信息</a></li>
-                <li><a href="#">已收藏信息</a></li>
-                <li><a href="#">资格认证</a></li>
-                <li><a href="#">安全中心</a></li>
-                <li><a href="#">安全退出</a></li>
-            </ul>
-        </div>
+        @include('member.left_nav')
 <!--会员首页-->
         <div class="mainr">
             <div class="main_wei">

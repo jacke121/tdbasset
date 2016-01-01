@@ -45,3 +45,11 @@
             <a href="#">思科培训</a>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var path = $.trim(window.location.pathname.split('/')[1]);
+            if(path==""){path ="home";};
+            path = "#nav_"+path;
+            $(path).addClass("current");
+        });
+    </script>

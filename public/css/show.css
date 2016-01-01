@@ -1,0 +1,85 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0; list-style:none; border:none; font-family:"Microsoft YaHei";}
+a{ text-decoration:none;}
+/*公共样式*/
+.f14{ font-size:14px; color:#999999;}
+.f16{ font-size:16px;}
+.f18{ font-size:18px; color:#ee8d0a;}
+.f22{ font-size:22px; color:#ee8d0a;}
+.col6{ color:#666666;}
+.fl{ float:left;}
+.fr{ float:right;}
+.center{ width:1001px; margin:0 auto;}
+.center_right .current{ color:#0092d7;}
+.control .current{ background:#0092D7; color:#ffffff;}
+.personal_debt .currentOne{ background:#EE8D0A; color:#fff; border-radius:3px;}
+.orange{ color:#ee8d0a; font-size:30px;}
+.blue{ color:#0093D9; font-size:14px;}
+/*top部分*/
+.top{ width:100%; height:46px; line-height:46px; background:#EBEBEB;/* padding-top:10px;*/}
+.center .login{ display:inline-block; width:58px; height:26px; line-height:26px; text-align:center; background:#ee8d0a; border-radius:5px; color:#ffffff;}
+/*head部分*/
+.header{ width:100%; height:96px; background:#F4F4F4;}
+.center_left{ width:295px; height:57px; float:left;}
+.center_left li{ float:left;}
+.center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;}
+.center_right dt{ width:105px; float:left; margin-top:8px;}
+.center_right dd{ width:1px; height:15px; background:#E4E4E6; float:left; margin-top:39px;}
+.center_right .inDex{ display:inline-block; width:79px;}
+.center_right dt a{ color:#999999; font-size:18px;}
+.center_right dt a:hover{ color:#0092d7;}
+/*内容*/
+.bg_h{ width:100%; background:#F4F4F4;}
+.bg_h .claim{ width:100%; height:211px; background:#0092D7; margin-bottom:18px; padding-top:29px;}
+.bg_h .claim .claimNumber{ width:662px; height:185px; float:left;}
+.bg_h .claim .claimNumber .claimNumber_top{ height:42px; line-height:42px; background:#E4E4E4; padding-left:26px;}
+.bg_h .claim .claimNumber .claimNumber_top .rate{float:left; height:42px; line-height:42px; margin-right:10px;}
+.bg_h .claim .claimNumber .claimNumber_top .ratet{ font-size:14px; color:#666666;}
+.star1{width:24px;height:24px;display: inline-block;background: url(../images/star.png) no-repeat; margin-top:10px;}
+.star{width:24px;height:24px;display: inline-block;background: url(../images/star.png) no-repeat -30px 0px; margin-top:10px;}
+.bg_h .claim .claimNumber .claimNumber_bottom{ height:63px; background:#fff; font-size:14px; color:#666666; padding:40px 50px;}
+.bg_h .claim .evidence{ width:319px; height:185px; float:right;}
+.bg_h .claim .evidence .evidence_top{ height:42px; line-height:42px; background:#E4E4E4; padding-left:26px;}
+.bg_h .claim .evidence .evidence_bottom{ height:143px; background:#fff;}
+.bg_h .claim .evidence .evidence_bottom .evidence_left{ display:inline-block; width:7px; height:18px; background:url(../images/evidence_left.png) no-repeat; float:left; margin:61px 15px 0;}
+.bg_h .claim .evidence .evidence_bottom .evidence_right{ display:inline-block; width:7px; height:18px; background:url(../images/evidence_right.png) no-repeat; float:right; margin:61px 18px 0;}
+.bg_h .claim .evidence .evidence_bottom ul{ float:left; width:236px; height:103px; margin-top:22px;}
+.bg_h .claim .evidence .evidence_bottom ul li{ width:70px; height:101px; border:1px solid #E4E4E4; margin-right:10px; float:left;}
+/*债权信息*/
+.bg_w{ width:100%; height:1000px; background:#fff; margin-bottom:40px;}
+.bg_w p{ font-size:14px; color:#666666; line-height:26px;}
+.bg_w .informationOne{ float:left; width:481px; height:auto;}
+.bg_w .inf_h3{ height:42px; background:url(../images/inf_h3_bg_03.png) no-repeat; margin-top:20px; padding:10px 0 0 22px; color:#fff; font-size:18px;}
+.blueBox{ padding:13px 17px; background:#EBF6FC;}
+.writeBox{ padding:25px 17px;}
+
+
+/*foot*/
+.foot{width: 100%;min-width:1200px;height: 220px;background: #363636;color:#d1d1d1;font-size: 14px;}
+.footcon{width:1200px; margin:0 auto;padding:30px 0;position: relative;}
+.conrp1{font-size: 16px;}
+.conrp2{font-size: 40px;}
+.foot1{ height:197px; position: absolute;left:20px;top:20px;background: url(../images/foot_bg.jpg) no-repeat  right 20px;padding-right:45px;}
+.foot1 ul li{float: left; width:110px;}
+.foot1 a{color:#d1d1d1; line-height:25px; font-size:14px;}
+.foot1 a:hover{color:#ed6d00;}
+.footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
+.foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2con p span{margin-right: 15px;line-height: 25px;}
+.foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
+.foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}
+.foot4h{height:60px;line-height:30px; font-size: 16px;font-weight: normal;padding-left:40px;margin-bottom:15px;color: #fff;padding-top: 10px;}
+.foot4p1{font-size:40px;color: #d1d1d1;}
+.foot4p3{margin-top: 10px;color: #fff;font-size: 16px;}
+.foot4p3 img{margin-bottom: 3px;}
+.foot4p4{ display: inline-block;}
+.footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
+.footlink a{ font-size:16px; color:#fff; margin-right:30px;}
+
+.applyCollects .col-sm-6 {
+    width:50%;
+    float: left;
+    text-align: center;
+}

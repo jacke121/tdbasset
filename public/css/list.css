@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0; list-style:none; border:none; font-family:"Microsoft YaHei";}
+a{ text-decoration:none;}
+/*公共样式*/
+.f14{ font-size:14px; color:#999999;}
+.f16{ font-size:16px;}
+.f18{ font-size:18px; color:#ee8d0a;}
+.f22{ font-size:22px; color:#ee8d0a;}
+.col6{ color:#666666;}
+.fl{ float:left;}
+.fr{ float:right;}
+.center{ width:1001px; margin:0 auto;}
+.center_right .current{ color:#0092d7;}
+.control .current{ background:#0092D7; color:#ffffff;}
+.personal_debt .currentOne{ background:#EE8D0A; color:#fff; border-radius:3px;}
+.orange{ color:#ee8d0a; font-size:30px;}
+.blue{ color:#0093D9; font-size:14px;}
+/*top部分*/
+.top{ width:100%; height:46px; line-height:46px; background:#EBEBEB;/* padding-top:10px;*/}
+.center .login{ display:inline-block; width:58px; height:26px; line-height:26px; text-align:center; background:#ee8d0a; border-radius:5px; color:#ffffff;}
+/*head部分*/
+.header{ width:100%; height:96px; background:#F4F4F4;}
+.center_left{ width:295px; height:57px; float:left;}
+.center_left li{ float:left;}
+.center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;}
+.center_right dt{ width:105px; float:left; margin-top:8px;}
+.center_right dd{ width:1px; height:15px; background:#E4E4E6; float:left; margin-top:39px;}
+.center_right .inDex{ display:inline-block; width:79px;}
+.center_right dt a{ color:#999999; font-size:18px;}
+.center_right dt a:hover{ color:#0092d7;}
+/*广告位*/
+.banner{ width:100%; height:98px;}
+.banner img{ width:100%;}
+/*个人债务宝*/
+.control{ width:1001px; height:39px; padding-top:17px; margin-bottom:14px;}
+.control li{ height:39px; line-height:39px; background:#FFFFFF; border:1px solid #F1F1F1; border-left:none; text-align:center; float:left;}
+.control li a{ display:block; height:39px; font-size:16px; color:#999999;}
+.personal_debt{ width:100%; height:168px; padding-top:20px; background:#fff; margin-bottom:23px;}
+.personal_debt ul{ clear:both; height:40px;}
+.personal_debt ul li{ float:left;}
+.personal_debt ul li span{ font-size:16px; color:#666666; display:inline-block; width:120px; text-align:right; margin-right:32px;}
+.personal_debt ul li a{ font-size:14px; color:#666666; display:inline-block; width:85px; text-align:center;}
+.personal_debt .debt_city .province{ border:1px solid #AAAAAA; margin-right:40px;}
+.personal_debt ul li .search{ width:116px; height:34px; line-height:34px; text-align:center; background:#0092D7; font-size:18px; color:#ffffff;margin-left: 152px;}
+/*不良资产编号*/
+.badAssets{ width:1001px; height:152px; background:#ffffff url(../images/badAssets_bg.png) no-repeat top left; margin-bottom:15px;}
+.badAssets .number{ font-size:18px; color:#666666; font-weight:normal; margin:22px 0 28px 26px;}
+.badAssets .badAssets_l{ width:655px; height:152px; float:left;}
+.badAssets .badAssets_r{ width:322px; height:120px; background:url(../images/badAssets_bgr.png) no-repeat left top; float:left; padding:32px 0 0 24px;}
+.badAssets .badAssets_r .badAssetsr_b{ width:220px; height:50px; padding-top:20px; float:left;}
+.badAssets .badAssets_r .badAssetsr_b p{ font-size:12px; color:#666666;}
+.badAssets .badAssets_r .badAssetsr_b p span{ color:#ee8d0a;}
+.badAssetsrb_ckxq{ display:inline-block; width:78px; height:28px; line-height:28px; text-align:center; background:#0092D7; border-radius:2px; color:#fff; font-size:14px; float:left; margin-top:23px;}
+/*进度条*/
+.badAssets .badAssets_r .pro{ width:306px; height:50px; border-bottom:1px solid #E4E4E4;}
+.badAssets .badAssets_r .pro span{ display:inline-block; width:74px;}
+.progre{ width:226px; height:9px; padding-left:23px;}
+.money_left .progre .pro progress { width:226px; height:9px; -webkit-appearance: none;}
+.pro progress { -webkit-appearance:none; width:226px; height:9px; color:#0092D7; border:none; background-color:#EBEBEB; border-radius:200px;  margin-bottom: 5px;}
+.pro ::-webkit-progress-bar { background:#ebebeb; border-radius:100px;}/*谷歌中，全部进度条*/
+.pro ::-webkit-progress-value { background: #0092D7; border-radius:100px;}/*谷歌中，已完成的进度条*/
+.pro ::-moz-progress-bar { background: #0092D7; border-radius:100px;}/*火狐中，已完成的进度条*/
+.pro ::-o-progress-bar { background: #0092D7; border-radius:100px;}/*欧鹏中，已完成的进度条*/
+/*分页*/
+.pager {overflow:hidden;margin-bottom:30px;}
+.pager ul.pages {font-size: 12px;text-align: center;margin:30px auto;text-align:center;width:782px;}
+.pager ul.pages li{background: #fff;margin:0px 5px;cursor: pointer;float:left;list-style-type:none; width:34px; height:34px; line-height:34px; border-radius:5px; border:1px solid #D5D5D5; font-size:14px; color:#333;}
+.pager ul.pages .nextP{ border:none; background:none;}
+.pager ul.pages .nextP:hover{ border:none;}
+.pager ul.pages li:hover {border:1px solid #0092D7;}
+.pager ul.pages li.pgEmpty {border:1px solid #eee;color:#aaa;cursor:default;}
+.pager ul.pages li.pgCurrent {color: #fff;background: #0092D7;}
+.inp_tex{ width:32px; height:32px; border:none; text-align:center; outline:none;}
+/*foot*/
+.foot{width: 100%;min-width:1200px;height: 220px;background: #363636;color:#d1d1d1;font-size: 14px;}
+.footcon{width:1200px; margin:0 auto;padding:30px 0;position: relative;}
+.conrp1{font-size: 16px;}
+.conrp2{font-size: 40px;}
+.foot1{ height:197px; position: absolute;left:20px;top:20px;background: url(../images/foot_bg.jpg) no-repeat  right 20px;padding-right:45px;}
+.foot1 ul li{float: left; width:110px;}
+.foot1 a{color:#d1d1d1; line-height:25px; font-size:14px;}
+.foot1 a:hover{color:#ed6d00;}
+.footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
+.foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2con p span{margin-right: 15px;line-height: 25px;}
+.foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
+.foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}
+.foot4h{height:60px;line-height:30px; font-size: 16px;font-weight: normal;padding-left:40px;margin-bottom:15px;color: #fff;padding-top: 10px;}
+.foot4p1{font-size:40px;color: #d1d1d1;}
+.foot4p3{margin-top: 10px;color: #fff;font-size: 16px;}
+.foot4p3 img{margin-bottom: 3px;}
+.foot4p4{ display: inline-block;}
+.footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
+.footlink a{ font-size:16px; color:#fff; margin-right:30px;}
+
+
+

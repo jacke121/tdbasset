@@ -1,0 +1,39 @@
+a:hover{
+    text-decoration: none;
+}
+.form-group{
+    clear:both;
+}
+.zqbanner{
+    background: #0f51b2 url(../images/center.png) no-repeat scroll center top;
+    height: 199px;
+    min-width: 1200px;
+    width: 100%;
+}
+.mainl > ul {
+    border: 1px solid #eee;
+}
+.mainl ul li {
+    border-top: 1px solid #eee;
+}
+.mainl ul li a{
+    display: block;
+    padding: 10px 20px;
+}
+.required{
+    color:red;
+}
+
+.inline-line li{
+    clear:both;
+    margin-top:8px;
+}
+
+.inline-line li .input-group{
+    margin:0 5px;
+    width:150px;
+}
+
+.inline-line li .label-title,.inline-line li label,.inline-line li .input-group{
+    float:left;
+}
