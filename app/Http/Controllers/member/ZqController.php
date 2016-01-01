@@ -24,11 +24,25 @@ class ZqController extends Controller
     {
         $zq = new Zq;
         $zq->types = Input::get('types');
+
         $zq->zq_quote = Input::get('zq_quote');
-        $zq->zq_czfs = Input::get('zq_czfs');
+
+        $zq->zq_czfs_sscs = Input::get('zq_czfs_sscs');
+        $zq->zq_czfs_sscs_rate = Input::get('zq_czfs_sscs_rate');
+        $zq->zq_czfs_fscs = Input::get('zq_czfs_fscs');
+        $zq->zq_czfs_fscs_rate = Input::get('zq_czfs_fscs_rate');
+        $zq->zq_czfs_zqzr = Input::get('zq_czfs_zqzr');
+        $zq->zq_czfs_zqzr_rate = Input::get('zq_czfs_zqzr_rate');
+
         $zq->zq_delay = Input::get('zq_delay');
         $zq->zq_warrant = Input::get('zq_warrant');
-        $zq->zq_cscs = Input::get('zq_cscs');
+
+        $zq->zq_cscs_ss = Input::get('zq_cscs_ss');
+        $zq->zq_cscs_pj = Input::get('zq_cscs_pj');
+        $zq->zq_cscs_sd = Input::get('zq_cscs_sd');
+        $zq->zq_cscs_dh = Input::get('zq_cscs_dh');
+        $zq->zq_cscs_wt = Input::get('zq_cscs_wt');
+
         $zq->zq_file = Input::get('zq_file');
         $zq->zq_ms = Input::get('zq_ms');
 

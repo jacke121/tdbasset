@@ -3,7 +3,7 @@
 @section('content')
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="zq.types" value="2">
+    <input type="hidden" name="types" value="2">
     @include("admin.zq.iterm.zqItem")
     @include("admin.zq.iterm.zqr")
     @include("admin.zq.iterm.zwr")
