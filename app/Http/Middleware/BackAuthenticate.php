@@ -4,6 +4,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Log;
 use Config;
+use Auth;
 class BackAuthenticate {
 
 	/**
@@ -20,7 +21,8 @@ class BackAuthenticate {
 	 */
 public function __construct(Guard $auth)
 	{
-		$this->auth = $auth;
+
+		 $this->auth = Auth::user();//$auth;
 	}
 	/**
 	 * Handle an incoming request.
@@ -31,23 +33,32 @@ public function __construct(Guard $auth)
 	 */
 	public function handle($request, Closure $next)
 	    {
-	    	Config::set('auth.model', 'App\Model\User');
-		Config::set('auth.table', 'users');
 	    	$mpath=$request->path();
 	    	Log::error("handle-1111".$mpath);
-	        if ($this->auth->check()) {
-	        	Log::error("handle-333".$mpath);
-	            //跳转到／home页
-	            return redirect('/home');
-	            
+	        if ( $this->auth->check()) {
+
+	        	$urls= array("login","checkUser","home"); 
+		$iscontains=false;
+		  foreach ($urls as $url){ 
+		        if (strpos($mpath, $url)) {
+				$iscontains = true;
+				break;
+			}
+		    } 
+		    if( $iscontains ){
+		    	Log::error("handle-222-next");
+		    	return $next($request);
+		    }else {
+		    	Log::error("handle-home:".$mpath);
+	        	       return redirect('backend/home');
+	        	}
 	            //登录成功后跳转登录前的那页，但一般我不这么用根据情况使用
 	            return redirect()->back();
-	            
 	            //我一般使用这个，成功后登录我想使用的控制器
 	            return redirect()->guest('/backend/auth/login');
 	            // return redirect()->action('ArticleController@index');
 	        }else{
-	        	$urls= array("login","register","checkUser"); 
+	        	$urls= array("login","register","checkUser","home"); 
 		$iscontains=false;
 		  foreach ($urls as $url){ 
 		        if (strpos($mpath, $url)) {

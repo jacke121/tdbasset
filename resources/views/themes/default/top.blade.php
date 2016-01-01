@@ -8,15 +8,15 @@
             <a href="{{ url('/member/index') }}" class="f14" target="_blank" style="margin-right:15px;">个人中心</a>
                     <div class="right">
       <ul class="right">
-                    @if (Auth::guest())
-                    <a href="{{ url('/auth/logout') }}">未登录</a>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                    @if (Auth::member())
+                     <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::member()->get()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/auth/logout') }}">注销</a></li>
                             </ul>
                         </li>
+                    @else
+                             <a href="{{ url('/auth/logout') }}">未登录</a>
                     @endif
                 </ul>
                 </div>

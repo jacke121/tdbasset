@@ -35,7 +35,7 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::any('/','backend\HomeController@index');
     Route::post('auth/login', 'backend\Auth\AuthController@getLogin');
     Route::get('/auth/login', 'backend\Auth\AuthController@toLogin');
-    Route::resource('home', 'backend\HomeController');
+    Route::get('home', 'backend\HomeController@index');
     Route::resource('cate','backend\CateController');
     Route::resource('content','backend\ContentController');
     Route::resource('article','backend\ArticleController');

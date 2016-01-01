@@ -13,6 +13,7 @@ use Redirect, Input;
 use App\Model\Member;
 use Log;
 use Hash;
+use Auth;
 use Validator;
 use App\libs\common;
 use App\libs\LbgCurl;
@@ -27,7 +28,7 @@ use AuthenticatesAndRegistersUsers;
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 */
 	public function __construct(Guard $auth, Registrar $registrar){
-		$this->auth = $auth;
+		$this->auth =Auth::member();// $auth;
 		$this->registrar = $registrar;
 		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
@@ -39,7 +40,7 @@ use AuthenticatesAndRegistersUsers;
          //调用validate验证前端数据
          $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
         $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
-         if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
+       if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
