@@ -16,6 +16,6 @@ class UserSeeder extends Seeder{
             'desc'=>'管理员'
         ];
         $register = new Registrar();
-        $register->create($data);
+        $register->createUser($data);
     }
 }

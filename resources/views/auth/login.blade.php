@@ -77,7 +77,7 @@ var url="/auth/sendsms";
                 <h3>用户登录帮助</h3>
                 <p>如果您在登录前未进行会员注册，请您先进行会员注册；
 请您正确填写注册的用户名和密码；如果您忘记了您的密码，可以点击‘忘记密码’找回您注册的密码。</p>
-                <a href="#">免费注册</a>
+                <a href="{{ url('/member/index') }}">免费注册</a>
             </div>
             <div style="clear:both;"></div>
         </div>

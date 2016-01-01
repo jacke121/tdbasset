@@ -2,10 +2,9 @@
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
+use Kbwebs\MultiAuth\PasswordResets\CanResetPassword;
+use Kbwebs\MultiAuth\PasswordResets\Contracts\CanResetPassword as CanResetPasswordContract;
 class Member extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
@@ -15,7 +14,6 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
 	 * @var array
 	 */
 	protected $fillable = ['name', 'type','mobile','email', 'password','photo','desc'];
-
 	protected $hidden = ['password', 'remember_token'];
 
     static $members = [];
@@ -25,7 +23,6 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
     }
 
     public static function getmemberArr($memberId){
-
         if(!isset(self::$members[$memberId])){
             $member = self::select('name')->find($memberId)->toArray();
             if(empty($member)){

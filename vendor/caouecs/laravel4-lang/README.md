@@ -1,92 +1,144 @@
-# Laravel-lang
+Laravel-lang
+=============
 
-46 languages for Laravel 5 based on [caouecs/Laravel-lang](https://github.com/caouecs/Laravel-lang).
+In this repository, you can find the lang files for the framework PHP, [Laravel 4&5](http://www.laravel.com).
 
-[中文说明](README_CN.md)
+---
 
-[![Latest Stable Version](https://poser.pugx.org/overtrue/laravel-lang/v/stable.svg)](https://packagist.org/packages/overtrue/laravel-lang) [![Total Downloads](https://poser.pugx.org/overtrue/laravel-lang/downloads.svg)](https://packagist.org/packages/overtrue/laravel-lang) [![Latest Unstable Version](https://poser.pugx.org/overtrue/laravel-lang/v/unstable.svg)](https://packagist.org/packages/overtrue/laravel-lang) [![License](https://poser.pugx.org/overtrue/laravel-lang/license.svg)](https://packagist.org/packages/overtrue/laravel-lang)
+## Update 29 March
 
-## Install
+    The project changes its name, but not yet its Composer package's name.
+    You must choose the number of version of this project in your composer.json.
 
-```shell
-composer require "overtrue/laravel-lang:1.0.*"
-```
 
-or add the following line to your project's `composer.json`:
+---
 
-```json
-"require": {
-    "overtrue/laravel-lang": "1.0.*"
-}
-```
-then
+How add languages in my app ?
+---
 
-```shell
-composer update
-```
-After completion of the above, Replace the `config/app.php` content
+### Installation by GitHub
 
-```php
-Illuminate\Translation\TranslationServiceProvider::class,
-```
-with:
+ * Clone the [GitHub repository](https://github.com/caouecs/laravel-lang/) : *git clone https://github.com/caouecs/Laravel-lang.git*
+ * Or download the [zip file](https://github.com/caouecs/laravel-lang/archive/master.zip)
+ * Choose the branch:
+    * `laravel4` for Laravel4 project
+    * `master` for Laravel5 project
+ * Copy the folders of languages that you want, in *app/lang* folder of your application Laravel
 
-```php
-Overtrue\LaravelLang\TranslationServiceProvider::class,
-```
 
-## Configuration
+### Installation by Composer
 
-you can change the locale at `config/app.php`:
+ * For Laravel 4 : add `"caouecs/laravel4-lang": "~1.0"` in your `composer.json` in "require" or run *composer require caouecs/laravel4-lang*
+ * For Laravel 5 : add `"caouecs/laravel4-lang": "~2.0"` in your `composer.json` in "require"
+ * Do "composer update"
+ * Files of languages are in "vendor/caouecs/laravel4-lang" directory
+ * Copy the folders of languages that you want, in *app/lang* (*resources/lang* in laravel 5) folder of your application Laravel
 
-```php
-'locale' => 'zh-CN',
-```
+### Installation by Command
 
-## Usage
+If you have a Laravel5 project, you can use `laravel-lang` project of overtrue : *composer require "overtrue/laravel-lang:dev-master"*
 
-There is no difference with the usual usage.
+### Language by default in your app
 
-If you need to add additional language content, Please create a file in the `resources/lang/{LANGUAGE}`  directory.
+In the file *app/config/app.php*, change the value of *language* by the short name of your language.
 
-### Add custom language items
+---
 
-Here, for example in Chinese:
+How can I add a language in this project ?
+---
 
-`resources/lang/zh-CN/demo.php`:
+* fork this repository
+* create a directory with the short name of the language (ex: fr for French) from ISO-639-1 ( see [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) )
+* copy these four files of the English version with your translation
+    * for [Laravel](https://github.com/laravel/laravel/tree/master/resources/lang/en)
+* run [PHP-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+	* if installed to global, run `php-cs-fixer fix`.
+	* if installed to project local, run `vendor/bin/php-cs-fixer fix`.
+* add a pull request with the name of the language
 
-```php
-<?php
 
-return [
-    'user_not_exists'    => '用户不存在',
-    'email_has_registed' => '邮箱 :email 已经注册过！',
-];
-```
-Used in the template:
+How can I fix a file ?
+---
 
-```php
-echo trans('demo.user_not_exists'); // 用户不存在
-echo trans('demo.email_has_registed', ['email' => 'anzhengchao@gmail.com']);
-// 邮箱 anzhengchao@gmail.com 已经注册过！
-```
+* fork this repository
+* update the file
+* run [PHP-cs-fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+	* if installed to global, run `php-cs-fixer fix`.
+	* if installed to project local, run `vendor/bin/php-cs-fixer fix`.
+* add a pull request with the name of the language
 
-### Replace the default language items partially
+The files for Laravel 4 are in `laravel4` branch, and for Laravel 5, are in `master` branch.
 
-We assume that want to replace the `password.reset` message:
 
-`resources/lang/zh-CN/passwords.php`:
+Laravel 4.0
+---
 
-```php
-<?php
+We need your help to finish to translate `validation.php` file with array elements.
 
-return [
-    'reset' => '您的密码已经重置成功了，你可以使用新的密码登录了!',
-];
-```
+You can follow translations in the issue [#73](https://github.com/caouecs/laravel-lang/issues/73).
 
-You need only add the part what you want.
+Laravel 4.1
+---
 
-## License
+### Password reminder sent
 
-MIT
+To be ready for the new version of Laravel, we need your help. In `reminders.php` file, a new line has been added :
+
+    "sent" => "Password reminder sent!",
+
+You can follow translations in the issue [#137](https://github.com/caouecs/laravel-lang/issues/137).
+
+### Required without all
+
+In `validation.php` file, a new line has been added :
+
+    "required_without_all" => "The :attribute field is required when none of :values are present."
+
+You can follow translations in the issue [#172](https://github.com/caouecs/laravel-lang/issues/172).
+
+### Validation email
+
+In `validation.php` file, the text for email has been updated :
+
+    "email" => "The :attribute must be a valid email address."
+
+You can follow translations in the issue [#187](https://github.com/caouecs/laravel-lang/issues/187).
+
+### Required with all
+
+In `validation.php` file, a new line has been added :
+
+    "required_with_all" => "The :attribute field is required when :values is present."
+
+You can follow translations in the issue [#193](https://github.com/caouecs/laravel-lang/issues/193).
+
+Laravel 4.2
+---
+
+### Reset in reminders
+
+In `reminders.php` file, a new line has been added :
+
+    "reset" => "Password has been reset!"
+
+You can follow translations in the issue [#258](https://github.com/caouecs/laravel-lang/issues/258).
+
+### Validation.timezone
+
+In `validation.php` file, a new line has been added :
+
+    "timezone" => "The :attribute must be a valid zone."
+
+You can follow translations in the issue [#259](https://github.com/caouecs/laravel-lang/issues/259).
+
+Laravel 5.0
+---
+
+* array for PHP 5.4+
+* validation.filled, with same translation than validation.required
+* *reminders* file is now *languages* file
+
+In `passwords` file [#323](https://github.com/caouecs/laravel-lang/issues/323) :
+
+    "sent" => "We have e-mailed your password reset link!"
+    "reset" => "Your password has been reset!"

@@ -11,7 +11,6 @@
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>哎呀!</strong> 输入错啦.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -24,9 +23,9 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">邮箱</label>
+							<label class="col-md-4 control-label">用户名</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								<input type="name" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 

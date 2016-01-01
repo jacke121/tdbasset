@@ -13,10 +13,13 @@ use Redirect, Input;
 use App\User;
 use Log;
 use Hash;
+use Auth;
+use Config;
 use Validator;
 use App\libs\common;
 use App\libs\LbgCurl;
 use anlutro\cURL\cURL;
+use Illuminate\Routing\Route;
     use Illuminate\Support\Facades\Session;  
 class AuthController extends Controller {
 	use AuthenticatesAndRegistersUsers;
@@ -29,30 +32,41 @@ class AuthController extends Controller {
 	 */
 	public function __construct(Guard $auth, Registrar $registrar)
 	{
-		$this->auth = $auth;
+      
+		$this->auth = Auth::user();//$auth;
 		$this->registrar = $registrar;
-		$this->middleware('auth', ['except' => 'getLogout']);
+		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
         public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
              return view('backend.auth.login');
         }
-        public function getLogin()    {
+        public function getLogin(Request $request,Route $route)    {
+
             //调用validate验证前端数据
-                 $this->validate($request, ['email'=> 'required|email', 'password'=> 'required']);
-                $credentials = $request->only('email', 'password');//过滤掉前端数据，只留下email和password
-                 if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
+       
+                  $name = Input::get('name');
+               // $member->email = $member->name ."126.com";// Input::get('email');
+                // $password ='123456';// Hash::make(Input::get('password'));
+                         $password =Input::get('password');
+                              // $password =Input::get('password');
+                   Log::error("backendgetLogin: ". $name. $password);
+                 $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
+                $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
+                  if($this->auth->attempt(array( 'name'=>$name,'password' =>$password))) {
+                 // if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
                  {
-                     return redirect()->intended($this->redirectPath());//验证通过则跳入主页
+                   Log::error("getLogin1");
+                       return redirect()->intended("backend/home");//验证通过则跳入主页
+                     // return redirect()->intended($this->redirectPath());//验证通过则跳入主页
                  }
-               return redirect($this->loginPath())
+               return redirect($request->back())//$this->loginPath())
                            //withInput(),负责数据写入session
-                           ->withInput($request->only('email', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
-                            //withErrors(),
+                           ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
                             ->withErrors([
-                               'email‘'=> $this->getFailedLoginMessage(),
+                               'name'=> $this->getFailedLoginMessage(),
                             ]);
-             }
+             }}
              public function registertype(){
              return view('auth.registertype');
              }
