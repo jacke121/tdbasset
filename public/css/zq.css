@@ -37,3 +37,7 @@ a:hover{
 .inline-line li .label-title,.inline-line li label,.inline-line li .input-group{
     float:left;
 }
+
+.error{
+    color:red;
+}

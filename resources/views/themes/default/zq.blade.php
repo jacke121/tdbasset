@@ -100,29 +100,12 @@
             </div>
             </div>
             @endforeach
-
         </div>
         <!--分页-->
-        <div class="pager">
-            <ul class="pages">
-                <li class="page-number pgCurrent">1</li>
-                <li class="page-number">2</li>
-                <li class="page-number">3</li>
-                <li class="page-number">4</li>
-                <li class="page-number">5</li>
-                <li class="page-number">6</li>
-                <li class="page-number">7</li>
-                <li class="page-number">8</li>
-                <li class="page-number">9</li>
-                <li class="page-number">10</li>
-                <li class="nextP">...</li>
-                <li>100</li>
-                <li class="nextP"><img src="../images/next_page.png"></li>
-                <li style="width:auto; font-size:12px; color:#999999;" class="nextP">跳转到:</li>
-                <li><input type="text" class="inp_tex"></li>
-                <li>GO</li>
-
-            </ul>
+        <div class="container">
+            <div class="pull-right">
+            {!! $zqList->render() !!}
+           </div>
         </div>
     </div>
 </div>

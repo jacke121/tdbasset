@@ -7,6 +7,8 @@
 
     @yield('header')
 
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
+
     <link rel="stylesheet" href="{{ homeAsset('/vendor/primer-css/css/primer.css') }}">
     <link rel="stylesheet" href="{{ homeAsset('/vendor/primer-markdown/dist/user-content.min.css') }}">
     <link rel="stylesheet" href="{{ homeAsset('/vendor/octicons/octicons/octicons.css') }}">
@@ -28,54 +30,11 @@
     <meta property="og:locale" content="zh_CN" />
 
     <script src="{{ homeAsset('/vendor/jquery/dist/jquery.min.js') }}"></script>
+
 </head>
 <body class="home">
-<!-- <header class="site-header">
-    <div class="container">
-        <h1><a href="/">Enda Blog</a></h1>
-        <nav class="site-header-nav" role="navigation">
-            <a href="/" class=" site-header-nav-item" target="" title="Home">Home</a>
-            @if(!empty($navList))
-                @foreach($navList as $nav)
-                    <a href="{{ $nav->url }}" class="site-header-nav-item">{{ $nav->name }}</a>
-                @endforeach
-            @endif
-            <form class="demo_search" action="{{url('search/keyword')}}" method="get">
-                <i class="icon_search" id="open"></i>
-                <input class="demo_sinput" type="text" name="keyword" id="search_input" placeholder="输入关键字 回车搜索" />
-            </form>
-        </nav>
-    </div>
-</header> -->
+
 @yield('content')
-
-<!-- / footer -->
-<script src="{{ homeAsset('/vendor/share.js/dist/js/share.min.js') }}"></script>
-<script src="{{ homeAsset('/vendor/share.js/dist/js/jquery.qrcode.min.js') }}"></script>
-<script src="{{ homeAsset('/js/geopattern.js') }}"></script>
-<script src="{{ homeAsset('/js/prism.js') }}"></script>
-<link rel="stylesheet" href="{{ homeAsset('/css/globals/prism.css') }}">
-
-<script>
-    jQuery(document).ready(function($) {
-        // geopattern
-        $('.geopattern').each(function(){
-            $(this).geopattern($(this).data('pattern-id'));
-        });
-
-        $("#open").mouseover(function(){
-            $("#search_input").fadeIn(1).animate({width:'300px',opacity:'10'});
-            $("#search_input")[0].focus();
-            $("#open").fadeOut(10);
-        });
-
-        $("#search_input").blur(function(){
-            $("#search_input").animate({width:'toggle',opacity:'0.1'}).fadeOut(2);
-            $("#open").delay(400).fadeIn(100);
-        });
-        $('.share-bar').share();
-    });
-</script>
 
 </body>
 </html>

@@ -10,7 +10,7 @@
 		<div class="input-group-addon">元</div>
 		</div>
 	</div>
-	<div class="col-sm-8 help-block">（债务总额加利息，限1万元以上）<span id="error_zq_quote"></span> </div>
+	<div class="col-sm-8 help-block">（债务总额加利息，限1万元以上）<span id="error_zq_quote" class="error"></span> </div>
 </div>
 
 <div class="form-group">

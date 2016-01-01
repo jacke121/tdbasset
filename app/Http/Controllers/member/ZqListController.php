@@ -18,7 +18,6 @@ class ZqListController extends Controller
 {
     public function index()
     {
-
         return view('admin.zq.list', ['zqList' => Zq::orderBy('id', 'DESC')->paginate(10)]);
     }
 }

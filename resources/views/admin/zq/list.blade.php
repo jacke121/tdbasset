@@ -4,7 +4,6 @@
 
 <div>
 
-
     <table class="table table-hover table-top">
         <tr>
             <th>#</th>
@@ -23,39 +22,17 @@
                 <td>{{ $v->uid }}</td>
                 <td>{{ $v->created_at }}</td>
                 <td class="text-right">
-
-                    {!! Form::open([
-                    'route' => array('backend.article.destroy', $v->id),
-                    'method' => 'delete',
-                    'class'=>'btn_form'
-                    ]) !!}
-
-                    <button type="submit" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        删除
-                    </button>
-
-                    {!! Form::close() !!}
-
-                    {!! Form::open([
-                        'route' => array('backend.article.edit', $v->id),
-                        'method' => 'get',
-                        'class'=>'btn_form'
-                    ]) !!}
-
-                    <button type="submit" class="btn btn-info">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        修改
-                    </button>
-                    {!! Form::close() !!}
-
+                    <a>修改</a>
+                    <a>删除</a>
                 </td>
 
             </tr>
         @endforeach
     </table>
 
+    <div class="pull-right">
+        {!! $zqList->render() !!}
+    </div>
 </div>
-
 
 @endsection
