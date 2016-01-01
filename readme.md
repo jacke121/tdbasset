@@ -1,3 +1,5 @@
+测试修改2016-01-01
+
 ## laravel-5.1-blog
 
 Blog system development based on laravel  5.1.*
