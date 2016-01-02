@@ -31,10 +31,7 @@ Route::get('jion', 'IndexControler@jion');
 Route::get('users', 'IndexControler@users');
 Route::get('about', 'IndexControler@about');
 
-Route::get('zqm/center', 'member\CenterController@center');
-Route::get('zqm/info', 'member\CenterController@info');
-Route::get('zqm/apply', 'member\CenterController@apply');
-Route::get('zqm/collect', 'member\CenterController@collect');
+
 
 Route::post('zq/apply', 'ZqController@apply');
 Route::post('zq/collect', 'ZqController@collect');
@@ -68,12 +65,16 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
 Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::any('/{name?}','member\HomeController@index');
     Route::get('index', 'member\HomeController@index');
-    Route::resource('zqm','member\ZqController');
-    Route::resource('zqList','member\ZqListController');
     Route::resource('content','member\ContentController');
     Route::resource('article','member\ArticleController');
     Route::resource('tags','member\TagsController');
     Route::resource('user','member\UserController');
     Route::resource('comment','member\CommentController');
     Route::resource('nav','member\NavigationController');
+    Route::resource('zqm','member\ZqController');
+    Route::resource('zqList','member\ZqListController');
+    Route::get('zqm/center', 'member\CenterController@center');
+Route::get('zqm/info', 'member\CenterController@info');
+Route::get('zqm/apply', 'member\CenterController@apply');
+Route::get('zqm/collect', 'member\CenterController@collect');
 });
