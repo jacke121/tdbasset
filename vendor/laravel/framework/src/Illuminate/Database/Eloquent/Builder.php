@@ -236,7 +236,7 @@ class Builder
      * Get an array with the values of a given column.
      *
      * @param  string  $column
-     * @param  string|null  $key
+     * @param  string  $key
      * @return \Illuminate\Support\Collection
      */
     public function lists($column, $key = null)
@@ -465,28 +465,28 @@ class Builder
     /**
      * Get the relation instance for the given relation name.
      *
-     * @param  string  $name
+     * @param  string  $relation
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function getRelation($name)
+    public function getRelation($relation)
     {
         // We want to run a relationship query without any constrains so that we will
         // not have to remove these where clauses manually which gets really hacky
         // and is error prone while we remove the developer's own where clauses.
-        $relation = Relation::noConstraints(function () use ($name) {
-            return $this->getModel()->$name();
+        $query = Relation::noConstraints(function () use ($relation) {
+            return $this->getModel()->$relation();
         });
 
-        $nested = $this->nestedRelations($name);
+        $nested = $this->nestedRelations($relation);
 
         // If there are nested relationships set on the query, we will put those onto
         // the query instances so that they can be handled after this relationship
         // is loaded. In this way they will all trickle down as they are loaded.
         if (count($nested) > 0) {
-            $relation->getQuery()->with($nested);
+            $query->getQuery()->with($nested);
         }
 
-        return $relation;
+        return $query;
     }
 
     /**

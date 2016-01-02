@@ -39,9 +39,9 @@ use AuthenticatesAndRegistersUsers;
         public function getLogin(Request $request){
          //调用validate验证前端数据
          $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
-        $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
-       if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
-         {
+        $credentials = $request->only('name', 'password');
+        //过滤掉前端数据，只留下name和password
+       if ($this->auth->attempt($credentials, $request->has('remember'))){
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');

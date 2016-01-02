@@ -1034,7 +1034,7 @@ class Blueprint
     public function getChangedColumns()
     {
         return array_filter($this->columns, function ($column) {
-            return (bool) $column->change;
+            return ! ! $column->change;
         });
     }
 }
