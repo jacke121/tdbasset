@@ -113,7 +113,7 @@ public function store(Request $request){
 //$validator = Validator::make(Input::all(), User::$rules);
          // if ($validator->passes()){
                $member = new Member();
-               $member->mobile =Input::get('mobile'));
+               $member->mobile =Input::get('mobile');
 
                $checkCode= Session::get("m".$member->mobile);
                  Log::error('registrer:'.$member->mobile."session:".$checkCode."getcode:".Input::get('checkCode'));
