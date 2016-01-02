@@ -39,8 +39,6 @@ Route::get('zqm/collect', 'member\CenterController@collect');
 Route::post('zq/apply', 'ZqController@apply');
 Route::post('zq/collect', 'ZqController@collect');
 Route::resource('zq','ZqController');
-Route::resource('zqm','member\ZqController');
-Route::resource('zqList','member\ZqListController');
 
 // 'backend/auth' => 'backend\AuthController',
 Route::controllers([
@@ -70,6 +68,8 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
 Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::any('/{name?}','member\HomeController@index');
     Route::get('index', 'member\HomeController@index');
+    Route::resource('zqm','member\ZqController');
+    Route::resource('zqList','member\ZqListController');
     Route::resource('content','member\ContentController');
     Route::resource('article','member\ArticleController');
     Route::resource('tags','member\TagsController');

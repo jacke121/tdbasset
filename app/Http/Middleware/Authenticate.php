@@ -36,21 +36,9 @@ class Authenticate {
 	 //        	if ($request->ajax()){
 		// 	return response('Unauthorized.', 401);
 		// }
-		    $needle="login";
-		    $pos = strpos($mpath, $needle);
-		    if( $pos ){
-		    	   return redirect('/member/index');
-		    }else {
-		    	$needle="index";
-		    $pos = strpos($mpath, $needle);
-		    	if($pos){
-    				 return $next($request);
-		    	}else{
-		    	 	return redirect()->back();
-		    	}
-		    }
+    		return $next($request);
 	            //我一般使用这个，成功后登录我想使用的控制器
-	            return redirect()->action('ArticleController@index');
+	            // return redirect()->action('ArticleController@index');
 	       }else{
 		$urls= array("login","register","checkUser"); 
 		$iscontains=false;
