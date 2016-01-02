@@ -294,7 +294,9 @@ class Store implements SessionInterface
      */
     public function ageFlashData()
     {
-        $this->forget($this->get('flash.old', []));
+        foreach ($this->get('flash.old', []) as $old) {
+            $this->forget($old);
+        }
 
         $this->put('flash.old', $this->get('flash.new', []));
 
@@ -418,21 +420,6 @@ class Store implements SessionInterface
     }
 
     /**
-     * Flash a key / value pair to the session
-     * for immediate use.
-     *
-     * @param  string $key
-     * @param  mixed $value
-     * @return void
-     */
-    public function now($key, $value)
-    {
-        $this->put($key, $value);
-
-        $this->push('flash.old', $key);
-    }
-
-    /**
      * Flash an input array to the session.
      *
      * @param  array  $value
@@ -519,14 +506,14 @@ class Store implements SessionInterface
     }
 
     /**
-     * Remove one or many items from the session.
+     * Remove an item from the session.
      *
-     * @param  string|array  $keys
+     * @param  string  $key
      * @return void
      */
-    public function forget($keys)
+    public function forget($key)
     {
-        Arr::forget($this->attributes, $keys);
+        Arr::forget($this->attributes, $key);
     }
 
     /**

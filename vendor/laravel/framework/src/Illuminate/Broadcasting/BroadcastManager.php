@@ -85,8 +85,6 @@ class BroadcastManager implements FactoryContract
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Broadcasting\Broadcaster
-     *
-     * @throws \InvalidArgumentException
      */
     protected function resolve($name)
     {
