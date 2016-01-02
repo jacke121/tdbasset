@@ -194,7 +194,7 @@ function SetRemainTime() {
                 </div>
                 <div class="int">
                     <span class="intface renface"></span>
-                    <input type="text" placeholder="手机认证：请填写收到的验证码" class="ren">
+                    <input type="text" placeholder="手机认证：请填写收到的验证码" name="checkCode" class="ren">
                          @if ($errors->any())
                         <span id="checkcodeAlt" data-info="checkcode" style="color: #E15F63"> {{ $errors->getBag('default')->first('checkCode') }}</span>
                         @endif 
