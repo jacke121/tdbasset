@@ -72,7 +72,6 @@ use AuthenticatesAndRegistersUsers;
        return parent::returnJson($code, $msg);
 }  
     public function sendsms(Request $request){
-
       $mobile = Input::get('mobile');
          if(!preg_match( "/1[3458]{1}\d{9}$/",$mobile)){ 
       // if(!preg_match("/^13\d{9}$|^14\d{9}$|^15\d{9}$|^17\d{9}$|^18\d{9}$/",$mobile)){ 
@@ -86,9 +85,9 @@ use AuthenticatesAndRegistersUsers;
     }
 
       $checkCode= parent::get_code(6,1);
-         Session::put($mobile, $checkCode);  
-      //$type = Input::get('type');
-
+         Session::flash("m".$mobile, $checkCode);
+             $checkCode= Session::get("m".$mobile);
+                 Log::error("sendsms:session:".$checkCode);
       $msg ="尊敬的用户：".$checkCode."是您本次的短信验证码，5分钟内有效.";// Input::get('msg');
           $curl = new cURL;
           $serverUrl="http://cf.lmobile.cn/submitdata/Service.asmx/g_Submit";
@@ -111,22 +110,22 @@ use AuthenticatesAndRegistersUsers;
 public function store(Request $request){
 
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
- // $username= Session::get('username');
 //$validator = Validator::make(Input::all(), User::$rules);
          // if ($validator->passes()){
                $member = new Member();
-               $member->mobile = Input::get('mobile');
-               $checkCode= Session::get($member->mobile);
+               $member->mobile =Input::get('mobile'));
+
+               $checkCode= Session::get("m".$member->mobile);
+                 Log::error('registrer:'.$member->mobile."session:".$checkCode."getcode:".Input::get('checkCode'));
               if(!$checkCode ||  $checkCode!=Input::get('checkCode')){
                   return redirect()->back()->withInput()->withErrors(['checkCode'=>"验证码输入错误"]);
               }
                $member->name = Input::get('name');
                $member->email = $member->name ."126.com";// Input::get('email');
                $member->password = Hash::make(Input::get('password'));
-                      $member->password = Hash::make(Input::get('password'));
              $member->created_at=  date("Y-m-d H:i:s", time());
-                         $member->save();
-                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>$member->password))) {
+                 $member->save();
+                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>Input::get('password')))) {
          //登录成功
         $userid = $member ->id;
        $ip = $_SERVER['REMOTE_ADDR'];
