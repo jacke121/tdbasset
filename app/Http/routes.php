@@ -31,8 +31,6 @@ Route::get('jion', 'IndexControler@jion');
 Route::get('users', 'IndexControler@users');
 Route::get('about', 'IndexControler@about');
 
-
-
 Route::post('zq/apply', 'ZqController@apply');
 Route::post('zq/collect', 'ZqController@collect');
 Route::resource('zq','ZqController');

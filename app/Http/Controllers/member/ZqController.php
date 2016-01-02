@@ -12,7 +12,10 @@ class ZqController extends Controller
     {
         return view('admin.zq.index');
     }
-
+   public function show()
+    {
+        return view('admin.zq.index');
+    }
     public function create(Request $request)
     {
         $template_type = $request->input('types');
