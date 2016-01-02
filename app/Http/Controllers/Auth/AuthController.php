@@ -42,7 +42,7 @@ use AuthenticatesAndRegistersUsers;
         $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
        if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
-             return redirect()->intended("zqm");//member/index");//验证通过则跳入主页
+             return redirect()->intended("member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');
                return redirect($request->path())
@@ -58,7 +58,7 @@ use AuthenticatesAndRegistersUsers;
          return view('auth.register',['type'=>$type,'content'=>$type]);
          }  
        public function checkUser(Request $request){
-
+        Log::error("checkUser");
         $column=$request->input('column');
         $value=$request->input('value');
         $username = Input::get('username');
@@ -84,8 +84,9 @@ use AuthenticatesAndRegistersUsers;
     if(sizeof($data)>0){
         return parent::returnJson(1,"手机号已注册");
     }
+
       $checkCode= parent::get_code(6,1);
-         Session::put($mobile, $checkCode);
+         Session::put($mobile, $checkCode);  
       //$type = Input::get('type');
 
       $msg ="尊敬的用户：".$checkCode."是您本次的短信验证码，5分钟内有效.";// Input::get('msg');
@@ -108,27 +109,29 @@ use AuthenticatesAndRegistersUsers;
 
 } 
 public function store(Request $request){
+
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
+ // $username= Session::get('username');
 //$validator = Validator::make(Input::all(), User::$rules);
          // if ($validator->passes()){
                $member = new Member();
                $member->mobile = Input::get('mobile');
                $checkCode= Session::get($member->mobile);
-                Log::error("regitster".$member->mobile.$checkCode);
               if(!$checkCode ||  $checkCode!=Input::get('checkCode')){
                   return redirect()->back()->withInput()->withErrors(['checkCode'=>"验证码输入错误"]);
               }
                $member->name = Input::get('name');
                $member->email = $member->name ."126.com";// Input::get('email');
                $member->password = Hash::make(Input::get('password'));
+                      $member->password = Hash::make(Input::get('password'));
              $member->created_at=  date("Y-m-d H:i:s", time());
                          $member->save();
-         if($this->auth->attempt(array( 'name'=>$member->name,'password' =>Input::get('password')))) {
+                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>$member->password))) {
          //登录成功
         $userid = $member ->id;
        $ip = $_SERVER['REMOTE_ADDR'];
       //后边就不写了，主要是拿到登录用户信息就好
-       return redirect()->to('/zqm');
+       return redirect()->to('/member/index');
         return redirect(action('admin\AdminController@index'));
         // return Redirect::to('profile');
     }    else    {
