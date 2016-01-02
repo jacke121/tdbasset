@@ -7,7 +7,7 @@
 	<title>会员中心</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="../css/index.css">
+      <link rel="stylesheet" type="text/css" href="{{ asset('/css/index.css') }}">
     <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
 
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">

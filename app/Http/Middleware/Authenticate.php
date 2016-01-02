@@ -31,11 +31,12 @@ class Authenticate {
 	public function handle($request, Closure $next)
 	    {
 	    	$mpath=$request->path();
-	    	   // Log::error("handle-1111".$mpath);
+	    	  
 	        	if ($this->auth->check()) {
 	 //        	if ($request->ajax()){
 		// 	return response('Unauthorized.', 401);
 		// }
+	        	Log::error("next-".$mpath);
     		return $next($request);
 	            //我一般使用这个，成功后登录我想使用的控制器
 	            // return redirect()->action('ArticleController@index');
