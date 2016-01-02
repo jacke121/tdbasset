@@ -36,27 +36,7 @@ public function __construct(Guard $auth)
 	    	$mpath=$request->path();
 	    	Log::error("handle-1111".$mpath);
 	        if ( $this->auth->check()) {
-
-	        	$urls= array("login","checkUser","home"); 
-		$iscontains=false;
-		  foreach ($urls as $url){ 
-		        if (strpos($mpath, $url)) {
-				$iscontains = true;
-				break;
-			}
-		    } 
-		    if( $iscontains ){
-		    	Log::error("handle-222-next");
 		    	return $next($request);
-		    }else {
-		    	Log::error("handle-home:".$mpath);
-	        	       return redirect('backend/home');
-	        	}
-	            //登录成功后跳转登录前的那页，但一般我不这么用根据情况使用
-	            return redirect()->back();
-	            //我一般使用这个，成功后登录我想使用的控制器
-	            return redirect()->guest('/backend/auth/login');
-	            // return redirect()->action('ArticleController@index');
 	        }else{
 	        	$urls= array("login","register","checkUser","home"); 
 		$iscontains=false;
@@ -77,22 +57,4 @@ public function __construct(Guard $auth)
 
 	        return $next($request);
 	    }
-	// public function handle($request, Closure $next)
-	// {
-	//  if ($this->backauth->guest())
-	// 	{
-	// 		if ($request->ajax())
-	// 		{
-	// 			return response('Unauthorized.', 401);
-	// 		}
-	// 		else
-	// 		{
-	// 			//return redirect()->guest('/backend/auth/login');
-	// 			return redirect()->guest('/backend/auth/login');
-	// 		}
-	// 	}
-
-	// 	return $next($request);
-	// }
-
 }
