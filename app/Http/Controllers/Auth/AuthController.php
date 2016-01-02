@@ -84,9 +84,8 @@ use AuthenticatesAndRegistersUsers;
     if(sizeof($data)>0){
         return parent::returnJson(1,"手机号已注册");
     }
-
       $checkCode= parent::get_code(6,1);
-         Session::put($mobile, $checkCode);  
+         Session::put($mobile, $checkCode);
       //$type = Input::get('type');
 
       $msg ="尊敬的用户：".$checkCode."是您本次的短信验证码，5分钟内有效.";// Input::get('msg');
@@ -129,7 +128,7 @@ public function store(Request $request){
         $userid = $member ->id;
        $ip = $_SERVER['REMOTE_ADDR'];
       //后边就不写了，主要是拿到登录用户信息就好
-       return redirect()->to('/member/index');
+       return redirect()->to('/zqm');
         return redirect(action('admin\AdminController@index'));
         // return Redirect::to('profile');
     }    else    {
