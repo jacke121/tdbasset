@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Services\Registrar;
-use App\User;
+use App\Model\User;
 use Notification;
 use Validator;
 use URL;
