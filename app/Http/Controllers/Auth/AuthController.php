@@ -42,7 +42,7 @@ use AuthenticatesAndRegistersUsers;
         $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下name和password
        if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
          {
-             return redirect()->intended("member/index");//验证通过则跳入主页
+             return redirect()->intended("zqm");//member/index");//验证通过则跳入主页
          }
                Log::error('lbg22222');
                return redirect($request->path())
