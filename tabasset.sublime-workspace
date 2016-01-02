@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ta",
+				"target	Attr"
+			],
+			[
 				"fun",
 				"function"
 			]
@@ -15,15 +19,87 @@
 			"file": "app/Http/Controllers/Auth/AuthController.php",
 			"settings":
 			{
-				"buffer_size": 5805,
+				"buffer_size": 5862,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/Http/Controllers/backend/Auth/AuthController.php",
+			"file": "app/Http/Controllers/member/AuthenticateController.php",
 			"settings":
 			{
-				"buffer_size": 5590,
+				"buffer_size": 972,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/routes.php",
+			"settings":
+			{
+				"buffer_size": 3482,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/member/left_nav.blade.php",
+			"settings":
+			{
+				"buffer_size": 719,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/member/authenticate.blade.php",
+			"settings":
+			{
+				"buffer_size": 15976,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/Http/Middleware/Authenticate.php",
+			"settings":
+			{
+				"buffer_size": 1312,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/member/ZqController.php",
+			"settings":
+			{
+				"buffer_size": 3068,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/admin/zq/index.blade.php",
+			"settings":
+			{
+				"buffer_size": 382,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/member/app.blade.php",
+			"settings":
+			{
+				"buffer_size": 1582,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "composer.json",
+			"settings":
+			{
+				"buffer_size": 1276,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Middleware/BackAuthenticate.php",
+			"settings":
+			{
+				"buffer_size": 1257,
 				"line_ending": "Unix"
 			}
 		},
@@ -39,23 +115,7 @@
 			"file": "resources/views/themes/default/top.blade.php",
 			"settings":
 			{
-				"buffer_size": 2550,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Model/Member.php",
-			"settings":
-			{
-				"buffer_size": 2125,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Http/Middleware/BackAuthenticate.php",
-			"settings":
-			{
-				"buffer_size": 2117,
+				"buffer_size": 2851,
 				"line_ending": "Unix"
 			}
 		}
@@ -102,34 +162,43 @@
 	[
 		"/var/www/laravel/tdbasset",
 		"/var/www/laravel/tdbasset/app",
-		"/var/www/laravel/tdbasset/app/Http",
+		"/var/www/laravel/tdbasset/app/Http/Controllers",
 		"/var/www/laravel/tdbasset/app/Http/Controllers/Auth",
-		"/var/www/laravel/tdbasset/app/Http/Controllers/backend",
 		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/Auth",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member",
 		"/var/www/laravel/tdbasset/app/Http/Middleware",
-		"/var/www/laravel/tdbasset/public/html",
-		"/var/www/laravel/tdbasset/public/themes",
 		"/var/www/laravel/tdbasset/resources",
 		"/var/www/laravel/tdbasset/resources/views",
-		"/var/www/laravel/tdbasset/resources/views/backend",
-		"/var/www/laravel/tdbasset/resources/views/backend/auth"
+		"/var/www/laravel/tdbasset/resources/views/admin",
+		"/var/www/laravel/tdbasset/resources/views/member",
+		"/var/www/laravel/tdbasset/resources/views/themes/default",
+		"/var/www/laravel/tdbasset/storage/logs"
 	],
 	"file_history":
 	[
-		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/Auth/AuthController.php",
-		"/var/www/laravel/tdbasset/resources/views/auth/register.blade.php",
-		"/var/www/laravel/tdbasset/resources/views/auth/login.blade.php",
-		"/var/www/laravel/tdbasset/config/auth.php",
-		"/var/www/laravel/tdbasset/composer.json",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member/CateController.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member/CenterController.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/member/AuthenticateController.php",
+		"/home/lbg/桌面/study/qq_msg.sh",
+		"/home/lbg/.ssh/id_rsa.pub",
+		"/var/www/laravel/tdbasset/resources/views/member/left_nav.blade.php",
+		"/var/www/laravel/tdbasset/.env",
 		"/var/www/laravel/tdbasset/app/Http/routes.php",
 		"/var/www/laravel/tdbasset/app/Http/Middleware/BackAuthenticate.php",
+		"/var/www/laravel/tdbasset/app/Model/User.php",
+		"/var/www/laravel/tdbasset/app/Model/Member.php",
+		"/var/www/laravel/tdbasset/app/Http/Middleware/Authenticate.php",
+		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/Auth/AuthController.php",
+		"/var/www/laravel/tdbasset/config/app.php",
+		"/var/www/laravel/tdbasset/config/auth.php",
+		"/var/www/laravel/tdbasset/composer.json",
+		"/var/www/laravel/tdbasset/resources/views/auth/register.blade.php",
+		"/var/www/laravel/tdbasset/resources/views/auth/login.blade.php",
 		"/var/www/laravel/tdbasset/resources/views/backend/auth/login.blade.php",
 		"/var/www/laravel/tdbasset/resources/views/auth/login2.blade.php",
 		"/var/www/laravel/tdbasset/app/Http/Controllers/Controller.php",
 		"/var/www/laravel/tdbasset/public/js/register.js",
-		"/var/www/laravel/tdbasset/app/Http/Middleware/Authenticate.php",
 		"/var/www/laravel/tdbasset/resources/views/auth/register2.blade.php",
-		"/home/lbg/桌面/study/qq_msg.sh",
 		"/var/www/laravel/tdbasset/public/css/register.css",
 		"/var/www/laravel/tdbasset/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
 		"/var/www/laravel/tdbasset/resources/views/themes/default/foot.blade.php",
@@ -137,11 +206,9 @@
 		"/var/www/laravel/tdbasset/app/Http/Controllers/backend/HomeController.php",
 		"/var/www/laravel/tdbasset/app/Http/Controllers/Auth/AuthController.php",
 		"/var/www/laravel/tdbasset/resources/views/themes/default/top.blade.php",
-		"/var/www/laravel/tdbasset/app/Model/Member.php",
 		"/var/www/laravel/tdbasset/app/Http/Kernel.php",
 		"/var/www/laravel/tdbasset/app/Http/Middleware/RedirectIfAuthenticated.php",
 		"/var/www/laravel/tdbasset/app/Model/Links.php",
-		"/var/www/laravel/tdbasset/app/Model/User.php",
 		"/var/www/laravel/tdbasset/app/User.php",
 		"/var/www/laravel/tdbasset/app/Member.php",
 		"/var/www/laravel/tdbasset/resources/views/themes/default/index.blade.php",
@@ -226,6 +293,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"委托方",
+			"发布",
+			"186019249011",
+			"zq",
+			"Auth",
+			"ReminderServiceProvider",
+			"PasswordResetServiceProvider",
+			"ServiceProvider ",
+			"PasswordResetServiceProvider ",
+			"anlutro",
 			"Session",
 			"SetRemainTime",
 			"sendMessage",
@@ -285,7 +362,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -294,15 +371,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5805,
+						"buffer_size": 5862,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5279,
-								5279
+								371,
+								262
 							]
 						],
 						"settings":
@@ -312,57 +389,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1840.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/Http/Controllers/backend/Auth/AuthController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5590,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1797,
-								1797
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 663.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "resources/views/backend/auth/login.blade.php",
+					"buffer": 1,
+					"file": "app/Http/Controllers/member/AuthenticateController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1830,
+						"buffer_size": 972,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								496,
-								496
+								279,
+								279
 							]
 						],
 						"settings":
@@ -378,20 +425,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "resources/views/themes/default/top.blade.php",
+					"buffer": 2,
+					"file": "app/Http/routes.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2550,
+						"buffer_size": 3482,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1057,
-								1057
+								3442,
+								3442
 							]
 						],
 						"settings":
@@ -401,57 +448,87 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/Model/Member.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2125,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								882,
-								882
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 867.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "app/Http/Middleware/BackAuthenticate.php",
+					"buffer": 3,
+					"file": "resources/views/member/left_nav.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2117,
+						"buffer_size": 719,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								348,
-								348
+								592,
+								592
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "resources/views/member/authenticate.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15976,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15905,
+								15905
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6817.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/Http/Middleware/Authenticate.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								904,
+								904
 							]
 						],
 						"settings":
@@ -459,11 +536,215 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 408.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/Http/Controllers/member/ZqController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								321,
+								321
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 969.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "resources/views/admin/zq/index.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 382,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "resources/views/member/app.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1582,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "composer.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1276,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								194,
+								194
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/Http/Middleware/BackAuthenticate.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1257,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 765.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "resources/views/backend/auth/login.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								456,
+								456
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "resources/views/themes/default/top.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2371,
+								2371
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
 					"type": "text"
 				}
 			]

@@ -1,13 +1,10 @@
-<?php
+<?php namespace App\Http\Controllers\member;
 /**
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2015/12/31
  * Time: 16:09
  */
-
-namespace App\Http\Controllers\member;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

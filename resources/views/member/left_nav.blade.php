@@ -6,7 +6,9 @@
         <li><a href="{{ url('member/zqList') }}" target="_blank">我发布的信息</a></li>
         <li><a href="{{ url('member/zqm/apply') }}" target="_blank">已申请信息</a></li>
         <li><a href="{{ url('member/zqm/collect') }}" target="_blank">已收藏信息</a></li>
-        <li><a href="#">资格认证</a></li>
+
+        
+        <li><a href="{{url('member/authenticate/index')}}"  target="_blank">资格认证</a></li>
         <li><a href="#">安全中心</a></li>
         <li><a href="#">安全退出</a></li>
     </ul>

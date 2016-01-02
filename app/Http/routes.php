@@ -75,4 +75,6 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
 Route::get('zqm/info', 'member\CenterController@info');
 Route::get('zqm/apply', 'member\CenterController@apply');
 Route::get('zqm/collect', 'member\CenterController@collect');
+ Route::resource('authenticate','member\AuthenticateController');
+
 });
