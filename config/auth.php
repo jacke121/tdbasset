@@ -4,13 +4,11 @@ return [
 'multi-auth' => [
     'member' => [
         'driver' => 'eloquent',
-        'model'  => App\Model\Member::class,
-        'email' => 'emails.users.password'
+        'model'  => 'App\Model\Member'
     ],
     'user' => [
         'driver' => 'eloquent',
-        'model'  => App\Model\User::class,
-        'email' => 'emails.users.password'
+        'model'  => 'App\Model\User'
     ]
 ]
 ];
