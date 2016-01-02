@@ -42,14 +42,11 @@ class AuthController extends Controller {
              return view('backend.auth.login');
         }
         public function getLogin(Request $request,Route $route)    {
-
             //调用validate验证前端数据
-       
                   $name = Input::get('name');
                // $member->email = $member->name ."126.com";// Input::get('email');
                 // $password ='123456';// Hash::make(Input::get('password'));
-                         $password =Input::get('password');
-                              // $password =Input::get('password');
+                $password =Input::get('password');
                    Log::error("backendgetLogin: ". $name. $password);
                  $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
                 $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
@@ -117,16 +114,5 @@ public function store(Request $request){
          // } else {
            //    Response::json(['message' => '注册失败'], 410);
           //}
-
-//-----------
-/**$user=Input::all();
-Log::error('create userg.');
-$user->password=Hash::make(Input::get('password'));
-
-      if (User::create($user)) {
-       return Redirect::back();
-       } else {
-        return Redirect::back()->withInput()->withErrors('注册失败！');
-        }*/
       }
 }
