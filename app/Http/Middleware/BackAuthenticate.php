@@ -39,12 +39,12 @@ public function __construct(Guard $auth)
 		    	return $next($request);
 	        }else{
 	        	$urls= array("login","register","checkUser","home"); 
-		$iscontains=false;
-		  foreach ($urls as $url){ 
+		        $iscontains=false;
+		        foreach ($urls as $url){
 		        if (strpos($mpath, $url)) {
 				$iscontains = true;
 				break;
-			}
+			    }
 		    } 
 		    if( $iscontains ){
 		    	Log::error("handle-222-next");
