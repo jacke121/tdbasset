@@ -1,11 +1,11 @@
 <div class="mainl">
     <ul>
-        <li class="cur tit"><a href="{{ url('zqm/center') }}">委托方会员</a></li>
-        <li><a href="{{ url('zqm/info') }}">系统消息</a></li>
-        <li><a href="{{ url('zqm') }}">发布资产信息</a></li>
-        <li><a href="{{ url('zqList') }}">我发布的信息</a></li>
-        <li><a href="{{ url('zqm/apply') }}">已申请信息</a></li>
-        <li><a href="{{ url('zqm/collect') }}">已收藏信息</a></li>
+        <li class="cur tit"><a href="{{ url('member/zqm/center') }}">委托方会员</a></li>
+        <li><a href="{{ url('member/zqm/info') }}" target="_blank">系统消息</a></li>
+        <li><a href="{{ url('member/zqm') }}" target="_blank">发布资产信息</a></li>
+        <li><a href="{{ url('member/zqList') }}" target="_blank">我发布的信息</a></li>
+        <li><a href="{{ url('member/zqm/apply') }}" target="_blank">已申请信息</a></li>
+        <li><a href="{{ url('member/zqm/collect') }}" target="_blank">已收藏信息</a></li>
         <li><a href="#">资格认证</a></li>
         <li><a href="#">安全中心</a></li>
         <li><a href="#">安全退出</a></li>
