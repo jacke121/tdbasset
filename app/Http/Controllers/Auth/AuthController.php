@@ -40,11 +40,12 @@ use AuthenticatesAndRegistersUsers;
          //调用validate验证前端数据
          $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
         $credentials = $request->only('name', 'password');
+            Log::error('login:'.$request->get('name')."password".$request->get('password'));
         //过滤掉前端数据，只留下name和password
        if ($this->auth->attempt($credentials, $request->has('remember'))){
              return redirect()->intended("member/index");//验证通过则跳入主页
          }
-               Log::error('lbg22222');
+           
                return redirect($request->path())
                    ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
                     ->withErrors([

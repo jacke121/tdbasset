@@ -69,12 +69,12 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::resource('user','member\UserController');
     Route::resource('comment','member\CommentController');
     Route::resource('nav','member\NavigationController');
-    Route::resource('zqm','member\ZqController');
-    Route::resource('zqList','member\ZqListController');
-    Route::get('zqm/center', 'member\CenterController@center');
-Route::get('zqm/info', 'member\CenterController@info');
+            Route::get('zqm/index', 'member\ZqController@index');
+                Route::controller('center','member\CenterController');
 Route::get('zqm/apply', 'member\CenterController@apply');
 Route::get('zqm/collect', 'member\CenterController@collect');
+    Route::resource('zqList','member\ZqListController');
+
  Route::resource('authenticate','member\AuthenticateController');
 
 });

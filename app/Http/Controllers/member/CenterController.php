@@ -13,23 +13,23 @@ use App\Model\Zq;
 
 class CenterController extends Controller
 {
-    public function center()
+    public function getCenter()
     {
         return view('member.index.center');
     }
 
-    public function info()
+    public function getSysinfo()
     {
-        return view('member.index.info');
+        return view('member.index.sysinfo');
     }
 
-    public function apply()
+    public function getApply()
     {
         return view('member.index.apply');
     }
 
-    public function collect()
+    public function getSecurity()
     {
-        return view('member.index.collect');
+        return view('member.index.security');
     }
 }
