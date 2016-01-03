@@ -10,6 +10,6 @@
         
         <li><a href="{{url('member/authenticate/index')}}"  target="_blank">资格认证</a></li>
         <li><a href="{{ url('member/center/security') }}" target="_blank">安全中心</a></li>
-        <li><a href="#">安全退出</a></li>
+        <li><a href="{{ url('/auth/logout') }}">安全退出</a></li>
     </ul>
 </div>
