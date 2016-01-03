@@ -17,7 +17,10 @@ class CenterController extends Controller
     {
         return view('member.index.center');
     }
-
+    public function getCollect()
+    {
+        return view('member.index.collect');
+    }
     public function getSysinfo()
     {
         return view('member.index.sysinfo');
