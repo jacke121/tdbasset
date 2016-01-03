@@ -1,8 +1,8 @@
 @extends('member.app')
 @section('modules')
     <script src="{{ asset('/js/PCASClass.js') }}"></script>
-                    <form id="input_form" class="form-horizontal" action="{{ URL('zqm') }}" method="post">
-                     @yield('content')
+                    <form id="input_form" class="form-horizontal" action="{{URL('member/zqm/store')}}" method="POST">
+                        @yield('content')
                     </form>
 
     <script src="{{ asset('/js/jquery.validate.min.js') }}" type="text/javascript"></script>
@@ -18,10 +18,10 @@
                 rules: {
                     "zq_quote":{required:true,isNumber:true},
                     "zq_delay":{required:true,digits:true},
-                    "o_name":{required:true,maxLength:20},
-                    "o_contact":{required:true,maxLength:20},
-                    "":{required:true,maxLength:20},
-                    "d_name":{required:true,maxLength:20}
+                    "o_name":{required:true,maxlength:20},
+                    "o_contact":{required:true,maxlength:20},
+                    "o_cphone":{required:true,maxlength:20},
+                    "d_name":{required:true,maxlength:20}
                 },
                 messages: {
                     "zq_quote":{
@@ -34,19 +34,19 @@
                     },
                     "o_name":{
                         required:"债权人姓名必须填写!",
-                        maxLength:"债权人姓名不超过20个字!",
+                        maxlength:"债权人姓名不超过20个字!",
                     },
                     "o_contact":{
                         required:"债权人联系人必须填写!",
-                        maxLength:"债权人联系人不超过20个字!",
+                        maxlength:"债权人联系人不超过20个字!",
                     },
                    "o_cphone":{
                         required:"债权人联系人电话必须填写!",
-                        maxLength:"债权人联系人电话不超过20个字!",
+                       maxlength:"债权人联系人电话不超过20个字!",
                    },
                     "d_name":{
                         required:"债务人姓名必须填写!",
-                        maxLength:"债务人姓名电话不超过20个字!",
+                        maxlength:"债务人姓名电话不超过20个字!",
                     }
                 },
                 errorPlacement: function(error, element){

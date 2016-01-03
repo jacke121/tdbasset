@@ -21,9 +21,9 @@
 <div class="form-group">
 	<label class="col-sm-1 control-label"></label>
 	<div class="col-sm-5">
-		 <button class="btn btn-info">添加</button>
+		 <button class="btn btn-info">提交</button>
 	</div>
-	<label class="col-sm-6 help-block"><a class="btn" href="{{ URL('zqm/') }}">返回</a></label>
+	<label class="col-sm-6 help-block"><a class="btn" href="{{ URL('zqm/index') }}">返回</a></label>
 </div>
 
 @endsection

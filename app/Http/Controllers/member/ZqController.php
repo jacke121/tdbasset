@@ -72,10 +72,15 @@ class ZqController extends Controller
         $zq->b_isLaw = Input::get('b_isLaw');
         $zq->state = Input::get('state');
         $zq->juid = Input::get('juid');
-        $zq->indexs = Input::get('indexs');
+        $zq->stars = Input::get('indexs');
         $zq->collects = Input::get('collects');
+        if(isset($zq->collects)){
+            $zq->collects = 0;
+        }
         $zq->applys = Input::get('applys');
-
+        if(isset( $zq->applys)){
+            $zq->applys = 0;
+        }
         $zq->delay_scope = Input::get('delay_scope');
         $zq->money_scope = Input::get('money_scope');
         $zq->uid = Input::get('uid');
@@ -84,9 +89,35 @@ class ZqController extends Controller
 		$zq->uid = 1;
 
         if ($zq->save()) {
-            return Redirect::to('zqList');
+            return Redirect::to('member/zqList/index');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');
         }
+    }
+
+    public function edit($zid,Request $request){
+        $template_type = $request->input('types');
+        $prefix = 'admin.zq.';
+
+        $zq = Zq::getZqModelById($zid);
+        return view($prefix.$template_type,["zq"=>$zq]);
+    }
+
+    public function check(Request $request){
+        $template_type = $request->input('types');
+        $zid = $request->input('zid');
+        $prefix = 'admin.zq.';
+        $zq = Zq::getZqModelById($zid);
+        return view($prefix.'check',["zq"=>$zq,"isCheck"=>true]);
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $result = "删除失败";
+       if(Zq::destroy($id)){
+           $result = "删除成功";
+       }
+        return $result;
     }
 }

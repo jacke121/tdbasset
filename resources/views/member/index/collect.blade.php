@@ -25,9 +25,32 @@
                 <li class="chaul4 chaulg"><span class="icon"></span><span class="text">判决执行宝</span></li>
             </ul>
             <div class="wei_table">
-            <table>
-            </table>
-            <div id="pager"></div>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>#序号</th>
+                        <th>金额</th>
+                        <th>所属分类</th>
+                        <th>操作</th>
+                        <th>收藏时间</th>
+                    </tr>
+
+                    @foreach($collectList as $k=> $v)
+                        <tr>
+                            <td scope="row">{{ $v->id }}</td>
+                            <td>{{ App\Model\Zq::getZqModelById($v->zid)->zq_quote }}</td>
+                            <td>{{ App\Model\Zq::getZqType($v->zid) }}</td>
+                            <td><a href="{{ url(route('zq.show',['id'=>$v->zid ])) }}" target="_blank">预览</a></td>
+                            <td>{{ $v->created_at }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+                <div class="pull-right">
+                    {!! $collectList->render() !!}
+                </div>
+
         </div>
         </div>
     </div>

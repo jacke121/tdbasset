@@ -6231,3 +6231,11 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+
+tr th,tr td{
+  text-align: center;
+}
+
+.btn-margin{
+  margin:20px;
+}

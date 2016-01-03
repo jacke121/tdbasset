@@ -12,6 +12,7 @@
 
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/zq.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 	<!-- Fonts -->
 <!--	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
 
@@ -44,6 +45,5 @@
 
 	@include('themes.default.foot')
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

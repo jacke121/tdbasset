@@ -31,7 +31,7 @@
 <div class="form-group">
 	<label for="o_phone">3、债权方电话: </label>
 	<input id="o_phone" type="text" class="form-control" name="o_phone" value="" />
-	<label class="help-block"> </label>
+	<label class="help-block"> <span id="error_o_phone" class="error"></span></label>
 </div>
 
 <div class="form-group">
