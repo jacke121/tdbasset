@@ -7,9 +7,10 @@
  */
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\Collect;
 use Illuminate\Http\Request;
 use Input, Notification,Redirect, Auth,Cache;
-use App\Model\Zq;
+use App\Model\Apply;
 
 class CenterController extends Controller
 {
@@ -19,16 +20,22 @@ class CenterController extends Controller
     }
     public function getCollect()
     {
-        return view('member.index.collect');
+        return view('member.index.collect',['collectList' => Collect::where("uid",1)->orderBy('id', 'DESC')->paginate(10)]);
     }
     public function getSysinfo()
     {
         return view('member.index.sysinfo');
     }
 
-    public function getApply()
+    public function getApply(Request $request)
     {
-        return view('member.index.apply');
+        /**
+        $types =  $request->input('types');
+        $paramArr = ["uid"=>1];
+        if(!is_null($types)){
+            $paramArr = array_merge($paramArr,["types"=>$types]);
+        }**/
+        return view('member.index.apply',['appList' => Apply::where("uid",1)->orderBy('id', 'DESC')->paginate(10)]);
     }
 
     public function getSecurity()

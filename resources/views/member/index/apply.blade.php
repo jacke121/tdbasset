@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>个人中心</title>
+
+<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
 </head>
@@ -26,12 +28,30 @@
                 <div class="wei_table">
                    <table>
                        <tbody>
-                           <tr>
-                               <td colspan="7" align="center">暂无数据！</td>
-                           </tr>
+                       <tr>
+                           <th>#序号</th>
+                           <th>金额</th>
+                           <th>所属分类</th>
+                           <th>操作</th>
+                           <th>申请时间</th>
+                       </tr>
+
+                           @foreach($appList as $k=> $v)
+                               <tr>
+                                   <td scope="row">{{ $v->id }}</td>
+                                   <td>{{ App\Model\Zq::getZqModelById($v->zid)->zq_quote }}</td>
+                                   <td>{{ App\Model\Zq::getZqType($v->zid) }}</td>
+                                   <td><a href="{{ url(route('zq.show',['id'=>$v->zid ])) }}" target="_blank">预览</a></td>
+                                   <td>{{ $v->created_at }}</td>
+                               </tr>
+                           @endforeach
                        </tbody>
                    </table>
-                   <div id="pager"></div>
+
+                    <div class="pull-right">
+                        {!! $appList->render() !!}
+                    </div>
+
                 </div>
             </div>
         </div>

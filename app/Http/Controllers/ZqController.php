@@ -28,24 +28,46 @@ class ZqController extends Controller {
         $city = $request->input('city');
         $area = $request->input('area');
 
+        $moneyArr = [];
+        $timeArr = [];
+        $proArr = [];
+        $cityArr = [];
+        $areaArr = [];
+
+        $where = [];
+       // $where = array_merge($moneyArr,$timeArr,$proArr,$cityArr,$areaArr);
+
         if(is_null($template_type)){
             $template_type = "gr";
         }
         if(is_null($debt_money)){
             $debt_money = 0;
-        }
+        }else{
+            $moneyArr = ['money_scope'=>$debt_money];
+            $where = array_merge($where,$moneyArr);
+        };
         if(is_null($debt_time)){
             $debt_time = 0;
+        }else{
+            $timeArr = ['delay_scope'=>$debt_time];
         }
         if(is_null($province)){
             $province = "请选择省份";
+        }else{
+            $proArr = ['o_province'=>$province];
         }
         if(is_null($city)){
             $city = "请选择城市";
+        }else{
+            $cityArr = ['o_city'=>$city];
         }
         if(is_null($area)){
             $area = "请选择地区";
+        }else{
+            $areaArr = ['o_contry'=>$area];
         }
+
+
         $zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
         viewInit();
         //$page = new EndaPage($zqList['page']);

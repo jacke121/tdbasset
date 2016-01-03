@@ -69,9 +69,12 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::resource('user','member\UserController');
     Route::resource('comment','member\CommentController');
     Route::resource('nav','member\NavigationController');
-    Route::get('zqm/index', 'member\ZqController@index');
+
+    Route::get('zqm/check', 'member\ZqController@check');
+    Route::post('zqm/store', 'member\ZqController@store');
+    Route::resource('zqm', 'member\ZqController');
     Route::controller('center','member\CenterController');
-    Route::get('zqList','member\ZqListController@index');
+    Route::get('zqList/index','member\ZqListController@index');
     Route::resource('authenticate','member\AuthenticateController');
 
 });
