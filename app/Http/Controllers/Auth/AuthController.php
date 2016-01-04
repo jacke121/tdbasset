@@ -32,11 +32,13 @@ use AuthenticatesAndRegistersUsers;
 		$this->registrar = $registrar;
 		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
-        public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
+        public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
+                  Log::error('getlogin:');
           return view('auth.login');
         }
-        public function getLogin(Request $request){
+        public function postLogin(Request $request){
+           Log::error('postlogin:');
          //调用validate验证前端数据
          $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
         $credentials = $request->only('name', 'password');
@@ -52,14 +54,13 @@ use AuthenticatesAndRegistersUsers;
                        'name'=> $this->getFailedLoginMessage(),
                     ]);
      }
-     public function registertype(){
+     public function getRegistertype(){
      return view('auth.registertype');
      }  
           public function getRegister($type){
          return view('auth.register',['type'=>$type,'content'=>$type]);
          }  
-       public function checkUser(Request $request){
-        Log::error("checkUser");
+       public function postCheckuser(Request $request){
         $column=$request->input('column');
         $value=$request->input('value');
         $username = Input::get('username');
@@ -72,7 +73,7 @@ use AuthenticatesAndRegistersUsers;
       }
        return parent::returnJson($code, $msg);
 }  
-    public function sendsms(Request $request){
+    public function postSendsms(Request $request){
       $mobile = Input::get('mobile');
          if(!preg_match( "/1[3458]{1}\d{9}$/",$mobile)){ 
       // if(!preg_match("/^13\d{9}$|^14\d{9}$|^15\d{9}$|^17\d{9}$|^18\d{9}$/",$mobile)){ 
@@ -108,7 +109,7 @@ use AuthenticatesAndRegistersUsers;
  //  <Reserve>0</Reserve>
 
 } 
-public function store(Request $request){
+public function postRegister(Request $request){
 
           $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
 //$validator = Validator::make(Input::all(), User::$rules);

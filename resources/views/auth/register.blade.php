@@ -28,7 +28,7 @@ var url="/auth/sendsms";
 	headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
 	  data:{type_data:"register",mobile:$("#mobile").val(),msg:code
 	},
-     　　dataType: "json", //数据格式:JSON
+     // 　　dataType: "json", //数据格式:JSON
     　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
 	alert(errorThrown);
  	},
@@ -46,13 +46,13 @@ function checkUser(column,value) {
 var code="122345";
      $.ajax({
 	type: "POST", //用POST方式传输
-	url: "/auth/checkUser", //目标地址
+	url: "/auth/checkuser", //目标地址
 	headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
 	  data:{type_data:"register",column:column,value:value
 	},
      　　dataType: "json", //数据格式:JSON
     　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
-	alert(errorThrown);
+	alert("error:"+errorThrown);
 	return null;
  	},
      　　success: function (msg){
@@ -155,7 +155,7 @@ function SetRemainTime() {
     	<img src="../images/register—_gg.jpg">
    	</div>
 <!--reg2-->
-<form class="form-horizontal" role="form" method="POST" action="/auth/store">
+<form class="form-horizontal" role="form" method="POST" action="/auth/register">
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="reg2">
