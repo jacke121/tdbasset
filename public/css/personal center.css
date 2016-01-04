@@ -146,7 +146,7 @@ color: #fff;background: #f37103;}
 .main_anquan h3{text-align: center;font-size: 24px;color:#333;font-weight: normal;margin:35px auto;}
 .an_list{height:50px;line-height: 50px;font-size: 14px;position: relative;}
 .list_spe{border:1px solid #c4c3c3;background: #f7f6f6;}
-.listtit{width: 130px;display: inline-block;text-align: right;margin-right: 30px;font-size: 18px;color: #333;}
+.listtit{display: inline-block;text-align: right;margin-right: 30px;font-size: 18px;color: #333;}
 .lista{position: absolute;right:40px;color:#f37103;}
 .lista:hover{color:#2896d2;}
 
