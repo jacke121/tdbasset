@@ -1,12 +1,15 @@
-
-
-    <!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>个人中心</title>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
+<script type="text/javascript">
+    $(function(){
+      setindex("cen_collect");
+    })
+</script>
 </head>
 
 <body>
