@@ -24,7 +24,7 @@ class AuthenticateController extends Controller {
 	}
 	     public function show(Request $request)//见明之意，就是提交请求到login方法，
 	        {
-	          return view('member.authenticate');
+	          return view('member.index.authenticate');
 	        }
      public function Authenticate(Request $request)//见明之意，就是提交请求到login方法，
         {
