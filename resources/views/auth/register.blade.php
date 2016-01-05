@@ -4,9 +4,103 @@
 <meta name="_token" content="{{ csrf_token() }}"/>
 <title>用户注册</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/register.css') }}">
-<script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
+
+<script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+<style>
+   form span.error {
+     padding-left: 16px;
+        color: #E15F63
+    }
+    span.success {
+    background:url("images/checked.gif") no-repeat 0px 0px;
+    padding-left: 16px;
+  }
+ </style>
 <!-- <script src="{{ asset('/js/register.js') }}"></script> -->
 <script type="text/javascript">
+$(document).ready(function(){
+    $("#formregister").validate({
+        errorClass: "error",
+        errorElement: "span",
+        errorPlacement: function(error, element) { 
+            element.after(error);
+        },
+        rules: { 
+           name: { required: true, minlength: 3        },
+           password: {
+                    required: true,
+                    rangelength: [6, 16]
+                },
+                confirm_password: {
+                    required: true,
+                    rangelength: [6, 16],
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                name: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
+                password: {
+                    required: "请填写密码！",
+                    rangelength: "密码需由6-16个字符（数字、字母）组成！",
+                    remote: "原始密码不正确,请重新填写！",　　　//这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
+                },
+                confirm_password: {
+                    required: "请填写确认密码！",
+                    rangelength: "密码需由6-16个字符（数字、字母）组成！",
+                    equalTo: "两次输入密码不一致！"
+                }
+            },
+            // onkeyup: false,　　　　//这个地方要注意，修改去控制器验证的事件。
+            // onsubmit: false,
+        success: function(label) {
+           label.html("<font color='green'>√</font>").addClass("success");
+        },
+         unhighlight: function(element, errorClass, validClass) {
+        // $(element).html("<font color='green'>√</font>");
+},
+        submitHandler: function(form){
+        var url=$("#formregister").attr("action");
+     $.ajax({
+    type: "POST", //用POST方式传输
+    url:$("#formregister").attr("action"), //目标地址
+    headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+      data:$('#formregister').serialize(),
+     　　dataType: "json", //数据格式:JSON
+    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
+    alert("error:"+errorThrown);
+    return null;
+    },
+     　　success: function (msg){
+            if(msg['State']>0){
+                alert(msg['MsgState']);
+            }else{
+            alert("注册成功!");
+            location.href="/member/index"; 
+            }
+     },
+     });
+        }
+    });
+ $.validator.addMethod("onlyName", function(value, element) { 
+  return checkUser("name",value);
+            },"用户名已存在!");
+ var customError = ""; 
+  $.validator.addMethod("onlyMobile", function(value, element) { 
+    var returnVal = true; 
+    var mobile =value;  //获取手机号
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+          if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile))){ 
+            returnVal=false;
+           customError="请输入正确的手机格式!";
+         }else if(! checkUser("mobile",value)){
+           returnVal=false;
+           customError="手机号已存在!";
+        }
+ $.validator.messages.onlyMobile = customError; 
+return returnVal; 
+},customError);
+});
 
 var InterValObj; //timer变量，控制时间
 var count = 15; //间隔函数，1秒执行
@@ -42,39 +136,28 @@ var url="/auth/sendsms";
      },
      });
 }
-function checkUser(column,value) {
-var code="122345";
+
+var checkUser = function(column,value) {
+
+var returnVal=false;
      $.ajax({
 	type: "POST", //用POST方式传输
 	url: "/auth/checkuser", //目标地址
 	headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
 	  data:{type_data:"register",column:column,value:value
 	},
+                async: false, 
      　　dataType: "json", //数据格式:JSON
     　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
 	alert("error:"+errorThrown);
-	return null;
  	},
      　　success: function (msg){
-	     	if(msg['State']>0){
-	     		if(column=="name"){
-	     		$("#nameAlt").css({ color: "#E15F63"});
-	     	 	$("#nameAlt").html(msg['MsgState']);
-	     		}else if(column=="email"){
-	     		 $("#emaildiv").html(msg['MsgState']);
-	     		}
-	
-	     	}else{
-	     	 if(column=="name"){
-			$("#nameAlt").css({ color: "#008000"});
-	     	 	$("#nameAlt").html(msg['MsgState']);
-	     		}else if(column=="email"){
- 			$("#emaildiv").html("");
-	     		}
-	     	}
-     	return msg;
-     },
+	     	if(msg['State']==0){
+                            returnVal= true;
+                        }
+     }
      });
+          return returnVal;
 }
 //timer处理函数
 function SetRemainTime() {
@@ -89,45 +172,16 @@ function SetRemainTime() {
                 $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             }
         }
-        function checkMobile(){
-        	var mobile = $('#mobile').val();  //获取手机号
-   	var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
-	        if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile)))
-	       { 
-	       	$("#mobileAlt").css({ color: "#E15F63"});
-	       	$("#mobileAlt").html("手机号格式不正确");
-	       } else{
-	       	$("#mobileAlt").css({ color: "#008000"});
-	       	$("#mobileAlt").html("");
-	       }
-	    checkUser("mobile",mobile);
-        }
         $(function(){
-        	$("#mobile").blur(function(){
-        	checkMobile();
-        	   });
-        	  $("#username").blur(function(){
-        	var username = $('#username').val(); 
-	        if(username.length==0 ){
-	        	$("#nameAlt").css({ color: "#E15F63"});
-	       	$("#nameAlt").html("用户名不能为空");
-	       	return;
-	       }
-	       var column="name";
-	     checkUser(column,username);
-	 });
-        	  $("#password").blur(function(){
-        	var username = $('#password').val();  //获取手机号
-	        if(username.length==0 ){
-	       	$("#passwordAlt").css({ color: "#E15F63"});
-	       	$("#passwordAlt").html("密码必须是数字与字母组合");
-	       	return;
-	       }else if(username.length<6){
-		$("#passwordAlt").css({ color: "#E15F63"});
-	       	$("#passwordAlt").html("密码长度不能小于6");
-	       	return;
-	       }
-	 });
+  //       	  $("#username").blur(function(){
+  //       	var username = $('#username').val(); 
+	 //        if(username.length==0 ){
+	 //        	$("#nameAlt").css({ color: "#E15F63"});
+	 //       	$("#nameAlt").html("用户名不能为空");
+	 //       	return;
+	 //       }
+	 //       var column="name";
+	 // });
         	 $("#pwdrepeat").blur(function(){
         	var pwdrepeat = $('#pwdrepeat').val();  //获取手机号
 	        if(username.length==0 ){
@@ -155,7 +209,7 @@ function SetRemainTime() {
     	<img src="../images/register—_gg.jpg">
    	</div>
 <!--reg2-->
-<form class="form-horizontal" role="form" method="POST" action="/auth/register">
+<form id="formregister" class="form-horizontal" role="form" method="POST" action="/auth/register">
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="reg2">
@@ -166,18 +220,15 @@ function SetRemainTime() {
                 <p class="regp">请仔细填写下列信息</p>
                 <div class="int">
                     <span class="intface userface"></span>
-                    <input type="text"  id="username" name="name" placeholder="用户名：字母、数字" class="user" onkeyup="value=value.replace(/^ +| +$/g,'')">
-                    <span id="nameAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个字符，区分大小写</span>
+                    <input type="text"  id="username" name="name" placeholder="用户名：6-24个字符，区分大小写" class="user onlyName" minlength="2" onkeyup="value=value.replace(/^ +| +$/g,'')">
                 </div>
                 <div class="int">
                     <span class="intface pwdface"></span>
-                    <input type="password" id="password" name="password" placeholder="密码：字母或数字" class="pwd" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
-                      <span id="passwordAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个英文、数字组成，区分大小写</span>
+                    <input type="password" id="password" name="password" placeholder="密码：6-24个英文、数字组成" class="password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
                 </div>
                 <div class="int">
                     <span class="intface pwd1face"></span>
-                    <input id="pwdrepeat" type="password" placeholder="确认密码：重新输入上面填写的密码" class="pwd1" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
-                     <span id="pwdrepeatAlt" data-info="6-24个字符，英文、数字组成，区分大小写">6-24个英文、数字组成，区分大小写</span>
+                    <input id="pwdrepeat" type="password" placeholder="确认密码：重新输入上面填写的密码" name="confirm_password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" />
                 </div>
              <!--    <div class="int">
                      <span class="intface renface1"></span>
@@ -186,7 +237,7 @@ function SetRemainTime() {
                 </div> -->
                 <div class="int">
                     <span class="intface phoface"></span>
-                    <input type="text" id="mobile" name="mobile"  placeholder="手机号码" class="pho">
+                    <input type="text" id="mobile" name="mobile"  placeholder="手机号码" class="pho onlyMobile">
                      <span class="code"><a id="btnSendCode" href="javascript:;" onclick="sendMessage()">获取验证码</a></span>
                          <span id="mobileAlt" data-info="mobile">
                         
@@ -231,7 +282,7 @@ function SetRemainTime() {
         </div>
             <div style="clear:both;"></div>
             <p class="reg2next">
-            <button   type="submit"  class="reg2btn">提交</button>
+               <button class="reg2btn" type="submit"  id="reg2btn" >提交</button>
             </p>
         </div>
     </div>

@@ -87,7 +87,7 @@ use AuthenticatesAndRegistersUsers;
     }
 
       $checkCode= parent::get_code(6,1);
-         Session::flash("m".$mobile, $checkCode);
+         Session::put("m".$mobile, $checkCode);
              $checkCode= Session::get("m".$mobile);
                  Log::error("sendsms:session:".$checkCode);
       $msg ="尊敬的用户：".$checkCode."是您本次的短信验证码，5分钟内有效.";// Input::get('msg');
@@ -120,25 +120,26 @@ public function postRegister(Request $request){
                $checkCode= Session::get("m".$member->mobile);
                  Log::error('registrer:'.$member->mobile."session:".$checkCode."getcode:".Input::get('checkCode'));
               if(!$checkCode ||  $checkCode!=Input::get('checkCode')){
-                  return redirect()->back()->withInput()->withErrors(['checkCode'=>"验证码输入错误"]);
+                   return parent::returnJson(1,"验证码输入错误");
               }
                $member->name = Input::get('name');
                $member->email = $member->name ."126.com";// Input::get('email');
                $member->password = Hash::make(Input::get('password'));
              $member->created_at=  date("Y-m-d H:i:s", time());
                  $member->save();
-                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>Input::get('password')))) {
+                if($this->auth->attempt(array( 'name'=>$member->name,'password' =>Input::get('password')),$request->has('remember'))) {
          //登录成功
         $userid = $member ->id;
        $ip = $_SERVER['REMOTE_ADDR'];
+         return parent::returnJson(0,"注册成功");
       //后边就不写了，主要是拿到登录用户信息就好
-       return redirect()->to('/member/index');
-        return redirect(action('admin\AdminController@index'));
+       // return redirect()->to('/member/index');
         // return Redirect::to('profile');
-    }    else    {
-          return redirect()->to('/auth/login');
-        // return Redirect::to('auto/login');
-    }
+            }    else    {
+               return parent::returnJson(2,"注册成功,登录失败");
+                  return redirect()->to('/auth/login');
+                // return Redirect::to('auto/login');
+            }
       }
         public function getLogout(Request $request){
           $this->auth->logout();
