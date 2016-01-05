@@ -8,10 +8,11 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js')}}"></script>
 <script type="text/javascript">
+    /**
     $(function(){
       setindex("cen_apply");
     })
-
+**/
 </script>
 </head>
 
@@ -45,10 +46,10 @@
                            @foreach($appList as $k=> $v)
                                <tr>
                                    <td scope="row">{{ $v->id }}</td>
-                                   <td>{{ App\Model\Zq::getZqModelById($v->zid)->zq_quote }}</td>
-                                   <td>{{ App\Model\Zq::getZqType($v->zid) }}</td>
+                                   <td>{{ isset(App\Model\Zq::getZqModelById($v->zid)->zq_quote)?App\Model\Zq::getZqModelById($v->zid)->zq_quote:0 }}</td>
+                                   <td>{{(App\Model\Zq::getZqTypeByZid($v->zid)!="")?App\Model\Zq::getZqTypeByZid($v->zid):'无' }}</td>
                                    <td><a href="{{ url(route('zq.show',['id'=>$v->zid ])) }}" target="_blank">预览</a></td>
-                                   <td>{{ $v->created_at }}</td>
+                                   <td>{{ isset($v->created_at)?$v->created_at:'' }}</td>
                                </tr>
                            @endforeach
                        </tbody>

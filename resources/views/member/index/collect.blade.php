@@ -42,7 +42,7 @@
                         <tr>
                             <td scope="row">{{ $v->id }}</td>
                             <td>{{ App\Model\Zq::getZqModelById($v->zid)->zq_quote }}</td>
-                            <td>{{ App\Model\Zq::getZqType($v->zid) }}</td>
+                            <td>{{ App\Model\Zq::getZqTypeByZid($v->zid) }}</td>
                             <td><a href="{{ url(route('zq.show',['id'=>$v->zid ])) }}" target="_blank">预览</a></td>
                             <td>{{ $v->created_at }}</td>
                         </tr>

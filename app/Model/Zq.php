@@ -47,6 +47,24 @@ class Zq extends Model
         return $zq;
     }
 
+    public static function getZqTypeByZid($zid){
+		$typeName = "";
+		$zq = Zq::getZqModelById($zid);
+		$types = null;
+		if(isset($zq)){
+		   $types = $zq ->types;
+		}
+        if($types == 1){
+            $typeName = "个人债务宝";
+        }elseif($types==2){
+            $typeName = "企业商帐通";
+        }if($types==3){
+            $typeName = "判决执行宝";
+        }
+        return $typeName;
+    }
+
+
     public static function getZqType($types){
        // $types = Zq::getZqModelById($zid)->types;
         $typeName = "";
