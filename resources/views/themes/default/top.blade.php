@@ -1,32 +1,45 @@
-   <div class="top">
-        <div class="center">
-            <img src="{{ URL::asset('/')}}/images/top_phone.jpg" width="16" height="16" style="margin-right:8px;">
-            <span class="f14" style="margin-right:15px;">服务热线：</span>
-            <span style="color:#ee8d0a; font-size:21px; margin-right:458px;">400-058-9555</span>
-            <a href="/auth/login" class="login" target="_blank" style="margin-right:10px;">登录</a>
-            <a href="/auth/register/handler" class="login" target="_blank" style="background:#0092D7; margin-right:14px;">注册</a>
-            <a href="{{ url('/member/index') }}" class="f14" target="_blank" style="margin-right:15px;">个人中心</a>
-                    <div class="right">
-      <ul class="right">
-                    @if (Auth::member()->get())
-<!--                     <li class="dropdown">-->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::member()->get()->name }} </a>
-<!--                                <span class="caret"></span>-->
-          <a href="{{ url('/auth/logout') }}">注销</a></li>
-<!--                            <ul class="dropdown-menu" role="menu">-->
-<!--                                <li><a href="{{ url('/auth/logout') }}">注销</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-                    @else
-                             <a href="{{ url('/auth/logout') }}">未登录</a>
-                    @endif
-                </ul>
-                </div>
-<!--             <a href="#"><img src="../images/top_qq.jpg" width="16" height="17" style="margin-right:5px;"></a>
-            <a href="#"><img src="../images/top_weixin.jpg" width="18" height="17"></a> -->
-        </div>
+<style type="text/css">
+    /*top部分*/
+    .top{ width:100%; height:46px; line-height:46px; background:#EBEBEB;/* padding-top:10px;*/}
+    .center{ width:1001px; margin:0 auto;}
+    .center .login{ display:inline-block; width:58px; height:26px; line-height:26px; text-align:center; background:#ee8d0a; border-radius:5px; color:#ffffff;}
+    /*登陆后样式*/
+    .center .login_{ display:inline-block; height:26px; line-height:26px; text-align:center; color:#ee8d0a; margin-right:7px; font-size:14px;}
+    .mag{width:20px;height:20px; border-radius: 50%;background: #ed6d00;color: #fff;font-size: 10px; position:absolute;top:-10px;right:-10px;text-align:center;}
+    .mag span{position:absolute;top:0px;left:0px;width:20px;line-height:20px; display:inline-block;text-align:center;}
 
-    </div>
+</style>
+   <div class="top">
+       <div class="center">
+           <img src="{{ URL::asset('/')}}images/top_phone.jpg" width="16" height="16" style="margin-right:8px;">
+           <span class="f14" style="margin-right:15px;">服务热线：</span>
+           <span style="color:#ee8d0a; font-size:21px; margin-right:458px;">400-058-9555</span>
+           @if (Auth::member()->get())
+               <div style=" float:right;">
+                   <a href="/member/index" class="login_">{{ Auth::member()->get()->name }}</a>
+                   <span style="color:#999999; margin-right:5px;">|</span>
+                   <a href="#" class="login_" style=" color:#999999; position:relative;">消息
+                       <div class="mag">
+                           <span>0</span>
+                       </div>
+                   </a>
+                   <span style="color:#999999; margin-right:5px;">|</span>
+                   <a href="/auth/logout" class="f14" style="margin-right:15px;">退出</a>
+                   {{--<a href="#"><img src="../images/top_qq.jpg" width="16" height="17" style="margin-right:5px;"></a>--}}
+                   {{--<a href="#"><img src="../images/top_weixin.jpg" width="18" height="17"></a>--}}
+           <!--登录后样式-->
+           @else
+                       <div style=" float:right;">
+                           <a href="/auth/login" class="login" style="margin-right:10px;">登录</a>
+                           <a href="/auth/register/handler" class="login" style="background:#0092D7; margin-right:14px;">注册</a>
+                           <a href="'/member/index" class="f14" style="margin-right:15px;">个人中心</a>
+                           <a href="#"><img src="{{ URL::asset('/')}}images/top_qq.jpg" width="16" height="17" style="margin-right:5px;"></a>
+                           <a href="#"><img src="{{ URL::asset('/')}}images/top_weixin.jpg" width="18" height="17"></a>
+                       </div>
+           </div>
+           @endif
+       </div>
+   </div>
    <div class="header">
       <div class="center">
             <ul class="center_left">
