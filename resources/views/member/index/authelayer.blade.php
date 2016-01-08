@@ -20,10 +20,8 @@
     </style>
 
     <script type="text/javascript">
-
-        function upload(){
-            alert(11);
-            $('#imgForm').ajaxForm(options).submit();
+        function goitem(){
+          $("#divlayer").css("display","");
         }
 
         function showitem(item){
@@ -153,7 +151,7 @@
             <div class="fa_ren">
                 <h3 class="fa_renh">资格认证</h3>
                 <div class="fa_rencon">
-                    <div class="renlist ml1" onclick="showitem('layer')"  id="lawyerId">
+                    <div class="renlist ml1" onclick="goitem()"  id="lawyerId">
                     <h3>律师用户认证</h3>
                     <img src="{{asset('/images/lsrz.png')}}" width="110px" height="110px">
                     <p>未提交认证申请</p>
@@ -176,7 +174,7 @@
             <br>
 <!--律师用户认证的详情页面-->    
         <div class="mainr">
-        <div class="fa_ren">
+        <div id="divlayer" class="fa_ren"  @if ($type=="index") style="display:none" @endif>
         <h3 class="fa_renh">律师用户认证</h3>
         <div class="fa_rencon">
             <p class="renper_p">完成用户认证后，您可在平台参与投标。</p>
