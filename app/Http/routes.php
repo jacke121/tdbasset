@@ -41,7 +41,7 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::controllers([
         'system'=>'backend\SystemController',
         'upload'=>'backend\UploadFileController',
-        'auth'=>'backend\auth\AuthController',
+        'auth'=>'backend\Auth\AuthController',
         'authe'=>'backend\AuthenticateController'
     ]);
 
