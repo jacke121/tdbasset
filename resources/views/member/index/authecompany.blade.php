@@ -146,7 +146,9 @@
                         </tr>
                         <tr>
                             <td class="tdl">业务方向</td>
-                            <td class="tdr"><input type="radio" name="roletype" class="int1"></td>
+                            <td class="tdr"><input type="radio" name="roletype" value="1" > 委托方&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="roletype" value="2" value="1" /> 代理方<br>
+                            </td>
                         </tr>
                         <tr>
                             <td class="tdl">所在地</td>

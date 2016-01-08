@@ -28,7 +28,7 @@ class AuthenticateController extends Controller {
 	          return view('member.index.authelayer',['type'=>"index"]);
 	        }
 	        public function getAuthelayer(Request $request){
-	          return view('member.index.authelayer',['type'=>"index"]);
+	          return view('member.index.authelayer');
 	        }
 	        public function postAuthelayer(Request $request){
                 Log::error('postAuthelayer:'.$request->get('itemname'));
