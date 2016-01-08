@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Model\Article;
+use App\Model\About;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -18,18 +18,9 @@ class AboutController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
-
-        $userInfo = User::getUserInfoModelByUserId($id);
-        if(empty($userInfo)){
-            return redirect('/');
-        }
-        $userArticle = Article::getArticleModelByUserId($id);
-        viewInit();
-        return homeView('about',[
-            'userInfo'=>$userInfo,
-            'userArticle'=>$userArticle
-        ]);
+		$about = About::getAboutlById($id);
+		$aboutList =About::orderBy('priority', 'asc')->paginate(10);
+		return view('themes.default.about',['about'=>$about,"aboutList"=>$aboutList]);
 	}
 
 }

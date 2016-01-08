@@ -22,7 +22,36 @@
         <div class="col-sm-5">
             <button class="btn btn-info">提交</button>
         </div>
-        <label class="col-sm-6 help-block"><a class="btn" href="{{ URL('zqm/index') }}">返回</a></label>
+        <label class="col-sm-6 help-block"><a class="btn" href="{{ URL('member/zqm/index') }}">返回</a></label>
     </div>
 </form>
+
+<script src="{{ asset('/js/jquery.validate.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+
+    jQuery.validator.addMethod("isNumber", function(value, element) {
+        return this.optional(element) || /^[-\+]?\d+$/.test(value) || /^[-\+]?\d+(\.\d+)?$/.test(value);
+    }, "匹配数值类型，包括整数和浮点数");
+
+    var validator;
+    $(document).ready(function(){
+        validator=$("#input_form").validate({
+            rules: {
+                "stars":{required:true,digits:true}
+            },
+            messages: {
+                "stars":{
+                    required:"推荐指数必须填写!",
+                    digits:"只能是整数!",
+                }
+            },
+            errorPlacement: function(error, element){
+                var errorId="#error_"+$(element).attr("name");
+                $(errorId).html("");
+                error.appendTo($(errorId));
+            }
+        });
+    })
+</script>
+
 @endsection

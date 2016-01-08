@@ -50,25 +50,29 @@ class ZqController extends Controller {
             $debt_time = 0;
         }else{
             $timeArr = ['delay_scope'=>$debt_time];
+            $where = array_merge($where,$timeArr);
         }
         if(is_null($province)){
             $province = "请选择省份";
         }else{
             $proArr = ['o_province'=>$province];
+            $where = array_merge($where,$proArr);
         }
         if(is_null($city)){
             $city = "请选择城市";
         }else{
             $cityArr = ['o_city'=>$city];
+            $where = array_merge($where,$cityArr);
         }
         if(is_null($area)){
             $area = "请选择地区";
         }else{
             $areaArr = ['o_contry'=>$area];
+            $where = array_merge($where,$areaArr);
         }
 
-
-        $zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
+        //$zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
+        $zqList = Zq::getZqList($province, $city, $area, $debt_money, $debt_time,$where, 10);
         viewInit();
         //$page = new EndaPage($zqList['page']);
         return view('themes.default.zq',[

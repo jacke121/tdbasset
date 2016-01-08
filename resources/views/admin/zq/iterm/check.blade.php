@@ -1,12 +1,12 @@
 <div id="check">
     <h4 style="border-bottom:solid 1px blue;">管理员审核</h4>
 </div>
-
+<input type="hiden" class="form-control" name="stars" value="" />
 <div class="form-group">
     <label class="col-sm-2 control-label" for="o_address"><span class="required">*</span>1、审核状态</label>
     <div class="col-sm-6">
         <label class="radio-inline"><input type="radio" name="status" checked value="1">通过</label>
-        <label class="radio-inline"><input type="radio" name="status" checked value="0">拒绝</label>
+        <label class="radio-inline"><input type="radio" name="status" value="0">拒绝</label>
     </div>
     <div class="col-sm-4 help-block"><span id="error_status"></span></div>
 </div>
@@ -19,7 +19,7 @@
             <div class="input-group-addon">星级</div>
         </div>
     </div>
-    <div class="col-sm-8 help-block"></div>
+    <div class="col-sm-8 help-block"><span id="error_stars"></span></div>
 </div>
 
 <div class="form-group">

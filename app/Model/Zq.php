@@ -17,11 +17,11 @@ class Zq extends Model
     const REDIS_ZQ_PAGE_TAG = 'redis_zq_page_tag';
     static $cacheMinutes = 1440;
 
-    public static function getZqList($province, $city, $contry, $money_scope, $delay_scope,$where, $limit = 4)
+    public static function getZqList($province, $city, $country, $money_scope, $delay_scope,$where, $limit = 4)
     {
 
         $page = Input::get('page', 1);
-        $cacheName = $province.'_'.$city.'_'.$contry.'_'.$money_scope.'_'.$delay_scope.'_'.$page.'_'.$limit;
+        $cacheName = $province.'_'.$city.'_'.$country.'_'.$money_scope.'_'.$delay_scope.'_'.$page.'_'.$limit;
         if (empty($model = Cache::tags(self::REDIS_ZQ_PAGE_TAG)->get(self::REDIS_ZQ_CACHE . $cacheName))) {
            // $model = self::select('id')->where(['o_province'=>$province,'o_city'=>$city,'o_contry'=>$contry,'money_scope'=>$money_scope,'delay_scope'=>$delay_scope])->orderBy('id', 'DESC')->paginate($limit);
             $model = self::select('id')->where($where)->orderBy('id', 'DESC')->paginate($limit);

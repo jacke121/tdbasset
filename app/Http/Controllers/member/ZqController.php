@@ -25,6 +25,61 @@ class ZqController extends Controller
 
     public function store(Request $request)
     {
+        $zq = createZq($request);
+        if ($zq->save()) {
+            return Redirect::to('member/zqList/index');
+        } else {
+            return Redirect::back()->withInput()->withErrors('保存失败！');
+        }
+    }
+
+    public function edit($zid,Request $request){
+        $template_type = $request->input('types');
+        $prefix = 'admin.zq.';
+
+        $zq = Zq::getZqModelById($zid);
+        return view($prefix.$template_type,["zq"=>$zq]);
+    }
+
+    public function  update(Request $request){
+        $zq = createZq($request);
+
+    }
+
+    public function check(Request $request){
+        $template_type = $request->input('types');
+        $zid = $request->input('zid');
+        $prefix = 'admin.zq.';
+        $zq = Zq::getZqModelById($zid);
+        return view($prefix.'check',["zq"=>$zq,"isCheck"=>true]);
+    }
+
+    public function checkUpdate(Request $request){
+        $data = array(
+            'status' =>  $request->input('status'),
+            'stars' => $request->input('stars'),
+            'delay_scope' => $request->input('delay_scope'),
+            'delay_scope' => $request->input('delay_scope')
+        );
+        $id = $request->input('id');
+        $result = "删除失败";
+        if(Zq::where('id', $id)->update($data)){
+            $result = "删除成功";
+        }
+        return $result;
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $result = "删除失败";
+       if(Zq::destroy($id)){
+           $result = "删除成功";
+       }
+        return $result;
+    }
+
+    private function createZq(Request $request){
         $zq = new Zq;
         $zq->types = Input::get('types');
 
@@ -74,11 +129,11 @@ class ZqController extends Controller
         $zq->juid = Input::get('juid');
         $zq->stars = Input::get('indexs');
         $zq->collects = Input::get('collects');
-        if(isset($zq->collects)){
+        if(is_null($zq->collects)){
             $zq->collects = 0;
         }
         $zq->applys = Input::get('applys');
-        if(isset( $zq->applys)){
+        if(is_null( $zq->applys)){
             $zq->applys = 0;
         }
         $zq->delay_scope = Input::get('delay_scope');
@@ -86,38 +141,6 @@ class ZqController extends Controller
         $zq->uid = Input::get('uid');
 
         //$zq->uid = Auth::user()->id;
-		$zq->uid = 1;
-
-        if ($zq->save()) {
-            return Redirect::to('member/zqList/index');
-        } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
-        }
-    }
-
-    public function edit($zid,Request $request){
-        $template_type = $request->input('types');
-        $prefix = 'admin.zq.';
-
-        $zq = Zq::getZqModelById($zid);
-        return view($prefix.$template_type,["zq"=>$zq]);
-    }
-
-    public function check(Request $request){
-        $template_type = $request->input('types');
-        $zid = $request->input('zid');
-        $prefix = 'admin.zq.';
-        $zq = Zq::getZqModelById($zid);
-        return view($prefix.'check',["zq"=>$zq,"isCheck"=>true]);
-    }
-
-    public function destroy(Request $request)
-    {
-        $id = $request->input('id');
-        $result = "删除失败";
-       if(Zq::destroy($id)){
-           $result = "删除成功";
-       }
-        return $result;
+        $zq->uid = 1;
     }
 }

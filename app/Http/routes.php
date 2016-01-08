@@ -4,7 +4,6 @@
 | Application Routes | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to and give it the controller to call when that URI is requested.
 */
-Route::get('/', 'ArticleController@index');
 Route::get('/auth/login', 'Auth\AuthController@toLogin');
 Route::get('auth/registertype', 'Auth\AuthController@registertype');
 
@@ -23,12 +22,14 @@ Route::post('auth/checkUser', 'Auth\AuthController@checkUser');
 Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');
 Route::resource('category', 'CategoryController');
+
 Route::resource('about', 'AboutController');
 
+Route::get('/', 'IndexControler@index');
 Route::get('service', 'IndexControler@service');
 Route::get('jion', 'IndexControler@jion');
 Route::get('users', 'IndexControler@users');
-Route::get('about', 'IndexControler@about');
+//Route::get('about', 'IndexControler@about');
 
 Route::post('zq/apply', 'ZqController@apply');
 Route::post('zq/collect', 'ZqController@collect');

@@ -15,9 +15,17 @@ use Illuminate\Http\Request;
 use App\Page;
 
 use Redirect, Input, Auth;
+use App\Model\Zq;
 
 class IndexControler extends Controller
 {
+    public function index()
+    {
+        $zqList =  Zq::orderBy('id', 'DESC')->paginate(5);
+        return view('themes.default.index',[
+            'zqList' => $zqList,
+        ]);
+    }
 
     public function service()
     {

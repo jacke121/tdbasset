@@ -2,6 +2,9 @@
 /* CSS Document */
 *{ margin:0; padding:0; list-style:none; border:none; font-family:"Microsoft YaHei";}
 a{ text-decoration:none;}
+a:hover{
+    text-decoration: none;
+}
 /*公共样式*/
 .f14{ font-size:14px; color:#999999;}
 .center_right .current{ color:#0092d7;}
@@ -16,8 +19,8 @@ a{ text-decoration:none;}
 .header{ width:100%; height:96px; background:#F4F4F4;}
 .center_left{ width:295px; height:57px; float:left;}
 .center_left li{ float:left;}
-.center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;}
-.center_right dt{ width:105px; float:left; margin-top:8px;}
+.center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;margin-bottom: 0;}
+.center_right dt{ width:105px; float:left; margin-top:30px;}
 .center_right dd{ width:1px; height:15px; background:#E4E4E6; float:left; margin-top:39px;}
 .center_right .inDex{ display:inline-block; width:79px;}
 .center_right dt a{ color:#999999; font-size:18px;}
@@ -43,7 +46,7 @@ a{ text-decoration:none;}
 .notice{ width:999px; height:37px; line-height:37px; background:#FFFFFF; border:1px solid #E5E5E5; border-top:none; font-size:14px; color:#999999; margin-bottom:12px;}
 .notice_01{ float:left;}
 .notice_02{ float:right; line-height:37px;}
-.figure{ width:940px; height:95px; border:1px solid #E4E4E4; padding-left:59px;}
+.figure{ height:95px; border:1px solid #E4E4E4; padding-left:59px;}
 .figure .figure_ul{ float:left;}
 .figure .figure_ul .figure_li01{ line-height:64px;}
 .figure .figure_ul .figure_li02{ text-align:center; width:110px; line-height:2px;}
@@ -53,7 +56,7 @@ a{ text-decoration:none;}
 .system{ width:895px; height:74px; margin:0 auto; padding-top:33px;}
 .system li,.systems li{ float:left;}
 .systems li{ width:200px; height:84px; line-height:84px; text-align:center; font-size:18px; color:#999999;}
-.control{ width:1001px; height:39px; padding-top:17px; margin-bottom:14px;}
+.control{ width:1001px; height:39px; margin-bottom:14px;}
 .control li{ height:39px; line-height:39px; background:#FFFFFF; border:1px solid #F1F1F1; border-left:none; text-align:center; float:left;}
 .control li a{ display:block; height:39px; font-size:16px; color:#999999;}
 .write{ width:1001px; height:458px; background:#ffffff;}
@@ -81,7 +84,7 @@ a{ text-decoration:none;}
 .zhaobiaoTop ul li{border-top: 1px solid #F1F1F1;float: left;width: 166px;text-align: center;height:37px;line-height: 37px;color: #9A9A9A; }
 .zhaobiaoBottom ul li{height: 75px;line-height: 75px;border-top: 1px solid #F1F1F1;float: left;width: 166px;text-align: center;color: #9A9A9A; }
 .zhaobiaoBottom .blue01{padding: 27px 0 0 53px;width: 113px;height: 48px;}
-.zhaobiaoBottom .blue01 span{background-color: #0092D7;display: block;width: 76px;height: 26px;text-align: center;line-height: 26px;color: #ffborder-radius: 5px;}
+.zhaobiaoBottom .blue01 span{background-color: #0092D7;display: block;width: 76px;height: 26px;text-align: center;line-height: 26px;color: #ffffff;border-radius: 5px;}
 .zhaobiaoBottom .blue02{background:url(../images/zuobiao.jpg) no-repeat center;background-position:42px;}
 .news{ height:540px; background:#F4F4F4; overflow: hidden;}
 .news .center{background: #fff;overflow: hidden;}
@@ -104,16 +107,20 @@ a{ text-decoration:none;}
 .hezuo{ padding:20px 0; background:#fff;overflow:hidden;margin-top:20px;clear:both}
 .hezuoTitle{ width:142px; border-bottom:2px solid #0495D8; font-size:26px; margin-bottom:10px; margin-left:400px; text-indent:20px; color:#0092d7;}
 .hezuo{ padding:15px 0; position:relative}
-.hl_main5_content{width:1040px; margin:0 auto;}
-.hl_main5_content1{width:1040px; overflow:hidden; float:left;margin:0 auto;}
+.hezuo .img_btn{ position:relative;}
+.hezuo .hezuo_img{ width:900px; height:47px; margin:0 auto;}
+.hezuo .hezuo_img li{ float:left; margin-right:41px;}
+.hezuo .img_btn .leftbtn{ position:absolute; top:15px; left:0px;}
+.hezuo .img_btn .rightbtn{ position:absolute; top:15px; right:0px;}
+.hl_main5_content{width:1001px; margin:0 auto;}
+.hl_main5_content1{width:1001px; overflow:hidden; float:left;margin:0 auto;}
 .hl_main5_content1 ul{width:2800px; overflow:hidden; margin-left:-4px}
 .hl_main5_content1 ul li{ float:left; width:100px; display:inline; margin-left:15px;}
 .hl_main5_content1 ul li img{ width:100px; }
-.hl_scrool_leftbtn{width:12px; height:49px; background:url(../images/hl_scroll_left.gif) no-repeat;left:15px;top:80px; cursor:pointer; position:absolute; z-index:1000;right:5px}
-.hl_scrool_leftbtn:hover{ background:url(../images/hl_scroll_left1.gif) no-repeat;}
-.hl_scrool_rightbtn{width:12px; height:49px; background:url(../images/hl_scroll_right.gif) no-repeat;top:80px; cursor:pointer; position:absolute; z-index:1000;right:15px}
-.hl_scrool_rightbtn:hover{background:url(../images/hl_scroll_right1.gif) no-repeat;}
-
+.hl_scrool_leftbtn{width:22px; height:23px; background:url(../images/btn_left.jpg) no-repeat;left:100px;top:75px; cursor:pointer; position:absolute; z-index:1000;right:5px}
+.hl_scrool_leftbtn:hover{ background:url(../images/btn_left.jpg) no-repeat;}
+.hl_scrool_rightbtn{width:22px; height:23px; background:url(../images/btn_right.jpg) no-repeat;top:75px; cursor:pointer; position:absolute; z-index:1000;right:80px}
+.hl_scrool_rightbtn:hover{background:url(../images/btn_right.jpg) no-repeat;}
 /*foot*/
 .foot{width: 100%;min-width:1200px;height: 220px;background: #363636;color:#d1d1d1;font-size: 14px;}
 .footcon{width:1200px; margin:0 auto;padding:30px 0;position: relative;}
@@ -125,7 +132,7 @@ a{ text-decoration:none;}
 .foot1 a:hover{color:#ed6d00;}
 .footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
 .foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
-.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block;float: left;margin-right: 10px;}
 .foot2con p span{margin-right: 15px;line-height: 25px;}
 .foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
 .foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}
@@ -137,5 +144,8 @@ a{ text-decoration:none;}
 .footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
 .footlink a{ font-size:16px; color:#fff; margin-right:30px;}
 
+li.current a{
+    color:#FFF;
+}
 
 

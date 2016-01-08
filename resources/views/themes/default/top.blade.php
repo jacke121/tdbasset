@@ -41,11 +41,12 @@
                 <dd></dd>
                 <dt><a id="nav_service" href="{{ URL('service') }}">产品服务</a></dt>
                 <dd></dd>
+                <!--
                 <dt><a id="nav_jion" href="{{ URL('jion') }}">加盟合作</a></dt>
-                <dd></dd>
+                <dd></dd>-->
                 <dt><a id="nav_users" href="{{ URL('users') }}">用户指南</a></dt>
                 <dd></dd>
-                <dt><a id="nav_about" href="{{ URL('about') }}">关于我们</a></dt>
+                <dt><a id="nav_about" href="{{ URL('about/2') }}">关于我们</a></dt>
             </dl>
       </div>
     </div>

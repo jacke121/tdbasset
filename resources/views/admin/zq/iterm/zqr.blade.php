@@ -5,7 +5,7 @@
 	<label for="o_name">
 		<span class="required">*</span>1、债权人姓名:
 	</label>
-	<input id="o_name" type="text" class="form-control" name="o_name" value="" />
+	<input id="o_name" type="text" class="form-control" name="o_name" value="{{ (isset($zq) ? $zq->o_name:'' ) }}" />
 	<label class="help-block"><span id="error_o_name" class="error"></span> </label>
 </div>
 
@@ -30,7 +30,7 @@
 
 <div class="form-group">
 	<label for="o_phone">3、债权方电话: </label>
-	<input id="o_phone" type="text" class="form-control" name="o_phone" value="" />
+	<input id="o_phone" type="text" class="form-control" name="o_phone" value="{{ (isset($zq) ? $zq->o_phone:'' ) }}" />
 	<label class="help-block"> <span id="error_o_phone" class="error"></span></label>
 </div>
 
@@ -46,7 +46,7 @@
 	<label for="o_contact">
 		<span class="required">*</span>5、债权方联系人姓名:<span class="intro">(与处置方洽谈合作的人)</span>
 	</label>
-	<input id="o_contact" type="text" class="form-control" name="o_contact" value="" />
+	<input id="o_contact" type="text" class="form-control" name="o_contact" value="{{ (isset($zq) ? $zq->o_contact:'' ) }}" />
 	<label class="help-block"><span id="error_o_contact" class="error"></span> </label>
 </div>
 
@@ -54,10 +54,14 @@
 	<label for="o_cphone">
 		<span class="required">*</span>6、债权方联系人电话:<span class="intro">(与处置方洽谈合作的人的电话)</span>
 	</label>
-	<input id="o_cphone" type="text" class="form-control" name="" value="" />
+	<input id="o_cphone" type="text" class="form-control" name="o_cphone" value="{{ (isset($zq) ? $zq->o_cphone:'' ) }}" />
 	<label class="help-block"><span id="error_o_cphone" class="error"></span> </label>
 </div>
 
 <script type="text/javascript">
-	new PCAS("o_province,请选择省份","o_city,请选择城市","o_contry,请选择地区");
+	if(isset({{$zq}})){
+		new PCAS("o_province,{{$zq->o_province}}","o_city,{{$zq->o_city}}","o_contry,{{$zq->o_contry}}");
+	}else{
+		new PCAS("o_province,请选择省份","o_city,请选择城市","o_contry,请选择地区");
+	}
 </script>

@@ -95,5 +95,32 @@ a{ text-decoration:none;}
 .footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
 .footlink a{ font-size:16px; color:#fff; margin-right:30px;}
 
+a:hover{
+    text-decoration: none;
+}
+.about_nav li a{
+    border-top: 1px solid #eee;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
+}
 
+.about .about_nav,.about .col-sm-10{
+    border:solid 1px #eee;
+}
 
+.about_nav li.current{
+    background-color: #eee;
+}
+
+.about .col-sm-10{
+    min-height: 600px;
+}
+
+.about_nav .navTitle{
+    background-color: #ed7b00;
+}
+
+.navTitle > a {
+    color: #fff;
+}

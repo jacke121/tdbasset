@@ -113,7 +113,6 @@ class ArticleController extends Controller
     {
         //
         try {
-
             $data = array(
                 'title' => $result->input('title'),
                 'user_id' => Auth::user()->id,

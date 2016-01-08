@@ -25,7 +25,7 @@ th{text-align: center}
 .center_left{ width:295px; height:57px; float:left;}
 .center_left li{ float:left;}
 .center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;}
-.center_right dt{ width:105px; float:left; margin-top:8px;}
+.center_right dt{ width:105px; float:left; margin-top:30px;}
 .center_right dd{ width:1px; height:15px; background:#E4E4E6; float:left; margin-top:39px;}
 .center_right .inDex{ display:inline-block; width:79px;}
 .center_right dt a{ color:#999999; font-size:18px;}

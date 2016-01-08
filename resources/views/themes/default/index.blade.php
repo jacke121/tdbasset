@@ -5,31 +5,18 @@
     <meta name="keywords" content="{{ systemConfig('seo_key') }}" />
     <meta name="description" content="{{ systemConfig('seo_desc') }}">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
-<script src="../js/jquery-1.11.3.min.js"></script>
+
 <script src="../js/index.js"></script>
-<script >
-$(document).ready(function() {
-    $(".slideInner").slide({
-        slideContainer: $('.slideInner a'),
-        effect: 'easeOutCirc',
-        autoRunTime: 5000,
-        slideSpeed: 1000,
-        nav: true,
-        autoRun: true,
-        prevBtn: $('a.prev'),
-        nextBtn: $('a.next')
-    })
-})
-</script>
-    @include('themes.default.top')
+
+@include('themes.default.top')
 @endsection
 
 @section('content')
 <section class="banner">
 </section>
 
-<!-- /.banner -->
-<section class="container content">
+<!-- /.banner <section class=" content">-->
+
 <!--banner部分-->
 <div class="slides">
     <div class="slideInner">
@@ -63,17 +50,18 @@ $(document).ready(function() {
                     <li class="figure_li02"><span>发布金额</span></li>
                 </ul>
                 <ul class="figure_ul" style="width:249px;">
-                    <li class="figure_li01"><b class="orange">537.97</b><p class="blue">亿元</p></li>
+                    <li class="figure_li01"><b class="orange">369.90</b><p class="blue">亿元</p></li>
                     <li class="figure_li02"><span>已处置金额</span></li>
                 </ul>
                 <ul class="figure_ul" style="width:254px;">
-                    <li class="figure_li01"><b class="orange">537.97</b><p class="blue">亿元</p></li>
+                    <li class="figure_li01"><b class="orange">220.30</b><p class="blue">亿元</p></li>
                     <li class="figure_li02"><span>委托方入驻</span></li>
                 </ul>
                 <ul class="figure_ul" style="width:173px;">
-                    <li class="figure_li01"><b class="orange">537.97</b><p class="blue">亿元</p></li>
+                    <li class="figure_li01"><b class="orange">12.86</b><p class="blue">亿元</p></li>
                     <li class="figure_li02"><span>代理方入驻</span></li>
                 </ul>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
@@ -98,9 +86,9 @@ $(document).ready(function() {
     <div style="width:100%; height:1302px; background:#F4F4F4;">
         <div class="center">
             <ul class="control">
-                <li style="width:334px;"><a href="#" class="current">个人债务宝</a></li>
-                <li style="width:333px;"><a href="#">企业商账通</a></li>
-                <li style="width:331px;"><a href="#">判决执行宝</a></li>
+                <li style="width:334px;" class="current"><a href="javascript:void(0)">个人债务宝</a></li>
+                <li style="width:333px;"><a href="javascript:void(0)">企业商账通</a></li>
+                <li style="width:331px;"><a href="javascript:void(0)">判决执行宝</a></li>
             </ul>
             <div class="write">
                 <ul class="write_ul">
@@ -111,96 +99,26 @@ $(document).ready(function() {
                         <span style="width:180px;">代理费率</span>
                         <span>逾期时间(天)</span>
                     </li>
+                    @foreach($zqList as $k=> $v)
                     <li>
                         <ul class="writeul_ul">
                             <li style="width:144px;">
-                                <div class="shape">民间借贷</div>
+                                <div class="shape">类型</div>
                             </li>
                             <li style="width:165px;">
-                                <div class="city">郑州市</div>
+                                <div class="city">{{isset($v->o_province)?$v->o_province:"未选择"}}</div>
                             </li>
                             <li style="width:204px;">
-                                <i class="blue">18.00</i>万元
+                                <i class="blue">{{isset($v->zq_quote)?$v->zq_quote:"未填写"}}</i>万元
                             </li>
-                            <li style="width:176px;"><i class="blue">20</i>%</li>
-                            <li style="width:133px;"><i class="blue">240</i>天</li>
+                            <li style="width:176px;"><i class="blue">{{isset($v->zq_czfs_sscs_rate)?$v->zq_czfs_sscs_rate:"未填写"}}</i>%</li>
+                            <li style="width:133px;"><i class="blue">{{isset($v->zq_delay)?$v->zq_delay:"未填写"}}</i>天</li>
                             <li style="width:126px;">
-                                <div class="shape">招标中</div>
+                                <div class="shape"><a target="_blank" href="{{ url(route('zq.show',['id'=>$v->id ])) }}">招标中</a></div>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <ul class="writeul_ul">
-                            <li style="width:144px;">
-                                <div class="shape">民间借贷</div>
-                            </li>
-                            <li style="width:165px;">
-                                <div class="city">郑州市</div>
-                            </li>
-                            <li style="width:204px;">
-                                <i class="blue">18.00</i>万元
-                            </li>
-                            <li style="width:176px;"><i class="blue">20</i>%</li>
-                            <li style="width:133px;"><i class="blue">240</i>天</li>
-                            <li style="width:126px;">
-                                <div class="shape">招标中</div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="writeul_ul">
-                            <li style="width:144px;">
-                                <div class="shape">民间借贷</div>
-                            </li>
-                            <li style="width:165px;">
-                                <div class="city">郑州市</div>
-                            </li>
-                            <li style="width:204px;">
-                                <i class="blue">18.00</i>万元
-                            </li>
-                            <li style="width:176px;"><i class="blue">20</i>%</li>
-                            <li style="width:133px;"><i class="blue">240</i>天</li>
-                            <li style="width:126px;">
-                                <div class="shape">招标中</div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="writeul_ul">
-                            <li style="width:144px;">
-                                <div class="shape">民间借贷</div>
-                            </li>
-                            <li style="width:165px;">
-                                <div class="city">郑州市</div>
-                            </li>
-                            <li style="width:204px;">
-                                <i class="blue">18.00</i>万元
-                            </li>
-                            <li style="width:176px;"><i class="blue">20</i>%</li>
-                            <li style="width:133px;"><i class="blue">240</i>天</li>
-                            <li style="width:126px;">
-                                <div class="shape">招标中</div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="writeul_ul">
-                            <li style="width:144px;">
-                                <div class="shape">民间借贷</div>
-                            </li>
-                            <li style="width:165px;">
-                                <div class="city">郑州市</div>
-                            </li>
-                            <li style="width:204px;">
-                                <i class="blue">18.00</i>万元
-                            </li>
-                            <li style="width:176px;"><i class="blue">20</i>%</li>
-                            <li style="width:133px;"><i class="blue">240</i>天</li>
-                            <li style="width:126px;">
-                                <div class="shape">招标中</div>
-                            </li>
-                        </ul>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
 <!-- 一键免费发布 -->
@@ -324,41 +242,28 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
-    <div class="columns">
-        <div class="column two-thirds" >
-            <ol class="repo-list">
-                @if(!empty($articleList))
-                    @foreach($articleList['data'] as $article)
-                        <li class="repo-list-item">
-                            <h3 class="repo-list-name">
-                                <a href="{{ route('article.show',array('id'=>$article->id)) }}" title="{{ $article->title }}">
-                                    {{ $article->title }}
-                                </a>
-                            </h3>
-                            <p class="repo-list-description">
-                                {{ strCut(conversionMarkdown($article->content),80) }}
-                            </p>
-                            <p class="repo-list-meta">
-                                <span class="octicon octicon-calendar"></span>{{ $article->created_at->format('Y-m-d') }}
-                            </p>
-                        </li>
-                    @endforeach
-                @endif
-            </ol>
-        </div>
-        <div class="column one-third">
-            @include('themes.default.right')
-        </div>
-    </div>
-   
-    <div class="pagination text-align">
-        <nav>
-           {!! $articleList['page']->render($page) !!}
-        </nav>
-    </div>
-    <!-- /pagination -->
-</section>
-<!-- /section.content -->
+
+
+<!-- /section.content </section>-->
  <!--foot部分-->
-       @include('themes.default.foot')
+<script >
+    $(document).ready(function() {
+        $(".slideInner").slide({
+            slideContainer: $('.slideInner a'),
+            effect: 'easeOutCirc',
+            autoRunTime: 5000,
+            slideSpeed: 1000,
+            nav: true,
+            autoRun: true,
+            prevBtn: $('a.prev'),
+            nextBtn: $('a.next')
+        })
+
+        $(".control li").click(function(){
+            $(".control li").removeClass("current");
+            $(this).addClass("current");
+        })
+    })
+</script>
+@include('themes.default.foot')
 @endsection
