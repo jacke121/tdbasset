@@ -1,7 +1,8 @@
 @extends('member.app')
 @section('modules')
     <script src="{{ asset('/js/PCASClass.js') }}"></script>
-                    <form id="input_form" class="form-horizontal" action="{{URL('member/zqm/store')}}" method="POST">
+                    <form id="input_form" class="form-horizontal" @if(isset($zq)) action="{{URL('member/zqm/update')}}" @else action="{{URL('member/zqm/store')}}" @endif method="POST">
+                        @if(isset($zq)) <input type="hidden" name="id" value="{{$zq->id}}"> @endif
                         @yield('content')
                     </form>
 

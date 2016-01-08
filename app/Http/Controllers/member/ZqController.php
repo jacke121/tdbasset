@@ -25,7 +25,7 @@ class ZqController extends Controller
 
     public function store(Request $request)
     {
-        $zq = createZq($request);
+        $zq = self::createZq($request);
         if ($zq->save()) {
             return Redirect::to('member/zqList/index');
         } else {
@@ -42,16 +42,19 @@ class ZqController extends Controller
     }
 
     public function  update(Request $request){
-        $zq = createZq($request);
+        //$zq =  self::createZq($request);
+        $id = $request->input('id');
+       $input = Input::all();
 
+        if(Zq::where("id",$id)->update($input)){
+            return Redirect::to('member/zqList/index');
+        }
     }
 
     public function check(Request $request){
-        $template_type = $request->input('types');
-        $zid = $request->input('zid');
-        $prefix = 'admin.zq.';
+        $zid = $request->input('id');
         $zq = Zq::getZqModelById($zid);
-        return view($prefix.'check',["zq"=>$zq,"isCheck"=>true]);
+        return view('admin.zq.check',["zq"=>$zq,"isCheck"=>true]);
     }
 
     public function checkUpdate(Request $request){
@@ -59,12 +62,12 @@ class ZqController extends Controller
             'status' =>  $request->input('status'),
             'stars' => $request->input('stars'),
             'delay_scope' => $request->input('delay_scope'),
-            'delay_scope' => $request->input('delay_scope')
+            'money_scope' => $request->input('money_scope')
         );
         $id = $request->input('id');
-        $result = "删除失败";
+        $result = "审核失败";
         if(Zq::where('id', $id)->update($data)){
-            $result = "删除成功";
+            $result = "审核成功";
         }
         return $result;
     }
@@ -142,5 +145,6 @@ class ZqController extends Controller
 
         //$zq->uid = Auth::user()->id;
         $zq->uid = 1;
+        return $zq;
     }
 }

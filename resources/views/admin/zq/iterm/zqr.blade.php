@@ -59,8 +59,9 @@
 </div>
 
 <script type="text/javascript">
-	if(isset({{$zq}})){
-		new PCAS("o_province,{{$zq->o_province}}","o_city,{{$zq->o_city}}","o_contry,{{$zq->o_contry}}");
+	var isCreate = "{{isset($zq)?true:false}}";
+	if(isCreate=="true"){
+		new PCAS("o_province,{{isset($zq->o_province)?$zq->o_province:'请选择省份'}}","o_city,{{isset($zq->o_city)?$zq->o_city:'请选择城市'}}","o_contry,{{isset($zq->o_contry)?$zq->o_contry:'请选择城市'}}");
 	}else{
 		new PCAS("o_province,请选择省份","o_city,请选择城市","o_contry,请选择地区");
 	}
