@@ -8,12 +8,12 @@
 <script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
 <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <style>
-   form span.error {
+    span.error {
      padding-left: 16px;
-        color: #E15F63
+     color: #E15F63
     }
     span.success {
-    background:url("images/checked.gif") no-repeat 0px 0px;
+    background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
     padding-left: 16px;
   }
  </style>
@@ -43,7 +43,7 @@ $(document).ready(function(){
                 password: {
                     required: "请填写密码！",
                     rangelength: "密码需由6-16个字符（数字、字母）组成！",
-                    remote: "原始密码不正确,请重新填写！",　　　//这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
+                    remote: "原始密码不正确,请重新填写！" //这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
                 },
                 confirm_password: {
                     required: "请填写确认密码！",
@@ -66,19 +66,19 @@ $(document).ready(function(){
     url:$("#formregister").attr("action"), //目标地址
     headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
       data:$('#formregister').serialize(),
-     　　dataType: "json", //数据格式:JSON
-    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
+      dataType: "json", //数据格式:JSON
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
     alert("error:"+errorThrown);
     return null;
     },
-     　　success: function (msg){
+      success: function (msg){
             if(msg['State']>0){
                 alert(msg['MsgState']);
             }else{
             alert("注册成功!");
             location.href="/member/index"; 
             }
-     },
+     }
      });
         }
     });
@@ -106,8 +106,8 @@ var InterValObj; //timer变量，控制时间
 var count = 15; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 function sendMessage() {
-  　curCount = count;
-　　//设置button效果，开始计时
+   curCount = count;
+ //设置button效果，开始计时
 if($('#btnSendCode').hasClass('disabled')) return;
   $('#btnSendCode').addClass('disabled');
 

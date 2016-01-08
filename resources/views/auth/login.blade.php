@@ -2,44 +2,74 @@
 <html>
 <head>
 <meta charset="utf-8">
+    <meta name="_token" content="{{ csrf_token() }}"/>
 <title>登录</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/login.css') }}">
-<script src="../js/jquery-1.11.3.min.js"></script>
-<script src="../js/index.js"></script>
-<script type="text/javascript">
-
-var InterValObj; //timer变量，控制时间
-var count = 15; //间隔函数，1秒执行
-var curCount;//当前剩余秒数
-
-function sendMessage() {
-  　curCount = count;
-　　//设置button效果，开始计时
-     $("#btnSendCode").attr("disabled", "true");
-     $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
-InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-var code="122345";
-var url="/auth/sendsms";
-     $.ajax({
-    type: "POST", //用POST方式传输
-    url: url, //目标地址
-    headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-      data:{type_data:"register",mobile:$("#mobile").val(),msg:code
-    },
-     　　dataType: "json", //数据格式:JSON
-    　　 error: function (XMLHttpRequest, textStatus, errorThrown) {
-    alert(errorThrown);
-    },
-     　　success: function (msg){
-        if(msg['State']>0){
-        //有异常
-        alert(msg['MsgState']);
-        curCount=0;
-        }else{
+    <style>
+        span.error {
+            padding-left: 16px;
+            color: #E15F63
         }
-     },
-     });
-}
+        span.success {
+            background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
+            padding-left: 16px;
+        }
+    </style>
+<script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+<script src="../js/index.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#loginform").validate({
+                errorClass: "error",
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    element.after(error);
+                },
+                rules: {
+                    name: {required: true, minlength: 3},
+                    password: {
+                        required: true,
+                        rangelength: [6, 16]
+                    }
+                },
+                messages: {
+                    name: {required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
+                    password: {
+                        required: "请填写密码！",
+                        rangelength: "密码需由6-16个字符（数字、字母）组成！"
+                    }
+                },
+                success: function (label) {
+                    label.html("<font color='green'>√</font>").addClass("success");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    // $(element).html("<font color='green'>√</font>");
+                },
+                submitHandler: function (form) {
+                    var url = $("#loginform").attr("action");
+                    $.ajax({
+                        type: "POST", //用POST方式传输
+                        url: $("#loginform").attr("action"), //目标地址
+                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+                        data: $('#loginform').serialize(),
+                        dataType: "json", //数据格式:JSON
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("error:" + errorThrown);
+                            return null;
+                        },
+                        success: function (msg) {
+                            if (msg['State'] > 0) {
+                                $("#errormsg").html(msg['MsgState']);
+//                                alert(msg['MsgState']);
+                            } else {
+                                location.href = "/member/index";
+                            }
+                        }
+                    });
+                }
+            });
+        });
 </script>
 </head>
 <body>
@@ -53,7 +83,7 @@ var url="/auth/sendsms";
     <div class="log">
         <div class="logcon">
             <h3 class="logtit">会员登录</h3>
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
+            <form id="loginform"class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token()}}"/>
             <div class="fl logl">
                 <p class="logp">请仔细填写下列信息</p>
@@ -69,6 +99,8 @@ var url="/auth/sendsms";
                 <p class="logtt">
                 <input class="log_check" hidden="hidden" type="checkbox" checked="checked"><span hidden="hidden">一周内自动登录</span>
                 <a href="#" class="lookpwd">找回密码</a>
+                    <br />
+                    <span id="errormsg" href="#" style="padding-left: 20px; color: #E15F63" ></span>
                 </p>
                 <button class="logbtn" type="submit"  id="loginBtn" >登录</button>
             </div>

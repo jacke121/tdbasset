@@ -6,7 +6,7 @@
         <li id="cen_zqList" ><a href="{{ url('member/zqList/index') }}">我发布的信息</a></li>
         <li id="cen_apply"><a href="{{ url('member/center/apply') }}">已申请信息</a></li>
         <li id="cen_collect"><a href="{{ url('member/center/collect') }}">已收藏信息</a></li>
-        <li id="cen_authenticate"><a href="{{url('member/authenticate/index')}}">资格认证</a></li>
+        <li id="cen_authenticate"><a href="{{url('member/authe/index')}}">资格认证</a></li>
         <li id="cen_security"><a href="{{ url('member/center/security') }}">安全中心</a></li>
         <li><a href="{{ url('/auth/logout') }}">安全退出</a></li>
     </ul>
@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 function setindex(id) {
-　　//设置button效果，开始计时
+ //设置button效果，开始计时
 $("#leftmenu").find("li").attr('class','');
      $("#"+id).attr("class", "cur");
 }

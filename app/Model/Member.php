@@ -49,14 +49,18 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
      * @return bool
      */
     public static function updatememberInfo($id,$data){
-
         if(!empty($id) && !empty($data)){
-
-
             $member = self::find($id);
-            $member->name = $data['name'];
+                $member->itemname = $data['itemname'];
+                    if(!empty($data['name'])){
+               $member->name = $data['name'];
+           }
             $member->mobile = $data['mobile'];
             $member->email = $data['email'];
+
+           if(!empty($data['no'])){
+               $member->no = $data['no'];
+           }
             if(!empty($data['password'])){
                 $member->password = bcrypt($data['password']);
             }
@@ -64,9 +68,7 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
             if(!empty($photo)){
                 $member->photo = $photo;
             }
-
             $member->desc = $data['desc'];
-
             return $member->save();
         }
         return false;

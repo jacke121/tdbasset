@@ -2,16 +2,18 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use Auth;
+
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Response;
 use Illuminate\Http\Request;
+use App\Model\Member;
+use Log;
+use Auth;
 class AuthenticateController extends Controller {
 
 	/**
 	 * Create a new authentication controller instance.
-	 *
 	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
@@ -22,12 +24,55 @@ class AuthenticateController extends Controller {
 		$this->loginPath = '/auth/login';
 		$this->redirectAfterLogout = url('/auth/login');
 	}
-	     public function show(Request $request)//见明之意，就是提交请求到login方法，
-	        {
-	          return view('member.index.authenticate');
+	     public function getIndex(Request $request){
+
+	          return view('member.index.authelayer',['type'=>"index"]);
 	        }
-     public function Authenticate(Request $request)//见明之意，就是提交请求到login方法，
-        {
-          return view('auth.login');
-        }
+	        public function getAuthelayer(Request $request){
+	          return view('member.index.authelayer',['type'=>"index"]);
+	        }
+	        public function postAuthelayer(Request $request){
+
+	        	   // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
+	               $member = new Member();
+	               $member->id= $this->auth->get()->id;
+	               $member->type =1;
+	               $member->itemname =$request->get('itemname');
+                      	$member->email =$request->get('email');
+                            	$member->no =$request->get('no');
+                              $member->updatememberInfo($member->id,$member);
+                   return parent::returnJson(0,"提交成功");
+	        }
+	        public function getAutheperson(Request $request)//见明之意，就是提交请求到login方法，
+	        {
+	        return view('member.index.autheperson');
+	        }
+	           public function postAutheperson(Request $request){
+
+	        	   // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
+	               $member = new Member();
+	               $member->id= $this->auth->get()->id;
+	               $member->type =2;
+	               $member->itemname =$request->get('itemname');
+                      	$member->email =$request->get('email');
+                            	$member->no =$request->get('no');
+                              $member->updatememberInfo($member->id,$member);
+                   return parent::returnJson(0,"提交成功");
+	        }
+	         public function getAuthecompany(Request $request)//见明之意，就是提交请求到login方法，
+	        {
+	      	return view('member.index.authecompany');
+	        }
+	           public function postAuthecompany(Request $request){
+
+	        	   // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
+	               $member = new Member();
+	               $member->id= $this->auth->get()->id;
+	               $member->type =3;
+	               $member->itemname =$request->get('itemname');
+                   $member->email =$request->get('email');
+                   $member->no =$request->get('no');
+                     $member->updatememberInfo($member->id,$member);
+                   return parent::returnJson(0,"提交成功");
+	        }
 }
