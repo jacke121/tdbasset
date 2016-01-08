@@ -25,7 +25,7 @@
                             <th scope="row">{{ $v->id }}</th>
                             <td>{{ $v->title }}</td>
                             <td>{{ App\Model\Category::getCategoryNameByCatId($v->cate_id) }}</td>
-                            <td>{{ App\User::getUserNameByUserId($v->user_id) }}</td>
+                            <td>{{ App\Model\User::getUserNameByUserId($v->user_id) }}</td>
                             <td>{{ $v->status->view_number }}</td>
                             <td>{{ $v->created_at }}</td>
                             <td class="text-right">

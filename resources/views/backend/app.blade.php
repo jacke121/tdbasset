@@ -9,7 +9,13 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
     <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
-
+    <script type="text/javascript">
+    function setindex(id) {
+    //设置button效果，开始计时
+    $("#ulback").find("li").attr('class','');
+    $("#"+id).attr("class", "cur");
+    }
+    </script>
 	<!-- Fonts -->
 <!--	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
 
@@ -27,6 +33,9 @@
            float: right;
             margin-right: 5px;
         }
+        .cur{
+            font-weight:bold
+        }
     </style>
 </head>
 <body>
@@ -43,10 +52,11 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="{{URL::route('backend.home.index')}}">后台主页</a></li>
-					<li><a href="{{URL::route('backend.content.index')}}">内容管理</a></li>
-					<li><a href="{{ url('/backend/system/index') }}">系统设置</a></li>
+				<ul id="ulback" class="nav navbar-nav">
+					<li id="lihome"><a href="{{URL::route('backend.home.index')}}">后台主页</a></li>
+					<li id="licontent" class="cur"><a href="{{URL::route('backend.content.index')}}">内容管理</a></li>
+					<li id="lisystem"><a href="{{ url('/backend/system/index') }}">系统设置</a></li>
+                    <li id="liauthe"><a href="{{ url('/backend/authe/index') }}">会员审批</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

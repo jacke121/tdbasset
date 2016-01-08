@@ -64,55 +64,9 @@ class AuthController extends Controller {
                                'name'=> $this->getFailedLoginMessage(),
                             ]);
              }}
-             public function registertype(){
-             return view('auth.registertype');
-             }
+
                   public function getRegister($type){
                // var_dump($type);
              return view('auth.register',['type'=>$type,'content'=>$type]);
              }
-            
-              public function sendsms(Request $request){
-
-          $checkCode= parent::get_code(6,1);
-          $sdst = Input::get('sdst');
-             Session::put($sdst, $checkCode);  
-          //$type = Input::get('type');
-
-          $msg ="尊敬的用户：".$checkCode."是您本次的短信验证码，5分钟内有效.";// Input::get('msg');
-              $curl = new cURL;
-              $serverUrl="http://cf.lmobile.cn/submitdata/Service.asmx/g_Submit";
-              $response = $curl->get($serverUrl."?sname=dlrmcf58&spwd=ZRB2aP8K&scorpid=&sprdid=1012818&sdst=".$sdst."&smsg=".rawurlencode($msg."【投贷宝】"));
-          $xml = simplexml_load_string($response);
-           echo json_encode($xml);//$xml->State;
-
-          //  <CSubmitState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tempuri.org/">
-          //   <State>0</State>
-          //   <MsgID>1512191953407413801</MsgID>
-          //   <MsgState>提交成功</MsgState>
-          //   <Reserve>0</Reserve>
-          // </CSubmitState> 
-           // <State>1023</State>
-           //  <MsgID>0</MsgID>
-           //  <MsgState>无效计费条数,号码不规则,过滤[1:186019249011,]</MsgState>
-           //  <Reserve>0</Reserve>
-
-          }
-public function store(Request $request){
-          $this->validate($request, ['name' => 'required|min:3', 'password' =>'required','mobile'=>'required|regex:/^1[34578][0-9]{9}$/']);
- $username= Session::get('username');
-//$validator = Validator::make(Input::all(), User::$rules);
-         // if ($validator->passes()){
-               $user = new User();
-               $user->mobile = Input::get('mobile');
-               $user->name = Input::get('name');
-               $user->email = Input::get('email');
-               $user->password = Hash::make(Input::get('password'));
-               $user->save();
-
-              // Response::json(null);
-         // } else {
-           //    Response::json(['message' => '注册失败'], 410);
-          //}
-      }
 }
