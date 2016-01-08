@@ -145,6 +145,10 @@
                             <td class="tdr"><input type="text" name="cardno" class="int1"></td>
                         </tr>
                         <tr>
+                            <td class="tdl">业务方向</td>
+                            <td class="tdr"><input type="radio" name="roletype" class="int1"></td>
+                        </tr>
+                        <tr>
                             <td class="tdl">所在地</td>
                             <td class="tdr">
                                 <select name="zq_province" class="pubsel"><option value="省份">省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;

@@ -131,6 +131,7 @@
 	<div class="fa_rencon">
         <form method="post" id="personform" action="/member/authe/autheperson">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="roletype" value="1">
 		<table cellspacing="0" class="tableper">
 			<tbody><tr>
 				<td class="tdl">姓名</td>

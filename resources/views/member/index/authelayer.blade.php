@@ -183,6 +183,8 @@
             <p class="renper_p">以下所录入信息仅作为平台审核认证使用，不会造成您个人信息的泄露</p>
             <form method="post" id="layerform" enctype="multipart/form-data" action="/member/authe/authelayer">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="roletype" value="2">
+
             <table class="tableper">
                 <tbody><tr>
                   <td class="tdl">律师姓名</td>

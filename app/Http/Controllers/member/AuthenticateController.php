@@ -45,6 +45,7 @@ class AuthenticateController extends Controller {
 	               $member = new Member();
 	               $member->id= $this->auth->get()->id;
 	               $member->type =1;
+                $member->roletype =$request->get('roletype');
                 $member->cardnourl = $destinationPath.$fileName;
 	               $member->itemname =$request->get('itemname');
                       	$member->email =$request->get('email');
@@ -61,6 +62,7 @@ class AuthenticateController extends Controller {
 	               $member = new Member();
 	               $member->id= $this->auth->get()->id;
 	               $member->type =2;
+                   $member->roletype =$request->get('roletype');
 	               $member->itemname =$request->get('itemname');
                       	$member->email =$request->get('email');
                             	$member->no =$request->get('no');
@@ -77,6 +79,7 @@ class AuthenticateController extends Controller {
 	               $member = new Member();
 	               $member->id= $this->auth->get()->id;
 	               $member->type =3;
+                   $member->roletype =$request->get('roletype');
 	               $member->itemname =$request->get('itemname');
                    $member->email =$request->get('email');
                    $member->no =$request->get('no');

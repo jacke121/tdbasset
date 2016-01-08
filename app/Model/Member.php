@@ -55,6 +55,7 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
                     if(!empty($data['name'])){
                $member->name = $data['name'];
            }
+            $member->type = $data['type'];
             $member->mobile = $data['mobile'];
             $member->email = $data['email'];
            if(!empty($data['cardno'])){
