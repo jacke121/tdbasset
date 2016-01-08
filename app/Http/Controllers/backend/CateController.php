@@ -26,8 +26,6 @@ class CateController extends Controller
      */
     public function index()
     {
-        //
-
         $data = array(
             'cate' => Category::getCategoryDataModel(),
         );

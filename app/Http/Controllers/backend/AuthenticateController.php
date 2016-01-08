@@ -27,10 +27,15 @@ class AuthenticateController extends Controller {
 	     public function getIndex(Request $request){
 	          return view('backend.authe.index');
 	        }
-	        public function getAuthelayer(Request $request){
-	          return view('member.index.authelayer',['type'=>"repeat"]);
+	        public function getAwaiting(Request $request){
+
+                $data = array(
+                    'member' => DB::select("select * from members where lifestatus=1 and authestatus=0"),
+                );
+                return backendView('authe.wait.index', $data);
+//	          return view('backend.authe.waitapprove.index',['type'=>"repeat"]);
 	        }
-	        public function postAuthelayer(Request $request){
+	        public function getApproved(Request $request){
                 Log::error('postAuthelayer:'.$request->get('itemname'));
                 $file  =$request->file('file');
                 $allowed_extensions = ["png", "jpg", "gif"];
