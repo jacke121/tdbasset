@@ -40,8 +40,8 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::resource('links','backend\LinksController');
     Route::controllers([
         'system'=>'backend\SystemController',
-        'upload'=>'backend\UploadFileController'
-
+        'upload'=>'backend\UploadFileController',
+        'auth'=>'backend\auth\AuthController'
     ]);
 
 });

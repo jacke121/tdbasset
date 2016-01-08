@@ -37,11 +37,11 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
-        public function toLogin(Request $request)//见明之意，就是提交请求到login方法，
+        public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
              return view('backend.auth.login');
         }
-        public function getLogin(Request $request,Route $route)    {
+        public function postLogin(Request $request,Route $route)    {
             //调用validate验证前端数据
                   $name = Input::get('name');
                // $member->email = $member->name ."126.com";// Input::get('email');
