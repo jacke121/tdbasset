@@ -107,7 +107,7 @@
             <div class="fa_ren">
                 <h3 class="fa_renh">资格认证</h3>
                 <div class="fa_rencon">
-                    <div class="renlist ml1" onclick="showitem('layer')"  id="lawyerId">
+                    <div class="renlist ml1" onclick="showitem('authelayer')"  id="lawyerId">
                     <h3>律师用户认证</h3>
                     <img src="{{asset('/images/lsrz.png')}}" width="110px" height="110px">
                     <p>未提交认证申请</p>
@@ -134,6 +134,7 @@
                 <h3 class="fa_renh">企业用户认证</h3>
                 <div class="fa_rencon">
                     <form method="post" id="companyform"  action="/member/authe/authecompany">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <table cellspacing="0" class="tableper">
                         <tbody><tr>
                             <td class="tdl">企业名称</td>
@@ -141,7 +142,7 @@
                         </tr>
                         <tr>
                             <td class="tdl">证件号</td>
-                            <td class="tdr"><input type="text" name="no" class="int1"></td>
+                            <td class="tdr"><input type="text" name="cardno" class="int1"></td>
                         </tr>
                         <tr>
                             <td class="tdl">所在地</td>
@@ -154,8 +155,6 @@
                         <tr>
                             <td class="tdl">上传营业执照</td>
                             <td class="tdr">
-
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="upload_box">
                                         <div class="upload_main">
                                             <div class="upload_choose">
@@ -169,7 +168,6 @@
                                         </div>
                                         <div class="upload_inf"></div>
                                     </div>
-
                             </td>
                         </tr>
                         <tr>

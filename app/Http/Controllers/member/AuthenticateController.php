@@ -25,21 +25,30 @@ class AuthenticateController extends Controller {
 		$this->redirectAfterLogout = url('/auth/login');
 	}
 	     public function getIndex(Request $request){
-
 	          return view('member.index.authelayer',['type'=>"index"]);
 	        }
 	        public function getAuthelayer(Request $request){
 	          return view('member.index.authelayer',['type'=>"index"]);
 	        }
 	        public function postAuthelayer(Request $request){
-
+                Log::error('postAuthelayer:'.$request->get('itemname'));
+                $file  =$request->file('file');
+                $allowed_extensions = ["png", "jpg", "gif"];
+                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                    return ['error' => 'You may only upload png, jpg or gif.'];
+                }
+                $destinationPath = '/uploads/images/layer/';
+                $extension = $file->getClientOriginalExtension();
+                $fileName = str_random(10).'.'.$extension;
+                $file->move($destinationPath, $fileName);
 	        	   // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
 	               $member = new Member();
 	               $member->id= $this->auth->get()->id;
 	               $member->type =1;
+                $member->cardnourl = $destinationPath.$fileName;
 	               $member->itemname =$request->get('itemname');
                       	$member->email =$request->get('email');
-                            	$member->no =$request->get('no');
+                            	$member->no =$request->get('cardno');
                               $member->updatememberInfo($member->id,$member);
                    return parent::returnJson(0,"提交成功");
 	        }
@@ -48,7 +57,6 @@ class AuthenticateController extends Controller {
 	        return view('member.index.autheperson');
 	        }
 	           public function postAutheperson(Request $request){
-
 	        	   // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
 	               $member = new Member();
 	               $member->id= $this->auth->get()->id;

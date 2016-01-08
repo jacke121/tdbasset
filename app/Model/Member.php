@@ -19,7 +19,7 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
     static $members = [];
 
     public static function getmemberInfoModelBymemberId($memberId){
-        return self::select('id','type','name','mobile','email','photo','desc')->find($memberId);
+        return self::select(id, name, email, password, remember_token, created_at, updated_at, photo, `desc`, type, mobile, lifestatus, itemname, cardno, cardnourl, ownername, capacity, authestatus, authemsg, address)->find($memberId);
     }
 
     public static function getmemberArr($memberId){
@@ -57,12 +57,20 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
            }
             $member->mobile = $data['mobile'];
             $member->email = $data['email'];
-
-           if(!empty($data['no'])){
-               $member->no = $data['no'];
+           if(!empty($data['cardno'])){
+               $member->cardno = $data['cardno'];
            }
+            if(!empty($data['cardnourl'])){
+                $member->cardnourl = $data['cardnourl'];
+            }
+            if(!empty($data['capacity'])){
+                $member->capacity = $data['capacity'];
+            }
             if(!empty($data['password'])){
-                $member->password = bcrypt($data['password']);
+                $member->password = $data['password'];
+            }
+            if(!empty($data['ownername'])){
+                $member->password = $data['ownername'];
             }
             $photo = uploadFile('img','photo','uploads');
             if(!empty($photo)){
