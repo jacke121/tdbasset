@@ -49,6 +49,7 @@ use AuthenticatesAndRegistersUsers;
             Log::error('login:'.$request->get('name')."password".$request->get('password'));
         //过滤掉前端数据，只留下name和password
        if ($this->auth->attempt($credentials, $request->has('remember'))){
+//           Log::error('postlogin:'.$this->auth->get()->id.$this->auth->get()->mobile);
            return parent::returnJson(0,"登录成功");
          }
             return parent::returnJson(1,"用户名或密码错误");

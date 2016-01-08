@@ -21,8 +21,8 @@
         <div class="mainr">
     <div class="main_anquan">
         <h3 class="main_anquan">个人用户认证</h3>
-       	<p class="an_list list_spe"><span class="listtit">用户名：admin</span></p>
-       	<p class="an_list list_spe"><span class="listtit">手机认证：{{ Auth::member()->get()->name }}</span><a href="javascript:void(0);" class="lista
+       	<p class="an_list list_spe"><span class="listtit">用户名：{{ Auth::member()->get()->name }}</span></p>
+       	<p class="an_list list_spe"><span class="listtit">手机认证：{{ Auth::member()->get()->mobile }}</span><a href="javascript:void(0);" class="lista
        	phonex">修改</a></p>
        	<div class="phonecon" style="display: none;">
        	<!-- 第一步 -->
