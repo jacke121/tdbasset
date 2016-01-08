@@ -5,21 +5,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to and give it the controller to call when that URI is requested.
 */
 Route::get('/', 'ArticleController@index');
-Route::get('/auth/login', 'Auth\AuthController@toLogin');
-Route::get('auth/registertype', 'Auth\AuthController@registertype');
-
 Route::get('auth/register/{type}', 'Auth\AuthController@getRegister');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
-Route::post('auth/login', 'Auth\AuthController@getLogin');
-
-Route::get('auth/store', 'Auth\AuthController@store');
-Route::post('auth/store', 'Auth\AuthController@store');
-Route::post('auth/checkUser', 'Auth\AuthController@checkUser');
-    Route::group(array('before'=>'csrf'),function()
- {
- Route::post('auth/sendsms', 'Auth\AuthController@sendsms');
- });
-
 Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');
 Route::resource('category', 'CategoryController');
@@ -71,6 +57,6 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::resource('zqm', 'member\ZqController');
     Route::controller('center','member\CenterController');
     Route::get('zqList/index','member\ZqListController@index');
-    Route::resource('authenticate','member\AuthenticateController');
+    Route::controller('authe','member\AuthenticateController');
 
 });

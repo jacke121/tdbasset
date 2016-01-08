@@ -34,25 +34,25 @@ use AuthenticatesAndRegistersUsers;
 	}
         public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
-                  Log::error('getlogin:');
           return view('auth.login');
         }
         public function postLogin(Request $request){
            Log::error('postlogin:');
          //调用validate验证前端数据
-         $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
+            if(empty($request->get('name'))){
+                return parent::returnJson(1,"用户名不能为空");
+            }
+            if(empty($request->get('password'))){
+                return parent::returnJson(1,"用户名不能为空");
+            }
         $credentials = $request->only('name', 'password');
             Log::error('login:'.$request->get('name')."password".$request->get('password'));
         //过滤掉前端数据，只留下name和password
        if ($this->auth->attempt($credentials, $request->has('remember'))){
-             return redirect()->intended("member/index");//验证通过则跳入主页
+           return parent::returnJson(0,"登录成功");
          }
-           
-               return redirect($request->path())
-                   ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
-                    ->withErrors([
-                       'name'=> $this->getFailedLoginMessage(),
-                    ]);
+            return parent::returnJson(1,"用户名或密码错误");
+
      }
      public function getRegistertype(){
      return view('auth.registertype');
