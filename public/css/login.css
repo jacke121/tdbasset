@@ -65,7 +65,7 @@ a{ text-decoration:none;}
 .foot1 a:hover{color:#ed6d00;}
 .footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
 .foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
-.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("{{asset('/images/foot_icon.png')}}") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
 .foot2con p span{margin-right: 15px;line-height: 25px;}
 .foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
 .foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}
