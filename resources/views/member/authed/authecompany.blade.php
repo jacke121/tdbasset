@@ -104,121 +104,72 @@
         @include('member.left_nav')
 <!--资格认证-->
         <div class="mainr" >
-            <div class="fa_ren">
-                <h3 class="fa_renh">资格认证</h3>
-                <div class="fa_rencon">
-                    <div class="renlist ml1" onclick="showitem('authelayer')"  id="lawyerId">
-                    <h3>律师用户认证</h3>
-                    <img src="{{asset('/images/lsrz.png')}}" width="110px" height="110px">
-                    <p>未提交认证申请</p>
-                    <input type="hidden" id="lawyerAuth" value="0">
-                    </div>
-                    <div class="renlist ml2" onclick="showitem('authecompany')"  id="orgId">
-                    <h3>企业用户认证</h3>
-                    <img src="{{asset('images/qyrz.png')}}" width="110px" height="110px">
-                    <p>未提交认证申请</p>
-                    <input type="hidden" id="orgAuth" value="0">
-                    </div>
-                    <div class="renlist ml3" onclick="showitem('autheperson')"  id="orgId">
-                    <h3>个人用户认证</h3>
-                    <img src="{{asset('images/qyrz.png')}}" width="110px" height="110px">
-                    <p>未提交认证申请</p>
-                    <input type="hidden" id="orgAuth" value="0">
-                    </div>
-                </div>
-            </div>
-            <br>
+
 <!--企业用户认证的详情页面-->
-        <div class="mainr">
-            <div class="fa_ren">
-                <h3 class="fa_renh">企业用户认证</h3>
-                <div class="fa_rencon">
-                    <form method="post" id="companyform"  action="/member/authe/authecompany">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <table cellspacing="0" class="tableper">
-                        <tbody><tr>
-                            <td class="tdl">企业名称</td>
-                            <td class="tdr"><input type="text" name="itemname" class="int1"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">证件号</td>
-                            <td class="tdr"><input type="text" name="cardno" class="int1"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">业务方向</td>
-                            <td class="tdr"><input type="radio" name="roletype" value="1" > 委托方&nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="roletype" value="2" value="1" /> 代理方<br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">所在地</td>
-                            <td class="tdr">
-                                <select name="zq_province" class="pubsel"><option value="省份">省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;
-                                <select name="zq_city" class="pubsel"><option value="地级市">地级市</option></select>&nbsp;&nbsp;
-                                <select name="zq_county" class="pubsel"><option value="市、县级市">市、县级市</option></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">上传营业执照</td>
-                            <td class="tdr">
-                                    <div class="upload_box">
-                                        <div class="upload_main">
-                                            <div class="upload_choose">
-                                                <input type="file" size="30" name="fileselect[]" multiple>
-                                            </div>
-                                            <div class="upload_preview"></div>
-                                        </div>
-                                        <input type="hidden" name="pjcsbs" value="">
-                                        <div class="upload_submit">
-                                            <!-- <button type="button" class="upload_submit_btn">确认上传图片</button> -->
-                                        </div>
-                                        <div class="upload_inf"></div>
-                                    </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">提示：</td>
-                            <td class="tdr">工商营业执照必须在有效期范围内。<br>
-                                格式要求：原件照片、扫描或复印件加盖企业公章后扫描件。<br>
-                                支持：jpg、jpeg、 bmp、 png格式照片，大小不得超过2M。<br>
-                                <font color="red">营业执照上的所有信息清晰可见，手持证件人的五官清晰可见，照片内容真实有效，不得做任何修改</font>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">法定代表人姓名</td>
-                            <td class="tdr"><input type="text" name="ownername" class="int1"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">企业规模</td>
-                            <td class="tdr"><input type="text" name="capacity" class="int1">人</td>
-                        </tr>
-                        <tr>
-                            <td class="tdl">联系邮箱</td>
-                            <td class="tdr"><input type="text" name="email" class="int1"></td>
-                        </tr>
-                        <tr>
-                            <td class="tdl"></td>
-                            <td class="tdr"><input type="submit" class="reg2btn" value="立即认证"></td>
-                        </tr>
-                        </tbody></table>
-                    </form>
-                </div>
-                <!-- 弹出层-->
-                <div class="tan" style="display:none;">
-                    <p class="tan_icon">
-                        <span class="dui" style="display: none;"></span>
-                        <span class="cuo"></span>
-                    </p>
-
-                    <p class="tants" id="alertInfo" style="display: block;">您的认证信息已提交,我们会在一个工作小时内为您完成审核</p>
-
-                    <p class="tanp">
-                        <input type="submit" class="tanbtn" value="确认">
-                    </p>
+            <div class="mainr" >
+                <!--个人用户认证审核中页面-->
+                <div class="renover">
+                    <h3 class="fa_renh">
+                        企业用户认证
+                        （未认证）
+                    </h3>
+                    <h3 class="renoverh">
+                        <span>基本信息</span>
+                    </h3>
+                    <div class="tan1">
+                        <table cellspacing="0">
+                            <tbody><tr>
+                                <td>登录名 :<span>{{ Auth::member()->get()->name}}</span></td>
+                                <td>联系电话 :<span>{{ Auth::member()->get()->mobile}}</span></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <h3 class="renoverh">
+                        <span>认证信息</span>
+                    </h3>
+                    <p class="tabtit">代理方类型：企业</p>
+                    <div class="tan1">
+                        <table cellspacing="0">
+                            <tbody><tr>
+                                <td>企业名称 :<span>{{ Auth::member()->get()->itemname}}</span></td>
+                                <td>证件号:<span>{{ Auth::member()->get()->cardno}}</span></td>
+                            </tr>
+                            <tr>
+                                <td>法定代表人姓名:<span>{{ Auth::member()->get()->ownername}}</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>所在地址 :<span id="szdz">{{ Auth::member()->get()->address}}</span></td>
+                                <td>邮箱:<span>{{ Auth::member()->get()->email}}</span></td>
+                            </tr>
+                            <tr>
+                                <td>企业规模 :<span>{{ Auth::member()->get()->capacity}} 人</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>联系电话 :<span>{{ Auth::member()->get()->mobile}}</span></td>
+                                <td></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <p class="tabtit">营业执照：</p>
+                    <div class="tabpic">
+                        <table cellspacing="0">
+                            <tbody><tr>
+                                <td>正面</td>
+                                <td>反面</td>
+                            </tr>
+                            <tr>
+                                <td id="pc1"><img></td>
+                                <td id="pc2"><img></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <p>提示：您的资料正在进行认证，如需修改请直接拨打客服电话，或点击在线客服联系</p>
                 </div>
             </div>
-
-        </div> </div> </div>
+        </div>
+    </div>
     <div style="clear:both;"></div>
 <!--foot部分-->
   @include('themes.default.foot')

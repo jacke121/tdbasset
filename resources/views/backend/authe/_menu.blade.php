@@ -5,6 +5,9 @@
 
         <ul class="nav nav-list">
             <li>
+                <a href="/backend/authe/registerd">未认证会员</a>
+            </li>
+            <li>
                 <a href="/backend/authe/awaiting">待审批会员</a>
             </li>
 

@@ -26,11 +26,12 @@ class AuthenticateController extends Controller
     public function getIndex(Request $request)
     {
         $member = Member::find($this->auth->get()->id);
+        Log::error('getIndex:'.$member->authestatus);
         if ($member->authestatus > 0) {
             if ($member->type == 1) {
                 return view('member.authed.authelayer', ['type' => "repeat"]);
             } else if ($member->type == 2) {
-                return view('member.authed.authelayer', ['type' => "repeat"]);
+                return view('member.authed.authecompany', ['type' => "repeat"]);
             } else if ($member->type == 3) {
                 return view('member.authed.autheperson', ['type' => "repeat"]);
             }
@@ -60,6 +61,8 @@ class AuthenticateController extends Controller
         $member->authestatus = 1;
         $member->roletype = $request->get('roletype');
         $member->cardnourl = $cardnourl;
+        $member->address = $request->get('address');
+        $member->addresscode = $request->get('addresscode');
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');
         $member->cardno = $request->get('cardno');
@@ -138,6 +141,8 @@ class AuthenticateController extends Controller
         $member->id = $this->auth->get()->id;
         $member->type = 3;
         $member->authestatus = 1;
+        $member->address = $request->get('address');
+        $member->addresscode = $request->get('addresscode');
         $member->roletype = $request->get('roletype');
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');
@@ -168,6 +173,8 @@ class AuthenticateController extends Controller
         if (!empty($fileName)) {
             $member->cardnourl =$cardnourl;
         }
+        $member->address = $request->get('address');
+        $member->addresscode = $request->get('addresscode');
         $member->roletype = $request->get('roletype');
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');

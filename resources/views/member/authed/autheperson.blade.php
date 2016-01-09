@@ -129,7 +129,7 @@
                                 <td>身份证号:<span>{{ Auth::member()->get()->cardno}}</span></td>
                             </tr>
                             <tr>
-                                <td>所在地址 :<span id="szdz">北京市 北京市 朝阳区</span></td>
+                                <td>所在地址 :<span id="szdz">{{ Auth::member()->get()->address}}</span></td>
                                 <td>邮箱:<span>{{ Auth::member()->get()->email}}</span></td>
                             </tr>
                             <tr>

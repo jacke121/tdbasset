@@ -19,7 +19,7 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
 
     public static function getmemberInfoModelBymemberId($memberId)
     {
-        return self::select(id, name, email, password, remember_token, created_at, updated_at, photo, `desc`, type, mobile, lifestatus, itemname, cardno, cardnourl, ownername, capacity, authestatus, authemsg, address)->find($memberId);
+        return self::select(id, name, email, password, remember_token, created_at, updated_at, photo, `desc`, type, mobile, lifestatus, itemname, cardno, cardnourl, ownername, capacity, authestatus, authemsg, address,addresscode)->find($memberId);
     }
 
     public static function getmemberArr($memberId)
@@ -63,6 +63,9 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
             if (!empty($data['roletype'])) {
                 $member->roletype = $data['roletype'];
             }
+            if (!empty($data['authestatus'])) {
+                $member->authestatus = $data['authestatus'];
+            }
             if (!empty($data['mobile'])) {
                 $member->mobile = $data['mobile'];
             }
@@ -83,6 +86,12 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
             }
             if (!empty($data['ownername'])) {
                 $member->ownername = $data['ownername'];
+            }
+            if (!empty($data['address'])) {
+                $member->address = $data['address'];
+            }
+            if (!empty($data['addresscode'])) {
+                $member->addresscode = $data['addresscode'];
             }
             $photo = uploadFile('img', 'photo', 'uploads');
             if (!empty($photo)) {

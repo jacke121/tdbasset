@@ -68,6 +68,11 @@
                     }
                 });
             });
+            $("#areas").bind('change',function(){
+                $("#address").val($("#provinces option:selected").text()+" "+$("#citys option:selected").text()+" "+$("#areas option:selected").text());
+
+            });
+
             $("#layerform").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -176,6 +181,7 @@
             <form method="post" id="layerform" enctype="multipart/form-data" action="/member/authe/authelayer">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="roletype" value="2">
+                <input type="hidden" id="address" name="address">
             <table class="tableper">
                 <tbody><tr>
                   <td class="tdl">律师姓名</td>
@@ -186,7 +192,7 @@
                   <td class="tdr">
     		 <select id="provinces" name="zq_province" class="pubsel"><option value="省份" selected>省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;
 		<select id="citys" name="zq_city" class="pubsel"><option value="地级市">地级市</option></select>&nbsp;&nbsp;
-		   	 <select id="areas"name="zq_county" class="pubsel"><option value="市、县级市">市、县级市</option></select>
+		   	 <select id="areas"name="addresscode" class="pubsel"><option value="市、县级市">市、县级市</option></select>
                 </td>
                 </tr>
                 <tr>
