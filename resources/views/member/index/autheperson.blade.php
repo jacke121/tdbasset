@@ -30,7 +30,7 @@
                     element.after(error);
                 },
                 rules: {
-                    itemname: { required: true, minlength: 3        },
+                    itemname: { required: true, minlength: 2},
                     confirm_password: {
                         required: true,
                         rangelength: [6, 16],

@@ -8,21 +8,17 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 
 use App\Http\Requests\CateForm;
-
+use Log;
 use Input, Redirect, Notification;
 
 class CateController extends Controller
 {
-
     public function __construct()
     {
         conversionClassPath(__CLASS__);
     }
-
     /**
      * Display a listing of the resource.
-     *
-     * @return Response
      */
     public function index()
     {
@@ -31,11 +27,8 @@ class CateController extends Controller
         );
         return backendView('index', $data);
     }
-
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Response
      */
     public function create()
     {
@@ -50,11 +43,10 @@ class CateController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return Response
      */
     public function store(CateForm $request)
     {
+        Log::error('catestore:'.$request->get("seo_desc"));
         try {
             if (Category::create($request->all())) {
                 Notification::success('添加成功');
@@ -96,10 +88,8 @@ class CateController extends Controller
      */
     public function update($id, CateForm $result)
     {
-        //
-
+        Log::error('cateupdate:'.$result->get("seo_desc"));
         try {
-
             $data = $result->all();
             unset($data['_method']);
             unset($data['_token']);

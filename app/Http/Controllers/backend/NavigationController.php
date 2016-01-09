@@ -18,12 +18,10 @@ class NavigationController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
      * @return Response
      */
     public function index()
     {
-
         return backendView('index', [
             'list' => Navigation::getNavigationAll(),
         ]);
@@ -31,7 +29,6 @@ class NavigationController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
      * @return Response
      */
     public function create()
@@ -42,12 +39,10 @@ class NavigationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      * @return Response
      */
     public function store(NavigationForm $request)
     {
-
         try {
             if (Navigation::create($request->all())) {
                 Notification::success('添加成功');
