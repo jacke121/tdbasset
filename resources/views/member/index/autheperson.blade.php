@@ -23,6 +23,46 @@
         location.href="/member/authe/"+item;
         }
         $(document).ready(function(){
+            $.ajax({
+                type: "get",
+                url: "/area/province", // type=1表示查询省份
+                data: {"parent_id": "1", "type": "1"},
+                dataType: "json",
+                success: function(data) {
+                    $("#provinces").html("<option value=''>请选择省份</option>");
+                    $.each(data, function(i, item) {
+                        $("#provinces").append("<option value='" + item.provinceID + "'>" + item.province + "</option>");
+                    });
+                }
+            });
+            $("#provinces").bind('change',function(){
+                $.ajax({
+                    type: "get",
+                    url: "/area/city", // type =2表示查询市
+                    data: {"provinceid": $(this).val(), "type": "2"},
+                    dataType: "json",
+                    success: function(data) {
+                        $("#citys").html("<option value=''>请选择市</option>");
+                        $.each(data, function(i, item) {
+                            $("#citys").append("<option value='" + item.cityID + "'>" + item.city + "</option>");
+                        });
+                    }
+                });
+            });
+            $("#citys").bind('change',function(){
+                $.ajax({
+                    type: "get",
+                    url: "/area/area", // type =2表示查询市
+                    data: {"cityid": $(this).val(), "type": "3"},
+                    dataType: "json",
+                    success: function(data) {
+                        $("#areas").html("<option value=''>请选择县</option>");
+                        $.each(data, function(i, item) {
+                            $("#areas").append("<option value='" + item.areaID + "'>" + item.area + "</option>");
+                        });
+                    }
+                });
+            });
             $("#personform").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -61,7 +101,6 @@
                                 if(msg['State']>0){
                                     alert(msg['MsgState']);
                                 }else{
-                                    alert(1);
                                     $(".tan").css("display","");
                                 }
                             }
@@ -140,9 +179,9 @@
 			<tr>
 				<td class="tdl">所在地</td>
 				<td class="tdr">
-					<select name="zq_province" class="pubsel"><option value="省份">省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;
-		    		 <select name="zq_city" class="pubsel"><option value="地级市">地级市</option></select>&nbsp;&nbsp;
-		   			 <select name="zq_county" class="pubsel"><option value="市、县级市">市、县级市</option></select>
+					<select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
+		    		 <select id="citys" name="zq_city" class="pubsel"><option value="地级市">地级市</option></select>&nbsp;&nbsp;
+		   			 <select id="areas" name="zq_county" class="pubsel"><option value="市、县级市">市、县级市</option></select>
 				</td>
 			</tr>
 			<tr>
