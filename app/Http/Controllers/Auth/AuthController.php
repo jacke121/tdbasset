@@ -164,6 +164,26 @@ class AuthController extends Controller
       }
         return parent::returnJson(1, "验证码错误");
     }
+
+    public function postCheckpwd(Request $request)
+    {
+//        $password = Hash::make( $request->get('password'));
+//        Log::error("postCheckpwd:" . $password."**".$this->auth->get()->password);
+        if ($this->auth->attempt(array('name' => $this->auth->get()->name, 'password' => $request->get('password')))) {
+//        if ($password == $this->auth->get()->password){
+        return parent::returnJson(0, "密码正确");
+        }
+        return parent::returnJson(1, "密码输入错误");
+    }
+
+    public function postModifypwd(Request $request) {
+        //更新密码
+        $array = ["password" => Hash::make($request->get('password'))];
+        if (Member::where('id', $this->auth->get()->id)->update($array)) {
+            return parent::returnJson(0, "密码修改成功");
+        }
+        return parent::returnJson(1, "密码修改失败");
+    }
     public function getLogout(Request $request)
     {
         $this->auth->logout();

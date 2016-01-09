@@ -165,6 +165,7 @@ color: #fff;background: #f37103;}
 .code1{width: 110px;height: 40px;line-height: 40px;font-size: 14px;text-align: center; display: inline-block;background:#c4c4c4;position: absolute;top:1px;left:318px;display:none;}
 .phonestep1{text-align: center;}
 .phonestep1 a{background-color: #f37103;color: #fff;width:260px;height:43px;line-height: 43px;text-align: center;font-size: 18px;display: inline-block;margin:40px auto;}
+.phonestep1 button{background-color: #f37103;color: #fff;width:260px;height:43px;line-height: 43px;text-align: center;font-size: 18px;display: inline-block;margin:40px auto;}
 .bgbg{background: #c0eafa;height:auto;position: relative;padding:25px 0px;}
 .bgts{width:116px;height:30px;line-height: 30px;color: #fff;font-size: 18px;display: inline-block;background:#f37103;text-align: center;border-radius: 10px;position: absolute;top:25px;left:80px;}
 .bgbg p{margin-left: 224px;font-size: 14px;}

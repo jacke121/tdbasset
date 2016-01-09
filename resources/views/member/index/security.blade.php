@@ -5,11 +5,26 @@
 <meta name="_token" content="{{ csrf_token() }}"/>
 <title>个人中心</title>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
+    <style>
+        span.error {
+            padding-left: 16px;
+            color: #E15F63
+        }
+        span.success {
+            background: url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
+            padding-left: 16px;
+        }
+    </style>
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
 <script src="{{asset('/js/jquery.form.js') }}"></script>
+<script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-
     var currentnum=1;
+    function modifypwd() {
+        $(".phonecon").hide();
+        $(".pwdcon").show();
+
+    }
     function modifymobile(step) {
         if (step == 1) {
             $(".phonecon").show();
@@ -27,7 +42,6 @@
             }
             $('#step2').ajaxSubmit(ajax_option);
         }else if(step == 3) {
-
             var ajax_option={
                 dataType: "json", //数据格式:JSON
                 success:function(msg){
@@ -44,6 +58,83 @@
     }
     $(function () {
         setindex("cen_security");
+            $("#formpwd").validate({
+                errorClass: "error",
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    element.after(error);
+                },
+                rules: {
+                    password: {   required: true, rangelength: [6, 16] },
+                    confirm_password: { required: true, rangelength: [6, 16],equalTo: "#password"
+                    }
+                },
+                messages: {
+                    password: {
+                        required: "请填写密码！",
+                        rangelength: "格式：6-16个字符(数字、字母)",
+                        remote: "原始密码不正确,请重新填写！" //这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
+                    },
+                    confirm_password: {
+                        required: "请填写确认密码！",
+                        rangelength: "格式：6-16个字符(数字、字母)",
+                        equalTo: "两次输入密码不一致！"
+                    }
+                },
+                success: function (label) {
+                    label.html("<font color='green'>√</font>").addClass("success");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    // $(element).html("<font color='green'>√</font>");
+                },
+                submitHandler: function (form) {
+                    var ajax_option={
+                        dataType: "json", //数据格式:JSON
+                        success:function(msg){
+                            if(msg['State']>0){
+                                alert(msg['MsgState']);
+                            }else{
+                                $(".pwdcon1").hide();
+                                $(".pwdcon2").show();
+                            }
+                        }
+                    }
+                    $('#formpwd').ajaxSubmit(ajax_option);
+                }
+            });
+            var customError = "";
+            $.validator.addMethod("oldpassword", function (value, element) {
+                var returnVal = false;
+                if(value.length<6){
+                    returnVal=false;
+                    customError="密码不能少于6个字符";
+                }else {
+                    $.ajax({
+                        type: "POST", //用POST方式传输
+                        url: "/auth/checkpwd", async: false,
+                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+                        data: {
+                            type_data: "modify", password: $(".oldpassword").val()
+                        },
+                        dataType: "json", //数据格式:JSON
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(errorThrown);
+                        },
+                        success: function (msg) {
+                            if (msg['State'] > 0) {
+                                //有异常
+                                returnVal = false;
+                                customError = msg['MsgState'];
+                            } else {
+                                returnVal = true;
+                            }
+                        },
+                    });
+                }
+                $.validator.messages.oldpassword = customError;
+                return returnVal;
+            }, customError);
+
     });
     var InterValObj; //timer变量，控制时间
     var count = 15; //间隔函数，1秒执行
@@ -189,33 +280,35 @@
 			  <div class="bgbg">
 			  <span class="bgts">温馨提示</span>
 <p>1.请填写真实有效的手机号，手机号将作为验证用户身份发重要手段。</p>
-<p>2.青苔债管家会对用户的所有资料进行严格保密。</p>
+<p>2.债工厂会对用户的所有资料进行严格保密。</p>
 <p>3.手机认证过程遇到问题，请联系客服 000-111-222</p>
 			  </div>
        	</div>
-       	<p class="an_list list_spe"><span class="listtit">登录密码：</span>已设置<a href="javascript:void(0);" class="lista pwdx">修改</a></p>
+       	<p class="an_list list_spe"><span class="listtit">登录密码：</span>已设置<a href="javascript:;" onclick="modifypwd()" class="lista pwdx">修改</a></p>
        	<div class="pwdcon" style="display: none;">
+            {!! Form::open(['id'=>'formpwd','url' => '/auth/modifypwd', 'method' => 'post','class'=>'form-horizontal']) !!}
        	<!-- 第一步 -->
        	<div class="pwdcon1">
 			  <div class="int">
                     <span class="intspan">原登录密码</span>
-                    <input type="password">
+                    <input type="password" name="oldpassword" class="oldpassword">
                     <span class="ts"></span>
               </div>
               <div class="int">
                     <span class="intspan">新登录密码</span>
-                    <input type="password">
+                    <input id="password" type="password" name="password">
                     <span class="ts"></span>
               </div>
               <div class="int">
                     <span class="intspan">再次输入新登录密码</span>
-                    <input type="password">
+                    <input type="password" name="confirm_password">
                     <span class="ts"></span>
               </div>
               <p class="phonestep1">
-                <a href="#" class="pwd1btn">修改登录密码</a>
+                  <button type="submit" class="pwd1btn">修改登录密码</button>
               </p>
         </div>
+            {!! Form::close() !!}
         <!-- 第二步 -->
        	<div class="pwdcon2">
 			  恭喜您成功修改登录密码！！！
