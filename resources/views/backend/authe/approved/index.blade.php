@@ -9,7 +9,7 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                 {!! Notification::showAll() !!}
-                <div class="panel-heading">已审批列表</div>
+                <div class="panel-heading">已认证会员列表</div>
                 <div class="panel-body">
                     {{--<a class="btn btn-success" href="{{ URL::route('backend.cate.create')}}">创建分类</a>--}}
                     <table class="table table-hover table-top">
@@ -23,7 +23,6 @@
                             <th>账号状态</th>
                             <th class="text-right">操作</th>
                         </tr>
-
                         @foreach($member as $k=> $v)
                         <tr>
                             <th scope="row">{{ $v->id }}</th>
