@@ -58,6 +58,9 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
 
     Route::get('zqm/check', 'member\ZqController@check');
     Route::post('zqm/store', 'member\ZqController@store');
+    Route::post('zqm/update', 'member\ZqController@update');
+    Route::post('zqm/checkUpdate', 'member\ZqController@checkUpdate');
+
     Route::resource('zqm', 'member\ZqController');
     Route::controller('center','member\CenterController');
     Route::get('zqList/index','member\ZqListController@index');

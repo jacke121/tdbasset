@@ -1,21 +1,21 @@
 @extends('member.app')
 
-@section('content')
+@section('modules')
 
 <div class="text-center">
     <h3>审核资料</h3>
 
     <ul class="list-unstyled">
-        <li>金额: ${{zq.zq_quote}}</li>
-        <li>延期: ${{zq.zq_delay}}</li>
-        <li>填写日期: ${{zq.zq_created_at}}</li>
+        <li>金额: {{$zq->zq_quote}}</li>
+        <li>延期: {{$zq->zq_delay}}</li>
+        <li>填写日期: {{$zq->zq_created_at}}</li>
     </ul>
 
 </div>
 
-<form id="input_form" class="form-horizontal" action="{{URL('member/zqm/update')}}" method="POST">
-
-    @include("admin.zq.iterm.check")
+<form id="input_form" class="form-horizontal" action="{{URL('member/zqm/checkUpdate')}}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @include("admin.zq.iterm.checkItem")
 
     <div class="form-group">
         <label class="col-sm-1 control-label"></label>
@@ -36,6 +36,17 @@
     var validator;
     $(document).ready(function(){
         validator=$("#input_form").validate({
+            submitHandler:function(form){
+                $.ajax({
+                    url: '{{URL('member/zqm/checkUpdate')}}',
+                    type: "post",
+                    data: $("#input_form").serialize(),
+                    success: function(data){
+                        alert(data);
+                        window.location.href = "{{URL('member/zqList/index')}}";
+                    }
+                });
+            },
             rules: {
                 "stars":{required:true,digits:true}
             },

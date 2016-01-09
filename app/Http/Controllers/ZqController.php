@@ -71,8 +71,8 @@ class ZqController extends Controller {
             $where = array_merge($where,$areaArr);
         }
 
-        //$zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
-        $zqList = Zq::getZqList($province, $city, $area, $debt_money, $debt_time,$where, 10);
+        $zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
+        //$zqList = Zq::getZqList($province, $city, $area, $debt_money, $debt_time,$where, 10);
         viewInit();
         //$page = new EndaPage($zqList['page']);
         return view('themes.default.zq',[

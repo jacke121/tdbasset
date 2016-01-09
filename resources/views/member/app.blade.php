@@ -24,7 +24,9 @@
 	<![endif]-->
 </head>
 <body>
+
     @include('themes.default.top')
+
 	<div class="zqbanner">
 	</div>
 	<div class="container-fluid">
