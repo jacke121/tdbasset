@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="_token" content="{{ csrf_token() }}"/>
 <title>个人中心</title>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
+<script src="{{asset('/js/jquery.form.js') }}"></script>
     <style>
         span.error {
             padding-left: 16px;
@@ -54,24 +54,19 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
-                    $.ajax({
-                        type: "POST", //用POST方式传输
-                        url:$("#personform").attr("action"), //目标地址
-                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-                        data:$('#personform').serialize(),
-                        dataType: "json", //数据格式:JSON
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("error:"+errorThrown);
-                            return null;
-                        },
-                        success: function (msg){
-                            if(msg['State']>0){
-                                alert(msg['MsgState']);
-                            }else{
-                                $(".tan").css("display","");
+                        var ajax_option={
+                            type: "POST", //用POST方式传输
+                            dataType: "json", //数据格式:JSON
+                            success:function(msg){
+                                if(msg['State']>0){
+                                    alert(msg['MsgState']);
+                                }else{
+                                    alert(1);
+                                    $(".tan").css("display","");
+                                }
                             }
                         }
-                    });
+                        $('#personform').ajaxSubmit(ajax_option);
                 }
             });
 
@@ -129,9 +124,10 @@
 <div class="fa_ren">
 	<h3 class="fa_renh">个人用户认证</h3>
 	<div class="fa_rencon">
-        <form method="post" id="personform" action="/member/authe/autheperson">
+        <form method="post" id="personform" enctype="multipart/form-data" action="/member/authe/autheperson">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="roletype" value="1">
+           <input type="hidden" name="roletype" value="1"> {{--委托方--}}
+
 		<table cellspacing="0" class="tableper">
 			<tbody><tr>
 				<td class="tdl">姓名</td>
@@ -155,7 +151,7 @@
                     <div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input type="file" size="30" name="fileselect[]" multiple>                              
+                                <input type="file" size="30" name="file[]" multiple>
                             </div>
                             <div class="upload_preview"></div>
                         </div>
@@ -182,7 +178,7 @@
 			</tr>
 			<tr>
 				<td class="tdl"></td>
-				<td class="tdr"><input type="submit" class="reg2btn" value="立即认证" onclick="submitQyAuth()"></td>
+				<td class="tdr"><input type="submit" class="reg2btn" value="立即认证"></td>
 			</tr>
 		</tbody></table>
         </form>

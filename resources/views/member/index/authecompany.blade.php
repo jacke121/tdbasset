@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="_token" content="{{ csrf_token() }}"/>
 <title>个人中心</title>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/js/jquery.form.js') }}"></script>
+<script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
         span.error {
             padding-left: 16px;
@@ -54,39 +54,32 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
-                    $.ajax({
+                    var ajax_option={
                         type: "POST", //用POST方式传输
-                        url:$("#companyform").attr("action"), //目标地址
-                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-                        data:$('#companyform').serialize(),
                         dataType: "json", //数据格式:JSON
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("error:"+errorThrown);
-                            return null;
-                        },
-                        success: function (msg){
+                        success:function(msg){
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                                alert(1);
-                               $(".tan").css("display","");
+                                $(".tan").css("display","");
                             }
                         }
-                    });
+                    }
+                     $('#companyform').ajaxSubmit(ajax_option);
                 }
             });
             $.validator.addMethod("onlyName", function(value, element) {
                 return checkUser("name",value);
             },"用户名已存在!");
             var customError = "";
-            $.validator.addMethod("onlyMobile", function(value, element) {
+            $.validator.addMethod("onlyEmail", function(value, element) {
                 var returnVal = true;
                 var mobile =value;  //获取手机号
                 var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
                 if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile))){
                     returnVal=false;
                     customError="请输入正确的手机格式!";
-                }else if(! checkUser("mobile",value)){
+                }else if(!checkUser("mobile",value)){
                     returnVal=false;
                     customError="手机号已存在!";
                 }
@@ -133,7 +126,7 @@
             <div class="fa_ren">
                 <h3 class="fa_renh">企业用户认证</h3>
                 <div class="fa_rencon">
-                    <form method="post" id="companyform"  action="/member/authe/authecompany">
+                    <form method="post" id="companyform"  enctype="multipart/form-data"  action="/member/authe/authecompany">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <table cellspacing="0" class="tableper">
                         <tbody><tr>
@@ -164,7 +157,7 @@
                                     <div class="upload_box">
                                         <div class="upload_main">
                                             <div class="upload_choose">
-                                                <input type="file" size="30" name="fileselect[]" multiple>
+                                                <input type="file" size="30" name="file[]">
                                             </div>
                                             <div class="upload_preview"></div>
                                         </div>
@@ -194,7 +187,7 @@
                         </tr>
                         <tr>
                             <td class="tdl">联系邮箱</td>
-                            <td class="tdr"><input type="text" name="email" class="int1"></td>
+                            <td class="tdr"><input type="text" name="email" class="int1 onlyEmail"></td>
                         </tr>
                         <tr>
                             <td class="tdl"></td>

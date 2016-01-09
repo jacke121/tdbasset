@@ -14,31 +14,26 @@ use Auth;
 
 class AuthenticateController extends Controller
 {
-
     /**
      * Create a new authentication controller instance.
-     * @param  \Illuminate\Contracts\Auth\Guard $auth
-     * @param  \Illuminate\Contracts\Auth\Registrar $registrar
      * @return void
      */
     public function __construct(Guard $auth)
     {
         $this->auth = Auth::member();// $auth;
-        $this->loginPath = '/auth/login';
-        $this->redirectAfterLogout = url('/auth/login');
     }
 
     public function getIndex(Request $request)
     {
         $member = Member::find($this->auth->get()->id);
-        if($member->authestatus>0){
-        if($member->type==1){
-            return view('member.authed.authelayer', ['type' => "repeat"]);
-        }else if($member->type==2){
-            return view('member.authed.authelayer', ['type' => "repeat"]);
-        }else if($member->type==3){
-            return view('member.authed.autheperson', ['type' => "repeat"]);
-        }
+        if ($member->authestatus > 0) {
+            if ($member->type == 1) {
+                return view('member.authed.authelayer', ['type' => "repeat"]);
+            } else if ($member->type == 2) {
+                return view('member.authed.authelayer', ['type' => "repeat"]);
+            } else if ($member->type == 3) {
+                return view('member.authed.autheperson', ['type' => "repeat"]);
+            }
         }
         return view('member.index.authelayer', ['type' => "index"]);
     }
@@ -52,25 +47,22 @@ class AuthenticateController extends Controller
     public function postAuthelayer(Request $request)
     {
         Log::error('postAuthelayer:' . $request->get('itemname'));
-        $file = $request->file('file');
-        $allowed_extensions = ["png", "jpg", "gif"];
-        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-            return ['error' => 'You may only upload png, jpg or gif.'];
+        $cart= $this->movefile($request);
+        if($cart['status']==1){
+            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $cardnourl= $cart['msg'];
         }
-        $destinationPath = '/uploads/images/layer/';
-        $extension = $file->getClientOriginalExtension();
-        $fileName = str_random(10) . '.' . $extension;
-        $file->move($destinationPath, $fileName);
         // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
         $member = new Member();
         $member->id = $this->auth->get()->id;
         $member->type = 1;
         $member->authestatus = 1;
         $member->roletype = $request->get('roletype');
-        $member->cardnourl = $destinationPath . $fileName;
+        $member->cardnourl = $cardnourl;
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');
-        $member->no = $request->get('cardno');
+        $member->cardno = $request->get('cardno');
         $member->updatememberInfo($member->id, $member);
         return parent::returnJson(0, "提交成功");
     }
@@ -80,8 +72,67 @@ class AuthenticateController extends Controller
         return view('member.index.autheperson');
     }
 
+    private function movefile(Request $request){
+
+        $cart = array();
+        $cart['status'] =1;
+        $cart['msg'] ="图片不能为空";
+        $path="";
+        if ($request->hasFile('file')) {
+            $rules = array();
+            if (!array($request->File('file'))) {
+                $file = $request->file('file');
+                $allowed_extensions = ["png", "jpg", "gif"];
+                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                    $cart['status']=1;
+                    $cart['msg'] ="图片只支持png,jpg,gif";
+                    return $cart;
+                }
+                $destinationPath = 'uploads/images/person/';
+                $extension = $file->getClientOriginalExtension();
+                $fileName = str_random(10).'.'.$extension;
+                $file->move($destinationPath, $fileName);
+                $path=$destinationPath.$fileName;
+            } else {
+                for ($i = 0; $i < count($request->File('file')); $i++) {
+                    $rules["file.$i"] = 'required|image';
+                    Log::error("postfile" . $i);
+                }
+                $files = $request->File('file');
+                foreach ($files as $file) {
+                    Log::error($file->getClientOriginalName());
+                    $allowed_extensions = ["png", "jpg", "gif"];
+                    if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                        $cart['status']=1;
+                        $cart['msg'] ="图片只支持png, jpg or gif";
+                        return $cart;
+                    }
+                    $destinationPath = 'uploads/images/person/';
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = str_random(10) .'.'.$extension;
+                    $file->move($destinationPath, $fileName);
+                    if(empty($path)){
+                        $path.=$destinationPath.$fileName;
+                    }else{
+                        $path.=";".$destinationPath.$fileName;
+                    }
+
+                }
+            }
+            $cart['status'] =0;
+            $cart['msg'] =$path;
+        }
+        return $cart;
+    }
     public function postAutheperson(Request $request)
     {
+        $cart= $this->movefile($request);
+        if($cart['status']==1){
+            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $cardnourl= $cart['msg'];
+        }
+
         // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
         $member = new Member();
         $member->id = $this->auth->get()->id;
@@ -90,7 +141,8 @@ class AuthenticateController extends Controller
         $member->roletype = $request->get('roletype');
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');
-        $member->no = $request->get('no');
+        $member->cardnourl =$cardnourl;
+        $member->cardno = $request->get('cardno');
         $member->updatememberInfo($member->id, $member);
         return parent::returnJson(0, "提交成功");
     }
@@ -102,15 +154,24 @@ class AuthenticateController extends Controller
 
     public function postAuthecompany(Request $request)
     {
+        $cart= $this->movefile($request);
+        if($cart['status']==1){
+            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $cardnourl= $cart['msg'];
+        }
         // $this->validate($request, ['itemname' => 'required|min:3', 'email' =>'required','no'=>'required']);
         $member = new Member();
         $member->id = $this->auth->get()->id;
-        $member->type =2;
+        $member->type = 2;
         $member->authestatus = 1;
+        if (!empty($fileName)) {
+            $member->cardnourl =$cardnourl;
+        }
         $member->roletype = $request->get('roletype');
         $member->itemname = $request->get('itemname');
         $member->email = $request->get('email');
-        $member->no = $request->get('no');
+        $member->cardno = $request->get('cardno');
         $member->updatememberInfo($member->id, $member);
         return parent::returnJson(0, "提交成功");
     }

@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{asset('/js/jquery.form.js') }}"></script>
+<script src="{{asset('/js/jquery.form.js') }}"></script>
     <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
         span.error {
@@ -26,39 +26,6 @@
 
         function showitem(item){
             location.href="/member/authe/"+item;
-        }
-        function showRequest() {
-//            $("#validation-errors").hide().empty();
-//            $("#output").css('display','none');
-            return true;
-        }
-
-        function showResponse(response)  {
-
-            if(response['State']>0){
-                   alert(response['MsgState']);
-                 }else{
-                $(".tan").css("display","");
-            }
-            if(response.success == false)
-            {
-                var responseErrors = response.errors;
-                $.each(responseErrors, function(index, value)
-                {
-                    if (value.length != 0)
-                    {
-                        $("#validation-errors").append('<div class="alert alert-error"><strong>'+ value +'</strong><div>');
-                    }
-                });
-                $("#validation-errors").show();
-            } else {
-                $('.upload-mask').hide();
-                $('.upload-file').hide();
-                $('.pic-upload').next().css('display','block');
-                console.log(response.pic);
-                $("#"+response.id).attr('src',response.pic);
-                $("#"+response.id).next().attr('value',response.pic);
-            }
         }
         $(document).ready(function(){
             $("#layerform").validate({
@@ -92,31 +59,18 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
-                    var options = {
-                        beforeSubmit:  showRequest,
-                        success:       showResponse,
-                        dataType: 'json'
-                    };
-                    $('#layerform').ajaxForm(options).submit();
-
-//                    $.ajax({
-//                        type: "POST", //用POST方式传输
-//                        url:$("#layerform").attr("action"), //目标地址
-//                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-//                        data:$('#layerform').serialize(),
-//                        dataType: "json", //数据格式:JSON
-//                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                            alert("error:"+errorThrown);
-//                            return null;
-//                        },
-//                        success: function (msg){
-//                            if(msg['State']>0){
-//                                alert(msg['MsgState']);
-//                            }else{
-//                               $(".tan").css("display","");
-//                            }
-//                        }
-//                    });
+                    var ajax_option={
+                        type: "POST", //用POST方式传输
+                        dataType: "json", //数据格式:JSON
+                        success:function(msg){
+                            if(msg['State']>0){
+                                alert(msg['MsgState']);
+                            }else{
+                                $(".tan").css("display","");
+                            }
+                        }
+                    }
+                    $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
             $.validator.addMethod("onlyName", function(value, element) {
@@ -182,7 +136,6 @@
             <form method="post" id="layerform" enctype="multipart/form-data" action="/member/authe/authelayer">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="roletype" value="2">
-
             <table class="tableper">
                 <tbody><tr>
                   <td class="tdl">律师姓名</td>
