@@ -68,6 +68,16 @@ class AuthenticateController extends Controller
 
     }
 
+
+
+    public function getNocertify(Request $request)
+    {
+        Log::error('postAuthelayer:' . $request->get('itemname'));
+        $data = array(
+            'member' => DB::select("select * from members where lifestatus=1 and authestatus=0"),
+        );
+        return backendView('authe.nocertify.index', $data);
+    }
     public function getApproved(Request $request)
     {
         Log::error('postAuthelayer:' . $request->get('itemname'));
