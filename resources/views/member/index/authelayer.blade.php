@@ -10,12 +10,11 @@
     <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
         span.error {
-            padding-left: 16px;
+            padding-left: 10px;
             color: #E15F63
         }
         span.success {
-            background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
-            padding-left: 16px;
+            padding-left: 10px;
         }
     </style>
 
@@ -118,22 +117,38 @@
                     $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
-            $.validator.addMethod("onlyName", function(value, element) {
-                return checkUser("name",value);
-            },"用户名已存在!");
             var customError = "";
-            $.validator.addMethod("onlyMobile", function(value, element) {
+            $.validator.addMethod("onlyemail", function(value, element) {
                 var returnVal = true;
-                var mobile =value;  //获取手机号
-                var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-                if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile))){
+                //对电子邮件的验证
+                var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                if(!myreg.test(value)){
                     returnVal=false;
-                    customError="请输入正确的手机格式!";
-                }else if(! checkUser("mobile",value)){
-                    returnVal=false;
-                    customError="手机号已存在!";
+                    customError="请输入有效的Email!";
+                }else {
+                    $.ajax({
+                        type: "POST", async: false,
+                        url: "/auth/checkemail", //目标地址
+                        headers: {'X-CSRF-TOKEN': $('#token').val()},
+                        data: {
+                            type: "approve", value:value
+                        },
+                        dataType: "json", //数据格式:JSON
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("error:" + errorThrown);
+                            return null;
+                        },
+                        success: function (msg) {
+                            if (msg['State'] > 0) {
+                                returnVal=false;
+                                customError=msg['MsgState'];
+                            } else {
+                                returnVal=true;
+                            }
+                        }
+                    });
                 }
-                $.validator.messages.onlyMobile = customError;
+                $.validator.messages.onlyemail = customError;
                 return returnVal;
             },customError);
         });
@@ -179,7 +194,7 @@
             <p class="renper_p">完成用户认证后，您可在平台参与投标。</p>
             <p class="renper_p">以下所录入信息仅作为平台审核认证使用，不会造成您个人信息的泄露</p>
             <form method="post" id="layerform" enctype="multipart/form-data" action="/member/authe/authelayer">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="roletype" value="2">
                 <input type="hidden" id="address" name="address">
             <table class="tableper">
@@ -232,7 +247,7 @@
 			
                 <tr>
                   <td class="tdl">联系邮箱</td>
-                  <td class="tdr"><input type="text" name="email" class="int1"></td>
+                  <td class="tdr"><input type="text" name="email" class="int1 onlyemail"></td>
                 </tr>
                 <tr>
                   <td class="tdl"></td>

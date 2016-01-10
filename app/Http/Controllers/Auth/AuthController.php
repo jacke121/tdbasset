@@ -81,7 +81,22 @@ class AuthController extends Controller
         }
         return parent::returnJson($code, $msg);
     }
-
+    public function postCheckemail(Request $request)
+    {
+        $code = 0;
+        $msg = "邮箱可以用";
+        $type = $request->get('type');
+        if($type!="register"){
+            $value = $request->get('value');
+            $data = DB::select("select * from members where lifestatus=1 and id !=".$this->auth->get()->id." and email ='" . $value . "'");
+            if (sizeof($data) > 0) {
+                Log::error("postCheckemail:" . 1);
+                $code = 1;
+                $msg = "邮箱已存在";
+            }
+        }
+        return parent::returnJson($code, $msg);
+    }
     public function postSendsms(Request $request)
     {
         $mobile = Input::get('mobile');

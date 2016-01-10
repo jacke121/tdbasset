@@ -71,6 +71,7 @@
                 },
                 rules: {
                     itemname: { required: true, minlength: 2},
+                    cardno: { required: true, minlength: 6},
                     confirm_password: {
                         required: true,
                         rangelength: [6, 16],
@@ -79,14 +80,13 @@
                 },
                 messages: {
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
+                    cardno: { required: "必填", minlength: "证件号格式不正确"},
                     confirm_password: {
                         required: "请填写确认密码！",
                         rangelength: "密码需由6-16个字符（数字、字母）组成！",
                         equalTo: "两次输入密码不一致！"
                     }
                 },
-                // onkeyup: false,　　　　//这个地方要注意，修改去控制器验证的事件。
-                // onsubmit: false,
                 success: function(label) {
                     label.html("<font color='green'>√</font>").addClass("success");
                 },
@@ -108,20 +108,38 @@
                         $('#personform').ajaxSubmit(ajax_option);
                 }
             });
-
             var customError = "";
-            $.validator.addMethod("onlyMobile", function(value, element) {
+            $.validator.addMethod("onlyemail", function(value, element) {
                 var returnVal = true;
-                var mobile =value;  //获取手机号
-                var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-                if(mobile.length==0 || mobile.length!=11 ||(!myreg.test(mobile))){
+                //对电子邮件的验证
+                var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                if(!myreg.test(value)){
                     returnVal=false;
-                    customError="请输入正确的手机格式!";
-                }else if(! checkUser("mobile",value)){
-                    returnVal=false;
-                    customError="手机号已存在!";
+                    customError="请输入有效的Email!";
+                }else {
+                    $.ajax({
+                        type: "POST", async: false,
+                        url: "/auth/checkemail", //目标地址
+                        headers: {'X-CSRF-TOKEN': $('#token').val()},
+                        data: {
+                            type: "approve", value:value
+                        },
+                        dataType: "json", //数据格式:JSON
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("error:" + errorThrown);
+                            return null;
+                        },
+                        success: function (msg) {
+                            if (msg['State'] > 0) {
+                                returnVal=false;
+                                customError=msg['MsgState'];
+                            } else {
+                                returnVal=true;
+                            }
+                        }
+                    });
                 }
-                $.validator.messages.onlyMobile = customError;
+                $.validator.messages.onlyemail = customError;
                 return returnVal;
             },customError);
         });
@@ -213,7 +231,7 @@
 			</tr>
 			<tr>
 				<td class="tdl">联系邮箱</td>
-				<td class="tdr"><input type="text" name="email" class="int1"></td>
+				<td class="tdr"><input type="text" name="email" class="int1 onlyemail"></td>
 			</tr>
 			<tr>
 				<td class="tdl"></td>
