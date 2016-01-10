@@ -26,7 +26,9 @@
 
                         @foreach($member as $k=> $v)
                         <tr>
-                            <th scope="row">{{ $v->id }}</th>
+                            <th scope="row">{{$k+1}}
+                            <input type="hidden" name="id" value="{{$v->id}}" />
+                            </th>
                             <td>{{ $v->roletype }}</td>
                             <td>{{ $v->type }}</td>
                             <td>{{ $v->name}} {{ $v->itemname }}</td>

@@ -1,4 +1,4 @@
-@extends('backend.content.common')
+@extends('backend.authe.common')
 
 @section('content')
 <div class="col-md-10">
@@ -53,6 +53,16 @@
                 <div class="col-sm-4">
                     {!! Form::textarea('seo_desc',  $member->cardno, ['class' => 'form-control']) !!}
                     <font color="red">{{ $errors->first('seo_desc') }}</font>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">营业执照</label>
+                <div class="col-sm-8">
+                    <ul id="faceul">
+                        @foreach($member->cardnourl as $key=>$img)
+                            <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 

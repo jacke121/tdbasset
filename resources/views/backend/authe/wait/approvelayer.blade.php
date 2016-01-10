@@ -1,4 +1,4 @@
-@extends('backend.content.common')
+@extends('backend.authe.common')
 
 @section('content')
 <div class="col-md-10">
@@ -52,19 +52,29 @@
                         </tr>
                         </tbody></table>
                 </div>
-                <p class="tabtit">身份证扫描件：</p>
-                <div class="tabpic">
-                    <table cellspacing="0">
-                        <tbody><tr>
-                            <td>正面</td>
-                            <td>反面</td>
-                        </tr>
-                        <tr>
-                            <td id="pc1"><img></td>
-                            <td id="pc2"><img></td>
-                        </tr>
-                        </tbody></table>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">身份证扫描件</label>
+                    <div class="col-sm-8">
+                        <ul id="faceul">
+                            @foreach($member->cardnourl as $key=>$img)
+                                <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
+                {{--<p class="tabtit">身份证扫描件：</p>--}}
+                {{--<div class="tabpic">--}}
+                    {{--<table cellspacing="0">--}}
+                        {{--<tbody><tr>--}}
+                            {{--<td>正面</td>--}}
+                            {{--<td>反面</td>--}}
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+                            {{--<td id="pc1"><img></td>--}}
+                            {{--<td id="pc2"><img></td>--}}
+                        {{--</tr>--}}
+                        {{--</tbody></table>--}}
+                {{--</div>--}}
                 <p>提示：您的资料正在进行认证，如需修改请直接拨打客服电话，或点击在线客服联系</p>
             </div>
         </div>

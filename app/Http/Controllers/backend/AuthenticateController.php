@@ -31,14 +31,21 @@ class AuthenticateController extends Controller
     public function getAwaiting(Request $request)
     {
         $data = array(
-            'member' => DB::select("select * from members where lifestatus=1 and authestatus=0"),
+            'member' => DB::select("select * from members where lifestatus=1 and authestatus=1"),
         );
         return backendView('authe.wait.index', $data);
     }
-
+    public function getNoapprove(Request $request){
+        Log::error('postAuthelayer:' . $request->get('itemname'));
+        $data = array(
+            'member' => DB::select("select *,'未认证' AS authestr from members where lifestatus=1 and authestatus=0"),
+        );
+        return backendView('authe.noapprove.index', $data);
+    }
     public function getApprove($id)
     {
         $member = Member::find($id);
+        $member->cardnourl = explode(";",$member->cardnourl);
         if ($member->type == 1) {
             //律师
             return backendView('authe.wait.approvelayer')->withMember($member);
@@ -55,6 +62,7 @@ class AuthenticateController extends Controller
     public function getView($id)
     {
         $member = Member::find($id);
+        $member->cardnourl = explode(";",$member->cardnourl);
         if ($member->type == 1) {
             //律师
             return backendView('authe.approved.approvelayer')->withMember($member);
@@ -68,16 +76,6 @@ class AuthenticateController extends Controller
 
     }
 
-
-
-    public function getNoapprove(Request $request)
-    {
-        Log::error('postAuthelayer:' . $request->get('itemname'));
-        $data = array(
-            'member' => DB::select("select * from members where lifestatus=1 and authestatus=0"),
-        );
-        return backendView('authe.noapprove.index', $data);
-    }
     public function getApproved(Request $request)
     {
         Log::error('postAuthelayer:' . $request->get('itemname'));

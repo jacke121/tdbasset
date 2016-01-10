@@ -48,7 +48,16 @@
                     <font color="red">{{ $errors->first('seo_key') }}</font>
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">身份证扫描件</label>
+                <div class="col-sm-8">
+                    <ul id="faceul">
+                        @foreach($member->cardnourl as $key=>$img)
+                            <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">审 批</label>
                 <div class="col-sm-4">
