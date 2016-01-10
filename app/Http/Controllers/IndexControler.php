@@ -16,14 +16,19 @@ use App\Page;
 
 use Redirect, Input, Auth;
 use App\Model\Zq;
+use App\Model\Article;
 
 class IndexControler extends Controller
 {
     public function index()
     {
         $zqList =  Zq::orderBy('id', 'DESC')->paginate(5);
+        $newsList = Article::orderBy('id', 'DESC')->paginate(3);
+        $infoList = Article::orderBy('id', 'DESC')->paginate(5);
         return view('themes.default.index',[
             'zqList' => $zqList,
+            'newsList' => $newsList,
+            'infoList' => $infoList,
         ]);
     }
 

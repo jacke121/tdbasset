@@ -90,7 +90,7 @@
             <div class="badAssets_r">
                 <div class="pro">
                     <span class="f18">招标中</span>
-                    <progress max="100" value="50"></progress>
+
                 </div>
                 <div class="badAssetsr_b">
                     <p>申请数 <span>{{ $v->applys }}</span>&nbsp;&nbsp;&nbsp;&nbsp;收藏数 <span>{{ $v->collects }}</span></p>

@@ -143,77 +143,33 @@
                             新闻资讯
                             <a href="#" style="float:right; color:#999999; font-size:12px;">+更多</a>
                         </div>
+                        @foreach($newsList as $k=> $v)
                         <div class="newsCon">
                             <div class="ncPic">
                                 <img src="../images/zhibo.jpg">
                             </div>
                             <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
+                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">■【新京报】青苔债管家之企业服务...</a>
                                 <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
                                 <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
                             </div>
                         </div>
-                        <div class="newsCon">
-                            <div class="ncPic">
-                                <img src="../images/zhibo.jpg">
-                            </div>
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
-                        <div class="newsCon">
-                            <div class="ncPic">
-                                <img src="../images/zhibo.jpg">
-                            </div>
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="newsRight">
                         <div class="nlTit">
                             债务常识
                             <a href="#" style="float:right; color:#999999; font-size:12px;">+更多</a>
                         </div>
-                        <div class="newsCon01 newsCon">
+                        @foreach($infoList as $k=> $v)
+                        <div class=" newsCon">
                             <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
+                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">■【新京报】青苔债管家之企业服务...</a>
                                 <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
                                 <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
                             </div>
                         </div>
-                        <div class="newsCon">
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
-                        <div class="newsCon">
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
-                        <div class="newsCon">
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
-                        <div class="newsCon">
-                            <div class="ncTxt">
-                                <a href="#" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
