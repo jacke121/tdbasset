@@ -27,7 +27,7 @@
                         @foreach($member as $k=> $v)
                         <tr>
                             <th scope="row">{{ $v->id }}</th>
-                            <td>{{ $v->roletype }}</td>
+                            <td>{{ $v->rolename }}</td>
                             <td>{{ $v->typename }}</td>
                             <td>{{ $v->name}} {{ $v->itemname }}</td>
                             <td>{{ $v->mobile}}</td>

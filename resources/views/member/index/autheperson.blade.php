@@ -117,32 +117,55 @@
                     returnVal=false;
                     customError="请输入有效的Email!";
                 }else {
-                    $.ajax({
-                        type: "POST", async: false,
-                        url: "/auth/checkemail", //目标地址
-                        headers: {'X-CSRF-TOKEN': $('#token').val()},
-                        data: {
-                            type: "approve", value:value
-                        },
-                        dataType: "json", //数据格式:JSON
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("error:" + errorThrown);
-                            return null;
-                        },
-                        success: function (msg) {
-                            if (msg['State'] > 0) {
-                                returnVal=false;
-                                customError=msg['MsgState'];
-                            } else {
-                                returnVal=true;
-                            }
-                        }
-                    });
+                    var msg=checkapprove("email",value);
+                    if (msg['State'] > 0) {
+                        returnVal=false;
+                        customError=msg['MsgState'];
+                    } else {
+                        returnVal=true;
+                    }
                 }
                 $.validator.messages.onlyemail = customError;
                 return returnVal;
             },customError);
+            $.validator.addMethod("onlycardno", function(value, element) {
+                var returnVal = true;
+                if(value.length<6){
+                    returnVal=false;
+                    customError="请输入有效的证件号!";
+                }else {
+                    var msg=checkapprove("cardno",value);
+                    if (msg['State'] > 0) {
+                        returnVal=false;
+                        customError=msg['MsgState'];
+                    } else {
+                        returnVal=true;
+                    }
+                }
+                $.validator.messages.onlycardno = customError;
+                return returnVal;
+            },customError);
         });
+        function checkapprove(type,value){
+            var obj=null;
+            $.ajax({
+                type: "POST", async: false,
+                url: "/auth/checkapprove", //目标地址
+                headers: {'X-CSRF-TOKEN': $('#token').val()},
+                data: {
+                    type:type, value:value
+                },
+                dataType: "json", //数据格式:JSON
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("error:" + errorThrown);
+                    return null;
+                },
+                success: function (msg) {
+                    obj=msg;
+                }
+            });
+            return obj;
+        }
      </script>
 </head>
 
@@ -192,14 +215,14 @@
 			</tr>
 			<tr>
 				<td class="tdl">证件号</td>
-				<td class="tdr"><input type="text" name="cardno" class="int1"></td>
+				<td class="tdr"><input type="text" name="cardno" class="int1 onlycardno"></td>
 			</tr>
 			<tr>
 				<td class="tdl">所在地</td>
 				<td class="tdr">
 					<select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
-		    		 <select id="citys" name="zq_city" class="pubsel"><option value="地级市">地级市</option></select>&nbsp;&nbsp;
-		   			 <select id="areas" name="zq_county" class="pubsel"><option value="市、县级市">市、县级市</option></select>
+		    		 <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
+		   			 <select id="areas" name="zq_county" class="pubsel"></select>
 				</td>
 			</tr>
 			<tr>
