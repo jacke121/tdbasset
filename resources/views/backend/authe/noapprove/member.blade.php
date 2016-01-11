@@ -56,7 +56,7 @@
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">账号状态</label>
                 <div class="col-sm-4">
-                    <label for="inputPassword3" class="col-sm-3 control-label">新注册</label>
+                    <label for="inputPassword3" class="col-sm-3 control-label">未认证</label>
                     <font color="red">{{ $errors->first('seo_desc') }}</font>
                 </div>
             </div>
