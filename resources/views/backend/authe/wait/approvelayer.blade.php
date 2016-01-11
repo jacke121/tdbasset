@@ -22,6 +22,7 @@
         @endif
         <div class="mainr" >
             <!--个人用户认证审核中页面-->
+            {!! Form::model($member, ['url' => ['/backend/authe/approve', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
             <div class="renover">
                 <h3 class="fa_renh">
                     个人用户认证
@@ -103,6 +104,7 @@
                 {{--</div>--}}
                 <p>提示：您的资料正在进行认证，如需修改请直接拨打客服电话，或点击在线客服联系</p>
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
