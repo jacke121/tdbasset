@@ -1,6 +1,5 @@
-@extends('member.zqm')
-
-@section('content')
+@extends('backend.content.zq.form')
+@section('formcontent')
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="types" value="2">
@@ -15,6 +14,5 @@
         </div>
         <label class="col-sm-6 help-block"><a class="btn" href="{{ URL('member/zqm/index') }}">返回</a></label>
     </div>
-
 
 @endsection

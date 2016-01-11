@@ -34,46 +34,48 @@ class ZqController extends Controller {
         $cityArr = [];
         $areaArr = [];
 
-        $where = [];
+        $where = ['status'=>1];
        // $where = array_merge($moneyArr,$timeArr,$proArr,$cityArr,$areaArr);
 
         if(is_null($template_type)){
             $template_type = "gr";
         }
-        if(is_null($debt_money)){
+        if(is_null($debt_money)||$debt_money==0){
             $debt_money = 0;
         }else{
             $moneyArr = ['money_scope'=>$debt_money];
             $where = array_merge($where,$moneyArr);
         };
-        if(is_null($debt_time)){
+        if(is_null($debt_time)||$debt_time==0){
             $debt_time = 0;
         }else{
             $timeArr = ['delay_scope'=>$debt_time];
             $where = array_merge($where,$timeArr);
         }
-        if(is_null($province)){
+        if(is_null($province)||$province==""){
             $province = "请选择省份";
         }else{
             $proArr = ['o_province'=>$province];
             $where = array_merge($where,$proArr);
         }
-        if(is_null($city)){
+        if(is_null($city)||$city==""){
             $city = "请选择城市";
         }else{
             $cityArr = ['o_city'=>$city];
             $where = array_merge($where,$cityArr);
         }
-        if(is_null($area)){
+        if(is_null($area)||$area==""){
             $area = "请选择地区";
         }else{
             $areaArr = ['o_contry'=>$area];
             $where = array_merge($where,$areaArr);
         }
 
-        $zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
+        //$zqList =  Zq::orderBy('id', 'DESC')->paginate(10);
+        $zqList =  Zq::where($where)->orderBy('id', 'DESC')->paginate(10);
         //$zqList = Zq::getZqList($province, $city, $area, $debt_money, $debt_time,$where, 10);
-        viewInit();
+
+        //viewInit();
         //$page = new EndaPage($zqList['page']);
         return view('themes.default.zq',[
             'zqList' => $zqList,

@@ -2,14 +2,13 @@
 
 @section('content')
 
-
 <!-- Tokenfield CSS -->
 <link href="{{ asset('/plugin/tags/css/bootstrap-tokenfield.css') }}" type="text/css" rel="stylesheet">
 <link href="{{ asset('/plugin/tags/css/jquery-ui.css ') }}" type="text/css" rel="stylesheet">
 
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">创建分类</div>
+                <div class="panel-heading">填写文章</div>
 
                 @if ($errors->has('error'))
                 <div class="alert alert-danger alert-dismissible" role="alert">
@@ -43,9 +42,9 @@
 
 
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">标签</label>
+                            <label for="inputPassword3" class="col-sm-2 control-label">简介</label>
                             <div class="col-sm-7">
-                                {!! Form::text('tags', '', ['class' => 'form-control','placeholder'=>'回车确定','id'=>'tags']) !!}
+                                {!! Form::text('tags', '', ['class' => 'form-control','placeholder'=>'','id'=>'tags']) !!}
                                 <font color="red">{{ $errors->first('tags') }}</font>
                             </div>
                         </div>
@@ -77,20 +76,4 @@
                 </div>
             </div>
         </div>
-
-
-
-<script type="text/javascript" src="{{ asset('/plugin/tags/jquery-ui.js ') }}"></script>
-<script type="text/javascript" src="{{ asset('/plugin/tags/bootstrap-tokenfield.js ') }}" charset="UTF-8"></script>
-
-<script type="text/javascript">
-    $('#tags').tokenfield({
-        autocomplete: {
-            source: <?php echo  \App\Model\Tag::getTagStringAll()?>,
-            delay: 100
-        },
-        showAutocompleteOnFocus: !0,
-        delimiter: [","]
-    })
-</script>
 @endsection

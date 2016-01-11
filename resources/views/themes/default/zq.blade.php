@@ -100,6 +100,9 @@
             </div>
             </div>
             @endforeach
+
+           @if(sizeof($zqList)==0) <h3 class="text-center"> 此类选择没有数据 </h3>@endif
+
         </div>
         <!--分页-->
         <div class="container">

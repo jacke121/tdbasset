@@ -23,7 +23,7 @@
 			<div class="input-group-addon">元</div>
 		</div>
 	</div>
-	<label class="col-sm-6 help-block"> </label>
+	<label class="col-sm-6 help-block"><span id="error_zq_quote" class="error"></span> </label>
 </div>
 
 <div class="form-group">
@@ -34,7 +34,7 @@
 			<div class="input-group-addon">天 </div>
 		</div>
 	</div>
-	<label class="col-sm-6 help-block"></label>
+	<label class="col-sm-6 help-block"><span id="error_zq_delay" class="error"></span></label>
 </div>
 
 <div class="form-group">

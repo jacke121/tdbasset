@@ -1,4 +1,12 @@
-<?php namespace App\Http\Controllers\member;
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2016/1/10
+ * Time: 14:33
+ */
+
+namespace App\Http\Controllers\backend;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -8,21 +16,32 @@ use App\Model\Zq;
 
 class ZqController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
-        return view('admin.zq.index');
-    }
-   public function show()
-    {
-        return view('admin.zq.index');
-    }
-    public function create(Request $request)
-    {
-        $template_type = $request->input('types');
-        $prefix = 'admin.zq.';
-        return view($prefix.$template_type);
+        conversionClassPath(__CLASS__);
     }
 
+    public function index()
+    {
+        return view('backend.content.zq.index', ['zqList' => Zq::orderBy('id', 'DESC')->paginate(10)]);
+    }
+    public function create()
+    {
+        return backendView('create');
+    }
+
+    public function check(Request $request){
+        $zid = $request->input('id');
+        $zq = Zq::getZqModelById($zid);
+        return view('backend.content.zq.check',["zq"=>$zq,"isCheck"=>true]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function store(Request $request)
     {
         $zq = self::createZq($request);
@@ -33,55 +52,59 @@ class ZqController extends Controller
         }
     }
 
-    public function edit($zid,Request $request){
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $zq = Zq::getZqModelById($id);
+        return view('backend.content.zq.detail',["zq"=>$zq]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($zid, Request $request)
+    {
         $template_type = $request->input('types');
-        $prefix = 'admin.zq.';
+        $prefix = 'backend.content.zq.';
 
         $zq = Zq::getZqModelById($zid);
         return view($prefix.$template_type,["zq"=>$zq]);
     }
 
-    public function  update(Request $request){
-        //$zq =  self::createZq($request);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update(Request $request)
+    {
         $id = $request->input('id');
-       $input = Input::all();
+        $input = Input::all();
 
         if(Zq::where("id",$id)->update($input)){
             Cache::forget(Zq::REDIS_ZQ_CACHE.$id);
-            return Redirect::to('member/zqList/index');
+            return Redirect::to('backend/zq');
         }
     }
 
-    public function check(Request $request){
-        $zid = $request->input('id');
-        $zq = Zq::getZqModelById($zid);
-        return view('admin.zq.check',["zq"=>$zq,"isCheck"=>true]);
-    }
-
-    public function checkUpdate(Request $request){
-        $data = array(
-            'status' =>  $request->input('status'),
-            'stars' => $request->input('stars'),
-            'delay_scope' => $request->input('delay_scope'),
-            'money_scope' => $request->input('money_scope')
-        );
-        $id = $request->input('id');
-        $result = "审核失败";
-        if(Zq::where('id', $id)->update($data)){
-            Cache::forget(Zq::REDIS_ZQ_CACHE.$id);
-            $result = "审核成功";
-        }
-        return $result;
-    }
-
-    public function destroy(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
     {
-        $id = $request->input('id');
-        $result = "删除失败";
-       if(Zq::destroy($id)){
-           $result = "删除成功";
-       }
-        return $result;
+
     }
 
     private function createZq(Request $request){
@@ -145,8 +168,8 @@ class ZqController extends Controller
         $zq->money_scope = Input::get('money_scope');
         $zq->uid = Input::get('uid');
 
-        $zq->uid = Auth::member()->get()->id;
-
+        //$zq->uid = Auth::user()->id;
+        $zq->uid = 1;
         return $zq;
     }
 }

@@ -13,7 +13,11 @@
             </li>
 
             <li>
-                <a href="{{URL::route('backend.tags.index')}}">标签管理</a>
+                <a href="{{URL::route('backend.zq.index')}}">债务管理</a>
+            </li>
+
+            <li>
+                <a href="{{URL::route('backend.message.index')}}">留言管理</a>
             </li>
 
         </ul>

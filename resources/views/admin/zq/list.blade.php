@@ -14,6 +14,7 @@
             <th>金额（元）</th>
             <th>所属分类</th>
             <th>所在地</th>
+            <th>状态</th>
             <th>创建时间</th>
             <th class="text-right">操作</th>
         </tr>
@@ -24,6 +25,7 @@
                 <td>{{ $v->zq_quote }}</td>
                 <td>{{ App\Model\Zq::getZqType($v->types) }}</td>
                 <td>{{ $v->o_province }} - {{ $v->o_city }} -{{ $v->o_contry }}</td>
+                <td>@if(isset($v->status)&&($v->status>0))<font color="green">已通过</font>@else <font color="red">未通过</font>@endif</td>
                 <td>{{ $v->created_at }}</td>
                 <td class="text-right">
                     <a href="{{ url('member/zqm/check?id='.$v->id.'&types='.App\Model\Zq::getZqTypeIn($v->types)) }}">审核</a>

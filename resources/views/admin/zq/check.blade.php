@@ -15,6 +15,7 @@
 
 <form id="input_form" class="form-horizontal" action="{{URL('member/zqm/checkUpdate')}}" method="POST">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
     @include("admin.zq.iterm.checkItem")
 
     <div class="form-group">
