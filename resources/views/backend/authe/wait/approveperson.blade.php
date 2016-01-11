@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    {!! Form::submit(' 提 交 认 证 ', ['class' => 'btn btn-success']) !!}
+                    {!! Form::submit(' 提 交 审 批 ', ['class' => 'btn btn-success']) !!}
                 </div>
             </div>
             {!! Form::close() !!}

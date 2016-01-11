@@ -72,8 +72,23 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">审 批</label>
+                <div class="col-sm-4">
+                    <input type="radio" name="authestatus" value="4" /> 通过&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="authestatus" value="3" /> 不通过<br>
+                    <font color="red">{{ $errors->first('seo_desc') }}</font>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">审批备注</label>
+                <div class="col-sm-4">
+                    {!! Form::textarea('authemsg',  $member->authemsg, ['class' => 'form-control']) !!}
+                    <font color="red">{{ $errors->first('seo_desc') }}</font>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    {!! Form::submit('审批', ['class' => 'btn btn-success']) !!}
+                    {!! Form::submit(' 提 交 审 批 ', ['class' => 'btn btn-success']) !!}
                 </div>
             </div>
             {!! Form::close() !!}

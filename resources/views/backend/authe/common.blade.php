@@ -1,27 +1,26 @@
 @extends('backend.app')
 <style>
     #faceul{
+        float:left;
         margin:0 0 0 2px;
-        width:90%;
+        width:99%;
     }
     #faceul li{
         float:left;
         border:1px solid #b4b4b4;
-        margin:5px 0 0 4px;
+        margin:4px 0 0 4px;
         height:202px;
         width:250px;
     }
     #faceul li a{
-
         display:block;
         height:52px;
         width:250px;
     }
-
     #faceul img{
-        margin:5px 0 0 5px;
+        margin:4px 0 0 5px;
         border:none;
-        height:180px;
+        height:190px;
         width:240px;
     }
 </style>
