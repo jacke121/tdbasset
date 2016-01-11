@@ -1,5 +1,11 @@
 @extends('backend.authe.common')
-
+<script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        setindex("liauthe");
+        setmembertype("liwait");
+    });
+</script>
 @section('content')
 <div class="col-md-10">
     <div class="panel panel-default">

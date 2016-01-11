@@ -33,7 +33,7 @@
            float: right;
             margin-right: 5px;
         }
-        li.cur{
+        li.cur a{
             font-weight:bold
         }
     </style>

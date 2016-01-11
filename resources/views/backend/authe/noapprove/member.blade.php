@@ -1,5 +1,10 @@
 @extends('backend.authe.common')
-
+<script type="text/javascript">
+    $(function(){
+        setindex("liauthe");
+        setmembertype("linoapprove");
+    });
+</script>
 @section('content')
 <div class="col-md-10">
     <div class="panel panel-default">

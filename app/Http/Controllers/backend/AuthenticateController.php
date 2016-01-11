@@ -72,12 +72,10 @@ class AuthenticateController extends Controller
         } else if ($member->type == 3) {
             //个人
             return backendView('authe.approved.approveperson')->withMember($member);
-        }
-        else  {
+        }  else  {
             //个人
             return backendView('authe.noapprove.member')->withMember($member);
         }
-
     }
 
     public function getApproved(Request $request)

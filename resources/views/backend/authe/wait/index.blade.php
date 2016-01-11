@@ -3,6 +3,7 @@
 <script type="text/javascript">
     $(function(){
         setindex("liauthe");
+        setmembertype("liwait");
     });
 </script>
 @section('content')
