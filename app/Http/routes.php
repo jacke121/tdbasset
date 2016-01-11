@@ -17,7 +17,8 @@ Route::get('/', 'IndexControler@index');
 Route::get('service', 'IndexControler@service');
 Route::get('jion', 'IndexControler@jion');
 Route::get('users', 'IndexControler@users');
-//Route::get('about', 'IndexControler@about');
+Route::get('message', 'IndexControler@message');
+Route::post('message/save', 'IndexControler@msave');
 
 Route::post('zq/apply', 'ZqController@apply');
 Route::post('zq/collect', 'ZqController@collect');
@@ -35,6 +36,13 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::resource('cate','backend\CateController');
     Route::resource('content','backend\ContentController');
     Route::resource('article','backend\ArticleController');
+
+    Route::get('zq/check', 'backend\ZqController@check');
+    Route::post('zq/store', 'backend\ZqController@store');
+    Route::post('zq/update', 'backend\ZqController@update');
+    Route::resource('zq','backend\ZqController');
+    Route::resource('message','backend\MessageController');
+
     Route::resource('tags','backend\TagsController');
     Route::resource('user','backend\UserController');
     Route::resource('comment','backend\CommentController');

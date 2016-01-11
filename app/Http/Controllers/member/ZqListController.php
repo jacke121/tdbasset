@@ -18,6 +18,7 @@ class ZqListController extends Controller
 {
     public function index()
     {
-        return view('admin.zq.list', ['zqList' => Zq::orderBy('id', 'DESC')->paginate(10)]);
+        $zqList = Zq::where("uid", Auth::member()->get()->id)->orderBy('id', 'DESC')->paginate(10);
+        return view('admin.zq.list', ['zqList' => $zqList]);
     }
 }

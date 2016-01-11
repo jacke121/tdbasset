@@ -149,9 +149,9 @@
                                 <img src="../images/zhibo.jpg">
                             </div>
                             <div class="ncTxt">
-                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
+                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">{{$v->title}}</a>
+                                <p class="tp">{{isset($v->tags)?$v->tags:''}}</p>
+                                <span style="float:right; font-size:12px; color:#999999;">{{$v->created_at}}</span>
                             </div>
                         </div>
                         @endforeach
@@ -161,12 +161,13 @@
                             债务常识
                             <a href="#" style="float:right; color:#999999; font-size:12px;">+更多</a>
                         </div>
+                        <div style="min-height: 20px;"></div>
                         @foreach($infoList as $k=> $v)
                         <div class=" newsCon">
                             <div class="ncTxt">
-                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">■【新京报】青苔债管家之企业服务...</a>
-                                <p class="tp">12月2日新京报中国青年经济学人论坛暨互联网金融论坛拉开序幕……</p>
-                                <span style="float:right; font-size:12px; color:#999999;">2015-11-26</span>
+                                <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">{{$v->title}}</a>
+                                <p class="tp">{{isset($v->tags)?$v->tags:''}}</p>
+                                <span style="float:right; font-size:12px; color:#999999;">{{$v->created_at}}</span>
                             </div>
                         </div>
                         @endforeach

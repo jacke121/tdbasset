@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">标签</label>
                             <div class="col-sm-7">
-                                {!! Form::text('tags', '', ['class' => 'form-control','placeholder'=>'回车确定','id'=>'tags']) !!}
+                                {!! Form::text('tags',  $article->tags, ['class' => 'form-control','placeholder'=>'']) !!}
                                 <font color="red">{{ $errors->first('tags') }}</font>
                             </div>
                         </div>
@@ -83,20 +83,4 @@
             </div>
         </div>
 
-
-<script type="text/javascript" src="{{ asset('/plugin/tags/jquery-ui.js ') }}"></script>
-<script type="text/javascript" src="{{ asset('/plugin/tags/bootstrap-tokenfield.js ') }}" charset="UTF-8"></script>
-
-<script type="text/javascript">
-    $('#tags').tokenfield({
-        autocomplete: {
-            source: <?php echo  \App\Model\Tag::getTagStringAll()?>,
-            delay: 100
-
-        },
-        showAutocompleteOnFocus: !0,
-        delimiter: [","],
-        tokens: <?php echo  \App\Model\Tag::getTagStringByTagIds($article->tags)?>
-    })
-</script>
 @endsection

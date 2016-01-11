@@ -7,7 +7,7 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
     <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
     <script type="text/javascript">
     function setindex(id) {

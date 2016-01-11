@@ -55,10 +55,11 @@ class ArticleController extends Controller
 
             $data = array(
                 'title' => $result->input('title'),
-                'user_id' => Auth::user()->id,
+                //'user_id' => Auth::user()->id,
+                'user_id' =>Auth::user()->get()->id,
                 'cate_id' => $result->input('cate_id'),
                 'content' => $result->input('content'),
-                'tags' => Tag::SetArticleTags($result->input('tags')),
+                'tags' => $result->input('tags'),
                 'pic' => Article::uploadImg('pic'),
             );
 
@@ -116,10 +117,10 @@ class ArticleController extends Controller
 
             $data = array(
                 'title' => $result->input('title'),
-                'user_id' => Auth::user()->id,
+                'user_id' => 9,
                 'cate_id' => $result->input('cate_id'),
                 'content' => $result->input('content'),
-                'tags' => Tag::SetArticleTags($result->input('tags')),
+                'tags' => $result->input('tags'),
             );
 
             if (Request::hasFile('pic')) {

@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            @if($isApply)
+            @if (Auth::member()->get()&&($isApply))
                 @include('themes.default.zq.hasR')
             @else
                 @include('themes.default.zq.noR')
@@ -92,12 +92,12 @@
                 <div class="col-sm-6">
                     已有  <span> {{isset($page->applys)?$page->applys:0}}</span>  家机构提出代理申请<br>
                     <div id="refreshBtn">
-                    <a href="javascript:apply({{$page->id}})">申请</a>
+                        @if (isset(Auth::member()->get()->roletype)&&(Auth::member()->get()->authestatus==4))<a  href="javascript:apply({{$page->id}})">申请</a> @else <span><a href="#">申请</a>(需登录及认证)</span> @endif
                     </div>
                 </div>
                 <div class="col-sm-6 ">
                     已有  <span>{{isset($page->collects)?$page->collects:0}}</span>  家机构收藏了该条信息<br>
-                    <a href="javascript:collect({{$page->id}})"> 收藏</a>
+                    @if (isset(Auth::member()->get()->roletype)&&(Auth::member()->get()->authestatus==4)) <a href="javascript:collect({{$page->id}})" > 收藏</a> @else <span><a href="#">收藏</a>(需登录及认证)</span>@endif
                 </div>
             </div>
 

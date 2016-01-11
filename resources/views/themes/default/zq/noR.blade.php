@@ -1,6 +1,6 @@
 <div style=" width:481px; float:right;">
     <div class="informationTwo">
-        <h3 class="inf_h3">债权方信息</h3>
+        <h3 class="inf_h3">债权方信息<a target="_blank" class="pull-right" style="margin-right: 20px;" href="/message?uid={{$page->uid}}"><small style="color:#FFF;">联系</small></a></h3>
         <div class="writeBox">
             <p>债权方名称:***************</p>
             <p>债权方地址：无</p>

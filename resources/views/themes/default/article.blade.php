@@ -6,7 +6,7 @@
     <hr>
     <div id="content" style="padding: 50px;">
         <p>
-            {{ $article->content }}
+            {!! $article->content !!}
         </p>
     </div>
 
