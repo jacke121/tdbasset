@@ -73,6 +73,10 @@ class AuthenticateController extends Controller
             //个人
             return backendView('authe.approved.approveperson')->withMember($member);
         }
+        else  {
+            //个人
+            return backendView('authe.noapprove.member')->withMember($member);
+        }
 
     }
 

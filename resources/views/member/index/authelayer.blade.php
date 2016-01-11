@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
 <script src="{{asset('/js/jquery.form.js') }}"></script>
-    <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
         span.error {
             padding-left: 10px;
