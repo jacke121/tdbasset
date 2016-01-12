@@ -237,7 +237,7 @@
                                     <div class="upload_box">
                                         <div class="upload_main">
                                             <div class="upload_choose">
-                                                <input type="file" size="30"name="file[]" multiple>
+                                                <input type="file" size="30" name="file[]" multiple>
                                             </div>
                                             <div class="upload_preview"></div>
                                         </div>

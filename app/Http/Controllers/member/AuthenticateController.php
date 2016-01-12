@@ -165,9 +165,7 @@ class AuthenticateController extends Controller
         $member->id = $this->auth->get()->id;
         $member->type = 2;
         $member->authestatus = 1;
-        if (!empty($fileName)) {
-            $member->cardnourl =$cardnourl;
-        }
+        $member->cardnourl =$cardnourl;
         $member->address = $request->get('address');
         $member->addresscode = $request->get('addresscode');
         $member->roletype = $request->get('roletype');
