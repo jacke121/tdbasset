@@ -205,9 +205,8 @@
 	<h3 class="fa_renh">个人用户认证</h3>
 	<div class="fa_rencon">
         <form method="post" id="personform" enctype="multipart/form-data" action="/member/authe/autheperson">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
            <input type="hidden" name="roletype" value="1"> {{--委托方--}}
-
 		<table cellspacing="0" class="tableper">
 			<tbody><tr>
 				<td class="tdl">姓名</td>

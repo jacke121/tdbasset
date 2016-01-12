@@ -206,15 +206,16 @@
                 <h3 class="fa_renh">企业用户认证</h3>
                 <div class="fa_rencon">
                     <form method="post" id="companyform"  enctype="multipart/form-data"  action="/member/authe/authecompany">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" id="address" name="address">
                     <table cellspacing="0" class="tableper">
                         <tbody><tr>
                             <td class="tdl">企业名称</td>
-                            <td class="tdr"><input type="text" name="itemname" class="int1 onlycardno"></td>
+                            <td class="tdr"><input type="text" name="itemname" class="int1"></td>
                         </tr>
                         <tr>
                             <td class="tdl">证件号</td>
-                            <td class="tdr"><input type="text" name="cardno" class="int1"></td>
+                            <td class="tdr"><input type="text" name="cardno" class="int1 onlycardno"></td>
                         </tr>
                         <tr>
                             <td class="tdl">业务方向</td>
