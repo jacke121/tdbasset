@@ -45,7 +45,7 @@
 				$.ajax({
 					type: "POST", //用POST方式传输
 					url: $("#loginform").attr("action"), //目标地址
-					headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+					headers: {'X-CSRF-TOKEN': $('_token').val()},
 					data: $('#loginform').serialize(),
 					dataType: "json", //数据格式:JSON
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -84,8 +84,7 @@
 					@endif
 
 					<form id="loginform" class="form-horizontal" role="form" method="POST" action="{{ url('/backend/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+						<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 							<label class="col-md-4 control-label">用户名</label>
 							<div class="col-md-6">
