@@ -32,7 +32,7 @@ class AuthenticateController extends Controller
     {
         $data = array(
             'member' => DB::select("select *,case type  WHEN 1 THEN '律师' WHEN 2 THEN '企业' WHEN 3 THEN '个人' end  AS typename,
-                ,case roletype  WHEN 1 THEN '代理方' WHEN 2 THEN '委托方' end  AS rolename
+                case roletype  WHEN 1 THEN '代理方' WHEN 2 THEN '委托方' end  AS rolename
  				from members where lifestatus=1 and authestatus=1"),
         );
         return backendView('authe.wait.index', $data);
