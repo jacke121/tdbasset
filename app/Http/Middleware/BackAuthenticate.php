@@ -38,6 +38,7 @@ public function __construct(Guard $auth)
 	        if ( $this->auth->check()) {
 		    	return $next($request);
 	        }else{
+				Log::error("auth->check failed");
 	        	$urls= array("login","register","checkUser","home"); 
 		        $iscontains=false;
 		        foreach ($urls as $url){
@@ -50,6 +51,7 @@ public function __construct(Guard $auth)
 		    	Log::error("handle-222-next");
 		    	return $next($request);
 		    }else {
+				Log::error("auth->check failed goto login");
 	        	  return redirect('/backend/auth/login');
 	        	}
 	        	  // return redirect()->guest('/backend/login');
