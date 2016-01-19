@@ -36,6 +36,7 @@ public function __construct(Guard $auth)
 	    	$mpath=$request->path();
 	    	Log::error("handle-1111".$mpath);
 	        if ( $this->auth->check()) {
+				Log::error("auth->check ok");
 		    	return $next($request);
 	        }else{
 				Log::error("auth->check failed");
