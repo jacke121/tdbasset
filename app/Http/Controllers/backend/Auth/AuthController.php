@@ -42,28 +42,45 @@ class AuthController extends Controller {
              return view('backend.auth.login');
         }
         public function postLogin(Request $request,Route $route)    {
+
+            Log::error('postlogin:');
             //调用validate验证前端数据
-                  $name = Input::get('name');
+            if (empty($request->get('name'))) {
+                return parent::returnJson(1, "用户名不能为空");
+            }
+            if (empty($request->get('password'))) {
+                return parent::returnJson(1, "用户名不能为空");
+            }
+            $credentials = $request->only('name', 'password');
+            Log::error('login:' . $request->get('name') . "password" . $request->get('password'));
+            //过滤掉前端数据，只留下name和password
+            if ($this->auth->attempt($credentials, $request->has('remember'))) {
+                return parent::returnJson(0, "登录成功");
+            }
+            return parent::returnJson(1, "用户名或密码错误");
+
+            //调用validate验证前端数据
+//                  $name = Input::get('name');
                // $member->email = $member->name ."126.com";// Input::get('email');
                 // $password ='123456';// Hash::make(Input::get('password'));
-                $password =Input::get('password');
+//                $password =Input::get('password');
                    Log::error("backendgetLogin: ". $name. $password);
-                 $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
-                $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
-                  if($this->auth->attempt(array( 'name'=>$name,'password' =>$password))) {
+//                 $this->validate($request, ['name'=> 'required', 'password'=> 'required']);
+//                $credentials = $request->only('name', 'password');//过滤掉前端数据，只留下email和password
+//                  if($this->auth->attempt(array( 'name'=>$name,'password' =>$password))) {
                  // if ($this->auth->attempt($credentials, $request->has('remember')))//重点就是这一个attempt方法，这个就是验证用户数据数据和数据库数据作比较的流程
-                 {
-                   Log::error("getLogin1");
-                       return redirect()->intended("backend/home");//验证通过则跳入主页
-                     // return redirect()->intended($this->redirectPath());//验证通过则跳入主页
-                 }
-               return redirect($request->back())//$this->loginPath())
-                           //withInput(),负责数据写入session
-                           ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
-                            ->withErrors([
-                               'name'=> $this->getFailedLoginMessage(),
-                            ]);
-             }}
+//                 {
+//                   Log::error("getLogin1");
+//                       return redirect()->intended("backend/home");//验证通过则跳入主页
+//                     // return redirect()->intended($this->redirectPath());//验证通过则跳入主页
+//                 }
+//               return redirect($request->back())//$this->loginPath())
+//                           //withInput(),负责数据写入session
+//                           ->withInput($request->only('name', 'password'))//验证失败，即输入数据和数据库数据不一致，携带错误信息返回到登录界面
+//                            ->withErrors([
+//                               'name'=> $this->getFailedLoginMessage(),
+//                            ]);
+             }
 
                   public function getRegister($type){
                // var_dump($type);
