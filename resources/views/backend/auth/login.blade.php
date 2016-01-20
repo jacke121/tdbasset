@@ -11,8 +11,11 @@
 		padding-left: 16px;
 	}
 </style>
+@endsection
+<script src="{{ asset('/')}}js/jquery-1.11.3.min.js"></script>
+<script src="{{asset('/')}}js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="{{asset('/js/jquery.form.js') }}"></script>
 
-<script src="{{ asset('/')}}js/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#loginform").validate({
@@ -29,7 +32,7 @@
 				}
 			},
 			messages: {
-				name: {required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
+				name: {required: "必填", minlength: "不得少于3字符"},
 				password: {
 					required: "请填写密码！",
 					rangelength: "密码需由6-16个字符（数字、字母）组成！"
@@ -48,6 +51,7 @@
 					headers: {'X-CSRF-TOKEN': $('_token').val()},
 					data: $('#loginform').serialize(),
 					dataType: "json", //数据格式:JSON
+					async:false,
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
 						alert("error:" + errorThrown);
 						return null;
@@ -65,7 +69,7 @@
 		});
 	});
 </script>
-@endsection
+
   <link rel="stylesheet" type="text/css" href="{{ asset('/')}}css/index.css">
           <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
        @include('themes.default.top')
