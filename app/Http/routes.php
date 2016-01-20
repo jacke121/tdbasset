@@ -40,6 +40,7 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::get('zq/check', 'backend\ZqController@check');
     Route::post('zq/store', 'backend\ZqController@store');
     Route::post('zq/update', 'backend\ZqController@update');
+    Route::post('zq/checkUpdate', 'backend\ZqController@checkUpdate');
     Route::resource('zq','backend\ZqController');
     Route::resource('message','backend\MessageController');
 

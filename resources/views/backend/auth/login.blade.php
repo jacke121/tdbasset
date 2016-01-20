@@ -11,7 +11,7 @@
 		padding-left: 16px;
 	}
 </style>
-<script src="{{ asset('/')}}js/jquery-1.11.3.min.js"></script>
+
 <script src="{{ asset('/')}}js/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -62,13 +62,13 @@
 		<span class="required">*</span>6、债务人是否有还款能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==1)?'checked':'') }}  value="" />有能力
+		<input type="radio" name="d_isRepay" {{((!isset($zq->d_isRepay))||(isset($zq->d_isRepay)&&($zq->d_isRepay==1))?'checked':'') }}  value="1" />有能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==2)?'checked':'') }}  value="" />没能力
+		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==2)?'checked':'') }}  value="2" />没能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==3)?'checked':'') }}  value="" />不确定
+		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==3)?'checked':'') }}  value="3" />不确定
 	</label>
 	<label class="help-block"> </label>
 </div>

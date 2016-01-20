@@ -216,16 +216,17 @@ class ZqController extends Controller
 
         'uid' => Auth::member()->get()->id
     );
-        log.error_log("add zqs front:"+$data);
         $zq->zq_czfs_sscs = Input::get('zq_czfs_sscs');
+        $zq->zq_czfs_fscs = Input::get('zq_czfs_fscs');
+        $zq->zq_czfs_zqzr = Input::get('zq_czfs_zqzr');
         if(empty($zq->zq_czfs_sscs)){
             $data['zq_czfs_sscs']= false;
         }
-		if(empty($zq->zq_czfs_fscs)){
-			$data['zq_czfs_fscs']= false;
+        if(empty($zq->zq_czfs_fscs)){
+            $data['zq_czfs_fscs']= false;
         }
-		if(empty($zq->zq_czfs_zqzr)){
-			$data['zq_czfs_zqzr']= false;
+        if(empty($zq->zq_czfs_zqzr)){
+            $data['zq_czfs_zqzr']= false;
         }
 		if(is_null($zq->collects)){
 			$data['collects']= 0;
@@ -233,7 +234,9 @@ class ZqController extends Controller
 	    if(is_null( $zq->applys)){
 			$data['applys']= 0;
         }
-        log.error_log("add zqs end:"+$data);
+        if(!empty(Input::get('zq_warrant'))){
+            $data['zq_warrant']= implode("_",Input::get('zq_warrant'));
+        }
         return $data;
     }
 }
