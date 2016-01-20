@@ -102,9 +102,14 @@ class ZqController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-
+        $id = $request->input('id');
+        $result = "删除失败";
+        if(Zq::destroy($id)){
+            $result = "删除成功";
+        }
+        return $result;
     }
 
     private function createZq(Request $request){

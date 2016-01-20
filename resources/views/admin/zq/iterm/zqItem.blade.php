@@ -6,7 +6,7 @@
 	<label class="col-sm-2 control-label" for="types"><span class="required">*</span>1、债权金额</label>
 	<div class="col-sm-2">
 		<div class="input-group">
-			<input id="zq_quote" type="text" class="form-control" name="zq_quote" value="{{ (isset($zq) ? $zq->zq_quote:'' ) }}" />
+			<input id="zq_quote" type="text" class="form-control" name="zq_quote" value="{{(isset($zq) ? $zq->zq_quote:'' )}}" />
 			<div class="input-group-addon">元</div>
 		</div>
 	</div>
@@ -18,27 +18,27 @@
 	<div class="col-sm-6">
 	<ul class="list-unstyled inline-line">
 		<li>
-			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_sscs" {{ (isset($zq->zq_czfs_sscs) ?'checked':'') }} value="1">诉讼催收 报酬比例</label>
+			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_sscs" {{((isset($zq->zq_czfs_sscs)&&($zq->zq_czfs_sscs==true)) ?'checked':'') }} value="true">诉讼催收 报酬比例</label>
 			<div class="input-group">
-				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_sscs_rate" value=" {{ (isset($zq) ?$zq->zq_czfs_sscs_rate:'') }} " />
+				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_sscs_rate" value="{{(isset($zq) ?$zq->zq_czfs_sscs_rate:'')}} " />
 				<div class="input-group-addon">% </div>
 			</div>
 			<span class="append-info">支付代理方报酬</span>
 			<div class="clearfix"></div>
 		</li>
 		<li>
-			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_fscs" {{ (isset($zq->zq_czfs_fscs) ?'checked':'') }}  value="1">非诉催收 报酬比例</label>
+			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_fscs" {{ ((isset($zq->zq_czfs_fscs)&&($zq->zq_czfs_fscs==true))?'checked':'') }}  value="true">非诉催收 报酬比例</label>
 			<div class="input-group">
-				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_fscs_rate" value="{{ (isset($zq) ?$zq->zq_czfs_fscs_rate:'') }}" />
+				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_fscs_rate" value="{{(isset($zq) ?$zq->zq_czfs_fscs_rate:'')}}" />
 				<div class="input-group-addon">% </div>
 			</div>
 			<span class="append-info">支付代理方报酬</span>
 			<div class="clearfix"></div>
 		</li>
 		<li>
-			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_zqzr" {{ (isset($zq->zq_czfs_fscs) ?'checked':'') }}  value="1">债权转让 折扣比率</label>
+			<label class="checkbox-inline"><input type="checkbox" name="zq_czfs_zqzr" {{((isset($zq->zq_czfs_zqzr)&&($zq->zq_czfs_zqzr==true))?'checked':'') }}  value="trrue">债权转让 折扣比率</label>
 			<div class="input-group">
-				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_zqzr_rate" value="{{ (isset($zq) ?$zq->zq_czfs_zqzr_rate:'') }}" />
+				<input type="text" class="form-control" style="width:200px;" name="zq_czfs_zqzr_rate" value="{{(isset($zq) ?$zq->zq_czfs_zqzr_rate:'')}}" />
 				<div class="input-group-addon">% </div>
 			</div>
 			<span class="append-info">几折出售</span>

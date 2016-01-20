@@ -38,7 +38,7 @@
 	<label for="o_verify">
 		4、债权方证件号：<span class="intro">(债权方营业执照注册号或身份证号)</span>
 	</label>
-	<input id="o_verify" type="text" class="form-control" name="o_verify" value="" />
+	<input id="o_verify" type="text" class="form-control" name="o_verify" value="{{ (isset($zq->o_verify) ? $zq->o_verify:'' ) }}" />
 	<label class="help-block"> </label>
 </div>
 
@@ -59,9 +59,9 @@
 </div>
 
 <script type="text/javascript">
-	var isCreate = "{{isset($zq)?true:false}}";
+	var isCreate = "{{isset($zq)?'true':'false'}}";
 	if(isCreate=="true"){
-		new PCAS("o_province,{{isset($zq->o_province)?$zq->o_province:'请选择省份'}}","o_city,{{isset($zq->o_city)?$zq->o_city:'请选择城市'}}","o_contry,{{isset($zq->o_contry)?$zq->o_contry:'请选择城市'}}");
+		new PCAS("o_province={{isset($zq->o_province)?$zq->o_province:'请选择省份'}}","o_city={{isset($zq->o_city)?$zq->o_city:'请选择城市'}}","o_contry={{isset($zq->o_contry)?$zq->o_contry:'请选择城市'}}");
 	}else{
 		new PCAS("o_province,请选择省份","o_city,请选择城市","o_contry,请选择地区");
 	}
