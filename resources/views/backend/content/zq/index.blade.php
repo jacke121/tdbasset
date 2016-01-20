@@ -51,16 +51,19 @@
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
         });
 
-        function deleteZq(params){
-            $.ajax({
-                url: '{{url('member/zqm/delete')}}',
-                type: "delete",
-                data: {'id':params, '_token': $('input[name=_token]').val()},
-                success: function(data){
-                    alert(data);
-                    window.location.reload();
-                }
-            });
+        function deleteZq(params) {
+            var isDelete = window.confirm("您确定要删除本条记录?删除后不能恢复！");
+            if (isDelete) {
+                $.ajax({
+                    url: '{{url('backend/zq/delete')}}',
+                    type: "delete",
+                    data: {'id': params, '_token': $('input[name=_token]').val()},
+                    success: function (data) {
+                        alert(data);
+                        window.location.reload();
+                    }
+                });
+            }
         }
     </script>
 @endsection

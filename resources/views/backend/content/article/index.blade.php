@@ -14,7 +14,6 @@
                             <th>#</th>
                             <th>title</th>
                             <th>所属分类</th>
-                            <th>游览次数</th>
                             <th>创建时间</th>
                             <th class="text-right">操作</th>
                         </tr>
@@ -24,8 +23,7 @@
                             <th scope="row">{{ $v->id }}</th>
                             <td>{{ $v->title }}</td>
                             <td>{{ App\Model\Category::getCategoryNameByCatId($v->cate_id) }}</td>
-                            <td>0</td>
-                            <td>100</td>
+                            <td>{{ $v->created_at }}</td>
                             <td class="text-right">
 
 

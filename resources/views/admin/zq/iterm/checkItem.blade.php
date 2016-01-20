@@ -4,18 +4,28 @@
 <input type="hidden" class="form-control" name="id" value="{{$zq->id}}" />
 <div class="form-group">
     <label class="col-sm-2 control-label" for="o_address"><span class="required">*</span>1、审核状态</label>
-    <div class="col-sm-6">
-        <label class="radio-inline"><input type="radio" name="status" @if((isset($zq->status)&&($zq->status==1)))checked @endif value="1">通过</label>
-        <label class="radio-inline"><input type="radio" name="status" @if(!isset($zq->status)||(isset($zq->status)&&($zq->status==0)))checked @endif value="0">拒绝</label>
+    <div class="col-sm-2">
+        <label class="radio-inline"><input type="radio" class="zq_status" name="status" @if((isset($zq->status)&&($zq->status==1)))checked @endif value="1">通过</label>
+        <label class="radio-inline"><input type="radio" class="zq_status" name="status" @if(!isset($zq->status)||(isset($zq->status)&&($zq->status==0)))checked @endif value="0">拒绝</label>
     </div>
-    <div class="col-sm-4 help-block"><span id="error_status"></span></div>
+    <div class="col-sm-8 help-inline">
+
+    </div>
+</div>
+
+<div id="reasons" class="@if((isset($zq->status)&&($zq->status==1)))hidden @endif form-group">
+    <label class="col-sm-2 control-label" for="types"><span class="required">*</span>拒绝理由:</label>
+    <div class="col-sm-6">
+        <input class="form-control" type="text" name="reasons" value="{{$zq->reasons}}">
+    </div>
+    <div class="col-sm-4 help-block"></div>
 </div>
 
 <div class="form-group">
     <label class="col-sm-2 control-label" for="types"><span class="required">*</span>2、推荐指数</label>
     <div class="col-sm-2">
         <div class="input-group">
-            <input id="zq_quote" type="text" class="form-control" name="stars" value="{{ (isset($zq->stars) ?$zq->stars:'') }}" />
+            <input id="zq_quote" type="text" class="form-control" name="stars" value="{{ (isset($zq->stars) ?$zq->stars:'0') }}" />
             <div class="input-group-addon">星级</div>
         </div>
     </div>
@@ -42,3 +52,13 @@
     </div>
     <div class="col-sm-4 help-block"> </div>
 </div>
+<script type="text/javascript">
+    $(".zq_status").change(function() {
+        var $selectedvalue = $("input[name='status']:checked").val();
+        if ($selectedvalue == 0) {
+            $("#reasons").removeClass("hidden");
+        } else {
+            $("#reasons").addClass("hidden");
+        }
+    });
+</script>

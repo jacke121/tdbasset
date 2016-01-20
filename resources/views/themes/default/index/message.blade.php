@@ -11,7 +11,7 @@
             <input type="hidden" name="uid" value="{{isset($uid)?$uid:-1}}" />
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="types"><span class="required">*</span>1、标题</label>
+            <label class="col-sm-2 control-label" for="types"><span class="required">*</span>1、您的姓名</label>
             <div class="col-sm-2">
                     <input id="zq_title" type="text" class="form-control" name="title" value="" />
             </div>
@@ -27,7 +27,7 @@
         </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" for="types"><span class="required">*</span>3、联系方式</label>
+                <label class="col-sm-2 control-label" for="types"><span class="required">*</span>3、联系电话</label>
                 <div class="col-sm-2">
                     <input id="zq_contact" type="text" class="form-control" name="contact" value="" />
                 </div>
@@ -69,16 +69,16 @@
                 },
                 messages: {
                     "title":{
-                        required:"标题必须填写!",
-                        maxlength:"标题不超过20个字!",
+                        required:"姓名必须填写!",
+                        maxlength:"姓名不超过20个字!",
                     },
                     "content":{
                         required:"内容必须填写!",
                         maxlength:"联系方式不超过2000个字!",
                     },
                     "contact":{
-                        required:"联系方式必须填写!",
-                        maxlength:"联系方式不超过20个字!",
+                        required:"联系电话必须填写!",
+                        maxlength:"联系电话不超过20个字!",
                     }
                 },
                 errorPlacement: function(error, element){

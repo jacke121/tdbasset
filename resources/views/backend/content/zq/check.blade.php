@@ -70,7 +70,7 @@
             validator=$("#input_form").validate({
                 submitHandler:function(form){
                     $.ajax({
-                        url: '{{URL('member/zqm/checkUpdate')}}',
+                        url: '{{URL('backend/zq/checkUpdate')}}',
                         type: "post",
                         data: $("#input_form").serialize(),
                         success: function(data){

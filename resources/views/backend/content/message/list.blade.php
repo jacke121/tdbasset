@@ -10,10 +10,9 @@
                 <table class="table table-hover table-top">
                     <tr>
                         <th>#序号</th>
-                        <th>标题</th>
+                        <th>客户姓名</th>
                         <th>内容</th>
-                        <th>发送者</th>
-                        <th>接收者</th>
+                        <th>电话</th>
                         <th>创建时间</th>
                         <th class="text-right">操作</th>
                     </tr>
@@ -23,8 +22,7 @@
                             <th scope="row">{{ $v->id }}</th>
                             <td>{{ $v->title }}</td>
                             <td>{{ $v->content }}</td>
-                            <td>{{App\Model\Member::getmemberNameBymemberId($v->s_uid)}}</td>
-                            <td>{{App\Model\Member::getmemberNameBymemberId($v->r_uid)}}</td>
+                            <td>{{ $v->contact }}</td>
                             <td>{{ $v->created_at }}</td>
                             <td class="text-right">
                                 <a href="javascript:void(0)" onclick="deleteMessage({{$v->id}})">删除</a>
@@ -46,15 +44,18 @@
         });
 
         function deleteMessage(params){
-            $.ajax({
-                url: '{{url('backend/message/delete')}}',
-                type: "delete",
-                data: {'id':params, '_token': $('input[name=_token]').val()},
-                success: function(data){
-                    alert(data);
-                    window.location.reload();
-                }
-            });
+            var isDelete = window.confirm("您确定要删除本条记录?删除后不能恢复！");
+            if (isDelete) {
+                $.ajax({
+                    url: '{{url('backend/message/delete')}}',
+                    type: "delete",
+                    data: {'id': params, '_token': $('input[name=_token]').val()},
+                    success: function (data) {
+                        alert(data);
+                        window.location.reload();
+                    }
+                });
+            }
         }
     </script>
 @endsection

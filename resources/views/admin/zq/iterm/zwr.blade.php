@@ -62,20 +62,20 @@
 		<span class="required">*</span>6、债务人是否有还款能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==1)?'checked':'') }}  value="" />有能力
+		<input type="radio" name="d_isRepay" {{((!isset($zq->d_isRepay))||(isset($zq->d_isRepay)&&($zq->d_isRepay==1))?'checked':'') }}  value="1" />有能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==2)?'checked':'') }}  value="" />没能力
+		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==2)?'checked':'') }}  value="2" />没能力
 	</label>
 	<label class="radio-inline">
-		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==3)?'checked':'') }}  value="" />不确定
+		<input type="radio" name="d_isRepay" {{ (isset($zq->d_isRepay)&&($zq->d_isRepay==3)?'checked':'') }}  value="3" />不确定
 	</label>
 	<label class="help-block"> </label>
 </div>
 <script type="text/javascript">
-	var isCreate = "{{isset($zq)?true:false}}";
+	var isCreate = "{{isset($zq)?'true':'false'}}";
 	if(isCreate=="true"){
-		new PCAS("o_province,{{isset($zq->o_province)?$zq->o_province:'请选择省份'}}","o_city,{{isset($zq->o_city)?$zq->o_city:'请选择城市'}}","o_contry,{{isset($zq->o_contry)?$zq->o_contry:'请选择城市'}}");
+		new PCAS("d_province={{isset($zq->d_province)?$zq->d_province:'请选择省份'}}","d_city={{isset($zq->d_city)?$zq->d_city:'请选择城市'}}","d_contry={{isset($zq->d_contry)?$zq->d_contry:'请选择城市'}}");
 	}else{
 		new PCAS("d_province,请选择省份", "d_city,请选择城市", "d_contry,请选择地区");
 	}
