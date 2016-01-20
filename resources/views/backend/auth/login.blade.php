@@ -1,6 +1,6 @@
 @extends('themes.default.layouts')
-     <link rel="stylesheet" type="text/css" href="/css/index.css">
-          <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+@section('head')
+   
 <style>
 	span.error {
 		padding-left: 16px;
@@ -65,6 +65,9 @@
 		});
 	});
 </script>
+@endsection
+  <link rel="stylesheet" type="text/css" href="{{ asset('/')}}css/index.css">
+          <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
        @include('themes.default.top')
 @section('content')
 <div class="container-fluid">
