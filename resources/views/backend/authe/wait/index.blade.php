@@ -3,6 +3,7 @@
 <script type="text/javascript">
     $(function(){
         setindex("liauthe");
+        setmembertype("liwait");
     });
 </script>
 @section('content')
@@ -26,8 +27,8 @@
                         @foreach($member as $k=> $v)
                         <tr>
                             <th scope="row">{{ $v->id }}</th>
-                            <td>{{ $v->roletype }}</td>
-                            <td>{{ $v->type }}</td>
+                            <td>{{ $v->rolename }}</td>
+                            <td>{{ $v->typename }}</td>
                             <td>{{ $v->name}} {{ $v->itemname }}</td>
                             <td>{{ $v->mobile}}</td>
                             <td>{{ $v->created_at }}</td>

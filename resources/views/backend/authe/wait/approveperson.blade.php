@@ -1,5 +1,11 @@
 @extends('backend.authe.common')
-
+<script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        setindex("liauthe");
+        setmembertype("liwait");
+    });
+</script>
 @section('content')
 <div class="col-md-10">
     <div class="panel panel-default">
@@ -75,7 +81,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    {!! Form::submit(' 提 交 认 证 ', ['class' => 'btn btn-success']) !!}
+                    {!! Form::submit(' 提 交 审 批 ', ['class' => 'btn btn-success']) !!}
                 </div>
             </div>
             {!! Form::close() !!}

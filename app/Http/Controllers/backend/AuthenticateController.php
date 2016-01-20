@@ -31,7 +31,9 @@ class AuthenticateController extends Controller
     public function getAwaiting(Request $request)
     {
         $data = array(
-            'member' => DB::select("select * from members where lifestatus=1 and authestatus=1"),
+            'member' => DB::select("select *,case type  WHEN 1 THEN '律师' WHEN 2 THEN '企业' WHEN 3 THEN '个人' end  AS typename,
+                case roletype  WHEN 1 THEN '代理方' WHEN 2 THEN '委托方' end  AS rolename
+ 				from members where lifestatus=1 and authestatus=1"),
         );
         return backendView('authe.wait.index', $data);
     }
@@ -72,15 +74,18 @@ class AuthenticateController extends Controller
         } else if ($member->type == 3) {
             //个人
             return backendView('authe.approved.approveperson')->withMember($member);
+        }  else  {
+            //个人
+            return backendView('authe.noapprove.member')->withMember($member);
         }
-
     }
 
     public function getApproved(Request $request)
     {
         Log::error('postAuthelayer:' . $request->get('itemname'));
         $data = array(
-            'member' => DB::select("select *,case authestatus  WHEN 4 THEN '通过' WHEN 3 THEN '未通过' WHEN 2 THEN '已冻结' end  AS authestr
+            'member' => DB::select("select *,case authestatus  WHEN 4 THEN '通过' WHEN 3 THEN '未通过' WHEN 2 THEN '已冻结' end  AS authestr,
+                case type  WHEN 1 THEN '律师' WHEN 2 THEN '企业' WHEN 3 THEN '个人' end  AS typename,case roletype  WHEN 1 THEN '代理方' WHEN 2 THEN '委托方' end  AS rolename
  				from members where lifestatus=1 and authestatus>1"),
         );
         return backendView('authe.approved.index', $data);

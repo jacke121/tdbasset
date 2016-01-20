@@ -36,8 +36,10 @@ public function __construct(Guard $auth)
 	    	$mpath=$request->path();
 	    	Log::error("handle-1111".$mpath);
 	        if ( $this->auth->check()) {
+				Log::error("auth->check ok");
 		    	return $next($request);
 	        }else{
+				Log::error("auth->check failed");
 	        	$urls= array("login","register","checkUser","home"); 
 		        $iscontains=false;
 		        foreach ($urls as $url){
@@ -50,6 +52,7 @@ public function __construct(Guard $auth)
 		    	Log::error("handle-222-next");
 		    	return $next($request);
 		    }else {
+				Log::error("auth->check failed goto login");
 	        	  return redirect('/backend/auth/login');
 	        	}
 	        	  // return redirect()->guest('/backend/login');

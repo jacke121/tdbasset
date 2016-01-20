@@ -16,7 +16,8 @@ class BackendForm extends FormRequest
     public function authorize()
     {
         // 只允许登陆用户
-        return Auth::check();
+       return Auth::user()->check();
+//        return Auth::check();
     }
 
     // 可选: 重写基类方法

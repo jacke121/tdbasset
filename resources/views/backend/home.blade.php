@@ -2,10 +2,7 @@
 
 @section('modules')
 <div class="container-fluid">
-
-
 	<div class="row">
-
         <div class="col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">导航</div>
@@ -18,10 +15,7 @@
                                 <a href="{{ URL::route('backend.user.index')}}">管理员列表</a>
                             </li>
                         </ul>
-
                     </div>
-
-
             </div>
         </div>
 

@@ -15,7 +15,7 @@
             padding-left: 16px;
         }
     </style>
-<script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="{{ asset('/')}}js/jquery-1.11.3.min.js"></script>
     <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="../js/index.js"></script>
     <script type="text/javascript">
@@ -47,7 +47,6 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function (form) {
-                    var url = $("#loginform").attr("action");
                     $.ajax({
                         type: "POST", //用POST方式传输
                         url: $("#loginform").attr("action"), //目标地址

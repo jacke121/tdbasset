@@ -2,13 +2,13 @@
 <script type="text/javascript">
     $(function(){
         setindex("liauthe");
-        setmembertype("liapproved");
+        setmembertype("linoapprove");
     });
 </script>
 @section('content')
 <div class="col-md-10">
     <div class="panel panel-default">
-        <div class="panel-heading">企业会员资料</div>
+        <div class="panel-heading">会员资料</div>
         @if ($errors->has('error'))
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -19,61 +19,50 @@
             请联系开发者！
         </div>
         @endif
-
         <div class="panel-body">
-            {!! Form::model($member, ['url' => ['backend/authe/update', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
+            {!! Form::model($member, ['url' => ['/backend/authe/approve', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
+            <input type="hidden" name="id" value="{{ $member->id}}">
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-4">
-                    {!! Form::text('cate_name', $member->name, ['class' => 'form-control','placeholder'=>'category_name']) !!}
+                    {!! Form::text('cate_name', $member->name, ['class' => 'form-control','readonly'=>"true",'placeholder'=>'category_name']) !!}
                     <font color="red">{{ $errors->first('cate_name') }}</font>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">别名</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-4">
-                    {!! Form::text('as_name', $member->itemname, ['class' => 'form-control','placeholder'=>'as_name']) !!}
+                    {!! Form::text('as_name', $member->itemname, ['class' => 'form-control','readonly'=>"true",'placeholder'=>'as_name']) !!}
                     <font color="red">{{ $errors->first('as_name') }}</font>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 标题</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">手机号</label>
                 <div class="col-sm-4">
-                    {!! Form::text('seo_title', $member->mobile, ['class' => 'form-control','placeholder'=>'seo_title']) !!}
+                    {!! Form::text('seo_title', $member->mobile, ['class' => 'form-control','readonly'=>"true",'placeholder'=>'seo_title']) !!}
                     <font color="red">{{ $errors->first('seo_title') }}</font>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 关键字</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">身份证号</label>
                 <div class="col-sm-4">
-                    {!! Form::text('seo_key', $member->cardno, ['class' => 'form-control','placeholder'=>'seo_key']) !!}
+                    {!! Form::text('seo_key', $member->cardno, ['class' => 'form-control','readonly'=>"true",'placeholder'=>'seo_key']) !!}
                     <font color="red">{{ $errors->first('seo_key') }}</font>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 描述</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">账号状态</label>
                 <div class="col-sm-4">
-                    {!! Form::textarea('seo_desc',  $member->cardno, ['class' => 'form-control']) !!}
+                    <label for="inputPassword3" class="col-sm-3 control-label">未认证</label>
                     <font color="red">{{ $errors->first('seo_desc') }}</font>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">营业执照</label>
-                <div class="col-sm-8">
-                    <ul id="faceul">
-                        @foreach($member->cardnourl as $key=>$img)
-                            <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    {!! Form::submit('审批', ['class' => 'btn btn-success']) !!}
+                    {{--{!! Form::submit(' 提 交 认 证 ', ['class' => 'btn btn-success']) !!}--}}
                 </div>
             </div>
             {!! Form::close() !!}

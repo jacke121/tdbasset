@@ -82,25 +82,7 @@ class AuthenticateController extends Controller
         $cart['msg'] ="图片不能为空";
         $path="";
         if ($request->hasFile('file')) {
-            $rules = array();
-            if (!array($request->File('file'))) {
-                $file = $request->file('file');
-                $allowed_extensions = ["png", "jpg", "gif"];
-                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-                    $cart['status']=1;
-                    $cart['msg'] ="图片只支持png,jpg,gif";
-                    return $cart;
-                }
-                $destinationPath = 'uploads/images/person/';
-                $extension = $file->getClientOriginalExtension();
-                $fileName = str_random(10).'.'.$extension;
-                $file->move($destinationPath, $fileName);
-                $path=$destinationPath.$fileName;
-            } else {
-                for ($i = 0; $i < count($request->File('file')); $i++) {
-                    $rules["file.$i"] = 'required|image';
-                    Log::error("postfile" . $i);
-                }
+            if (is_array($request->File('file'))) {
                 $files = $request->File('file');
                 foreach ($files as $file) {
                     Log::error($file->getClientOriginalName());
@@ -114,13 +96,26 @@ class AuthenticateController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $fileName = str_random(10) .'.'.$extension;
                     $file->move($destinationPath, $fileName);
+                    Log::error("uploads:".$destinationPath.$fileName);
                     if(empty($path)){
                         $path.=$destinationPath.$fileName;
                     }else{
                         $path.=";".$destinationPath.$fileName;
                     }
-
                 }
+            } else {
+                $file = $request->file('file');
+                $allowed_extensions = ["png", "jpg", "gif"];
+                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                    $cart['status']=1;
+                    $cart['msg'] ="图片只支持png,jpg,gif";
+                    return $cart;
+                }
+                $destinationPath = 'uploads/images/person/';
+                $extension = $file->getClientOriginalExtension();
+                $fileName = str_random(10).'.'.$extension;
+                $file->move($destinationPath, $fileName);
+                $path=$destinationPath.$fileName;
             }
             $cart['status'] =0;
             $cart['msg'] =$path;
@@ -170,9 +165,7 @@ class AuthenticateController extends Controller
         $member->id = $this->auth->get()->id;
         $member->type = 2;
         $member->authestatus = 1;
-        if (!empty($fileName)) {
-            $member->cardnourl =$cardnourl;
-        }
+        $member->cardnourl =$cardnourl;
         $member->address = $request->get('address');
         $member->addresscode = $request->get('addresscode');
         $member->roletype = $request->get('roletype');

@@ -3,6 +3,7 @@
 <script type="text/javascript">
     $(function(){
         setindex("liauthe");
+        setmembertype("linoapprove");
     });
 </script>
 @section('content')
@@ -37,23 +38,12 @@
                             <td>{{ $v->authestr }}</td>
                             <td class="text-right">
                                 {!! Form::open([
-                                'url' => array('/backend/authe/freeze', $v->id),
-                                 'method' => 'get',
-                                'class'=>'btn_form'
-                                ]) !!}
-                                <button type="submit" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    冻结
-                                </button>
-                                {!! Form::close() !!}
-                                {!! Form::open([
                                     'url' => array('/backend/authe/view', $v->id),
                                     'method' => 'get',
                                     'class'=>'btn_form'
                                 ]) !!}
-
                                 <button type="submit" class="btn btn-info">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     查看详情
                                 </button>
                                 {!! Form::close() !!}
