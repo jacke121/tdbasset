@@ -97,6 +97,12 @@
                 } else if (!checkUser("mobile", value)) {
                     returnVal = false;
                     customError = "手机号已存在!";
+                       if (!$('#btnSendCode').hasClass('disabled')) {
+                        $('#btnSendCode').addClass('disabled');
+                       }
+
+                }else if ($('#btnSendCode').hasClass('disabled')) {
+                     $("#btnSendCode").removeClass('disabled');
                 }
                 $.validator.messages.onlyMobile = customError;
                 return returnVal;
