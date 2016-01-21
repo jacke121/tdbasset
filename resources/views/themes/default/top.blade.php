@@ -39,10 +39,9 @@
 
 <div class="header">
     <div class="center">
-        <ul class="center_left">
-            <li style="margin:19px 17px 0 0;"><a href="/"><img src="{{URL::asset('/')}}/images/head_logo.jpg" width="58" height="57"></a></li>
-            <li style="margin-top:35px;"><img src="{{URL::asset('/')}}/images/head_ldzc.jpg" width="219" height="25"></li>
-        </ul>
+        <div class="center_left">
+           <a href="/"><img src="{{URL::asset('/')}}/images/head_logo.gif" width="332" height="53"></a>
+        </div>
         <dl class="center_right">
             <dt class="inDex">
                 <a id="nav_home" href="{{ URL('/') }}">首页</a></dt>

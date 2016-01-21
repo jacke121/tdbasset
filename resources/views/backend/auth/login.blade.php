@@ -4,7 +4,8 @@
 <style>
 	span.error {
 		padding-left: 16px;
-		color: #E15F63
+		color: #E15F63;
+		float: left;
 	}
 	span.success {
 		background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;

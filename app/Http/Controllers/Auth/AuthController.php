@@ -11,6 +11,7 @@ use App\Http\Response;
 use Illuminate\Http\Request;
 use Redirect, Input;
 use App\Model\Member;
+use App\Model\Member_log;
 use Log;
 use Hash;
 use Auth;
@@ -50,6 +51,13 @@ class AuthController extends Controller
         Log::error('login:' . $request->get('name') . "password" . $request->get('password'));
         //过滤掉前端数据，只留下name和password
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
+
+             $member_log = new Member_log();
+               $member_log->memberid=$this->auth->get()->id;
+        $member_log->ip=$request->getClientIp();
+        $member_log->action="login";
+        $member_log->type=1;
+        $member_log->save();
             return parent::returnJson(0, "登录成功");
         }
         return parent::returnJson(1, "用户名或密码错误");
@@ -156,7 +164,14 @@ class AuthController extends Controller
         $member->save();
         if ($this->auth->attempt(array('name' => $member->name, 'password' => Input::get('password')), $request->has('remember'))) {
             //登录成功
-            $userid = $member->id;
+
+        $member_log = new Member_log();
+        $member_log->ip=$request->getClientIp();
+        $member_log->memberid=$this->auth->get()->id;
+        $member_log->action="register";
+        $member_log->type=1;
+        $member_log->save();
+        $userid = $member->id;
             $ip = $_SERVER['REMOTE_ADDR'];
             return parent::returnJson(0, "注册成功");
             //后边就不写了，主要是拿到登录用户信息就好
