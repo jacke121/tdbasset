@@ -1,16 +1,7 @@
-<style type="text/css">
-    .top{ width:100%; height:46px; line-height:46px; background:#EBEBEB;}
-    .center{ width:1001px; margin:0 auto;}
-    .center .login{ display:inline-block; width:58px; height:26px; line-height:26px; text-align:center; background:#ee8d0a; border-radius:5px; color:#ffffff;}
 
-    .center .login_{ display:inline-block; height:26px; line-height:26px; text-align:center; color:#ee8d0a; margin-right:7px; font-size:14px;}
-    .mag{width:20px;height:20px; border-radius: 50%;background: #ed6d00;color: #fff;font-size: 10px; position:absolute;top:-10px;right:-10px;text-align:center;}
-    .mag span{position:absolute;top:0px;left:0px;width:20px;line-height:20px; display:inline-block;text-align:center;}
-
-</style>
 <div class="top">
     <div class="center">
-        <img src="{{ URL::asset('/')}}images/top_phone.jpg" width="16" height="16" style="margin-right:8px;">
+        <img src="{{ URL::asset('/')}}images/top_phone.png" width="16" height="16" style="margin-right:8px;">
         <span class="f14" style="margin-right:15px;">服务热线：</span>
         <span style="color:#ee8d0a; font-size:21px; margin-right:458px;">400-058-9555</span>
         @if (Auth::member()->get())
@@ -50,6 +41,8 @@
             <dd></dd>
             <dt><a id="nav_service" href="{{ URL('service') }}">产品服务</a></dt>
             <dd></dd>
+            	<dt><a href="#">加盟合作</a></dt>
+                <dd></dd>
             <dt><a id="nav_users" href="{{ URL('users') }}">用户指南</a></dt>
             <dd></dd>
             <dt><a id="nav_about" href="{{ URL('about/2') }}">关于我们</a></dt>
