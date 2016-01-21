@@ -37,6 +37,11 @@ class AuthController extends Controller {
 		$this->registrar = $registrar;
 		// $this->middleware('auth', ['except' => 'getLogout']);
 	}
+     public function getLogout(Request $request)
+    {
+        $this->auth->logout();
+        return redirect('/backend/auth/login');
+    }
         public function getLogin(Request $request)//见明之意，就是提交请求到login方法，
         {
              return view('backend.auth.login');
