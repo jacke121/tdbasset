@@ -30,6 +30,20 @@
         <a class="next" href="javascript:;"></a>
     </div>
 </div>
+<script >
+$(document).ready(function() {
+	$(".slideInner").slide({
+		slideContainer: $('.slideInner a'),
+		effect: 'easeOutCirc',
+		autoRunTime: 5000,
+		slideSpeed: 1000,
+		nav: true,
+		autoRun: true,
+		prevBtn: $('a.prev'),
+		nextBtn: $('a.next')
+	})
+})
+</script>
 <!--内容部分-->
     <div style=" width:100%; height:161px; background:#F4F4F4;">
         <div class="center">
@@ -181,8 +195,8 @@
         <div class="center">
             <div class="hezuoTitle">合作伙伴</div>
             <div class="img_btn">
-                <a class="leftbtn" href="#"><img src="../images/btn_left.jpg"></a>
-                <a class="rightbtn" href="#"><img src="../images/btn_right.jpg"></a>
+                <a class="leftbtn" href="#"><img src="{{ URL::asset('/')}}images/btn_left.jpg"></a>
+                <a class="rightbtn" href="#"><img src="{{ URL::asset('/')}}images/btn_right.jpg"></a>
                
                     <ul class="hezuo_img">
                         <li><a href="#"><img src="../images/baidu.jpg"></a></li>
