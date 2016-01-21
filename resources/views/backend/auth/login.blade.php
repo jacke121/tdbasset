@@ -71,7 +71,7 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('/')}}css/index.css">
           <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-          @endsection
+@endsection
        @include('themes.default.top')
 @section('content')
 <div class="container-fluid">
@@ -94,14 +94,14 @@
 						<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
 							<label class="col-md-4 control-label">用户名</label>
-							<div class="col-md-6">
-								<input type="name" class="form-control" name="name" value="{{ old('name') }}">
+							<div class="col-md-4">
+								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">密码</label>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<input type="password" class="form-control" name="password">
 							</div>
 						</div>
