@@ -96,10 +96,15 @@ class AuthenticateController extends Controller
         return view('member.index.autheperson');
     }
 
-    public function getFreeze($id)//见明之意，就是提交请求到login方法，
+    public function getFreeze($id,$authestatus)//见明之意，就是提交请求到login方法，
     {
+        if($authestatus==2){
+            $authestatus=4;
+        }else{
+            $authestatus=2;
+        }
         $array = [
-            "authestatus" => 1
+            "authestatus" => $authestatus
         ];
         if (Member::where('id', $id)->update($array)) {
             return redirect('/backend/authe/approved');

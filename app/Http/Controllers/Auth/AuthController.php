@@ -221,6 +221,20 @@ class AuthController extends Controller
         }
         return parent::returnJson(1, "密码修改失败");
     }
+
+        public function getForget(Request $request) {
+        //更新密码
+       return view('member.index.forget');
+    }
+
+        public function postForget(Request $request) {
+        //更新密码
+        $array = ["password" => Hash::make($request->get('password'))];
+        if (Member::where('id', $this->auth->get()->id)->update($array)) {
+            return parent::returnJson(0, "密码修改成功");
+        }
+        return parent::returnJson(1, "密码修改失败");
+    }
     public function getLogout(Request $request)
     {
         $this->auth->logout();

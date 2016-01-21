@@ -34,14 +34,18 @@
                             <td>{{ $v->created_at }}</td>
                             <td>{{ $v->authestr }}</td>
                             <td class="text-right">
-                                {!! Form::open([
-                                'url' => array('/backend/authe/freeze', $v->id),
-                                 'method' => 'get',
+                                   {!! Form::open([
+                                 'url' => array('/backend/authe/freeze', $v->id,$v->authestatus),
+                                   'method' => 'get',
                                 'class'=>'btn_form'
                                 ]) !!}
                                 <button type="submit" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    冻结
+                                @if($v->authestatus == 2)
+                                 取消冻结
+                                @else
+                                冻结
+                                @endif
                                 </button>
                                 {!! Form::close() !!}
                                 {!! Form::open([

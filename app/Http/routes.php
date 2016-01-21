@@ -26,7 +26,7 @@ Route::resource('zq','ZqController');
 Route::controllers([
     'backend/password' => 'backend\PasswordController',
     'search'=>'SearchController',
-     'auth'=>'Auth\AuthController',
+    'auth'=>'Auth\AuthController',
     'area'=>'Auth\AreaController'
 
 ]);
