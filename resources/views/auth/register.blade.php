@@ -4,7 +4,6 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
     <title>用户注册</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/register.css') }}">
-
     <script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
     <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
