@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('/')}}css/index.css">
 <div class="top">
     <div class="center">
         <img src="{{ URL::asset('/')}}images/top_phone.png" width="16" height="16" style="margin-right:8px;">

@@ -4,7 +4,7 @@
     <title>{{systemConfig('title','Enda Blog') }} -lbg{{ systemConfig('subheading','Enda Blog') }}</title>
     <meta name="keywords" content="{{ systemConfig('seo_key') }}" />
     <meta name="description" content="{{ systemConfig('seo_desc') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/')}}css/index.css">
+
 
 <script src="../js/index.js"></script>
 
