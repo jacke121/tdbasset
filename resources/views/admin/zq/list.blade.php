@@ -28,9 +28,13 @@
                 <td>@if(isset($v->status)&&($v->status>0))<font color="green">已通过</font>@else <font color="red">未通过</font>@endif</td>
                 <td>{{ $v->created_at }}</td>
                 <td class="text-right">
-                    <a href="{{ url('member/zqm/check?id='.$v->id.'&types='.App\Model\Zq::getZqTypeIn($v->types)) }}">审核</a>
+                    @if($v->status==0)
                     <a href="{{ url(route('member.zqm.edit',['id'=>$v->id,'types'=>App\Model\Zq::getZqTypeIn($v->types)])) }}">修改</a>
                     <a href="#" onclick="deleteZq({{$v->id}})">删除</a>
+                    @else
+                        <span title="已审核">修改</span>
+                        <span title="已审核">删除</span>
+                    @endif
                 </td>
 
             </tr>
@@ -48,15 +52,18 @@
     });
 
     function deleteZq(params){
-        $.ajax({
-            url: '{{url('member/zqm/delete')}}',
-            type: "delete",
-            data: {'id':params, '_token': $('input[name=_token]').val()},
-            success: function(data){
-                alert(data);
-                window.location.reload();
-            }
-        });
+        var isDelete = window.confirm("您确定要删除本条记录?删除后不能恢复！");
+        if (isDelete) {
+            $.ajax({
+                url: '{{url('member/zqm/delete')}}',
+                type: "delete",
+                data: {'id': params, '_token': $('input[name=_token]').val()},
+                success: function (data) {
+                    alert(data);
+                    window.location.reload();
+                }
+            });
+        }
     }
 </script>
 @endsection

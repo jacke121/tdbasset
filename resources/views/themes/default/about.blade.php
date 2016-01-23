@@ -2,6 +2,7 @@
 @include('themes.default.top')
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/list.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}">
     <section class="container content">
 
         <div class="columns about">

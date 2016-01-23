@@ -155,7 +155,7 @@ $(document).ready(function() {
                     <div class="newsLeft">
                         <div class="nlTit">
                             新闻资讯
-                            <a href="#" style="float:right; color:#999999; font-size:12px;">+更多</a>
+                            <a target="_blank" href="article?catId=7" style="float:right; color:#999999; font-size:12px;">+更多</a>
                         </div>
                         @foreach($newsList as $k=> $v)
                         <div class="newsCon">
@@ -173,7 +173,7 @@ $(document).ready(function() {
                     <div class="newsRight">
                         <div class="nlTit">
                             债务常识
-                            <a href="#" style="float:right; color:#999999; font-size:12px;">+更多</a>
+                            <a target="_blank" href="article?catId=5" style="float:right; color:#999999; font-size:12px;">+更多</a>
                         </div>
                         <div style="min-height: 20px;"></div>
                         @foreach($infoList as $k=> $v)
