@@ -25,7 +25,7 @@ class ZqController extends Controller
 
     public function store(Request $request)
     {
-        if ($zq=Zq::create(self::createZq($request))) {
+        if (self::createZq($request)->save()) {
             return Redirect::to('member/zqList/index');
         } else {
             return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -44,19 +44,21 @@ class ZqController extends Controller
         //$zq =  self::createZq($request);
         $id = $request->input('id');
 
-        if(Zq::where("id",$id)->update(self::createZq($request))){
+        if(Zq::where("id",$id)->update(self::createUpZq($request))){
             Cache::forget(Zq::REDIS_ZQ_CACHE.$id);
             return Redirect::to('member/zqList/index');
         }
     }
 
     public function check(Request $request){
+        /**
         $zid = $request->input('id');
         $zq = Zq::getZqModelById($zid);
-        return view('admin.zq.check',["zq"=>$zq,"isCheck"=>true]);
+        return view('admin.zq.check',["zq"=>$zq,"isCheck"=>true]);**/
     }
 
     public function checkUpdate(Request $request){
+        /**
         $data = array(
             'status' =>  $request->input('status'),
             'stars' => $request->input('stars'),
@@ -70,6 +72,7 @@ class ZqController extends Controller
             $result = "审核成功";
         }
         return $result;
+         * */
     }
 
     public function destroy(Request $request)
@@ -82,7 +85,6 @@ class ZqController extends Controller
         return $result;
     }
 
-	/**
     private function createZq(Request $request){
         $zq = new Zq;
         $zq->types = Input::get('types');
@@ -152,14 +154,17 @@ class ZqController extends Controller
         }
         $zq->delay_scope = Input::get('delay_scope');
         $zq->money_scope = Input::get('money_scope');
-        $zq->uid = Input::get('uid');
+
+        if(!empty(Input::get('zq_warrant'))){
+            $zq-> zq_warrant = implode("_",Input::get('zq_warrant'));
+        }
 
         $zq->uid = Auth::member()->get()->id;
 
         return $zq;
     }
-**/
-    private function createZq(Request $request){
+
+    private function createUpZq(Request $request){
         $zq = new Zq;
         $data = array(
         'types' => Input::get('types'),
