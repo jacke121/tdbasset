@@ -24,8 +24,7 @@
             sendMessage();
         }
         else if(step==2){
-            $(".step2").hide();
-            $(".step3").show();
+
         }
         else if(step==3){
             $(".step3").hide();
@@ -97,6 +96,9 @@
                             }else{
                                 $(".step1").hide();
                                 $(".step2").show();
+                                curCount = count;
+                                $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
+                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                             }
                         }
                     }
@@ -104,6 +106,42 @@
                 }
             });
         $("#step2").validate({
+            errorClass: "error",
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                element.after(error);
+            },
+            rules: {
+                checkcode: {   required: true, rangelength: [6, 16] }
+            },
+            messages: {
+                checkcode: {
+                    required: "请填写验证码！",
+                    rangelength: "验证码格式错误",
+                }
+            },
+            success: function (label) {
+                label.html("<font color='green'>√</font>").addClass("success");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                // $(element).html("<font color='green'>√</font>");
+            },
+            submitHandler: function (form) {
+                var ajax_option={
+                    dataType: "json", //数据格式:JSON
+                    success:function(msg){
+                        if(msg['State']>0){
+                            alert(msg['MsgState']);
+                        }else{
+                            $(".step2").hide();
+                            $(".step3").show();
+                        }
+                    }
+                }
+                $('#step2').ajaxSubmit(ajax_option);
+            }
+        });
+        $("#step3").validate({
             errorClass: "error",
             errorElement: "span",
             errorPlacement: function (error, element) {
@@ -139,12 +177,12 @@
                         if(msg['State']>0){
                             alert(msg['MsgState']);
                         }else{
-                            $(".pwdcon1").hide();
-                            $(".pwdcon2").show();
+                            $(".step3").hide();
+                            $(".step4").show();
                         }
                     }
                 }
-                $('#step2').ajaxSubmit(ajax_option);
+                $('#step3').ajaxSubmit(ajax_option);
             }
         });
         var customError = "";
@@ -172,7 +210,9 @@
                             returnVal = false;
                             customError = msg['MsgState'];
                         } else {
+                            $("#mobile2").val(msg['MsgState']);
                             $("#mobile").val(msg['MsgState']);
+                            $("#mobile3").val(msg['MsgState']);
                             returnVal = true;
                         }
                     },
@@ -181,50 +221,29 @@
             $.validator.messages.checkname = customError;
             return returnVal;
         }, customError);
-            $.validator.addMethod("oldpassword", function (value, element) {
-                var returnVal = false;
-                if(value.length<6){
-                    returnVal=false;
-                    customError="密码不能少于6个字符";
-                }else {
-                    $.ajax({
-                        type: "POST", //用POST方式传输
-                        url: "/auth/checkpwd", async: false,
-                        headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-                        data: {
-                            type_data: "modify", password: $(".oldpassword").val()
-                        },
-                        dataType: "json", //数据格式:JSON
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert(errorThrown);
-                        },
-                        success: function (msg) {
-                            if (msg['State'] > 0) {
-                                //有异常
-                                returnVal = false;
-                                customError = msg['MsgState'];
-                            } else {
-                                returnVal = true;
-                            }
-                        },
-                    });
-                }
-                $.validator.messages.oldpassword = customError;
-                return returnVal;
-            }, customError);
 
     });
     var InterValObj; //timer变量，控制时间
-    var count = 15; //间隔函数，1秒执行
+    var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
-    function sendMessage() {
-       var mobile=$("#mobile").val();
+    var currentnum=1;
+    function sendMessage(num) {
+        currentnum=num;
+        var mobile=$("#mobile").val();
+        if(num==2){
+            if($("#mobile").val()==$("#newmobile").val()){
+                alert("手机号不能与原手机号相同");
+                return;
+            }
+            mobile=$("#newmobile").val();
+        }
         curCount = count;
         //设置button效果，开始计时
-            if($('#btnSendCode').hasClass('disabled')) return;
-            $('#btnSendCode').addClass('disabled');
-//            $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
-//        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+        if($('#btnSendCode'+num).hasClass('disabled')) return;
+        $('#btnSendCode'+num).addClass('disabled');
+        // $("#btnSendCode").attr("disabled", "true");
+        $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
+        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
         var code="122345";
         var url="/auth/sendsms";
         $.ajax({
@@ -243,11 +262,22 @@
                     alert(msg['MsgState']);
                     curCount=0;
                 }else{
-                    $(".step1").hide();
-                    $(".step2").show();
                 }
             },
         });
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode"+currentnum).removeClass('disabled');
+            // $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode"+currentnum).html("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode"+currentnum).html(curCount);//"请在" + curCount + "秒内输入验证码");
+        }
     }
 </script>
 </head>
@@ -264,8 +294,8 @@
             <h3 class="repwdtit">找回密码</h3>
             <div class="step1">
                 {!! Form::open(['id'=>'step1','url' => '/auth/sendsms', 'method' => 'post','class'=>'form-horizontal']) !!}
+                <input type="hidden" name="type" value="forget">
                 <input id="mobile" type="hidden" name="mobile" value="3">
-                <input id="mobile" type="hidden" name="type" value="forget">
                 <div class="repwd_step1"></div>
                 <div class="int">
                     <span class="intspan">用户名</span>
@@ -284,36 +314,39 @@
                 {!! Form::close() !!}
             </div>
             <div class="step2">
-                {!! Form::open(['id'=>'step1','url' => '/auth/modifymobile', 'method' => 'post','class'=>'form-horizontal']) !!}
+                {!! Form::open(['id'=>'step2','url' => '/auth/checkcode', 'method' => 'post','class'=>'form-horizontal']) !!}
+                <input id="mobile2" type="hidden" name="mobile" value="3">
                 <div class="repwd_step2"></div>
                 <p class="step2p">短信验证码已发送，请注意查收</p>
                 <div class="int">
                     <span class="intspan">验证码</span>
-                    <input type="text">
-                    <span class="code1"><span>59s</span></span>
+                    <input type="text" name="checkcode">
+                    <span class="code1"><span id="btnSendCode1" onclick="sendMessage(1)">59s</span></span>
                     <span class="ts" style="display: none;">提示提示……</span>
                 </div>
                 <p class="step2pts">如果没有收到短信，您可在<span>60s</span>后获取语音验证码</p>
                 <p class="reg1next">
-                    <a href="javascript:;" onclick="findPwdStep(2)" class="step2btn">下一步</a>
+                    <input type="submit" class="reg2btn" value="下一步">
                 </p><p class="zhao">如您无法使用上述方法找回，请联系客服400-058-9555或重新注册</p>
                 {!! Form::close() !!}
             </div>
             <div class="step3">
-                {!! Form::open(['id'=>'step1','url' => '/auth/modifymobile', 'method' => 'post','class'=>'form-horizontal']) !!}
+                {!! Form::open(['id'=>'step3','url' => '/auth/modifypwd', 'method' => 'post','class'=>'form-horizontal']) !!}
+                <input id="mobile3" type="hidden" name="mobile" value="3">
                 <div class="repwd_step3"></div>
                 <div class="int">
                     <span class="intspan">新登录密码</span>
-                    <input type="password">
+                    <input id="password" type="password" name="password">
                     <span class="ts" style="display: none;">提示提示……</span>
                 </div>
                 <div class="int">
                     <span class="intspan">确认新登录密码</span>
-                    <input type="password">
+                    <input type="password" name="confirm_password">
                     <span class="ts" style="display: none;">提示提示……</span>
                 </div>
                 <p class="reg1next">
-                    <a href="javascript:;" onclick="findPwdStep(3)" class="step3btn">确认</a>
+                    <input type="submit" class="reg2btn" value="下一步">
+                    {{--<a href="javascript:;" onclick="findPwdStep(3)" class="step3btn">确认</a>--}}
                 </p>
                 {!! Form::close() !!}
             </div>

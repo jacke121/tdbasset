@@ -171,6 +171,19 @@ class AuthController extends Controller
 // </CSubmitState>
     }
 
+    public function postCheckcode(Request $request)
+    {
+        // if ($validator->passes()){
+        $mobile = Input::get('mobile');
+
+        $checkCode = Session::get("m" .$mobile);
+        Log::error('registrer:' .$mobile . "session:" . $checkCode . "getcode:" . Input::get('checkcode'));
+        if (!$checkCode || $checkCode != Input::get('checkcode')) {
+            return parent::returnJson(1, "验证码输入错误");
+        }
+            return parent::returnJson(0, "验证码ok");
+            //后边就不写了，主要是拿到登录用户信息就好
+    }
     public function postRegister(Request $request)
     {
         $this->validate($request, ['name' => 'required|min:3', 'password' => 'required', 'mobile' => 'required|regex:/^1[34578][0-9]{9}$/']);
@@ -242,7 +255,13 @@ class AuthController extends Controller
     public function postModifypwd(Request $request) {
         //更新密码
         $array = ["password" => Hash::make($request->get('password'))];
-        if (Member::where('id', $this->auth->get()->id)->update($array)) {
+
+        if(!empty($request->get('mobile'))){
+            if (Member::where('mobile', $request->get('mobile'))->update($array)) {
+                return parent::returnJson(0, "密码修改成功");
+            }
+        }
+       else if (Member::where('id', $this->auth->get()->id)->update($array)) {
             return parent::returnJson(0, "密码修改成功");
         }
         return parent::returnJson(1, "密码修改失败");
