@@ -36,15 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="footlink">
-        <div style=" height:40px; line-height:40px; padding:0 0 0 370px;">
-            <a href="#">友情链接</a>
-            <a href="#">百度</a>
-            <a href="#">清债公司</a>
-            <a href="#">清欠公司</a>
-            <a href="#">思科培训</a>
-        </div>
-    </div>
+   
     <script type="text/javascript">
         $(document).ready(function(){
             var path = $.trim(window.location.pathname.split('/')[1]);

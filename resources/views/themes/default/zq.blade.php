@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/list.css') }}">
 <!--广告位-->
 <div class="banner">
-    <img src="../images/list_ggw.png">
+    <img src="{{ asset('/images/list_ggw.jpg') }}">
 </div>
 <!--个人债务宝-->
 <div style="width:100%; height:1250px; background:#F4F4F4;">

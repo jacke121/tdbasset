@@ -117,7 +117,7 @@
     lightbox.option({
         'resizeDuration': 200,
         'maxHeight':600,
-        'wrapAround': true
+        'showImageNumberLabel':false
     })
 
 
