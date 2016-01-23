@@ -55,7 +55,7 @@ body{
 .int input{width:270px;padding:12px 0px;font-size:14px;padding-left: 40px;border:1px solid #d0d0d0;}
 .regtt{font-size: 14px;}
 .reg_check{margin-right: 5px;}
-.reg2r{width:360px;height: 340px;border:1px solid #d0d0d0;margin-top: 60px;background: #fff;padding:15px;word-break:break-all；word-wrap:break-word;overflow-y: scroll;overflow-x:hidden;}
+.reg2r{width:360px;height: 340px;border:1px solid #d0d0d0;margin-top: 60px;background: #fff;padding:15px;word-break:break-all;word-wrap:break-word;overflow-y: scroll;overflow-x:hidden;}
 .reg2r h3{height: 34px;line-height: 34px;color:#ed6d00;text-align: center;font-size: 20px;font-weight: normal;}
 .reg2r p{width:345px;font-size: 14px;text-indent: 2em;}
 .reg2next{text-align: center;}
@@ -72,7 +72,7 @@ body{
 .foot1 a:hover{color:#ed6d00;}
 .footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
 .foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
-.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block;float: left;margin-right: 10px;}
 .foot2con p span{margin-right: 15px;line-height: 25px;}
 .foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
 .foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}

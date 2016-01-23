@@ -11,6 +11,7 @@
                 <div class="list_xiangl fl">
                     <img src="{{ asset('/images/new_list_menu.png') }}">
                     <ul class="newlistmenu_ul">
+
                         <li><a href="/article?cateId=7">网站公告</a></li>
                         <li><a href="/article?cateId=1">新闻资讯</a></li>
                         <li><a href="/article?cateId=7">催收技巧</a></li>
