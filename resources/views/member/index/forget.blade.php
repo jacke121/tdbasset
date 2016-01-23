@@ -179,6 +179,7 @@
                         }else{
                             $(".step3").hide();
                             $(".step4").show();
+                            jumpto();
                         }
                     }
                 }
@@ -279,6 +280,25 @@
             $("#btnSendCode"+currentnum).html(curCount);//"请在" + curCount + "秒内输入验证码");
         }
     }
+    var InterValObj2; //timer变量，控制时间
+    var count2 = 2; //间隔函数，1秒执行
+    var curCount2;//当前剩余秒数
+    function jumpto() {
+        //设置button效果，开始计时
+        $("#jumpTo").html(curCount);//"请在" + curCount + "秒内输入验证码");
+        InterValObj2 = window.setInterval(SetRemainTime2, 1000); //启动计时器，1秒执行一次
+    }
+    //timer处理函数
+    function SetRemainTime2() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj2);//停止计时器
+            location.href="/auth/login";
+        }
+        else {
+            curCount--;
+            $("#jumpTo").html(curCount);//"请在" + curCount + "秒内输入验证码");
+        }
+    }
 </script>
 </head>
 <body>
@@ -354,7 +374,7 @@
                 <div class="repwd_step4"></div>
                 <div class="step4con">
                     <p class="step4con1">设置成功，请牢记新的登录密码</p>
-                    <p class="step4con2"><span id="jumpTo">5</span>自动跳转至<a href="http://www.qt361.com/login/toLogin">登录页</a></p>
+                    <p class="step4con2"><span id="jumpTo">3</span>自动跳转至<a href="/auth/login">登录页</a></p>
                 </div>
             </div>
         </div>
