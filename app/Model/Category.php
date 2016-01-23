@@ -74,6 +74,9 @@ class Category extends Model
         return self::$catData;
     }
 
+public static function getCateExcept3(){
+    return  self::where('id', '!=', 3)->get();
+}
     /**
      * 根据别名取分类信息
      * @param $asName

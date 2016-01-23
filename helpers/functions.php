@@ -128,12 +128,14 @@ if (!function_exists('viewInit')) {
         $view = app('view');
         $nav = app('App\Model\Navigation');
         $links = app('App\Model\Links');
-
-
+        $cate = app('App\Model\Category');
+        $view->share('articleCatList', $cate::getCateExcept3());
+/**
         $view->share('hotArticleList', $article::getHotArticle(3));
         $view->share('tagList', $tags::getHotTags(12));
         $view->share('navList', $nav::getNavigationAll());
         $view->share('linkList', $links::getLinkList());
+ * */
     }
 }
 

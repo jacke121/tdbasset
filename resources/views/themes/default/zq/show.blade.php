@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/list.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/show.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('/plugin/lightbox2/css/lightbox.min.css') }}">
 @section('content')
         <!--内容-->
 <div class="bg_h">
@@ -32,9 +33,9 @@
                 <div class="evidence_bottom">
                     <a href="#" class="evidence_left"></a>
                     <ul class="evidence_ul">
-                        <li><img src="../images/evidence_img.png"></li>
-                        <li><img src="../images/evidence_img.png"></li>
-                        <li style="margin-right:0;"><img src="../images/evidence_img.png"></li>
+                        <li><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
+                        <li><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
+                        <li style="margin-right:0;"><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
                     </ul>
                     <a href="#" class="evidence_right"></a>
                 </div>
@@ -107,11 +108,18 @@
 </div>
 
 <div class="clearfix"></div>
-
+<script src="{{ asset('/plugin/lightbox2/js/lightbox-plus-jquery.min.js') }}"></script>
 <script type="text/javascript">
     $.ajaxSetup({
         headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
     });
+
+    lightbox.option({
+        'resizeDuration': 200,
+        'maxHeight':600,
+        'wrapAround': true
+    })
+
 
 function apply(param){
     $.ajax({
