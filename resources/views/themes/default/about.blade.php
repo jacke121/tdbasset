@@ -21,7 +21,7 @@
             </div>
             </div>
     </section>
-    
+
     <div class="clearfix"></div>
     @include('themes.default.foot')
 
