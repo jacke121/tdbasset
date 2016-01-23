@@ -113,11 +113,58 @@
     </div>
 </div>
 <script src="{{ asset('/js/PCASClass.js') }}"></script>
+<script src="{{ asset('/plugin/swfupload/swfupload.js') }}"></script>
+<script src="{{ asset('/plugin/swfupload/swfupload.queue.js') }}"></script>
+<script src="{{ asset('/plugin/swfupload/fileprogress.js') }}"></script>
+<script src="{{ asset('/plugin/swfupload/handlers.js') }}"></script>
+
 <script type="text/javascript">
     $("#types_{{$types}}").addClass("current");
     new PCAS("province,{{$province}}","city,{{$city}}","area,{{$area}}");
     $("#debt_time_{{$debt_time}}").addClass("currentOne");
     $("#debt_money_{{$debt_money}}").addClass("currentOne");
+
+    var swfu;
+    window.onload = function() {
+        var settings = {
+            flash_url : "{{ asset('/plugin/swfupload/swfupload.swf') }}",
+            upload_url: "",
+            post_params: {"_token" : "{{ csrf_token() }}"},
+            file_size_limit : "100 MB",
+            file_types : "*.*",
+            file_types_description : "All Files",
+            file_upload_limit : 100,
+            file_queue_limit : 0,
+            custom_settings : {
+                progressTarget : "fsUploadProgress",
+                cancelButtonId : "btnCancel"
+            },
+            debug: false,
+
+            // Button settings
+            button_image_url: "{{ asset('/plugin/swfupload/color_img.png')}}",
+            button_width: "65",
+            button_height: "29",
+            button_placeholder_id: "spanButtonPlaceHolder",
+            button_text: '<span class="theFont">Hello</span>',
+            button_text_style: ".theFont { font-size: 16; }",
+            button_text_left_padding: 12,
+            button_text_top_padding: 3,
+
+            // The event handler functions are defined in handlers.js
+            file_queued_handler : fileQueued,
+            file_queue_error_handler : fileQueueError,
+            file_dialog_complete_handler : fileDialogComplete,
+            upload_start_handler : uploadStart,
+            upload_progress_handler : uploadProgress,
+            upload_error_handler : uploadError,
+            upload_success_handler : uploadSuccess,
+            upload_complete_handler : uploadComplete,
+            queue_complete_handler : queueComplete	// Queue plugin event
+        };
+        swfu = new SWFUpload(settings);
+    };
+
     jQuery(document).ready(function($) {
         $(".debt_time li a").click(function(){
             $(".debt_time li a").removeClass("currentOne");

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Model\ArticleStatus;
 use App\Model\Article;
+use Illuminate\Support\Facades\Input;
 
 class ArticleController extends Controller
 {
@@ -18,15 +19,17 @@ class ArticleController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $article = Article::getNewsArticle(8);
+        $catId = $request->input('cateId');
+        if(empty( $catId)){
+            $catId = 1;
+        }
+        $articleList = Article::where("cate_id", $catId)->orderBy('id', 'DESC')->paginate(10);
         viewInit();
-        $page = new EndaPage($article['page']);
-        return homeView('index', array(
-            'articleList' => $article,
-            'page' => $page
+        return homeView('articlelist', array(
+            'articleList' => $articleList,
+            'cateId' => $catId
         ));
     }
 
@@ -41,7 +44,7 @@ class ArticleController extends Controller
     {
         $article = Article::getArticleModelByArticleId($id);
 
-        ArticleStatus::updateViewNumber($id);
+        //ArticleStatus::updateViewNumber($id);
         $data = array(
             'article' => $article,
         );

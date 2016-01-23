@@ -7,6 +7,7 @@
                     </form>
 
     <script src="{{ asset('/js/jquery.validate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/plugin/swfupload/.js') }}"></script>
     <script type="text/javascript">
 
         jQuery.validator.addMethod("isNumber", function(value, element) {
