@@ -1,12 +1,11 @@
 @extends('backend.authe.common')
-<script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function(){
-        setindex("liauthe");
-        setmembertype("liwait");
-    });
-</script>
 @section('content')
+    <script type="text/javascript">
+        $(function(){
+            setindex("liauthe");
+            setmembertype("liwait");
+        });
+    </script>
 <div class="col-md-10">
     <div class="panel panel-default">
         <div class="panel-heading">律师会员注册认证</div>
@@ -23,6 +22,7 @@
         <div class="mainr" >
             <!--个人用户认证审核中页面-->
             {!! Form::model($member, ['url' => ['/backend/authe/approve', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
+            <input type="hidden" name="id" value="{{ $member->id}}">
             <div class="renover">
                 <h3 class="fa_renh">
                     个人用户认证
