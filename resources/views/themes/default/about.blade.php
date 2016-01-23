@@ -21,6 +21,10 @@
             </div>
             </div>
     </section>
+    
+    <div class="clearfix"></div>
+    @include('themes.default.foot')
+
     <script type="text/javascript">
     $(document).ready(function(){
         var aboutPath = $.trim(window.location.pathname.split('/')[2]);

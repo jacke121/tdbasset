@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-*{ margin:0; padding:0; list-style:none; border:none; font-family:"Microsoft YaHei";}
+*{ margin:0; padding:0; list-style:none; border:none;font-family:"Microsoft YaHei";}
 a{ text-decoration:none;}
 /*公共样式*/
 .f14{ font-size:14px; color:#999999;}
@@ -23,6 +23,7 @@ a{ text-decoration:none;}
 .center_right{ width:609px; height:96px; line-height:77px; float:right; text-align:center;}
 .center_right dt{ width:105px; float:left; margin-top:8px;  height: 88px; }
 .center_right dd{ width:1px; height:15px; background:#E4E4E6; float:left; margin-top:39px;}
+.center_right dd,.center_right dt{font-weight: normal;line-height:77px}
 .center_right .inDex{ display:inline-block; width:79px;}
 .center_right dt a{ color:#999999; font-size:18px;}
 .center_right dt a:hover{ color:#0092d7;}
@@ -85,7 +86,7 @@ a{ text-decoration:none;}
 .zhaobiaoTop ul li{border-top: 1px solid #F1F1F1;float: left;width: 166px;text-align: center;height:37px;line-height: 37px;color: #9A9A9A; }
 .zhaobiaoBottom ul li{height: 75px;line-height: 75px;border-top: 1px solid #F1F1F1;float: left;width: 166px;text-align: center;color: #9A9A9A; }
 .zhaobiaoBottom .blue01{padding: 27px 0 0 53px;width: 113px;height: 48px;}
-.zhaobiaoBottom .blue01 span{background-color: #0092D7;display: block;width: 76px;height: 26px;text-align: center;line-height: 26px;color: #ffborder-radius: 5px;}
+.zhaobiaoBottom .blue01 span{background-color: #0092D7;display: block;width: 76px;height: 26px;text-align: center;line-height: 26px;color: #fff;border-radius: 5px;}
 .zhaobiaoBottom .blue02{background:url(../images/zuobiao.jpg) no-repeat center;background-position:42px;}
 .news{ height:540px; background:#F4F4F4; overflow: hidden;}
 .news .center{background: #fff;overflow: hidden;}
@@ -134,7 +135,7 @@ a{ text-decoration:none;}
 .foot1 a:hover{color:#ed6d00;}
 .footh3{padding:13px 0px 20px;font-size: 16px;font-weight: normal;color: #fff;}
 .foot2{position: absolute; width:400px; left:535px;top:20px;text-align: left;font-size:14px;}
-.foot2 .footbg{width:32px;height:32px;display: inline-block; background:url("../images/foot_icon.png") no-repeat 0px -32px;float: left;margin-right: 10px;}
+.foot2 .footbg{width:32px;height:32px;display: inline-block;float: left;margin-right: 10px;}
 .foot2con p span{margin-right: 15px;line-height: 25px;}
 .foot3{position: absolute;right:150px;top:20px;text-align: center; background:url(../images/foot_bg.jpg) no-repeat 0px center; padding-left:50px;}
 .foot3h{padding:13px 0px 15px; font-size:14px; font-weight:normal; color: #fff;}
@@ -146,5 +147,105 @@ a{ text-decoration:none;}
 .footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
 .footlink a{ font-size:16px; color:#fff; margin-right:30px;}
 
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.pagination > li {
+    display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #337ab7;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+    margin-left: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+    color: #23527c;
+    background-color: #eeeeee;
+    border-color: #dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    z-index: 2;
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+    color: #777777;
+    background-color: #ffffff;
+    border-color: #dddddd;
+    cursor: not-allowed;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+    padding: 10px 16px;
+    font-size: 18px;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
 
+.clearfix{
+    clear: both;
+}
+
+.pull-right{
+    float:right;
+}
 

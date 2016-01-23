@@ -103,15 +103,21 @@
 
            @if(sizeof($zqList)==0) <h3 class="text-center"> 此类选择没有数据 </h3>@endif
 
+            <!--分页-->
+            <div class="container">
+                <div class="pull-right">
+                    {!! $zqList->render() !!}
+                </div>
+            </div>
+
         </div>
-        <!--分页-->
-        <div class="container">
-            <div class="pull-right">
-            {!! $zqList->render() !!}
-           </div>
-        </div>
+
+      <div class="clearfix"></div>
+      @include('themes.default.foot')
+
     </div>
 </div>
+
 <script src="{{ asset('/js/PCASClass.js') }}"></script>
 <script src="{{ asset('/plugin/swfupload/swfupload.js') }}"></script>
 <script src="{{ asset('/plugin/swfupload/swfupload.queue.js') }}"></script>
