@@ -117,6 +117,7 @@
 	<label class="col-sm-2 control-label" for="zq_file">5、上传相关凭证</label>
 	    <div class="col-sm-6">
 			<input type="file" name="zq_file" value="{{ (isset($zq->zq_file) ?$zq->zq_file:'') }}" />
+
 			<div><span class="text-info">服务承诺:</span> 我们会对您所上传的：合同、协议、借条、欠条、判决书等内容进行严格保密，并对相关身份内容进行模糊处理。以确保您的信息不会外泄。</div>
 		</div>
 	<div class="col-sm-4 help-block"></div>
