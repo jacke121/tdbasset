@@ -22,7 +22,6 @@
     function findPwdStep(step) {
         if(step==1){
             sendMessage();
-
         }
         else if(step==2){
             $(".step2").hide();
@@ -73,20 +72,14 @@
                     element.after(error);
                 },
                 rules: {
-                    password: {   required: true, rangelength: [6, 16] },
-                    confirm_password: { required: true, rangelength: [6, 16],equalTo: "#password"
-                    }
+                    password: {   required: true, rangelength: [6, 16] }
+
                 },
                 messages: {
                     password: {
                         required: "请填写密码！",
                         rangelength: "格式：6-16个字符(数字、字母)",
                         remote: "原始密码不正确,请重新填写！" //这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
-                    },
-                    confirm_password: {
-                        required: "请填写确认密码！",
-                        rangelength: "格式：6-16个字符(数字、字母)",
-                        equalTo: "两次输入密码不一致！"
                     }
                 },
                 success: function (label) {
@@ -102,8 +95,8 @@
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                                $(".pwdcon1").hide();
-                                $(".pwdcon2").show();
+                                $(".step1").hide();
+                                $(".step2").show();
                             }
                         }
                     }
@@ -166,7 +159,7 @@
                     url: "/auth/checkname", async: false,
                     headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
                     data: {
-                        type_data: "modify", name: value
+                        type: "name", value: value
                     },
                     dataType: "json", //数据格式:JSON
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -175,9 +168,11 @@
                     success: function (msg) {
                         if (msg['State'] > 0) {
                             //有异常
+                            alert( msg['MsgState']);
                             returnVal = false;
                             customError = msg['MsgState'];
                         } else {
+                            $("#mobile").val(msg['MsgState']);
                             returnVal = true;
                         }
                     },
@@ -222,7 +217,7 @@
     var InterValObj; //timer变量，控制时间
     var count = 15; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
-    function sendMessage(num) {
+    function sendMessage() {
        var mobile=$("#mobile").val();
         curCount = count;
         //设置button效果，开始计时
@@ -269,7 +264,8 @@
             <h3 class="repwdtit">找回密码</h3>
             <div class="step1">
                 {!! Form::open(['id'=>'step1','url' => '/auth/sendsms', 'method' => 'post','class'=>'form-horizontal']) !!}
-                <input type="hidden" name="step" value="3">
+                <input id="mobile" type="hidden" name="mobile" value="3">
+                <input id="mobile" type="hidden" name="type" value="forget">
                 <div class="repwd_step1"></div>
                 <div class="int">
                     <span class="intspan">用户名</span>

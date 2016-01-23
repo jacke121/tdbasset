@@ -88,6 +88,32 @@ class AuthController extends Controller
         }
         return parent::returnJson($code, $msg);
     }
+
+
+    public function postCheckname(Request $request)
+    {
+        $code =1;
+        $msg = "用户不存在";
+        $type = $request->get('type');
+        if($type=="name"){
+            $value = $request->get('value');
+            $data = DB::select("select * from members where lifestatus=1 and name ='" . $value . "'");
+            if (sizeof($data) ==1) {
+                Log::error("postCheckname:" . 1);
+                $code = 0;
+                $msg = $data[0]->mobile;
+            }
+        }else if($type=="cardno"){
+            $value = $request->get('value');
+            $data = DB::select("select * from members where lifestatus=1 and id !=".$this->auth->get()->id." and cardno ='" . $value . "'");
+            if (sizeof($data) > 0) {
+                Log::error("postCheckemail:" . 1);
+                $code = 1;
+                $msg = "号码已存在";
+            }
+        }
+        return parent::returnJson($code, $msg);
+    }
     public function postCheckapprove(Request $request)
     {
         $code = 0;
