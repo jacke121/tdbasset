@@ -16,6 +16,8 @@
         span.success {
             padding-left: 10px;
         }
+        .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
+        .content{display:none;width:500px;height:300px;position:fixed;top:50%;margin-top:-150px;background:#fff;z-index:3;left:50%;margin-left:-250px;}
     </style>
 
     <script type="text/javascript">
@@ -110,10 +112,14 @@
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
+                                $('.bg').fadeOut(400);
+                                $('.content').fadeOut(400);
                                 $(".tan").css("display","");
                             }
                         }
                     }
+                    $('.bg').fadeIn(200);
+                    $('.content').fadeIn(400);
                     $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
@@ -184,6 +190,12 @@
     <div class="maincon">
         @include('member.left_nav')
 <!--资格认证-->
+        <div class="bg"></div>
+        <div class="content">
+            <h1>欢迎新浪微博互粉！</h1>
+            http://www.weibo.com/leavingseason
+            <h1>相信音乐，相信五月天</h1>
+        </div>
         <div class="mainr" >
             <div class="fa_ren">
                 <h3 class="fa_renh">资格认证</h3>
