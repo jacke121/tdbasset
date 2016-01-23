@@ -11,16 +11,14 @@
                 <div class="list_xiangl fl">
                     <img src="{{ asset('/images/new_list_menu.png') }}">
                     <ul class="newlistmenu_ul">
-
-                        <li><a href="/article?cateId=7">网站公告</a></li>
-                        <li><a href="/article?cateId=1">新闻资讯</a></li>
-                        <li><a href="/article?cateId=7">催收技巧</a></li>
-                        <li class="nobor"><a  href="article?cateId=5">债务常识</a></li>
+                        @foreach($articleCatList as $k=> $v)
+                            <li><a href="{{URL('article?cateId='.$v->id)}}">{{$v->cate_name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <!--咨询列表-->
                 <div class="new_listconl fl">
-                    <h3 class="listltit"><a href="javascript:;" target="_self" class="listltitx">首页</a> &gt;{{ App\Model\Category::getCategoryNameByCatId($article->cate_id)}}</h3>
+                    <h3 class="listltit"><a href="javascript:;" target="_self" class="listltitx">首页</a> &gt;{{ App\Model\Category::getCategoryNameByCatId($article->cate_id)}}/详情</h3>
 
                     <h1 style="text-align: center; margin-top: 50px;">{{ $article->title }}</h1>
                     <hr>

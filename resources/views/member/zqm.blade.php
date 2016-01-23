@@ -14,7 +14,7 @@
     <script src="{{ asset('/plugin/swfupload/handlers.js') }}"></script>
 
     <script type="text/javascript">
-        
+
         var swfu;
         window.onload = function() {
             var settings = {
