@@ -26,8 +26,6 @@
 </style>
 @section('modules')
 <div class="container-fluid">
-
-
     <div class="row">
 
         <div class="col-md-2">
