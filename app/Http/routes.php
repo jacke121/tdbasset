@@ -18,6 +18,7 @@ Route::get('service', 'IndexControler@service');
 Route::get('jion', 'IndexControler@jion');
 Route::get('users', 'IndexControler@users');
 Route::get('message', 'IndexControler@message');
+Route::get('kit/captcha/{tmp}', 'KitController@captcha');
 Route::post('message/save', 'IndexControler@msave');
 
 Route::post('zq/apply', 'ZqController@apply');

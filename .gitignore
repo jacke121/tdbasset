@@ -1,5 +1,8 @@
 /bootstrap/compiled.php
 .env
 .idea
+.project
+.settings/
+.buildpath
 !.env
-!/public/uploads/images
+/public/uploads/images

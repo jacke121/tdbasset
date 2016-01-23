@@ -13,7 +13,7 @@
         }
 
         span.success {
-            background: url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
+/*             background: url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px; */
             padding-left: 16px;
         }
     </style>
@@ -204,7 +204,7 @@
 @include('themes.default.top')
         <!--广告位-->
 <div class="banner">
-    <img src="../images/register—_gg.jpg">
+    <img src="{{ asset('/')}}images/register—_gg.jpg">
 </div>
 <!--reg2-->
 <form id="formregister" class="form-horizontal" role="form" method="POST" action="/auth/register">
