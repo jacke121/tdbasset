@@ -284,19 +284,20 @@
     var count2 = 2; //间隔函数，1秒执行
     var curCount2;//当前剩余秒数
     function jumpto() {
+        curCount2=count2;
         //设置button效果，开始计时
-        $("#jumpTo").html(curCount);//"请在" + curCount + "秒内输入验证码");
+        $("#jumpTo").html(curCount2+" "+"s");//"请在" + curCount + "秒内输入验证码");
         InterValObj2 = window.setInterval(SetRemainTime2, 1000); //启动计时器，1秒执行一次
     }
     //timer处理函数
     function SetRemainTime2() {
-        if (curCount == 0) {
+        if (curCount2 == 0) {
             window.clearInterval(InterValObj2);//停止计时器
-            location.href="/auth/login";
+            window.location.href="/auth/login";
         }
         else {
-            curCount--;
-            $("#jumpTo").html(curCount);//"请在" + curCount + "秒内输入验证码");
+            curCount2--;
+            $("#jumpTo").html(curCount2+" "+"s");//"请在" + curCount + "秒内输入验证码");
         }
     }
 </script>
