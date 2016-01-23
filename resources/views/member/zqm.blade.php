@@ -1,7 +1,7 @@
 @extends('member.app')
 @section('modules')
     <script src="{{ asset('/js/PCASClass.js') }}"></script>
-                    <form id="input_form" class="form-horizontal" @if(isset($zq)) action="{{URL('member/zqm/update')}}" @else action="{{URL('member/zqm/store')}}" @endif method="POST">
+                    <form id="input_form" enctype="multipart/form-data"  class="form-horizontal" @if(isset($zq)) action="{{URL('member/zqm/update')}}" @else action="{{URL('member/zqm/store')}}" @endif method="POST">
                         @if(isset($zq)) <input type="hidden" name="id" value="{{$zq->id}}"> @endif
                         @yield('content')
                     </form>
@@ -19,7 +19,7 @@
         window.onload = function() {
             var settings = {
                 flash_url : "{{ asset('/plugin/swfupload/swfupload.swf') }}",
-                upload_url: "",
+                upload_url: "/member/authe/uploadfile",
                 post_params: {"_token" : "{{ csrf_token() }}"},
                 file_size_limit : "100 MB",
                 file_types : "*.*",
@@ -30,8 +30,7 @@
                     progressTarget : "fsUploadProgress",
                     cancelButtonId : "btnCancel"
                 },
-                debug: false,
-
+                debug: true,
                 // Button settings
                 button_image_url: "{{ asset('/plugin/swfupload/color_img.png')}}",
                 button_width: "65",

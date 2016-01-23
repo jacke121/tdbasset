@@ -1,8 +1,9 @@
 <?php namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Log;
 
 abstract class Controller extends BaseController {
 use DispatchesCommands, ValidatesRequests;
@@ -53,5 +54,51 @@ use DispatchesCommands, ValidatesRequests;
                 }
                 return $checkstr;
         }
+        function movefile(Request $request,$targetpath){
 
+                $cart = array();
+                $cart['status'] =1;
+                $cart['msg'] ="图片不能为空";
+                $path="";
+                if ($request->hasFile('file')) {
+                        if (is_array($request->File('file'))) {
+                                $files = $request->File('file');
+                                foreach ($files as $file) {
+                                        Log::error($file->getClientOriginalName());
+                                        $allowed_extensions = ["png", "jpg", "gif"];
+                                        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                                                $cart['status']=1;
+                                                $cart['msg'] ="图片只支持png, jpg or gif";
+                                                return $cart;
+                                        }
+                                        $destinationPath = 'uploads/images/'.$targetpath."/";
+                                        $extension = $file->getClientOriginalExtension();
+                                        $fileName = str_random(10) .'.'.$extension;
+                                        $file->move($destinationPath, $fileName);
+                                        Log::error("uploads:".$destinationPath.$fileName);
+                                        if(empty($path)){
+                                                $path.=$destinationPath.$fileName;
+                                        }else{
+                                                $path.=";".$destinationPath.$fileName;
+                                        }
+                                }
+                        } else {
+                                $file = $request->file('file');
+                                $allowed_extensions = ["png", "jpg", "gif"];
+                                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+                                        $cart['status']=1;
+                                        $cart['msg'] ="图片只支持png,jpg,gif";
+                                        return $cart;
+                                }
+                                $destinationPath = 'uploads/images/person/';
+                                $extension = $file->getClientOriginalExtension();
+                                $fileName = str_random(10).'.'.$extension;
+                                $file->move($destinationPath, $fileName);
+                                $path=$destinationPath.$fileName;
+                        }
+                        $cart['status'] =0;
+                        $cart['msg'] =$path;
+                }
+                return $cart;
+        }
 }

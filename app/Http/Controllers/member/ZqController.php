@@ -25,6 +25,7 @@ class ZqController extends Controller
 
     public function store(Request $request)
     {
+
         if (self::createZq($request)->save()) {
             return Redirect::to('member/zqList/index');
         } else {
@@ -117,7 +118,6 @@ class ZqController extends Controller
         $zq->zq_cscs_dh = Input::get('zq_cscs_dh');
         $zq->zq_cscs_wt = Input::get('zq_cscs_wt');
 
-        $zq->zq_file = Input::get('zq_file');
         $zq->zq_ms = Input::get('zq_ms');
 
         $zq->o_name = Input::get('o_name');
@@ -161,6 +161,12 @@ class ZqController extends Controller
 
         $zq->uid = Auth::member()->get()->id;
 
+        $cart= parent::movefile($request,"project");
+        if($cart['status']==1){
+//            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $zq->zq_file = $cart['msg'];
+        }
         return $zq;
     }
 

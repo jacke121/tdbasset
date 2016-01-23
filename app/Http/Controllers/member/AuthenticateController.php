@@ -48,7 +48,7 @@ class AuthenticateController extends Controller
     public function postAuthelayer(Request $request)
     {
         Log::error('postAuthelayer:' . $request->get('itemname'));
-        $cart= $this->movefile($request);
+        $cart= $this->movefile($request,"layer");
         if($cart['status']==1){
             return parent::returnJson(1,$cart['msg']);
         }else{
@@ -70,61 +70,9 @@ class AuthenticateController extends Controller
         return parent::returnJson(0, "提交成功");
     }
 
-    public function getAutheperson(Request $request)//见明之意，就是提交请求到login方法，
-    {
-        return view('member.index.autheperson');
-    }
-
-    private function movefile(Request $request){
-
-        $cart = array();
-        $cart['status'] =1;
-        $cart['msg'] ="图片不能为空";
-        $path="";
-        if ($request->hasFile('file')) {
-            if (is_array($request->File('file'))) {
-                $files = $request->File('file');
-                foreach ($files as $file) {
-                    Log::error($file->getClientOriginalName());
-                    $allowed_extensions = ["png", "jpg", "gif"];
-                    if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-                        $cart['status']=1;
-                        $cart['msg'] ="图片只支持png, jpg or gif";
-                        return $cart;
-                    }
-                    $destinationPath = 'uploads/images/person/';
-                    $extension = $file->getClientOriginalExtension();
-                    $fileName = str_random(10) .'.'.$extension;
-                    $file->move($destinationPath, $fileName);
-                    Log::error("uploads:".$destinationPath.$fileName);
-                    if(empty($path)){
-                        $path.=$destinationPath.$fileName;
-                    }else{
-                        $path.=";".$destinationPath.$fileName;
-                    }
-                }
-            } else {
-                $file = $request->file('file');
-                $allowed_extensions = ["png", "jpg", "gif"];
-                if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-                    $cart['status']=1;
-                    $cart['msg'] ="图片只支持png,jpg,gif";
-                    return $cart;
-                }
-                $destinationPath = 'uploads/images/person/';
-                $extension = $file->getClientOriginalExtension();
-                $fileName = str_random(10).'.'.$extension;
-                $file->move($destinationPath, $fileName);
-                $path=$destinationPath.$fileName;
-            }
-            $cart['status'] =0;
-            $cart['msg'] =$path;
-        }
-        return $cart;
-    }
     public function postAutheperson(Request $request)
     {
-        $cart= $this->movefile($request);
+        $cart= $this->movefile($request,"person");
         if($cart['status']==1){
             return parent::returnJson(1,$cart['msg']);
         }else{
@@ -154,7 +102,7 @@ class AuthenticateController extends Controller
 
     public function postAuthecompany(Request $request)
     {
-        $cart= $this->movefile($request);
+        $cart= $this->movefile($request,"company");
         if($cart['status']==1){
             return parent::returnJson(1,$cart['msg']);
         }else{
