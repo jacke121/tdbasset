@@ -97,7 +97,7 @@
                 
                 <p class="logtt">
                 <input class="log_check" hidden="hidden" type="checkbox" checked="checked"><span hidden="hidden">一周内自动登录</span>
-                <a href="#" class="lookpwd">找回密码</a>
+                <a href="{{url('/auth/forget') }}" class="lookpwd">忘记密码</a>
                     <br />
                     <span id="errormsg" href="#" style="padding-left: 20px; color: #E15F63" ></span>
                 </p>

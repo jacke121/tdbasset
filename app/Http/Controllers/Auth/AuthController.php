@@ -11,6 +11,7 @@ use App\Http\Response;
 use Illuminate\Http\Request;
 use Redirect, Input;
 use App\Model\Member;
+use App\Model\Member_log;
 use Log;
 use Hash;
 use Auth;
@@ -50,6 +51,13 @@ class AuthController extends Controller
         Log::error('login:' . $request->get('name') . "password" . $request->get('password'));
         //过滤掉前端数据，只留下name和password
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
+
+             $member_log = new Member_log();
+               $member_log->memberid=$this->auth->get()->id;
+        $member_log->ip=$request->getClientIp();
+        $member_log->action="login";
+        $member_log->type=1;
+        $member_log->save();
             return parent::returnJson(0, "登录成功");
         }
         return parent::returnJson(1, "用户名或密码错误");
@@ -77,6 +85,32 @@ class AuthController extends Controller
         if (sizeof($data) > 0) {
             $code = 1;
             $msg = "用户名已存在";
+        }
+        return parent::returnJson($code, $msg);
+    }
+
+
+    public function postCheckname(Request $request)
+    {
+        $code =1;
+        $msg = "用户不存在";
+        $type = $request->get('type');
+        if($type=="name"){
+            $value = $request->get('value');
+            $data = DB::select("select * from members where lifestatus=1 and name ='" . $value . "'");
+            if (sizeof($data) ==1) {
+                Log::error("postCheckname:" . 1);
+                $code = 0;
+                $msg = $data[0]->mobile;
+            }
+        }else if($type=="cardno"){
+            $value = $request->get('value');
+            $data = DB::select("select * from members where lifestatus=1 and id !=".$this->auth->get()->id." and cardno ='" . $value . "'");
+            if (sizeof($data) > 0) {
+                Log::error("postCheckemail:" . 1);
+                $code = 1;
+                $msg = "号码已存在";
+            }
         }
         return parent::returnJson($code, $msg);
     }
@@ -156,7 +190,14 @@ class AuthController extends Controller
         $member->save();
         if ($this->auth->attempt(array('name' => $member->name, 'password' => Input::get('password')), $request->has('remember'))) {
             //登录成功
-            $userid = $member->id;
+
+        $member_log = new Member_log();
+        $member_log->ip=$request->getClientIp();
+        $member_log->memberid=$this->auth->get()->id;
+        $member_log->action="register";
+        $member_log->type=1;
+        $member_log->save();
+        $userid = $member->id;
             $ip = $_SERVER['REMOTE_ADDR'];
             return parent::returnJson(0, "注册成功");
             //后边就不写了，主要是拿到登录用户信息就好
@@ -199,6 +240,20 @@ class AuthController extends Controller
     }
 
     public function postModifypwd(Request $request) {
+        //更新密码
+        $array = ["password" => Hash::make($request->get('password'))];
+        if (Member::where('id', $this->auth->get()->id)->update($array)) {
+            return parent::returnJson(0, "密码修改成功");
+        }
+        return parent::returnJson(1, "密码修改失败");
+    }
+
+        public function getForget(Request $request) {
+        //更新密码
+       return view('member.index.forget');
+    }
+
+        public function postForget(Request $request) {
         //更新密码
         $array = ["password" => Hash::make($request->get('password'))];
         if (Member::where('id', $this->auth->get()->id)->update($array)) {

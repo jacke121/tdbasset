@@ -4,7 +4,7 @@
     <title>{{systemConfig('title','Enda Blog') }} -lbg{{ systemConfig('subheading','Enda Blog') }}</title>
     <meta name="keywords" content="{{ systemConfig('seo_key') }}" />
     <meta name="description" content="{{ systemConfig('seo_desc') }}">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+
 
 <script src="../js/index.js"></script>
 
@@ -20,9 +20,9 @@
 <!--banner部分-->
 <div class="slides">
     <div class="slideInner">
-        <a href="#" style="background:url(../images/banner.jpg) no-repeat center top;"></a>
-        <a href="#" style="background:url(../images/banner.jpg) no-repeat center top;"></a>
-        <a href="#" style="background:url(../images/banner.jpg) no-repeat center top;"></a>
+        <a href="#" style="background:url({{ URL::asset('/')}}images/index_banner1.png) no-repeat center top;"></a>
+        <a href="#" style="background:url({{ URL::asset('/')}}images/index_banner2.png) no-repeat center top;"></a>
+        <a href="#" style="background:url({{ URL::asset('/')}}images/index_banner3.png) no-repeat center top;"></a>
         
     </div>
     <div class="nav">
@@ -30,6 +30,20 @@
         <a class="next" href="javascript:;"></a>
     </div>
 </div>
+<script >
+$(document).ready(function() {
+	$(".slideInner").slide({
+		slideContainer: $('.slideInner a'),
+		effect: 'easeOutCirc',
+		autoRunTime: 5000,
+		slideSpeed: 1000,
+		nav: true,
+		autoRun: true,
+		prevBtn: $('a.prev'),
+		nextBtn: $('a.next')
+	})
+})
+</script>
 <!--内容部分-->
     <div style=" width:100%; height:161px; background:#F4F4F4;">
         <div class="center">
@@ -180,22 +194,19 @@
     <div class="hezuo">
         <div class="center">
             <div class="hezuoTitle">合作伙伴</div>
-            <div class="hl_main5_content">
-                <a class="hl_scrool_leftbtn" href="#"></a>
-                <a class="hl_scrool_rightbtn" href="#"></a>
-                <div class="hl_main5_content1">
-                    <ul style="margin-left: 0px;">
+            <div class="img_btn">
+                <a class="leftbtn" href="#"><img src="{{ URL::asset('/')}}images/btn_left.jpg"></a>
+                <a class="rightbtn" href="#"><img src="{{ URL::asset('/')}}images/btn_right.jpg"></a>
+               
+                    <ul class="hezuo_img">
                         <li><a href="#"><img src="../images/baidu.jpg"></a></li>
                         <li><a href="#" target="_blank" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
                         <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
                         <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
                         <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
                         <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
-                        <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
-                        <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
-                        <li><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
+                        <li style="margin-right: 0px;"><a href="#" target="_blank" title="" rel="nofollow"><img src="../images/baidu.jpg"></a></li>
                     </ul>
-                </div>
             </div>
         </div>
     </div>
