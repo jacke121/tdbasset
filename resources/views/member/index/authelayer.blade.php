@@ -224,8 +224,11 @@
 <!--律师用户认证的详情页面-->    
         <div class="mainr">
         <div id="divlayer" class="fa_ren"  @if ($type=="index") style="display:none" @endif>
-        <h3 class="fa_renh">律师用户认证</h3>
+        <h3 class="fa_renh" style="color: red">律师用户认证   @if ($member->authestatus==3) (认证未通过 )@endif </h3>
         <div class="fa_rencon">
+        @if ($member->authestatus==3) 
+ 		<p class="renper_p" style="color: red">未通过原因：{{$member->authesmsg}}</p>
+		@endif
             <p class="renper_p">完成用户认证后，您可在平台参与投标。</p>
             <p class="renper_p">以下所录入信息仅作为平台审核认证使用，不会造成您个人信息的泄露</p>
             <form method="post" id="layerform" enctype="multipart/form-data" action="/member/authe/authelayer">
