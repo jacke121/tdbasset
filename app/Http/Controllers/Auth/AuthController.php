@@ -151,6 +151,16 @@ class AuthController extends Controller
             if (sizeof($data) > 0) {
                 return parent::returnJson(1, "手机号已注册");
             }
+        }else if($request->get("type") == "forget"){
+        	
+        	$userInput = $request->get('captcha');
+        	
+        	Log::error('checkcaptcha:session:' . Session::get('milkcaptcha') . "getcode:" . $userInput);
+        	if (Session::get('milkcaptcha') == $userInput) {
+        		//用户输入验证码正确return '您输入验证码正确';
+        	} else {
+        		return parent::returnJson(1, "验证码错误");
+        	}
         }
         $checkCode = parent::get_code(6, 1);
         Session::put("m" . $mobile, $checkCode);

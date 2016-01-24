@@ -26,7 +26,7 @@ class KitController extends Controller {
 		$phrase = $builder->getPhrase();
 
 		//把内容存入session
-		Session::flash('milkcaptcha', $phrase);
+		Session::put('milkcaptcha', $phrase);
 		//生成图片
 		header("Cache-Control: no-cache, must-revalidate");
 		header('Content-Type: image/jpeg');

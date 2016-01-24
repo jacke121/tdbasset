@@ -18,10 +18,7 @@
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
 <script src="{{asset('/js/jquery.form.js') }}"></script>
 <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
- <?php use Gregwar\Captcha\CaptchaBuilder;
-					$builder = new CaptchaBuilder;
-					$builder->build();
-					?>
+
 <script type="text/javascript">
     function findPwdStep(step) {
         if(step==1){
@@ -68,6 +65,7 @@
         }
     }
     $(function () {
+    	changecode();
             $("#step1").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -304,10 +302,12 @@
             $("#jumpTo").html(curCount2+" "+"s");//"请在" + curCount + "秒内输入验证码");
         }
     }
-    function  changecode(obj) {
+    function  changecode() {
+        
     	    $url = "{{ URL('kit/captcha') }}";
+    	    alert(Math.random());
     	        $url = $url + "/" + Math.random();
-    	$(obj).css("background-image","url("+$url+")");
+    	$("#acheckcode").css("background-image","url("+$url+")");
     }
    
 </script>
@@ -335,10 +335,8 @@
                 </div>
                 <div class="int">
                     <span class="intspan">验证码</span>
-                    <input type="text" class="intspe">
-                    <a href="javascript:;" onclick="changecode(this);" class="code"></a>
-                   
-                    <img src="<?php echo $builder->inline(); ?>" />
+                    <input type="text" class="intspe" name="captcha">
+                    <a id="acheckcode" href="javascript:;" onclick="changecode();" class="code"></a>
                     <span class="ts" style="display: none;">提示提示……</span>
                 </div>
                 <p class="reg1next">
