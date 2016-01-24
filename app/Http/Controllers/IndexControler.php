@@ -22,13 +22,21 @@ class IndexControler extends Controller
 {
     public function index()
     {
-        $zqList =  Zq::orderBy('id', 'DESC')->paginate(5);
+        $grZqList =  Zq::where(['status'=>1,'types'=>1])->orderBy('id', 'DESC')->paginate(5);
+        $gsZqList =  Zq::where(['status'=>1,'types'=>2])->orderBy('id', 'DESC')->paginate(5);
+        $fyZqList =  Zq::where(['status'=>1,'types'=>3])->orderBy('id', 'DESC')->paginate(5);
+
         $newsList = Article::where('cate_id',1)->orderBy('id', 'DESC')->paginate(3);
         $infoList = Article::where('cate_id',5)->orderBy('id', 'DESC')->paginate(4);
+        $messageList = Article::where('cate_id',7)->orderBy('id', 'DESC')->paginate(1);
+
         return view('themes.default.index',[
-            'zqList' => $zqList,
+            'grZqList' => $grZqList,
+            'gsZqList' => $gsZqList,
+            'fyZqList' => $fyZqList,
+            'messageList' => $messageList,
             'newsList' => $newsList,
-            'infoList' => $infoList,
+            'infoList' => $infoList
         ]);
     }
 
@@ -64,11 +72,11 @@ class IndexControler extends Controller
           $data -> title =  $request->input('title');
           $data -> content = $request->input('content');
           $data -> contact = $request->input('contact');
-          $data -> s_uid = Auth::member()->get()->id;
-          $data -> r_uid = $request->input('uid');
+          $data -> s_uid = 0;
+          $data -> r_uid = 0;
         $result = "留言失败";
         if( $data->save()){
-            $result = "留言成功";
+            $result = "留言成功，稍后管理员联系您";
         }
         return $result;
     }
