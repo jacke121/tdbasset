@@ -18,6 +18,7 @@
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
 <script src="{{asset('/js/jquery.form.js') }}"></script>
 <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+
 <script type="text/javascript">
     function findPwdStep(step) {
         if(step==1){
@@ -64,6 +65,7 @@
         }
     }
     $(function () {
+    	changecode();
             $("#step1").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -300,6 +302,13 @@
             $("#jumpTo").html(curCount2+" "+"s");//"请在" + curCount + "秒内输入验证码");
         }
     }
+    function  changecode() {
+        
+    	    $url = "{{ URL('kit/captcha') }}";
+    	        $url = $url + "/" + Math.random();
+    	$("#acheckcode").css("background-image","url("+$url+")");
+    }
+   
 </script>
 </head>
 <body>
@@ -325,8 +334,8 @@
                 </div>
                 <div class="int">
                     <span class="intspan">验证码</span>
-                    <input type="text" class="intspe">
-                    <a href="javascript:;" class="code"></a>
+                    <input type="text" class="intspe" name="captcha">
+                    <a id="acheckcode" href="javascript:;" onclick="changecode();" class="code"></a>
                     <span class="ts" style="display: none;">提示提示……</span>
                 </div>
                 <p class="reg1next">

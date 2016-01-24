@@ -202,7 +202,11 @@
 <!--个人用户认证的详情页面-->
         <div class="mainr">
 <div class="fa_ren">
-	<h3 class="fa_renh">个人用户认证</h3>
+	 <h3 class="fa_renh" style="color: red">个人用户认证  @if ($member->authestatus==3) (认证未通过 )@endif </h3>
+        <div class="fa_rencon">
+        @if ($member->authestatus==3) 
+ 		<p class="renper_p" style="color: red">未通过原因：{{$member->authesmsg}}</p>
+		@endif
 	<div class="fa_rencon">
         <form method="post" id="personform" enctype="multipart/form-data" action="/member/authe/autheperson">
             <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
