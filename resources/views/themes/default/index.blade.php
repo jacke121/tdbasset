@@ -30,33 +30,25 @@
         <a class="next" href="javascript:;"></a>
     </div>
 </div>
-<script >
-$(document).ready(function() {
-	$(".slideInner").slide({
-		slideContainer: $('.slideInner a'),
-		effect: 'easeOutCirc',
-		autoRunTime: 5000,
-		slideSpeed: 1000,
-		nav: true,
-		autoRun: true,
-		prevBtn: $('a.prev'),
-		nextBtn: $('a.next')
-	})
-})
-</script>
 <!--内容部分-->
     <div style=" width:100%; height:161px; background:#F4F4F4;">
         <div class="center">
             <div class="notice">
+                @foreach($messageList as $k=> $v)
+               <div class="noticeSlide">
+                   <div style="width: 999px;margin: auto">
                 <div class="notice_01">
                     <div style="float:left;padding:6px 10px 0 15px;"><img src="../images/notice_img.jpg" width="19" height="20"></div>
                     <span>网站公告&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <p style=" display:inline-block;">【用户新体验】债管家移动WAP端正式上线！</p>
+                    <p style=" display:inline-block;">{{$v->title}}</p>
                 </div>
                 <div class="notice_02">
-                    <span>2015-10-08</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" style="color:#999999; font-size:14px; margin-right:20px;">更多>></a>
+                    <span>{{$v->created_at}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a target="_blank" href="{{URL('article?cateId=7')}}" style="color:#999999; font-size:14px; margin-right:20px;">更多>></a>
                 </div>
+                   </div>
+               </div>
+                @endforeach
             </div>
             <div class="figure">
                 <ul class="figure_ul" style="width:264px;">
@@ -100,12 +92,12 @@ $(document).ready(function() {
     <div style="width:100%; height:1302px; background:#F4F4F4;">
         <div class="center">
             <ul class="control">
-                <li style="width:334px;" class="current"><a href="javascript:void(0)">个人债务宝</a></li>
-                <li style="width:333px;"><a href="javascript:void(0)">企业商账通</a></li>
-                <li style="width:331px;"><a href="javascript:void(0)">判决执行宝</a></li>
+                <li style="width:334px;" class="current" data="grZqList"><a href="javascript:void(0)">个人债务宝</a></li>
+                <li style="width:333px;" data="gsZqList"><a href="javascript:void(0)">企业商账通</a></li>
+                <li style="width:331px;" data="fyZqList"><a href="javascript:void(0)">判决执行宝</a></li>
             </ul>
             <div class="write">
-                <ul class="write_ul">
+                <ul id="grZqList" class="write_ul mainUl">
                     <li style=" height:37px; line-height:37px; padding-left:76px;">
                         <span style="width:140px;">形式</span>
                         <span style="width:140px;">城市</span>
@@ -113,7 +105,7 @@ $(document).ready(function() {
                         <span style="width:180px;">代理费率</span>
                         <span>逾期时间(天)</span>
                     </li>
-                    @foreach($zqList as $k=> $v)
+                    @foreach($grZqList as $k=> $v)
                     <li>
                         <ul class="writeul_ul">
                             <li style="width:144px;">
@@ -134,18 +126,80 @@ $(document).ready(function() {
                     </li>
                     @endforeach
                 </ul>
+
+                <ul id="gsZqList" class="write_ul mainUl hidden">
+                    <li style=" height:37px; line-height:37px; padding-left:76px;">
+                        <span style="width:140px;">形式</span>
+                        <span style="width:140px;">城市</span>
+                        <span style="width:180px;">资产总额</span>
+                        <span style="width:180px;">代理费率</span>
+                        <span>逾期时间(天)</span>
+                    </li>
+                    @foreach($gsZqList as $k=> $v)
+                        <li>
+                            <ul class="writeul_ul">
+                                <li style="width:144px;">
+                                    <div class="shape">类型</div>
+                                </li>
+                                <li style="width:165px;">
+                                    <div class="city">{{isset($v->o_province)?$v->o_province:"未选择"}}</div>
+                                </li>
+                                <li style="width:204px;">
+                                    <i class="blue">{{isset($v->zq_quote)?$v->zq_quote:"未填写"}}</i>万元
+                                </li>
+                                <li style="width:176px;"><i class="blue">{{isset($v->zq_czfs_sscs_rate)?$v->zq_czfs_sscs_rate:"未填写"}}</i>%</li>
+                                <li style="width:133px;"><i class="blue">{{isset($v->zq_delay)?$v->zq_delay:"未填写"}}</i>天</li>
+                                <li style="width:126px;">
+                                    <div class="shape"><a target="_blank" href="{{ url(route('zq.show',['id'=>$v->id ])) }}">招标中</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <ul id="fyZqList" class="write_ul mainUl hidden">
+                    <li style=" height:37px; line-height:37px; padding-left:76px;">
+                        <span style="width:140px;">形式</span>
+                        <span style="width:140px;">城市</span>
+                        <span style="width:180px;">资产总额</span>
+                        <span style="width:180px;">代理费率</span>
+                        <span>逾期时间(天)</span>
+                    </li>
+                    @foreach($fyZqList as $k=> $v)
+                        <li>
+                            <ul class="writeul_ul">
+                                <li style="width:144px;">
+                                    <div class="shape">类型</div>
+                                </li>
+                                <li style="width:165px;">
+                                    <div class="city">{{isset($v->o_province)?$v->o_province:"未选择"}}</div>
+                                </li>
+                                <li style="width:204px;">
+                                    <i class="blue">{{isset($v->zq_quote)?$v->zq_quote:"未填写"}}</i>万元
+                                </li>
+                                <li style="width:176px;"><i class="blue">{{isset($v->zq_czfs_sscs_rate)?$v->zq_czfs_sscs_rate:"未填写"}}</i>%</li>
+                                <li style="width:133px;"><i class="blue">{{isset($v->zq_delay)?$v->zq_delay:"未填写"}}</i>天</li>
+                                <li style="width:126px;">
+                                    <div class="shape"><a target="_blank" href="{{ url(route('zq.show',['id'=>$v->id ])) }}">招标中</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+
             </div>
 <!-- 一键免费发布 -->
             <div class="release">
                 <div style=" font-size:22px; color:#323232; padding-left:11px; margin-bottom:22px;">一键免费发布</div>
                 <div class="release_inp">
                     <div class="int">
-                        <input type="text" placeholder="姓名" class="user" id="user">
+                        <meta name="_token" content="{!! csrf_token() !!}"/>
+                        <input id="userName" type="text" placeholder="姓名" class="user" id="user">
                     </div>
                     <div class="int_1">
-                        <input type="text" placeholder="电话" class="phone" id="phone">
+                        <input id="phone" type="text" placeholder="电话" class="phone" id="phone">
                     </div>
-                    <a href="javaScript:submitReserNow();" class="fabubtn">立即发布</a>
+                    <a href="javaScript:submitMessage();" class="fabubtn">立即发布</a>
                     <p class="fabup">(评估师30分钟内回电)</p>
                 </div>
             </div>
@@ -215,6 +269,9 @@ $(document).ready(function() {
 <!-- /section.content </section>-->
  <!--foot部分-->
 <script >
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+    });
     $(document).ready(function() {
         $(".slideInner").slide({
             slideContainer: $('.slideInner a'),
@@ -226,12 +283,45 @@ $(document).ready(function() {
             prevBtn: $('a.prev'),
             nextBtn: $('a.next')
         })
-
+/**
+        $(".notice").slide({
+            slideContainer: $('.notice .noticeSlide'),
+            effect: 'easeOutCirc',
+            autoRunTime: 5000,
+            slideSpeed: 1000,
+            nav: false,
+            autoRun: true
+        })
+**/
         $(".control li").click(function(){
             $(".control li").removeClass("current");
             $(this).addClass("current");
+            $(".write ul.mainUl").addClass("hidden");
+            var $zqULId = $("#"+$(this).attr("data"));
+            $zqULId.removeClass("hidden");
         })
     })
+
+   function submitMessage(){
+           var userName = $("#userName").val();
+           var contact = $("#phone").val();
+           if(userName.trim().length==0){
+               alert("姓名必须填写");
+               return;
+           }
+       if(contact.trim().length==0){
+           alert("手机必须填写");
+           return;
+       }
+           $.ajax({
+               url: '{{URL('message/save')}}',
+               type: "post",
+               data: {"title":userName,"contact":contact},
+               success: function(data){
+                   alert(data);
+               }
+           });
+   }
 </script>
 @include('themes.default.foot')
 @endsection

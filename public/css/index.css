@@ -61,8 +61,8 @@ a{ text-decoration:none;}
 .control{ width:1001px; height:39px; padding-top:17px; margin-bottom:14px;}
 .control li{ height:39px; line-height:39px; background:#FFFFFF; border:1px solid #F1F1F1; border-left:none; text-align:center; float:left;}
 .control li a{ display:block; height:39px; font-size:16px; color:#999999;}
-.write{ width:1001px; height:458px; background:#ffffff;}
-.write .write_ul{ width:1001px; height:444px;}
+.write{ width:1001px;background:#ffffff;}
+.write .write_ul{ width:1001px;}
 .write .write_ul li{ width:1001px; height:80px; border-bottom:1px solid #F1F1F1; font-size:16px; color:#999999;}
 .write .write_ul li span{ display:inline-block; width:100px;}
 .write .write_ul li .writeul_ul{ padding-left:53px;}
@@ -247,5 +247,13 @@ a{ text-decoration:none;}
 
 .pull-right{
     float:right;
+}
+
+.hidden{
+    display: none;
+}
+
+.control li.current a{
+    color:#FFF;
 }
 
