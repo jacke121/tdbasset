@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\CategoryController' => $baseDir . '/app/Http/Controllers/CategoryController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\IndexControler' => $baseDir . '/app/Http/Controllers/IndexControler.php',
+    'App\\Http\\Controllers\\KitController' => $baseDir . '/app/Http/Controllers/KitController.php',
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\SearchController' => $baseDir . '/app/Http/Controllers/SearchController.php',
     'App\\Http\\Controllers\\ZqController' => $baseDir . '/app/Http/Controllers/ZqController.php',
