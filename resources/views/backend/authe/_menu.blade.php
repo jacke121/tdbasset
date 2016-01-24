@@ -19,7 +19,7 @@
                 <a href="/backend/authe/noapprove">未认证会员</a>
             </li>
             <li id="liwait">
-                <a href="/backend/authe/awaiting">待审批会员</a>
+                <a href="/backend/authe/awaitindex">待审批会员</a>
             </li>
             <li id="liapproved">
                 <a href="/backend/authe/approved">已认证会员</a>

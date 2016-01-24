@@ -101,6 +101,7 @@ class AuthController extends Controller
             if (sizeof($data) ==1) {
                 Log::error("postCheckname:" . 1);
                 $code = 0;
+               Session::put('memberd',$data[0]->id);
                 $msg = $data[0]->mobile;
             }
         }else if($type=="cardno"){
@@ -268,10 +269,23 @@ class AuthController extends Controller
 
         if(!empty($request->get('mobile'))){
             if (Member::where('mobile', $request->get('mobile'))->update($array)) {
+            	$member_log = new Member_log();
+            	$member_log->ip=$request->getClientIp();
+            	$member_log->memberid= Session::get('memberd');
+            	$member_log->action="forgetpwd";
+            	$member_log->type=1;
+            	$member_log->save();
                 return parent::returnJson(0, "密码修改成功");
             }
         }
        else if (Member::where('id', $this->auth->get()->id)->update($array)) {
+       	
+       	$member_log = new Member_log();
+       	$member_log->ip=$request->getClientIp();
+       	$member_log->memberid=$this->auth->get()->id;
+       	$member_log->action="changepwd";
+       	$member_log->type=1;
+       	$member_log->save();
             return parent::returnJson(0, "密码修改成功");
         }
         return parent::returnJson(1, "密码修改失败");
@@ -280,15 +294,6 @@ class AuthController extends Controller
         public function getForget(Request $request) {
         //更新密码
        return view('member.index.forget');
-    }
-
-        public function postForget(Request $request) {
-        //更新密码
-        $array = ["password" => Hash::make($request->get('password'))];
-        if (Member::where('id', $this->auth->get()->id)->update($array)) {
-            return parent::returnJson(0, "密码修改成功");
-        }
-        return parent::returnJson(1, "密码修改失败");
     }
     public function getLogout(Request $request)
     {

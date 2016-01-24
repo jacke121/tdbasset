@@ -25,7 +25,7 @@
                             <th class="text-right">操作</th>
                         </tr>
 
-                        @foreach($member as $k=> $v)
+                        @foreach($data as $k=> $v)
                         <tr>
                             <th scope="row">{{$k+1}}
                             <input type="hidden" name="id" value="{{$v->id}}" />
