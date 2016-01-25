@@ -46,14 +46,11 @@ class AuthenticateController extends Controller
         		return view('member.index.autheperson', compact('type','member'));
         	}
         }
-        return view('member.index.authelayer', ['type' => "index"]);
+        $type="index";
+        return view('member.index.authelayer', compact('type','member'));
     }
 
-    public function getAuthelayer(Request $request)
-    {
-
-        return view('member.index.authelayer', ['type' => "repeat"]);
-    }
+  
 
     public function postAuthelayer(Request $request)
     {
@@ -104,10 +101,16 @@ class AuthenticateController extends Controller
         $member->updatememberInfo($member->id, $member);
         return parent::returnJson(0, "提交成功");
     }
-
+    public function getAuthelayer(Request $request)
+    {	$type="repeat";
+    $member = $this->auth->get();
+    return view('member.index.authelayer', compact('type','member'));
+    }
     public function getAuthecompany(Request $request)//见明之意，就是提交请求到login方法，
     {
-        return view('member.index.authecompany');
+    $type="repeat";
+    $member = $this->auth->get();
+        return view('member.index.authecompany',compact('type','member'));
     }
 
     public function postAuthecompany(Request $request)

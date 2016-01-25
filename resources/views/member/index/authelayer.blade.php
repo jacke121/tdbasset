@@ -19,7 +19,25 @@
         .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
         .content{display:none;width:500px;height:300px;position:fixed;top:50%;margin-top:-150px;background:#fff;z-index:3;left:50%;margin-left:-250px;}
     </style>
-
+<style type="text/css">
+.query_hint{
+ border:2px solid #939393;
+/*  width:250px; */
+ height:50px;
+ line-height:55px;
+ padding:0 20px;
+ /* left:50%;
+ margin-left:-140px;
+ top:50%;
+ margin-top:-40px; */
+ font-size:15px;
+ color:#333;
+ font-weight:bold;
+ text-align:center;
+ background-color:#f9f9f9;
+}
+</style>
+	
     <script type="text/javascript">
         function goitem(){
           $("#divlayer").css("display","");
@@ -112,14 +130,15 @@
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                                $('.bg').fadeOut(400);
-                                $('.content').fadeOut(400);
+                            	 $('.query_hint').hide();
+//                                 $('.bg').fadeOut(400);
+//                                 $('.content').fadeOut(400);
                                 $(".tan").css("display","");
                             }
                         }
                     }
-                    $('.bg').fadeIn(200);
-                    $('.content').fadeIn(400);
+                    $('.query_hint').show();
+//                     $('.content').fadeIn(400);
                     $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
@@ -185,6 +204,9 @@
 </head>
 
 <body>
+<div id="query_hint" class="query_hint" style="display:none;"> 
+<img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+</div>
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">

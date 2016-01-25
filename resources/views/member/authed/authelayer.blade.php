@@ -44,7 +44,7 @@
             <div class="renover">
                 <h3 class="fa_renh">
                     律师用户认证
-                    （未认证）
+                    @if ($member->authestatus==4) (认证成功 )@else (账户冻结) @endif
                 </h3>
                 <h3 class="renoverh">
                     <span>基本信息</span>

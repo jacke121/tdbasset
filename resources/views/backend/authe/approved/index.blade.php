@@ -12,7 +12,13 @@
                 {!! Notification::showAll() !!}
                 <div class="panel-heading">已认证会员列表</div>
                 <div class="panel-body">
-                    {{--<a class="btn btn-success" href="{{ URL::route('backend.cate.create')}}">创建分类</a>--}}
+                <label>用户名: <input type="text" name="name" aria-controls="sample-table-2"></label>
+                 <label>手机号: <input type="text" name="mobile" aria-controls="sample-table-2"></label>
+                  <label>真实姓名: <input type="text" name="realname" aria-controls="sample-table-2"></label>
+                  
+<!--                      <div class="col-sm-offset-2 col-sm-10"> -->
+                     <input type="button" class="btn btn-success" style="background-color: #428bca" value="查询"/>
+<!--                             </div> -->
                     <table class="table table-hover table-top">
                         <tr>
                             <th>序号</th>
@@ -24,7 +30,7 @@
                             <th>账号状态</th>
                             <th class="text-right">操作</th>
                         </tr>
-                        @foreach($member as $k=> $v)
+                        @foreach($data as $k=> $v)
                         <tr>
                             <th scope="row">{{ $v->id }}</th>
                             <td>{{ $v->rolename }}</td>
