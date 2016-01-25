@@ -89,7 +89,7 @@
             </ul>
         </div>
     </div>
-    <div style="width:100%; height:1302px; background:#F4F4F4;">
+    <div style="width:100%; background:#F4F4F4;">
         <div class="center">
             <ul class="control">
                 <li style="width:334px;" class="current" data="grZqList"><a href="javascript:void(0)">个人债务宝</a></li>
