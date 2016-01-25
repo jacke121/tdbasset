@@ -19,15 +19,8 @@ class CateController extends Controller
         conversionClassPath(__CLASS__);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        //
-
         $data = array(
             'cate' => Category::getCategoryDataModel(),
         );
@@ -78,30 +71,16 @@ class CateController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function edit($id)
     {
         //
         return backendView('edit')->withCate(Category::find($id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
+
     public function update($id, CateForm $result)
     {
-        //
-
         try {
-
             $data = $result->all();
             unset($data['_method']);
             unset($data['_token']);
@@ -109,19 +88,11 @@ class CateController extends Controller
                 Notification::success('更新成功');
                 return redirect()->route('backend.cate.index');
             }
-
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
         }
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function destroy($id)
     {
         //

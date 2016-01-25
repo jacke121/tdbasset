@@ -44,7 +44,7 @@ class PagesController extends Controller {
   	$data['pagesize']=$pagesize;
   	$data['pagecount']=$pagecount;
   	$data['data']=$infos;
-  	$data['page_links'] = $this->page_links('?page',"");
+  	$data['page_links'] = $this->page_links('?act=2&page',"");
   	return $data;
   }
   private $_page;

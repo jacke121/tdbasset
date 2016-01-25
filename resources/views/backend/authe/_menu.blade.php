@@ -16,13 +16,13 @@
 
         <ul id="ulmembertype" class="nav nav-list">
             <li id="linoapprove" >
-                <a href="/backend/authe/noapprove">未认证会员</a>
+                <a href="/backend/authe/noapproveindex">未认证会员</a>
             </li>
             <li id="liwait">
                 <a href="/backend/authe/awaitindex">待审批会员</a>
             </li>
             <li id="liapproved">
-                <a href="/backend/authe/approved">已认证会员</a>
+                <a href="/backend/authe/approvedindex">已认证会员</a>
             </li>
         </ul>
     </div>
