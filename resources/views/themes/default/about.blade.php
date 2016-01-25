@@ -11,7 +11,7 @@
                    <ul class="list-unstyled about_nav">
                        <li class="navTitle"><a>关于我们</a></li>
                        @foreach($aboutList as $k=> $v)
-                       <li id="about_nav_{{$v->id}}"><a href="{{ url(route('about.show',['id'=>$v->id ])) }}">{{$v->title}}</a></li>
+                       <li id="about_nav_{{$v->id}}"><a href="{{ url('about?id='.$v->id) }}">{{$v->title}}</a></li>
                        @endforeach
                    </ul>
                </div>
@@ -27,7 +27,7 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-        var aboutPath = $.trim(window.location.pathname.split('/')[2]);
+        var aboutPath = "{{$id}}";
         aboutPath = "#about_nav_"+aboutPath;
         $(aboutPath).addClass("current");
        });

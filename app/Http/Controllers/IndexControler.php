@@ -45,6 +45,14 @@ class IndexControler extends Controller
         return view('themes.default.index.service');
     }
 
+    public function about(Request $request)
+    {
+        $id = $request->input('id');
+        $about = Article::find($id);
+        $aboutList = Article::where('cate_id',3)->orderBy('priority', 'asc')->paginate(10);
+        return view('themes.default.about',['about'=>$about,"aboutList"=>$aboutList,'id'=>$id]);
+    }
+
     public function jion()
     {
         return view('themes.default.index.jion');
@@ -53,11 +61,6 @@ class IndexControler extends Controller
     public function users()
     {
         return view('themes.default.index.users');
-    }
-
-    public function about()
-    {
-        return view('themes.default.index.about');
     }
 
     public function message(Request $request)
