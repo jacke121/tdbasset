@@ -27,7 +27,7 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-        var aboutPath = $.trim(window.location.pathname.split('/')[2]);
+        var aboutPath = $.trim(window.location.pathname.split('/')[3]);
         aboutPath = "#about_nav_"+aboutPath;
         $(aboutPath).addClass("current");
        });

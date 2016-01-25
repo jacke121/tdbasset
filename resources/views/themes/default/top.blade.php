@@ -43,7 +43,7 @@
             <dd></dd>
             <dt><a id="nav_users" href="{{ URL('users') }}">用户指南</a></dt>
             <dd></dd>
-            <dt><a id="nav_about" href="{{ URL('about/2') }}">关于我们</a></dt>
+            <dt><a id="nav_about" href="{{ URL('about/show/2') }}">关于我们</a></dt>
         </dl>
     </div>
 </div>

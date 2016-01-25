@@ -45,10 +45,9 @@ class IndexControler extends Controller
         return view('themes.default.index.service');
     }
 
-    public function show($id)
+    public function about($id)
     {
         $about = Article::find($id);
-        //$aboutList =About::orderBy('priority', 'asc')->paginate(10);
         $aboutList = Article::where('cate_id',3)->orderBy('priority', 'asc')->paginate(10);
         return view('themes.default.about',['about'=>$about,"aboutList"=>$aboutList]);
     }
