@@ -55,11 +55,6 @@ class IndexControler extends Controller
         return view('themes.default.index.users');
     }
 
-    public function about()
-    {
-        return view('themes.default.index.about');
-    }
-
     public function message(Request $request)
     {
         $uid = $request->input('uid');

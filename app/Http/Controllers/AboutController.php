@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Redirect, Input, Auth;
 use App\Http\Controllers\Controller;
 
-use App\Model\About;
 use App\Model\Article;
-use App\User;
+
 use Illuminate\Http\Request;
 
 class AboutController extends Controller {
