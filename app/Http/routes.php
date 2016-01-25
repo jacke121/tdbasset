@@ -11,7 +11,7 @@ Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');
 Route::resource('category', 'CategoryController');
 
-Route::get('about/show/{id}', 'IndexControler@about');
+Route::get('about', 'IndexControler@about');
 
 Route::get('/', 'IndexControler@index');
 Route::get('service', 'IndexControler@service');
