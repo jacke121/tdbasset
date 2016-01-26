@@ -2,7 +2,7 @@
 @include('themes.default.top')
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/about.css') }}">
-
+    
     <div class="banner"></div>
 
     <div class="content">
