@@ -13,7 +13,7 @@
                     <ul>
                         @foreach($aboutList as $k=> $v)
                             @if($k==0)
-                                <a href="#"><li class="cur1">关于我们</li>
+                                <a href="{{ url('about?id='.$v->id) }}"><li class="cur1">关于我们</li>
                                     <i class="cura"></i>
                                 </a>
                             @else
