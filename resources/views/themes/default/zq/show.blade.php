@@ -33,9 +33,13 @@
                 <div class="evidence_bottom">
                     <a href="#" class="evidence_left"></a>
                     <ul class="evidence_ul">
-                        <li><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
-                        <li><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
-                        <li style="margin-right:0;"><a href="{{ asset('/images/image_yulan.png') }}" data-lightbox="img-set"><img src="../images/evidence_img.png"></a></li>
+                        @if(isset($page->zq_file))
+                            @foreach(explode(";",$page->zq_file) as $k=> $v)
+                                @if($k<3)
+                               <li @if($k==2) style="margin-right: 0"@endif><a href="{{ asset($v)}}" data-lightbox="img-set"><img width="70" height="101" src="{{ asset($v)}}"></a></li>
+                                @endif
+                            @endforeach
+                        @endif
                     </ul>
                     <a href="#" class="evidence_right"></a>
                 </div>

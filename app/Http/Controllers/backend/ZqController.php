@@ -182,7 +182,7 @@ class ZqController extends Controller
             'delay_scope'  => Input::get('delay_scope'),
             'money_scope'  => Input::get('money_scope'),
 
-            'uid' => Auth::user()->get()->id
+           //'uid' => Auth::user()->get()->id
         );
      
         $zq->zq_czfs_sscs = Input::get('zq_czfs_sscs');
@@ -200,6 +200,18 @@ class ZqController extends Controller
         if(!empty(Input::get('zq_warrant'))){
             $data['zq_warrant']= implode("_",Input::get('zq_warrant'));
         }
+
+        $cart= parent::movefile($request,"project");
+        if($cart['status']==1){
+//            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $data['zq_file'] = $cart['msg'];
+            $fileUp = Input::get('fileUp');
+            if(!empty($fileUp)){
+                $data['zq_file']=implode(";",$fileUp).";".$data['zq_file'];
+            }
+        }
+
         return $data;
     }
 }

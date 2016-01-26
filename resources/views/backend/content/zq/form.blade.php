@@ -11,7 +11,7 @@
 
             <div class="panel-body">
 
-    <form id="input_form" class="form-horizontal" @if(isset($zq)) action="{{URL('backend/zq/update')}}" @else action="{{URL('backend/zq/store')}}" @endif method="POST">
+    <form id="input_form" class="form-horizontal" enctype="multipart/form-data" @if(isset($zq)) action="{{URL('backend/zq/update')}}" @else action="{{URL('backend/zq/store')}}" @endif method="POST">
         @if(isset($zq)) <input type="hidden" name="id" value="{{$zq->id}}"> @endif
         @yield('formcontent')
     </form>

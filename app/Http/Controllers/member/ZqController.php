@@ -173,60 +173,61 @@ class ZqController extends Controller
     private function createUpZq(Request $request){
         $zq = new Zq;
         $data = array(
-        'types' => Input::get('types'),
+            'types' => Input::get('types'),
 
-        'zq_quote'  =>  Input::get('zq_quote'),
+            'zq_quote'  =>  Input::get('zq_quote'),
 
-        'zq_czfs_sscs'  =>  Input::get('zq_czfs_sscs'),
-        'zq_czfs_sscs_rate' =>  Input::get('zq_czfs_sscs_rate'),
-        'zq_czfs_fscs'  => Input::get('zq_czfs_fscs'),
-        'zq_czfs_fscs_rate' =>  Input::get('zq_czfs_fscs_rate'),
-        'zq_czfs_zqzr'  =>  Input::get('zq_czfs_zqzr'),
-        'zq_czfs_zqzr_rate'  => Input::get('zq_czfs_zqzr_rate'),
+            'zq_czfs_sscs'  =>  Input::get('zq_czfs_sscs'),
+            'zq_czfs_sscs_rate' =>  Input::get('zq_czfs_sscs_rate'),
+            'zq_czfs_fscs'  => Input::get('zq_czfs_fscs'),
+            'zq_czfs_fscs_rate' =>  Input::get('zq_czfs_fscs_rate'),
+            'zq_czfs_zqzr'  =>  Input::get('zq_czfs_zqzr'),
+            'zq_czfs_zqzr_rate'  => Input::get('zq_czfs_zqzr_rate'),
 
-        'zq_delay'  =>  Input::get('zq_delay'),
-        'zq_warrant'  =>  Input::get('zq_warrant'),
+            'zq_delay'  =>  Input::get('zq_delay'),
+            'zq_warrant'  =>  Input::get('zq_warrant'),
 
-        'zq_cscs_ss'  =>  Input::get('zq_cscs_ss'),
-        'zq_cscs_pj'  =>  Input::get('zq_cscs_pj'),
-        'zq_cscs_sd'  =>  Input::get('zq_cscs_sd'),
-        'zq_cscs_dh' => Input::get('zq_cscs_dh'),
-        'zq_cscs_wt'  =>  Input::get('zq_cscs_wt'),
+            'zq_cscs_ss'  =>  Input::get('zq_cscs_ss'),
+            'zq_cscs_pj'  =>  Input::get('zq_cscs_pj'),
+            'zq_cscs_sd'  =>  Input::get('zq_cscs_sd'),
+            'zq_cscs_dh' => Input::get('zq_cscs_dh'),
+            'zq_cscs_wt'  =>  Input::get('zq_cscs_wt'),
 
-        'zq_file'  =>  Input::get('zq_file'),
-        'zq_ms'  =>  Input::get('zq_ms'),
+            'zq_file'  =>  Input::get('zq_file'),
+            'zq_ms'  =>  Input::get('zq_ms'),
 
-        'o_name'  =>  Input::get('o_name'),
-        'o_province'  =>  Input::get('o_province'),
-        'o_city'  =>  Input::get('o_city'),
-        'o_contry'  => Input::get('o_contry'),
-        'o_phone'  => Input::get('o_phone'),
-        'o_verify'  => Input::get('o_verify'),
-        'o_contact'  => Input::get('o_contact'),
-        'o_cphone'  => Input::get('o_cphone'),
+            'o_name'  =>  Input::get('o_name'),
+            'o_province'  =>  Input::get('o_province'),
+            'o_city'  =>  Input::get('o_city'),
+            'o_contry'  => Input::get('o_contry'),
+            'o_phone'  => Input::get('o_phone'),
+            'o_verify'  => Input::get('o_verify'),
+            'o_contact'  => Input::get('o_contact'),
+            'o_cphone'  => Input::get('o_cphone'),
 
-        'd_name'  => Input::get('d_name'),
-        'd_province'  => Input::get('d_province'),
-        'd_city'  => Input::get('d_city'),
-        'd_contry'  => Input::get('d_contry'),
-        'd_phone'  => Input::get('d_phone'),
-        'd_verify'  => Input::get('d_verify'),
-        'd_isContact'  => Input::get('d_isContact'),
-        'd_isRepay'  => Input::get('d_isRepay'),
+            'd_name'  => Input::get('d_name'),
+            'd_province'  => Input::get('d_province'),
+            'd_city'  => Input::get('d_city'),
+            'd_contry'  => Input::get('d_contry'),
+            'd_phone'  => Input::get('d_phone'),
+            'd_verify'  => Input::get('d_verify'),
+            'd_isContact'  => Input::get('d_isContact'),
+            'd_isRepay'  => Input::get('d_isRepay'),
 
-        'b_time'  => Input::get('b_time'),
-        'b_address'  => Input::get('b_address'),
-        'b_isLaw'  => Input::get('b_isLaw'),
-        'state'  => Input::get('state'),
-        'juid'  => Input::get('juid'),
-        'stars'  => Input::get('indexs'),
-        'collects'  => Input::get('collects'),
-        'applys'  => Input::get('applys'),
-        'delay_scope'  => Input::get('delay_scope'),
-        'money_scope'  => Input::get('money_scope'),
+            'b_time'  => Input::get('b_time'),
+            'b_address'  => Input::get('b_address'),
+            'b_isLaw'  => Input::get('b_isLaw'),
+            'state'  => Input::get('state'),
+            'juid'  => Input::get('juid'),
+            'stars'  => Input::get('indexs'),
+            'collects'  => Input::get('collects'),
+            'applys'  => Input::get('applys'),
+            'delay_scope'  => Input::get('delay_scope'),
+            'money_scope'  => Input::get('money_scope'),
 
-        'uid' => Auth::member()->get()->id
-    );
+            'uid' =>  Auth::member()->get()->id
+        );
+
         $zq->zq_czfs_sscs = Input::get('zq_czfs_sscs');
         $zq->zq_czfs_fscs = Input::get('zq_czfs_fscs');
         $zq->zq_czfs_zqzr = Input::get('zq_czfs_zqzr');
@@ -239,15 +240,21 @@ class ZqController extends Controller
         if(empty($zq->zq_czfs_zqzr)){
             $data['zq_czfs_zqzr']= false;
         }
-		if(is_null($zq->collects)){
-			$data['collects']= 0;
-        }
-	    if(is_null( $zq->applys)){
-			$data['applys']= 0;
-        }
         if(!empty(Input::get('zq_warrant'))){
             $data['zq_warrant']= implode("_",Input::get('zq_warrant'));
         }
+
+        $cart= parent::movefile($request,"project");
+        if($cart['status']==1){
+//            return parent::returnJson(1,$cart['msg']);
+        }else{
+            $data['zq_file'] = $cart['msg'];
+            $fileUp = Input::get('fileUp');
+            if(!empty($fileUp)){
+                $data['zq_file']=implode(";",$fileUp).";".$data['zq_file'];
+            }
+        }
+
         return $data;
     }
 }

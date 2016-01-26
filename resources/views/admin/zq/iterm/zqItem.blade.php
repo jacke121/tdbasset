@@ -115,6 +115,17 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label" for="zq_file">5、上传相关凭证</label>
 	    <div class="col-sm-6">
+			<ul class="list-inline">
+				@if(isset($zq->zq_file))
+				@foreach(explode(";",$zq->zq_file) as $k=> $v)
+				<li id="img_{{$v}}">
+					<a href="javascript:deleteImg('img_'{{$v}})">X</a>
+					<img width="120" height="90" src="{{ asset($v)}}">
+					<input id="img_val" type="hidden" name="fileUp[]" value="{{$v}}">
+				</li>
+				@endforeach
+				@endif
+			</ul>
 			<input type="file"name="file[]" multiple size="30" value="{{ (isset($zq->zq_file) ?$zq->zq_file:'') }}" />
 			<div><span class="text-info">服务承诺:</span> 我们会对您所上传的：合同、协议、借条、欠条、判决书等内容进行严格保密，并对相关身份内容进行模糊处理。以确保您的信息不会外泄。</div>
 		</div>
