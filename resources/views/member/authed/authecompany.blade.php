@@ -157,12 +157,15 @@
                     <div class="tabpic">
                         <table cellspacing="0">
                             <tbody><tr>
-                                <td>正面</td>
-                                <td>反面</td>
-                            </tr>
-                            <tr>
-                                <td id="pc1"><img></td>
-                                <td id="pc2"><img></td>
+                                <td colspan="2">
+                                    <div class="col-sm-8">
+                                        <ul id="faceul">
+                                            @foreach($member->cardnourl as $key=>$img)
+                                                <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                             </tbody></table>
                     </div>

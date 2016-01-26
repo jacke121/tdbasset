@@ -16,26 +16,10 @@
         span.success {
             padding-left: 10px;
         }
-        .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
-        .content{display:none;width:500px;height:300px;position:fixed;top:50%;margin-top:-150px;background:#fff;z-index:3;left:50%;margin-left:-250px;}
-    </style>
-<style type="text/css">
-.query_hint{
- border:2px solid #939393;
-/*  width:250px; */
- height:50px;
- line-height:55px;
- padding:0 20px;
- /* left:50%;
- margin-left:-140px;
- top:50%;
- margin-top:-40px; */
- font-size:15px;
- color:#333;
- font-weight:bold;
- text-align:center;
- background-color:#f9f9f9;
-}
+    /* box */
+    .box{border:4px solid #939393;position:absolute;width:300px;left:50%;height:auto; line-height:55px;z-index:100;background-color:#fff;border:1px #ddd solid;padding:1px;}
+    .box img{position:relative;top:10px;margin-left:8px;margin-right:8px}
+    #bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
 </style>
 	
     <script type="text/javascript">
@@ -123,22 +107,30 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+
+                    $("#bg").css({
+                        display: "block", height: $(document).height()
+                    });
+                    var $box = $('.box');
+                    $box.css({
+                        //设置弹出层距离左边的位置
+                        left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                        //设置弹出层距离上面的位置
+                        top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                        display: "block"
+                    });
                     var ajax_option={
                         type: "POST", //用POST方式传输
                         dataType: "json", //数据格式:JSON
                         success:function(msg){
+                            $("#bg,.box").css("display", "none");
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                            	 $('.query_hint').hide();
-//                                 $('.bg').fadeOut(400);
-//                                 $('.content').fadeOut(400);
                                 $(".tan").css("display","");
                             }
                         }
                     }
-                    $('.query_hint').show();
-//                     $('.content').fadeIn(400);
                     $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
@@ -204,20 +196,16 @@
 </head>
 
 <body>
-<div id="query_hint" class="query_hint" style="display:none;"> 
-<img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+<div id="bg"></div>
+<div class="box" style="display:none">
+    <img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
 </div>
+
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
         @include('member.left_nav')
 <!--资格认证-->
-        <div class="bg"></div>
-        <div class="content">
-            <h1>欢迎新浪微博互粉！</h1>
-            http://www.weibo.com/leavingseason
-            <h1>相信音乐，相信五月天</h1>
-        </div>
         <div class="mainr" >
             <div class="fa_ren">
                 <h3 class="fa_renh">资格认证</h3>

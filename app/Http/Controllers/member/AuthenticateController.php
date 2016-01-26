@@ -26,6 +26,7 @@ class AuthenticateController extends Controller
     public function getIndex(Request $request)
     {
         $member = Member::find($this->auth->get()->id);
+        $member->cardnourl = explode(";",$member->cardnourl);
         Log::error('getIndex:'.$member->authestatus);
         $type="repeat";
         if ($member->authestatus ==4 || $member->authestatus ==2) {
