@@ -13,7 +13,7 @@ use App\Model\Member;
 use Log;
 use Auth;
 
-class AuthenticateController extends PagesController
+class CheckNoController extends PagesController
 {
     /**
      * Create a new authentication controller instance.
