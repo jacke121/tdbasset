@@ -9,7 +9,7 @@
                 <!--左边模块 start-->
                 <div class="con_l">
                     <ul>
-                        <a href="#"><li class="cur1">{{$v->title}}</li>
+                        <a href="#"><li class="cur1">{{$about->title}}</li>
                             <i class="cura"></i>
                         </a>
                         @foreach($aboutList as $k=> $v)
