@@ -6239,3 +6239,7 @@ tr th,tr td{
 .btn-margin{
   margin:20px;
 }
+
+.modal-backdrop.in {
+  z-index: -100;
+}
