@@ -27,17 +27,17 @@ class AuthenticateController extends Controller
     {
         $member = Member::find($this->auth->get()->id);
         Log::error('getIndex:'.$member->authestatus);
+        $type="repeat";
         if ($member->authestatus ==4 || $member->authestatus ==2) {
+
             if ($member->type == 1) {
-                return view('member.authed.authelayer', ['type' => "repeat"]);
+                return view('member.authed.authelayer', compact('type','member'));
             } else if ($member->type == 2) {
-                return view('member.authed.authecompany', ['type' => "repeat"]);
+                return view('member.authed.authecompany',compact('type','member'));
             } else if ($member->type == 3) {
-                return view('member.authed.autheperson', ['type' => "repeat"]);
+                return view('member.authed.autheperson',compact('type','member'));
             }
-        }
-       else if ($member->authestatus ==3||$member->authestatus ==1) {
-       	$type="repeat";
+        } else if ($member->authestatus ==3||$member->authestatus ==1) {
         	if ($member->type == 1) {
         		return view('member.index.authelayer', compact('type','member'));
         	} else if ($member->type == 2) {
