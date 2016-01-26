@@ -2,7 +2,7 @@
 @include('themes.default.top')
 @section('content')
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/about.css') }}">
-    
+
     <div class="banner"></div>
 
     <div class="content">
@@ -11,12 +11,15 @@
                 <!--左边模块 start-->
                 <div class="con_l">
                     <ul>
-                        <a href="#"><li class="cur1">关于我们</li>
-                            <i class="cura"></i>
-                        </a>
                         @foreach($aboutList as $k=> $v)
-                            <a href="{{ url('about?id='.$v->id) }}"> <li id="about_nav_{{$v->id}}">{{$v->title}}</li><i ></i></a>
-                        @endforeach
+                            @if($k==1)
+                                <a href="#"><li class="cur1">关于我们</li>
+                                    <i class="cura"></i>
+                                </a>
+                            @else
+                              <a href="{{ url('about?id='.$v->id) }}"> <li id="about_nav_{{$v->id}}">{{$v->title}}</li><i ></i></a>
+                            @endif
+                           @endforeach
                     </ul>
                 </div>
                 <!--左边模块end-->
