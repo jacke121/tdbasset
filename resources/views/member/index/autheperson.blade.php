@@ -16,6 +16,9 @@
             background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
             padding-left: 16px;
         }
+        .box{border:4px solid #939393;position:absolute;width:300px;left:50%;height:auto; line-height:55px;z-index:100;background-color:#fff;border:1px #ddd solid;padding:1px;}
+        .box img{position:relative;top:10px;margin-left:8px;margin-right:8px}
+        #bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
     </style>
  <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
@@ -94,10 +97,22 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+                    $("#bg").css({
+                        display: "block", height: $(document).height()
+                    });
+                    var $box = $('.box');
+                    $box.css({
+                        //设置弹出层距离左边的位置
+                        left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                        //设置弹出层距离上面的位置
+                        top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                        display: "block"
+                    });
                         var ajax_option={
                             type: "POST", //用POST方式传输
                             dataType: "json", //数据格式:JSON
                             success:function(msg){
+                                $("#bg,.box").css("display", "none");
                                 if(msg['State']>0){
                                     alert(msg['MsgState']);
                                 }else{
@@ -170,6 +185,10 @@
 </head>
 
 <body>
+<div id="bg"></div>
+<div class="box" style="display:none">
+    <img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+</div>
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
