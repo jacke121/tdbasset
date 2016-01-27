@@ -355,7 +355,11 @@
          </p>
     </div>
        	<p class="an_list"><span class="listtit">资格认证：</span>
-       			未提交认证申请
+            @if ($member->authestatus==4) 认证成功
+            @elseif ($member->authestatus==3)认证失败
+            @elseif ($member->authestatus==2)账户冻结
+            @elseif ($member->authestatus==1)认证申请已提交，审核中
+            @endif
         </p>
     </div>
     </div>

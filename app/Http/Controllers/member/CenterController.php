@@ -40,7 +40,7 @@ class CenterController extends Controller
 
     public function getSecurity()
     {
-        $user = Auth::member();
-        return view('member.index.security',['user'=>$user]);
+        $member = Auth::member()->get();
+        return view('member.index.security',['member'=>$member]);
     }
 }
