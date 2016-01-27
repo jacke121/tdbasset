@@ -176,7 +176,7 @@ class CheckNoController extends PagesController
         $member->authestatus = $request->get("authestatus");
         $member->authemsg = $request->get("authemsg");
         if (Member::where('id', $request->get("id"))->update($array)) {
-            return redirect('/backend/authe/approved');
+            return redirect('/backend/authe/approvedindex');
         }
 //				   DB::table('members')
 //						   ->where('id', $request->get("id"))

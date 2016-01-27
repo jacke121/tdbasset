@@ -25,14 +25,14 @@
     <body style="width:900px">
     <table class="table table-hover table-top">
         <tr>
-            <th>序号</th>
-            <th>业务方向</th>
-            <th>会员类型</th>
-            <th>会员名称</th>
-            <th>手机号</th>
-            <th>创建时间</th>
-            <th>账号状态</th>
-            <th class="text-right">操作</th>
+            <th  width="50px">序号</th>
+            <th  width="80px">业务方向</th>
+            <th  width="80px">会员类型</th>
+            <th  width="80px">会员名称</th>
+            <th  width="80px">手机号</th>
+            <th  width="80px">创建时间</th>
+            <th  width="80px">账号状态</th>
+            <th  width="160px" class="text-right">操作</th>
         </tr>
         @foreach($data as $k=> $v)
             <tr>
