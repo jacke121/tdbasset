@@ -22,7 +22,7 @@
         @endif
 
         <div class="panel-body">
-            {!! Form::model($member, ['url' => ['backend/authe/update', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
+            {!! Form::model($member, ['url' => ['backend/authe/approve', $member->id], 'method' => 'post','class'=>'form-horizontal']) !!}
             <input type="hidden" name="id" value="{{ $member->id}}">
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">用户名</label>
