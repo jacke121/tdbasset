@@ -107,6 +107,11 @@ class AuthenticateController extends Controller
     $member = $this->auth->get();
     return view('member.index.authelayer', compact('type','member'));
     }
+    public function getAutheperson(Request $request)
+    {	$type="repeat";
+        $member = $this->auth->get();
+        return view('member.index.autheperson', compact('type','member'));
+    }
     public function getAuthecompany(Request $request)//见明之意，就是提交请求到login方法，
     {
     $type="repeat";
