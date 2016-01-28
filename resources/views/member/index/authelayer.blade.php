@@ -52,6 +52,7 @@
             location.href="/member/authe/"+item;
         }
         $(document).ready(function(){
+            setindex("cen_authenticate");
             $.ajax({
                 type: "get",
                 url: "/area/province", // type=1表示查询省份

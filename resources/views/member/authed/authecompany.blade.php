@@ -23,6 +23,7 @@
             location.href="/member/authe/"+item;
         }
         $(document).ready(function(){
+            setindex("cen_authenticate");
             $("#companyform").validate({
                 errorClass: "error",
                 errorElement: "span",
