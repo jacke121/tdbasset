@@ -12,7 +12,6 @@
             padding-left: 16px;
             color: #E15F63
         }
-
         span.success {
             background: url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
             padding-left: 16px;
@@ -47,8 +46,6 @@
                         equalTo: "两次输入密码不一致！"
                     }
                 },
-                // onkeyup: false,　　　　//这个地方要注意，修改去控制器验证的事件。
-                // onsubmit: false,
                 success: function (label) {
                     label.html("<font color='green'>√</font>").addClass("success");
                 },
@@ -76,7 +73,6 @@
                     });
                 }
             });
-
             var customError = "";
             $.validator.addMethod("onlyMobile", function (value, element) {
                 var returnVal = true;
