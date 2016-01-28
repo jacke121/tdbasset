@@ -50,7 +50,7 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::resource('comment','backend\CommentController');
     Route::resource('nav','backend\NavigationController');
     Route::resource('links','backend\LinksController');
-    Route::controller('authe','backend\AuthenticateController');
+    Route::controller('authe','backend\CheckNoController');
     Route::controllers([
         'system'=>'backend\SystemController',
         'upload'=>'backend\UploadFileController',

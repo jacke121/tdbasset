@@ -5,6 +5,10 @@
 <title>个人中心</title>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    setindex("cen_info");});
+    </script>
 </head>
 
 <body>

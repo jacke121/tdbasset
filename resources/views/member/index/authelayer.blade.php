@@ -9,6 +9,24 @@
 <script src="{{asset('/js/jquery.form.js') }}"></script>
 <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <style>
+        .btn_cel{
+            background:url("{{asset('/')}}/images/close1.gif")
+        }
+        .pop h4 {
+            position: relative;
+            height: 33px;
+            padding-left: 10px;
+            line-height: 33px;
+            background: #f6971c;
+            color: #fff;
+        }
+        .pop {
+            position: relative;
+            width: 458px;
+            height: 305px;
+            border: 1px solid #f6971c;
+            background-color: #fff;
+        }
         span.error {
             padding-left: 10px;
             color: #E15F63
@@ -16,37 +34,25 @@
         span.success {
             padding-left: 10px;
         }
-        .bg{display:none;position:fixed;width:100%;height:100%;background:#000;z-index:2;top:0;left:0;opacity:0.7;}
-        .content{display:none;width:500px;height:300px;position:fixed;top:50%;margin-top:-150px;background:#fff;z-index:3;left:50%;margin-left:-250px;}
-    </style>
-<style type="text/css">
-.query_hint{
- border:2px solid #939393;
-/*  width:250px; */
- height:50px;
- line-height:55px;
- padding:0 20px;
- /* left:50%;
- margin-left:-140px;
- top:50%;
- margin-top:-40px; */
- font-size:15px;
- color:#333;
- font-weight:bold;
- text-align:center;
- background-color:#f9f9f9;
-}
+    /* box */
+    .box{border:4px solid #939393;position:absolute;width:300px;left:50%;height:auto; line-height:55px;z-index:100;background-color:#fff;border:1px #ddd solid;padding:1px;}
+    .box img{position:relative;top:10px;margin-left:8px;margin-right:8px}
+    #bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
 </style>
 	
     <script type="text/javascript">
         function goitem(){
           $("#divlayer").css("display","");
         }
-
+        function closeyunfeiwin(){
+            $("#yunfeidiv").css("display", "none");
+            $("#faqbg").css("display", "none");
+        }
         function showitem(item){
             location.href="/member/authe/"+item;
         }
         $(document).ready(function(){
+            setindex("cen_authenticate");
             $.ajax({
                 type: "get",
                 url: "/area/province", // type=1表示查询省份
@@ -123,22 +129,38 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+
+                    $("#bg").css({
+                        display: "block", height: $(document).height()
+                    });
+                    var $box = $('.box');
+                    $box.css({
+                        //设置弹出层距离左边的位置
+                        left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                        //设置弹出层距离上面的位置
+                        top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                        display: "block"
+                    });
                     var ajax_option={
                         type: "POST", //用POST方式传输
                         dataType: "json", //数据格式:JSON
                         success:function(msg){
+                            $("#bg,.box").css("display", "none");
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                            	 $('.query_hint').hide();
-//                                 $('.bg').fadeOut(400);
-//                                 $('.content').fadeOut(400);
-                                $(".tan").css("display","");
+                                var $box = $("#yunfeidiv");
+                                $box.css({
+                                    //设置弹出层距离左边的位置
+                                    left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                                    //设置弹出层距离上面的位置
+                                    top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                                    display: "block"
+                                });
+//                                $(".tan").css("display","");
                             }
                         }
                     }
-                    $('.query_hint').show();
-//                     $('.content').fadeIn(400);
                     $('#layerform').ajaxSubmit(ajax_option);
                 }
             });
@@ -204,20 +226,34 @@
 </head>
 
 <body>
-<div id="query_hint" class="query_hint" style="display:none;"> 
-<img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+<div id="bg"></div>
+<div class="box" style="display:none">
+    <img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+</div>
+<div id="faqbg" style="display: none;"></div>
+<div id="yunfeidiv" style="display:none;height:210px; z-index:1000;top:30%; position:fixed;left:45%" class="pop pop_v1">
+    <h4>
+        <span id="winTitle" style="font-size:15px;">温馨提示</span>
+        <img  onclick="closeyunfeiwin();" style="margin-top:5px;margin-right:4px;float:right" src="{{asset('/')}}images/close3.gif" width="20px" height="20px">
+    </h4>
+    <div style=" margin-top: 20px; padding-left: 25px;padding-right: 25px;">
+        <form action="order" namespace="/manage" id="update_feesform" name="update_feesform" method="post">
+            <div id="divfeeQupdate" style="margin-top: 25px; vertical-align: middle;">
+                <label>您的认证信息已提交,我们会在一个工作小时内为您完成审核，请耐心等待</label>
+            </div>
+            <div align="center" style="margin-top:30px;">
+                {{--<a class="btn_reelect btn-newsearch" href="javascript:;" onclick="updateFeeFunction()">保 存</a>--}}
+                <input type="button" style="width:79px;height:35px; margin-left:25px;" onclick="showitem('index')"
+                       class="btn btn-primary" value="确 定">
+            </div>
+        </form>
+    </div>
 </div>
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
         @include('member.left_nav')
 <!--资格认证-->
-        <div class="bg"></div>
-        <div class="content">
-            <h1>欢迎新浪微博互粉！</h1>
-            http://www.weibo.com/leavingseason
-            <h1>相信音乐，相信五月天</h1>
-        </div>
         <div class="mainr" >
             <div class="fa_ren">
                 <h3 class="fa_renh">资格认证</h3>

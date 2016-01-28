@@ -12,7 +12,6 @@
             padding-left: 16px;
             color: #E15F63
         }
-
         span.success {
             background: url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
             padding-left: 16px;
@@ -24,6 +23,7 @@
             location.href = "/member/authe/" + item;
         }
         $(document).ready(function () {
+            setindex("cen_authenticate");
             $("#personform").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -46,8 +46,6 @@
                         equalTo: "两次输入密码不一致！"
                     }
                 },
-                // onkeyup: false,　　　　//这个地方要注意，修改去控制器验证的事件。
-                // onsubmit: false,
                 success: function (label) {
                     label.html("<font color='green'>√</font>").addClass("success");
                 },
@@ -75,7 +73,6 @@
                     });
                 }
             });
-
             var customError = "";
             $.validator.addMethod("onlyMobile", function (value, element) {
                 var returnVal = true;
@@ -153,12 +150,15 @@
                 <table cellspacing="0">
                     <tbody>
                     <tr>
-                        <td>正面</td>
-                        <td>反面</td>
-                    </tr>
-                    <tr>
-                        <td id="pc1"><img></td>
-                        <td id="pc2"><img></td>
+                        <td colspan="2">
+                            <div class="col-sm-8">
+                                <ul id="faceul">
+                                    @foreach($member->cardnourl as $key=>$img)
+                                        <li><a href="#"><img src="{{ URL::asset('/')}}{{$img}}" /></a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

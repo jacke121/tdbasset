@@ -6,8 +6,27 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
 <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
-<script src="{{asset('/js/jquery.form.js') }}"></script>
+<script src="{{asset('/js/jquery.form.js') }}" type="text/javascript"></script>
+<script src="{{asset('/')}}js/popup.js" type="text/javascript"></script>
     <style>
+        .btn_cel{
+            background:url("{{asset('/')}}/images/close1.gif")
+        }
+        .pop h4 {
+            position: relative;
+            height: 33px;
+            padding-left: 10px;
+            line-height: 33px;
+            background: #f6971c;
+            color: #fff;
+        }
+        .pop {
+            position: relative;
+            width: 458px;
+            height: 305px;
+            border: 1px solid #f6971c;
+            background-color: #fff;
+        }
         span.error {
             padding-left: 16px;
             color: #E15F63
@@ -16,13 +35,21 @@
             background:url("{{ asset('images/checked.gif')}}") no-repeat 0px 0px;
             padding-left: 16px;
         }
+        .box{border:4px solid #939393;position:absolute;width:300px;left:50%;height:auto; line-height:55px;z-index:100;background-color:#fff;border:1px #ddd solid;padding:1px;}
+        .box img{position:relative;top:10px;margin-left:8px;margin-right:8px}
+        #bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
     </style>
  <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         function showitem(item){
         location.href="/member/authe/"+item;
         }
+        function closeyunfeiwin(){
+            $("#yunfeidiv").css("display", "none");
+            $("#faqbg").css("display", "none");
+        }
         $(document).ready(function(){
+            setindex("cen_authenticate");
             $.ajax({
                 type: "get",
                 url: "/area/province", // type=1表示查询省份
@@ -94,14 +121,33 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+                    $("#bg").css({
+                        display: "block", height: $(document).height()
+                    });
+                    var $box = $('.box');
+                    $box.css({
+                        //设置弹出层距离左边的位置
+                        left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                        //设置弹出层距离上面的位置
+                        top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                        display: "block"
+                    });
                         var ajax_option={
                             type: "POST", //用POST方式传输
                             dataType: "json", //数据格式:JSON
                             success:function(msg){
+                                $("#bg,.box").css("display", "none");
                                 if(msg['State']>0){
                                     alert(msg['MsgState']);
                                 }else{
-                                    $(".tan").css("display","");
+                                    var $box = $("#yunfeidiv");
+                                    $box.css({
+                                        //设置弹出层距离左边的位置
+                                        left: ($("body").width() - $box.width()) / 2 - 20 + "px",
+                                        //设置弹出层距离上面的位置
+                                        top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+                                        display: "block"
+                                    });
                                 }
                             }
                         }
@@ -170,6 +216,29 @@
 </head>
 
 <body>
+<div id="bg"></div>
+<div class="box" style="display:none">
+    <img src="{{asset('/')}}images/waiting.gif" />&nbsp;正在保存中，请稍等．．．
+</div>
+<div id="faqbg" style="display: none;"></div>
+<div id="yunfeidiv" style="display:none;height:210px; z-index:1000;top:30%; position:fixed;left:45%" class="pop pop_v1">
+    <h4>
+        <span id="winTitle" style="font-size:15px;">温馨提示</span>
+        <img  onclick="closeyunfeiwin();" style="margin-top:5px;margin-right:4px;float:right" src="{{asset('/')}}images/close3.gif" width="20px" height="20px">
+    </h4>
+    <div style=" margin-top: 20px; padding-left: 25px;padding-right: 25px;">
+        <form action="order" namespace="/manage" id="update_feesform" name="update_feesform" method="post">
+            <div id="divfeeQupdate" style="margin-top: 25px; vertical-align: middle;">
+                <label>您的认证信息已提交,我们会在一个工作小时内为您完成审核，请耐心等待</label>
+            </div>
+            <div align="center" style="margin-top:30px;">
+                {{--<a class="btn_reelect btn-newsearch" href="javascript:;" onclick="updateFeeFunction()">保 存</a>--}}
+                <input type="button" style="width:79px;height:35px; margin-left:25px;" onclick="showitem('index')"
+                       class="btn btn-primary" value="确 定">
+            </div>
+        </form>
+    </div>
+</div>
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
@@ -281,6 +350,7 @@
     </div></div>
     </div>
         <div style="clear:both;"></div>
+    </div>
 <!--foot部分-->
   @include('themes.default.foot')
 </body>

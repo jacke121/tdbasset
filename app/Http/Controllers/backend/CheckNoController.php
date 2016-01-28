@@ -13,7 +13,7 @@ use App\Model\Member;
 use Log;
 use Auth;
 
-class AuthenticateController extends PagesController
+class CheckNoController extends PagesController
 {
     /**
      * Create a new authentication controller instance.
@@ -176,7 +176,7 @@ class AuthenticateController extends PagesController
         $member->authestatus = $request->get("authestatus");
         $member->authemsg = $request->get("authemsg");
         if (Member::where('id', $request->get("id"))->update($array)) {
-            return redirect('/backend/authe/approved');
+            return redirect('/backend/authe/approvedindex');
         }
 //				   DB::table('members')
 //						   ->where('id', $request->get("id"))

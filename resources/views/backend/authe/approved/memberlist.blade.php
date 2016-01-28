@@ -21,22 +21,35 @@
         }
     </style>
     <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
+    <script type="text/javascript">
+        //全选、反选
+        $(function (){
+            $("#top_selectAll").change(function(){
+                $('input[type=checkbox]').prop("checked",$(this).prop("checked"));
+            });
+//            $("#top_selectAll").click(function() {
+//                $('input[type=checkbox]').attr("checked",$(this).attr("checked")?true:false);
+//            });
+        });
+    </script>
     </head>
     <body style="width:900px">
     <table class="table table-hover table-top">
         <tr>
-            <th>序号</th>
-            <th>业务方向</th>
-            <th>会员类型</th>
-            <th>会员名称</th>
-            <th>手机号</th>
-            <th>创建时间</th>
-            <th>账号状态</th>
-            <th class="text-right">操作</th>
+            <th width="70px"> <input name="top_selectAll" id="top_selectAll" type="checkbox" value=""/>&nbsp;全选</th>
+            <th  width="50px">序号</th>
+            <th  width="80px">业务方向</th>
+            <th  width="80px">会员类型</th>
+            <th  width="80px">会员名称</th>
+            <th  width="80px">手机号</th>
+            <th  width="80px">创建时间</th>
+            <th  width="80px">账号状态</th>
+            <th  width="160px" class="text-right">操作</th>
         </tr>
         @foreach($data as $k=> $v)
             <tr>
-                <th scope="row">{{ $v->id }}</th>
+                <td> <input name="top_selectAll" id="top_select" type="checkbox" value="{{ $v->id }}"/>&nbsp;</td>
+                <td scope="row">{{ $v->id }}</td>
                 <td>{{ $v->rolename }}</td>
                 <td>{{ $v->typename }}</td>
                 <td>{{ $v->name}} {{ $v->itemname }}</td>

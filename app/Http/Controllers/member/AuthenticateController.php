@@ -26,6 +26,7 @@ class AuthenticateController extends Controller
     public function getIndex(Request $request)
     {
         $member = Member::find($this->auth->get()->id);
+        $member->cardnourl = explode(";",$member->cardnourl);
         Log::error('getIndex:'.$member->authestatus);
         $type="repeat";
         if ($member->authestatus ==4 || $member->authestatus ==2) {
@@ -105,6 +106,11 @@ class AuthenticateController extends Controller
     {	$type="repeat";
     $member = $this->auth->get();
     return view('member.index.authelayer', compact('type','member'));
+    }
+    public function getAutheperson(Request $request)
+    {	$type="repeat";
+        $member = $this->auth->get();
+        return view('member.index.autheperson', compact('type','member'));
     }
     public function getAuthecompany(Request $request)//见明之意，就是提交请求到login方法，
     {
