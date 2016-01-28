@@ -49,7 +49,7 @@ class IndexControler extends Controller
     {
         $id = $request->input('id');
         $about = Article::find($id);
-        $aboutList = Article::where('cate_id',3)->orderBy('priority', 'asc')->paginate(10);
+        $aboutList = Article::where('cate_id',3)->orderBy('priority', 'asc')->paginate(20);
         return view('themes.default.about',['about'=>$about,"aboutList"=>$aboutList,'id'=>$id]);
     }
 
