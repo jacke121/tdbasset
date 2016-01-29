@@ -264,7 +264,11 @@
 </div>
     @include('themes.default.top')
 <!--main-->
+<div class="banner">
+    <img src="{{asset('/')}}images/register—_gg.jpg">
+</div>
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
         <!--资格认证-->
         <div class="mainr" >
@@ -373,7 +377,7 @@
     </div></div>
     </div>
         <div style="clear:both;"></div>
-    </div>
+    </div>  </div>
 <!--foot部分-->
   @include('themes.default.foot')
 </body>

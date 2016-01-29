@@ -6,6 +6,8 @@
             @else
                 <li id="cen_home" class="tit"><a>代理方会员</a></li>
             @endif
+            @else
+             <li><a class="cur tit" href="#">个人中心</a></li>
         @endif
         <li id="cen_info" ><a href="{{ url('member/center/sysinfo') }}">系统消息</a></li>
         @if(isset(Auth::member()->get()->roletype)&&(Auth::member()->get()->authestatus==4))

@@ -17,7 +17,12 @@
 </head>
 
 <body>
+
     @include('themes.default.top')
+            <!--广告位-->
+    <div class="banner">
+        <img src="{{asset('/')}}images/register—_gg.jpg">
+    </div>
 <!--main-->
     <div class="maincon">
         @include('member.left_nav')
