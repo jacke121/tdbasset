@@ -121,6 +121,9 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+
+                    var filepath=$("#imgfile").files;
+                    alert(filepath);
                     $("#bg").css({
                         display: "block", height: $(document).height()
                     });
@@ -172,6 +175,26 @@
                     }
                 }
                 $.validator.messages.onlyemail = customError;
+                return returnVal;
+            },customError);
+            $.validator.addMethod("file", function(value, element) {
+                var files=element.files;
+                var returnVal = true;
+//                alert(element.files.length);
+                var filemaxsize = 1024*1024*2;//2M
+                if( files.length<1){
+                    returnVal=false;
+                    customError="文件上传不能为空!";
+                }
+                for( var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    if(   file.size>  filemaxsize){
+                        returnVal=false;
+                        customError="单个文件大小不能超过2M!";
+//                        alert("name: "+file.name+" | "+file.size+" | "+file.type);
+                    }
+                }
+                $.validator.messages.file = customError;
                 return returnVal;
             },customError);
             $.validator.addMethod("onlycardno", function(value, element) {
@@ -303,7 +326,7 @@
                     <div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input type="file" size="30" name="file[]" multiple>
+                                <input id="imgfile" type="file" size="30" name="file[]" multiple />
                             </div>
                             <div class="upload_preview"></div>
                         </div>

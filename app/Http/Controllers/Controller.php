@@ -61,6 +61,7 @@ use DispatchesCommands, ValidatesRequests;
                 $cart['msg'] ="图片不能为空";
                 $path="";
                 if ($request->hasFile('file')) {
+                        $destinationPath = 'uploads/images/'.$targetpath."/";
                         if (is_array($request->File('file'))) {
                                 $files = $request->File('file');
                                 foreach ($files as $file) {
@@ -71,7 +72,14 @@ use DispatchesCommands, ValidatesRequests;
                                                 $cart['msg'] ="图片只支持png, jpg or gif";
                                                 return $cart;
                                         }
-                                        $destinationPath = 'uploads/images/'.$targetpath."/";
+                                        Log::error('upload:'.$file-> getClientSize().",,,".$file-> getClientSize());
+//                                        if ($file-> getClientSize()>2*1024*1024) {
+//                                                $cart['status']=1;
+//                                                $cart['msg'] ="图片只支持png, jpg or gif";
+//                                                return $cart;
+//                                        }
+
+
                                         $extension = $file->getClientOriginalExtension();
                                         $fileName = str_random(10) .'.'.$extension;
                                         $file->move($destinationPath, $fileName);
@@ -83,14 +91,13 @@ use DispatchesCommands, ValidatesRequests;
                                         }
                                 }
                         } else {
-                                $file = $request->file('file');
+                                $file = $request->File('file');
                                 $allowed_extensions = ["png", "jpg", "gif"];
                                 if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
                                         $cart['status']=1;
                                         $cart['msg'] ="图片只支持png,jpg,gif";
                                         return $cart;
                                 }
-                                $destinationPath = 'uploads/images/person/';
                                 $extension = $file->getClientOriginalExtension();
                                 $fileName = str_random(10).'.'.$extension;
                                 $file->move($destinationPath, $fileName);
@@ -98,6 +105,9 @@ use DispatchesCommands, ValidatesRequests;
                         }
                         $cart['status'] =0;
                         $cart['msg'] =$path;
+                }
+                else{
+                        Log::error('upload:nofile');
                 }
                 return $cart;
         }

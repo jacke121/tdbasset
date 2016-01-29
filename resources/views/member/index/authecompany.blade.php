@@ -174,6 +174,25 @@
                 $.validator.messages.onlyemail = customError;
                 return returnVal;
             },customError);
+            $.validator.addMethod("file", function(value, element) {
+                var files=element.files;
+                var returnVal = true;
+                if( files.length<1){
+                    returnVal=false;
+                    customError="文件上传不能为空!";
+                }
+                var filemaxsize = 1024*1024*2;//2M
+                for( var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    if(   file.size>  filemaxsize){
+                        returnVal=false;
+                        customError="单个文件大小不能超过2M!";
+//                        alert("name: "+file.name+" | "+file.size+" | "+file.type);
+                    }
+                }
+                $.validator.messages.file = customError;
+                return returnVal;
+            },customError);
             $.validator.addMethod("onlycardno", function(value, element) {
                 var returnVal = true;
                 if(value.length<6){

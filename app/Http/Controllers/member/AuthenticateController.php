@@ -121,7 +121,7 @@ class AuthenticateController extends Controller
 
     public function postAuthecompany(Request $request)
     {
-        $cart= $this->movefile($request,"company");
+        $cart= parent::movefile($request,"company");
         if($cart['status']==1){
             return parent::returnJson(1,$cart['msg']);
         }else{

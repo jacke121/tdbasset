@@ -23,8 +23,6 @@
         <div class="ser_wei">
             <h3>系统消息</h3>
               <input type="hidden" value="1">
-              <input type="hidden" value="1">
-              <input type="hidden" value="1">
             <div class="ser_weicon" style="display: none;">
                <p> 亲、目前暂无任何系统信息！<br>再去<a href="index.html">首页</a>转转吧~</p>
             </div>
