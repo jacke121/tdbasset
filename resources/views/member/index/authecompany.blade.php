@@ -97,7 +97,7 @@
                 },
                 rules: {
                     itemname: { required: true, minlength: 3        },
-                    zq_county: { required: true},
+                    addresscode: { required: true},
                     confirm_password: {
                         required: true,
                         rangelength: [6, 16],
@@ -105,7 +105,7 @@
                     }
                 },
                 messages: {
-                    zq_county: { required: "地址不能为空"},
+                    addresscode: { required: "所在地不能为空"},
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     confirm_password: {
                         required: "请填写确认密码！",

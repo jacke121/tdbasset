@@ -97,6 +97,7 @@
                     element.after(error);
                 },
                 rules: {
+                    addresscode: { required: true},
                     itemname: { required: true, minlength: 2},
                     cardno: { required: true, minlength: 6},
                     confirm_password: {
@@ -106,6 +107,7 @@
                     }
                 },
                 messages: {
+                    addresscode: { required: "所在地不能为空"},
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     cardno: { required: "必填", minlength: "证件号格式不正确"},
                     confirm_password: {
