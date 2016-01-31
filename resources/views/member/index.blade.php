@@ -204,7 +204,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="tdl" style="font: red">提示：</td>
+				<td class="tdl" style="font-color: red">提示：</td>
 				<td class="tdr">证书上的所有信息清晰可见，必须能看得清证件号。<br>
 				照片内容真实有效，不得做任何修改。<br>
 				支持：jpg、jpeg、 bmp、 png格式照片，大小不得超过2M。

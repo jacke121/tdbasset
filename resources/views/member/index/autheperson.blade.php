@@ -319,9 +319,9 @@
 			<tr>
 				<td class="tdl">所在地</td>
 				<td class="tdr">
-					<select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
-		    		 <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
-		   			 <select id="areas" name="zq_county" class="pubsel"></select>
+                    <select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
+                    <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
+                    <select id="areas" name="addresscode" class="pubsel"></select>
 				</td>
 			</tr>
 			<tr>

@@ -106,6 +106,7 @@
                 },
                 rules: {
                     itemname: { required: true, minlength: 3        },
+                    zq_county: { required: true},
                     confirm_password: {
                         required: true,
                         rangelength: [6, 16],
@@ -113,6 +114,7 @@
                     }
                 },
                 messages: {
+                    zq_county: { required: "地区"},
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     confirm_password: {
                         required: "请填写确认密码！",
@@ -324,9 +326,9 @@
                 <tr>
                   <td class="tdl">所在地</td>
                   <td class="tdr">
-    		 <select id="provinces" name="zq_province" class="pubsel"><option value="省份" selected>省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;
-		<select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
-		   	 <select id="areas"name="addresscode" class="pubsel"></select>
+                      <select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
+                      <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
+                      <select id="areas" name="addresscode" class="pubsel"></select>
                 </td>
                 </tr>
                 <tr>

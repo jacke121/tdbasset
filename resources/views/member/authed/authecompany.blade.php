@@ -102,6 +102,7 @@
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
 <!--资格认证-->
         <div class="mainr" >
@@ -174,7 +175,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div></div>
     <div style="clear:both;"></div>
 <!--foot部分-->
   @include('themes.default.foot')
