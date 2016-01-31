@@ -18,14 +18,15 @@ class CheckNoController extends PagesController
     /**
      * Create a new authentication controller instance.
      */
-    public function __construct(Guard $auth)
-    {
+    public function __construct(Guard $auth)    {
         $this->auth = Auth::member();// $auth;
     }
 
-    public function getIndex(Request $request)
-    {
+    public function getIndex(Request $request)    {
         return view('backend.authe.index');
+    }
+    public function getMemberadd(Request $request)    {
+        return view('backend.authe.memberadd');
     }
 
     public function getAwaiting(Request $request)

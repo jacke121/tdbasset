@@ -4,6 +4,5 @@
 .project
 .settings/
 .buildpath
-!.env
 /public/uploads
 /public/uploads/images

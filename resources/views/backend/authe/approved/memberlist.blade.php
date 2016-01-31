@@ -12,6 +12,9 @@
         .table-top{
             margin-top: 20px;
         }
+        span.current{
+            font-weight:bold
+        }
         .btn_form{
            float: right;
             margin-right: 5px;

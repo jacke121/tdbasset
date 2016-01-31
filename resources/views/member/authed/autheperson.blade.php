@@ -1,12 +1,6 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="_token" content="{{ csrf_token() }}"/>
-    <title>个人中心</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
+@extends('member.index')
+@section('header')
     <link rel="stylesheet" type="text/css" href="{{asset('/css/login.css')}}">
-    <script src="{{asset('/js/jquery-1.11.3.min.js') }}"></script>
     <style>
         span.error {
             padding-left: 16px;
@@ -90,13 +84,9 @@
             }, customError);
         });
     </script>
-</head>
+    @stop
 
-<body>
-@include('themes.default.top')
-        <!--main-->
-<div class="maincon">
-    @include('member.left_nav')
+    @section('content')
             <!--资格认证-->
     <div class="mainr">
         <!--个人用户认证审核中页面-->
@@ -164,11 +154,6 @@
                 </table>
             </div>
             <p>提示：您的资料正在进行认证，如需修改请直接拨打客服电话，或点击在线客服联系</p>
-        </div>
-    </div>
-</div>
-<div style="clear:both;"></div>
-<!--foot部分-->
-@include('themes.default.foot')
-</body>
-</html>
+        </div>  </div>
+
+@stop

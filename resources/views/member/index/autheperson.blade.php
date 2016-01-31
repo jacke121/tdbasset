@@ -97,6 +97,7 @@
                     element.after(error);
                 },
                 rules: {
+                    addresscode: { required: true},
                     itemname: { required: true, minlength: 2},
                     cardno: { required: true, minlength: 6},
                     confirm_password: {
@@ -106,6 +107,7 @@
                     }
                 },
                 messages: {
+                    addresscode: { required: "所在地不能为空"},
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     cardno: { required: "必填", minlength: "证件号格式不正确"},
                     confirm_password: {
@@ -121,6 +123,9 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
+
+                    var filepath=$("#imgfile").files;
+                    alert(filepath);
                     $("#bg").css({
                         display: "block", height: $(document).height()
                     });
@@ -172,6 +177,26 @@
                     }
                 }
                 $.validator.messages.onlyemail = customError;
+                return returnVal;
+            },customError);
+            $.validator.addMethod("file", function(value, element) {
+                var files=element.files;
+                var returnVal = true;
+//                alert(element.files.length);
+                var filemaxsize = 1024*1024*2;//2M
+                if( files.length<1){
+                    returnVal=false;
+                    customError="文件上传不能为空!";
+                }
+                for( var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    if(   file.size>  filemaxsize){
+                        returnVal=false;
+                        customError="单个文件大小不能超过2M!";
+//                        alert("name: "+file.name+" | "+file.size+" | "+file.type);
+                    }
+                }
+                $.validator.messages.file = customError;
                 return returnVal;
             },customError);
             $.validator.addMethod("onlycardno", function(value, element) {
@@ -241,7 +266,11 @@
 </div>
     @include('themes.default.top')
 <!--main-->
+<div class="banner">
+    <img src="{{asset('/')}}images/register—_gg.jpg">
+</div>
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
         <!--资格认证-->
         <div class="mainr" >
@@ -292,9 +321,9 @@
 			<tr>
 				<td class="tdl">所在地</td>
 				<td class="tdr">
-					<select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
-		    		 <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
-		   			 <select id="areas" name="zq_county" class="pubsel"></select>
+                    <select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
+                    <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
+                    <select id="areas" name="addresscode" class="pubsel"></select>
 				</td>
 			</tr>
 			<tr>
@@ -303,7 +332,7 @@
                     <div class="upload_box">
                         <div class="upload_main">
                             <div class="upload_choose">
-                                <input type="file" size="30" name="file[]" multiple>
+                                <input id="imgfile" type="file" size="30" name="file[]" multiple />
                             </div>
                             <div class="upload_preview"></div>
                         </div>
@@ -350,7 +379,7 @@
     </div></div>
     </div>
         <div style="clear:both;"></div>
-    </div>
+    </div>  </div>
 <!--foot部分-->
   @include('themes.default.foot')
 </body>

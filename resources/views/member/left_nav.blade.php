@@ -1,11 +1,13 @@
 <div class="mainl">
     <ul id="leftmenu">
-        @if(isset(Auth::member()->get()->roletype)&&(Auth::member()->get()->authestatus==4))
+        @if(isset(Auth::member()->get()->roletype))
             @if(Auth::member()->get()->roletype == 1)
-               <li id="cen_home" class="tit"><a>委托方会员</a></li>
+               <li id="cen_home" style="font-size:18px;color: #fff;background: #ee8d0a;" class="tit">委托方会员</li>
             @else
-                <li id="cen_home" class="tit"><a>代理方会员</a></li>
+                <li id="cen_home" style="font-size:18px;color: #fff;background: #ee8d0a;" class="tit">代理方会员</li>
             @endif
+            @else
+             <li  id="cen_home" style="font-size:18px;color: #fff;background: #ee8d0a;">个人中心</li>
         @endif
         <li id="cen_info" ><a href="{{ url('member/center/sysinfo') }}">系统消息</a></li>
         @if(isset(Auth::member()->get()->roletype)&&(Auth::member()->get()->authestatus==4))

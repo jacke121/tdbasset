@@ -106,6 +106,7 @@
                 },
                 rules: {
                     itemname: { required: true, minlength: 3        },
+                    addresscode: { required: true},
                     confirm_password: {
                         required: true,
                         rangelength: [6, 16],
@@ -113,6 +114,7 @@
                     }
                 },
                 messages: {
+                    addresscode: { required: "所在地不能为空"},
                     itemname: { required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     confirm_password: {
                         required: "请填写确认密码！",
@@ -184,6 +186,25 @@
                 $.validator.messages.onlyemail = customError;
                 return returnVal;
             },customError);
+            $.validator.addMethod("file", function(value, element) {
+                var files=element.files;
+                var returnVal = true;
+                if( files.length<1){
+                    returnVal=false;
+                    customError="文件上传不能为空!";
+                }
+                var filemaxsize = 1024*1024*2;//2M
+                for( var i = 0; i < files.length; i++) {
+                    file = files[i];
+                    if(   file.size>  filemaxsize){
+                        returnVal=false;
+                        customError="单个文件大小不能超过2M!";
+//                        alert("name: "+file.name+" | "+file.size+" | "+file.type);
+                    }
+                }
+                $.validator.messages.file = customError;
+                return returnVal;
+            },customError);
             $.validator.addMethod("onlycardno", function(value, element) {
                 var returnVal = true;
                 if(value.length<6){
@@ -251,7 +272,11 @@
 </div>
     @include('themes.default.top')
 <!--main-->
+<div class="banner">
+    <img src="{{asset('/')}}images/register—_gg.jpg">
+</div>
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
 <!--资格认证-->
         <div class="mainr" >
@@ -301,9 +326,9 @@
                 <tr>
                   <td class="tdl">所在地</td>
                   <td class="tdr">
-    		 <select id="provinces" name="zq_province" class="pubsel"><option value="省份" selected>省份</option><option value="北京市">北京市</option><option value="天津市">天津市</option></select>&nbsp;&nbsp;
-		<select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
-		   	 <select id="areas"name="addresscode" class="pubsel"></select>
+                      <select id="provinces" name="zq_province" class="pubsel"></select>&nbsp;&nbsp;
+                      <select id="citys" name="zq_city" class="pubsel"></select>&nbsp;&nbsp;
+                      <select id="areas" name="addresscode" class="pubsel"></select>
                 </td>
                 </tr>
                 <tr>
@@ -366,7 +391,7 @@
                 </p>
             </div>
         </div>
-        </div> </div> </div>
+        </div> </div> </div></div>
         <div style="clear:both;"></div>
 <!--foot部分-->
   @include('themes.default.foot')

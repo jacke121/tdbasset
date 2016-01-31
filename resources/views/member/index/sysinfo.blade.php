@@ -14,8 +14,12 @@
 
 <body>
     @include('themes.default.top')
+    <div class="banner">
+        <img src="{{asset('/')}}images/register—_gg.jpg">
+    </div>
 <!--main-->
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
 <!--系统消息-->
 	<div class="mainr" >
@@ -58,7 +62,7 @@
         </div>
     </div>
   
-</div>
+</div></div>
 <!-- 弹出层-->
         <div class="tan" style="display:none;">
             <p class="tan_icon">
@@ -77,8 +81,6 @@
     </div>
         <div style="clear:both;"></div>
 
-
-    
 </div>
 
 <!--foot部分-->

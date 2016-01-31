@@ -27,10 +27,9 @@ class AuthenticateController extends Controller
     {
         $member = Member::find($this->auth->get()->id);
         $member->cardnourl = explode(";",$member->cardnourl);
-        Log::error('getIndex:'.$member->authestatus);
+        Log::error('getIndex:'.$member->authestatus.",".$member->type);
         $type="repeat";
-        if ($member->authestatus ==4 || $member->authestatus ==2) {
-
+        if ($member->authestatus ==4 || $member->authestatus ==2||$member->authestatus ==1) {
             if ($member->type == 1) {
                 return view('member.authed.authelayer', compact('type','member'));
             } else if ($member->type == 2) {
@@ -38,7 +37,7 @@ class AuthenticateController extends Controller
             } else if ($member->type == 3) {
                 return view('member.authed.autheperson',compact('type','member'));
             }
-        } else if ($member->authestatus ==3||$member->authestatus ==1) {
+        } else if ($member->authestatus ==3) {
         	if ($member->type == 1) {
         		return view('member.index.authelayer', compact('type','member'));
         	} else if ($member->type == 2) {
@@ -121,7 +120,7 @@ class AuthenticateController extends Controller
 
     public function postAuthecompany(Request $request)
     {
-        $cart= $this->movefile($request,"company");
+        $cart= parent::movefile($request,"company");
         if($cart['status']==1){
             return parent::returnJson(1,$cart['msg']);
         }else{

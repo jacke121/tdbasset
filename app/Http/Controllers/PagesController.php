@@ -8,7 +8,7 @@ class PagesController extends Controller {
 
 	public function __construct($perPage,$instance){
 		$this->_instance = $instance;
-		$this->_perPage = $perPage;
+		$this->pagesize = $perPage;
 		$this->set_instance();
 	}
   public function show($id)
@@ -19,9 +19,9 @@ class PagesController extends Controller {
  // 分页方法：
   public function query_listinfo(&$sql = '', $pageindex = 1, $pagesize = 20,&$data) {
   	//取得记录总数$rs，计算总页数用
-  	$array=DB::select("SELECT count(1) as total FROM ( ".$sql.") as a");
+  	$array=DB::select("SELECT count(1) as total FROM (".$sql.") as a");
   	$this->_totalRows=intval($array[0]->total);
-  	$this->_perPage= $pageindex;
+  	$this->pagesize= $pagesize;
   	$this->_page=$pageindex;
   	//计算总页数
   	$pagecount=intval(intval($this->_totalRows)/$pagesize);
@@ -49,18 +49,18 @@ class PagesController extends Controller {
   }
   private $_page;
   private $_totalRows = 0;
-  private $_perPage;
+  private $pagesize;//页大小
   private $_instance;
   public function page_links($path='?',$ext=null)
   {
   	$adjacents = "2";
   	$prev = $this->_page - 1;
   	$next = $this->_page + 1;
-  	$lastpage = ceil($this->_totalRows/$this->_perPage);
+  	$lastpage = ceil($this->_totalRows/$this->pagesize);
   	$lpm1 = $lastpage - 1;
   
   	$pagination = "";
-  	Log::error($this->_totalRows.",".$this->_perPage.",".'$lastpage:' . $lastpage);
+  	Log::error($this->_totalRows.",".$this->pagesize.",".'$lastpage:' . $lastpage);
   	if($lastpage > 1)  	{
   		
   		$pagination .= "<ul class='pagination'>";

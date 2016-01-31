@@ -37,6 +37,7 @@
     @include('themes.default.top')
 <!--main-->
     <div class="maincon">
+        <div class="center">
         @include('member.left_nav')
 <!--资格认证-->
         <div class="mainr" >
@@ -100,7 +101,7 @@
                 <p>提示：您的资料正在进行认证，如需修改请直接拨打客服电话，或点击在线客服联系</p>
             </div>
         </div>
-        <div style="clear:both;"></div>
+        <div style="clear:both;"></div></div></div>
 <!--foot部分-->
   @include('themes.default.foot')
 </body>
