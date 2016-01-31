@@ -42,12 +42,12 @@
                     name: {required: "必填", minlength: $.validator.format("不得少于{0}字符.")},
                     password: {
                         required: "请填写密码！",
-                        rangelength: "密码需由6-16个字符（数字、字母）组成！",
+                        rangelength: "密码由6-16个数字或字母组成！",
                         remote: "原始密码不正确,请重新填写！" //这个地方如果不写的话，是自带的提示内容，加上就是这个内容。
                     },
                     confirm_password: {
                         required: "请填写确认密码！",
-                        rangelength: "密码需由6-16个字符（数字、字母）组成！",
+                        rangelength: "密码由6-16个数字或字母组成！",
                         equalTo: "两次输入密码不一致！"
                     }
                 },
@@ -179,23 +179,6 @@
                 $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             }
         }
-        $(function () {
-            $("#pwdrepeat").blur(function () {
-                var pwdrepeat = $('#pwdrepeat').val();  //获取手机号
-                if (username.length == 0) {
-                    $("#pwdrepeatAlt").css({color: "#E15F63"});
-                    $("#pwdrepeatAlt").html("密码必须是数字与字母组合");
-                    return;
-                }
-                if (pwdrepeat != $('#password').val()) {
-                    $("#pwdrepeatAlt").css({color: "#E15F63"});
-                    $("#pwdrepeatAlt").html("密码必须是数字与字母组合");
-                } else {
-                    $("#pwdrepeatAlt").css({color: "#008000"});
-                    $("#pwdrepeatAlt").html("密码输入一致");
-                }
-            });
-        });
     </script>
 </head>
 

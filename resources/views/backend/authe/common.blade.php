@@ -1,4 +1,7 @@
 @extends('backend.app')
+@section('header')
+    @parent
+    <script src="{{ asset('/js/jquery-1.11.3.min.js')}}" type="text/javascript"></script>
 <style>
     #faceul{
         float:left;
@@ -24,6 +27,7 @@
         width:240px;
     }
 </style>
+@show
 @section('modules')
 <div class="container-fluid">
     <div class="row">
