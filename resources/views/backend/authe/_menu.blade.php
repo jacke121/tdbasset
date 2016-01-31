@@ -24,6 +24,9 @@
             <li id="liapproved">
                 <a href="/backend/authe/approvedindex">已认证会员</a>
             </li>
+            <li id="liapproved">
+                <a href="/backend/authe/memberadd">新增会员</a>
+            </li>
         </ul>
     </div>
 </div>
