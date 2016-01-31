@@ -158,18 +158,12 @@ class ArticleController extends Controller
             }
         }
 
-        if (ArticleStatus::deleteArticleStatus($id)) {
-
-            if (Article::destroy($id)) {
-                Notification::success('删除成功');
-                Cache::tags(Article::REDIS_ARTICLE_PAGE_TAG)->flush();
-                Cache::forget(Article::REDIS_ARTICLE_CACHE.$id);
-            } else {
-                Notification::error('主数据删除失败');
-            }
-
+        if (Article::destroy($id)) {
+            Notification::success('删除成功');
+            Cache::tags(Article::REDIS_ARTICLE_PAGE_TAG)->flush();
+            Cache::forget(Article::REDIS_ARTICLE_CACHE.$id);
         } else {
-            Notification::error('动态删除失败');
+            Notification::error('主数据删除失败');
         }
 
         return redirect()->route('backend.article.index');
