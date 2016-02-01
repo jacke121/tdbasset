@@ -8,6 +8,7 @@
             <form id="formregister" class="form-horizontal" role="form" method="POST" action="/auth/register">
             <input type="hidden" name="type" value="add">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <meta name="_token" content="{!! csrf_token() !!}"/>
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-4">
