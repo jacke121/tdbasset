@@ -202,6 +202,15 @@ class AuthController extends Controller
         $member = new Member();
         $member->mobile = Input::get('mobile');
 
+        if(!empty($request->get("type")) &&$request->get("type")=="add"){
+            Log::error('memberadd:' . $member->mobile. "getcode:" . Input::get('name'));
+            $member->name = Input::get('name');
+            $member->email = $member->name . "126.com";// Input::get('email');
+            $member->password = Hash::make(Input::get('password'));
+            $member->created_at = date("Y-m-d H:i:s", time());
+            $member->save();
+            return parent::returnJson(0, "添加成功");
+        }
         $checkCode = Session::get("m" . $member->mobile);
         Log::error('registrer:' . $member->mobile . "session:" . $checkCode . "getcode:" . Input::get('checkCode'));
         if (!$checkCode || $checkCode != Input::get('checkCode')) {
@@ -214,7 +223,6 @@ class AuthController extends Controller
         $member->save();
         if ($this->auth->attempt(array('name' => $member->name, 'password' => Input::get('password')), $request->has('remember'))) {
             //登录成功
-
         $member_log = new Member_log();
         $member_log->ip=$request->getClientIp();
         $member_log->memberid=$this->auth->get()->id;

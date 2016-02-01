@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset=gbk">
+	<meta name="_token" content="{{ csrf_token() }}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	@section('header')
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
-    <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>--}}
     <script type="text/javascript">
     function setindex(id) {
     //设置button效果，开始计时
@@ -16,6 +18,7 @@
     $("#"+id).attr("class", "cur");
     }
     </script>
+	@show
 	<!-- Fonts -->
 <!--	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
 
@@ -78,7 +81,6 @@
 	</nav>
 
     @yield('modules')
-
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
