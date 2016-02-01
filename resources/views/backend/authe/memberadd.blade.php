@@ -47,10 +47,6 @@
 
 <script src="{{ asset('/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-    });
-
     $(function(){
         setindex("liauthe");//上面导航菜单
         setmembertype("memberadd");//左边导航菜单
