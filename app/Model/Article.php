@@ -82,6 +82,10 @@ class Article extends Model
         return '';
     }
 
+    public static function isHasFile($file){
+        return Request::hasFile($file);
+    }
+
     /**
      * 根据文章id获取文章
      * @param $articleId

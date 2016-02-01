@@ -5,42 +5,30 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>会员中心</title>
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/css/index.css') }}">
-    <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
 
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/zq.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/personal center.css')}}">
-	<!-- Fonts -->
-<!--	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
+	<script src="{{ asset('/js/jquery-1.11.3.min.js') }}"></script>
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 <body>
 
     @include('themes.default.top')
 
-	<div class="zqbanner">
+	<div class="banner">
+		<img src="{{asset('/')}}images/register—_gg.jpg">
 	</div>
-	<div class="container-fluid">
-
-		<div class="row">
-
-			<div class="col-md-2">
-				@include('member.left_nav')
-			</div>
-			<div class="col-md-10">
-				<div class="row">
+	<!--main-->
+	<div class="maincon">
+		<div class="center">
+			    @include('member.left_nav')
+				<div class="mainr">
                       @yield('modules')
 				</div>
-			</div>
-
+			<div style="clear:both;"></div>
 		</div>
 	</div>
 

@@ -2,9 +2,9 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Input, Notification,Redirect, Auth,Cache;
 
-
-use Input, Notification, Auth, Request, Cache;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\ArticleStatus;
@@ -24,10 +24,18 @@ class ArticleController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return backendView('index', ['article' => Article::orderBy('id', 'DESC')->paginate(10)]);
+        $cateId = $request->input('cateId');
+
+        if(is_null($cateId)||$cateId==0){
+            $cateId = 0;
+            $artList = Article::orderBy('id', 'DESC')->paginate(10);
+        }else{
+            $artList = Article::where('cate_id',$cateId)->orderBy('id', 'DESC')->paginate(10);
+        }
+        return backendView('index', ['cateId'=>$cateId,'article' => $artList,"cates"=>Category::all()]);
     }
 
     /**
@@ -123,7 +131,7 @@ class ArticleController extends Controller
                 'tags' => $result->input('tags'),
             );
 
-            if (Request::hasFile('pic')) {
+            if (Article::isHasFile('pic')) {
                 $data['pic'] = Article::uploadImg('pic');
             }
 
@@ -147,9 +155,10 @@ class ArticleController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$aid)
     {
         //
+        $id = $request->input('id');
         $article = Article::find($id);
         if (!empty($article->pic)) {
             $fileName = public_path() . '/uploads/' . $article->pic;
@@ -158,15 +167,17 @@ class ArticleController extends Controller
             }
         }
 
+        $result = "删除失败";
         if (Article::destroy($id)) {
             Notification::success('删除成功');
+            $result = "删除成功";
             Cache::tags(Article::REDIS_ARTICLE_PAGE_TAG)->flush();
             Cache::forget(Article::REDIS_ARTICLE_CACHE.$id);
         } else {
             Notification::error('主数据删除失败');
         }
 
-        return redirect()->route('backend.article.index');
+        return $result;
     }
 
 }

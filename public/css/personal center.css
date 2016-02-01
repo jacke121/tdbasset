@@ -40,12 +40,14 @@ a{ text-decoration:none;}
 /*main*/
 .maincon{width:1180px; margin:50px auto;}
 .mainl{ width:138px;  float:left;background:#fff;border:1px solid #cdcdcd;border-bottom:none;margin-right: 10px;}
+.mainl #leftmenu{margin-bottom:0;}
 .mainl li{height: 50px;line-height: 50px;text-align:center;border-bottom:1px solid #cdcdcd;font-size:14px;}
 .mainl li a{color:#666;width:100%;height: 100%;display: inline-block;}
 .mainl li a:hover{background:#EAF4FD;}
 .mainl li.tit a{font-size: 22px;color:#333;}
 .mainl li.cur a{color: #fff;background: #ee8d0a;}
-.mainr{ width:840px;float:right;background:#fff;border:1px solid #cdcdcd;}
+.mainr{ width:840px;min-height:350px;float:right;background:#fff;border:1px solid #cdcdcd;}
+.mainr table{ margin-bottom: 0px}
 .mainr iframe{min-height: 700px;}
 .main_wei{width:840px; margin:0px auto;}
 .main_wei h3{text-align: center;font-size: 24px;color:#333;font-weight: normal;margin:35px auto;}
@@ -105,7 +107,7 @@ color: #fff;background: #ee8d0a;}
 .fabu_wei h3{text-align: center;font-size: 24px;color:#333;font-weight: normal;margin:35px auto 20px;padding-bottom: 15px;}
 .fabu_wei .tabletit{ background:#FDF4E7;}
 /*已申请信息*/
-.chaul{font-size:20px;width:780px;margin: 0px auto 20px;overflow: hidden;}
+.chaul{font-size:20px;width:780px;margin: 0px auto 20px 50px;overflow: hidden;}
 .chaul li{float: left;width: 195px;text-align: center;height: 37px;line-height: 37px;cursor: pointer;}
 .chaul li .icon{width: 38px;height: 38px;display: inline-block; background:url(../images/cha_icon.png) no-repeat;margin-left: 40px;float: left;}
 .chaul .chaul1 .icon{background-position: 0px 0px;}
@@ -202,21 +204,6 @@ color: #fff;background: #ee8d0a;}
 .pwdcon2{height:371px;line-height: 371px;text-align: center;font-size: 24px;color:#ee8d0a;display: none;}
 .emailcon{height:485px;border:1px solid #ee8d0a;background: #f7f6f6;margin-bottom: 5px;display: none;}
 .emailcon1{padding: 52px 0px;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*foot*/
 .foot{width: 100%;min-width:1200px;height: 220px;background: #363636;color:#d1d1d1;font-size: 14px;}
 .footcon{width:1200px; margin:0 auto;padding:30px 0;position: relative;}
@@ -239,3 +226,8 @@ color: #fff;background: #ee8d0a;}
 .foot4p4{ display: inline-block;}
 .footlink{width:100%; min-width:1200px; height:40px; background: #2b2b2b;}
 .footlink a{ font-size:16px; color:#fff; margin-right:30px;}
+
+.mainr .form-horizontal .form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
