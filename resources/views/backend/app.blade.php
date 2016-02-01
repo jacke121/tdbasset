@@ -8,7 +8,7 @@
 	<title>Laravel</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-	@section('header')
+	@yield('header')
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
     <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
     <script type="text/javascript">
@@ -18,7 +18,6 @@
     $("#"+id).attr("class", "cur");
     }
     </script>
-	@show
 	<!-- Fonts -->
 <!--	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>-->
 

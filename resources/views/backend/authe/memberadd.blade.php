@@ -1,5 +1,4 @@
 @extends('backend.authe.common')
-@section('header')
 @section('content')
 <div class="col-md-10">
     <div class="panel panel-default">
