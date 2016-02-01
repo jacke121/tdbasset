@@ -10,7 +10,7 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	@section('header')
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap.min.css')}}">
-    {{--<script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('/plugin/jquery-1.9.1.js ') }}"></script>
     <script type="text/javascript">
     function setindex(id) {
     //设置button效果，开始计时
