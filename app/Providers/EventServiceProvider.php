@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider {
 		'App\Events\CommentSendEmail' => [
 			'App\Handlers\Events\CommentSendEmailHandler',
 		],
+		'App\Events\UserRegisteredEvent' => [
+			'App\Listeners\UserRegisteredEventListener',
+		]
 	];
 
 	/**

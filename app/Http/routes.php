@@ -79,3 +79,13 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::controller('authe','member\AuthenticateController');
 
 });
+
+Route::get('broadcast', function () {
+    event(new App\Events\UserRegisteredEvent('Sohel Amin'));
+
+    return 'Event has been fired!';
+});
+
+Route::get('listen', function () {
+    return view('events');
+});
