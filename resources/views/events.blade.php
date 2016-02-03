@@ -29,6 +29,7 @@
                 }
                 return(localhostPaht+projectName);
             };
+            alert(getRootPath());
             var socket = io(getRootPath()+':3000');
 
             socket.on("test-channel:App\\Events\\UserRegisteredEvent", function(message){
