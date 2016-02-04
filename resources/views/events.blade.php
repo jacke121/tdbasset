@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>ä½ å¥½</title>
         <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -13,23 +14,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 
         <script>
-            //js»ñÈ¡ÏîÄ¿¸ùÂ·¾¶£¬Èç£º http://localhost:8083/uimcardprj
+            //jsè·å–é¡¹ç›®æ ¹è·¯å¾„ï¼Œå¦‚ï¼š http://localhost:8083/uimcardprj
             function getRootPath(){
-                //»ñÈ¡µ±Ç°ÍøÖ·£¬Èç£º http://localhost:8083/uimcardprj/share/meun.jsp
+                //è·å–å½“å‰ç½‘å€ï¼Œå¦‚ï¼š http://localhost:8083/uimcardprj/share/meun.jsp
                 var curWwwPath=window.document.location.href;
-                //»ñÈ¡Ö÷»úµØÖ·Ö®ºóµÄÄ¿Â¼£¬Èç£º uimcardprj/share/meun.jsp
+                //è·å–ä¸»æœºåœ°å€ä¹‹åçš„ç›®å½•ï¼Œå¦‚ï¼š uimcardprj/share/meun.jsp
                 var pathName=window.document.location.pathname;
                 var pos=curWwwPath.indexOf(pathName);
-                //»ñÈ¡Ö÷»úµØÖ·£¬Èç£º http://localhost:8083
+                //è·å–ä¸»æœºåœ°å€ï¼Œå¦‚ï¼š http://localhost:8083
                 var localhostPaht=curWwwPath.substring(0,pos);
-                //»ñÈ¡´ø"/"µÄÏîÄ¿Ãû£¬Èç£º/uimcardprj
+                //è·å–å¸¦"/"çš„é¡¹ç›®åï¼Œå¦‚ï¼š/uimcardprj
                 var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
                 if(projectName!="tdbasset"){
                     projectName="";
                 }
                 return(localhostPaht+projectName);
             };
-            alert(getRootPath());
             var socket = io(getRootPath()+':3000');
 
             socket.on("test-channel:App\\Events\\UserRegisteredEvent", function(message){
@@ -38,7 +38,7 @@
                 // Appending user to user's list
                 var ul = document.getElementById("user-list");
                 var li = document.createElement("li");
-                li.appendChild(document.createTextNode(message.user));
+                li.appendChild(document.createTextNode(message.user_id+message.user));
                 ul.appendChild(li);
 
             });

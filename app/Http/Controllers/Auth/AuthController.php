@@ -21,6 +21,9 @@ use App\libs\LbgCurl;
 use anlutro\cURL\cURL;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Event;
+
+use App\Events\UserRegisteredEvent;
 
 class AuthController extends Controller
 {
@@ -35,6 +38,8 @@ class AuthController extends Controller
     }
 
     public function getLogin(Request $request)  {
+
+
         return view('auth.login');
     }
     public function postLogin(Request $request)
@@ -231,6 +236,7 @@ class AuthController extends Controller
         $member_log->save();
         $userid = $member->id;
             $ip = $_SERVER['REMOTE_ADDR'];
+            Event::fire(new UserRegisteredEvent("111"));
             return parent::returnJson(0, "注册成功");
             //后边就不写了，主要是拿到登录用户信息就好
             // return redirect()->to('/member/index');
