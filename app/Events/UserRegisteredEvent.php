@@ -18,6 +18,7 @@ class UserRegisteredEvent extends Event implements ShouldBroadcast
      */
     public function __construct($user)
     {
+        Log::error("broadcast11111");
         $this->user = $user;
     }
 
@@ -28,7 +29,7 @@ class UserRegisteredEvent extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
+        Log::error("broadcas22222");
         $data = DB::select("select * from members where lifestatus=1");
         if (sizeof($data) > 0) {
             Log::error("broadcastOn".sizeof($data));
@@ -36,6 +37,7 @@ class UserRegisteredEvent extends Event implements ShouldBroadcast
         return ['test-channel'];
     }
     public function broadcastWith(){
+        Log::error("broadcas33333");
         return ['user' => '234234','user_id'=>1111];
     }
 }
