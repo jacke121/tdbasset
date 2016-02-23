@@ -21,7 +21,7 @@ class RedisProfilerStorageTest extends AbstractProfilerStorageTest
     protected function setUp()
     {
         $redisMock = new RedisMock();
-        $redisMock->connect('127.0.0.1', 6379);
+        $redisMock->connect('/114.113.225.39', 6379);
 
         self::$storage = new RedisProfilerStorage('redis://114.113.225.39:6379', '', '', 86400);
         self::$storage->setRedis($redisMock);
