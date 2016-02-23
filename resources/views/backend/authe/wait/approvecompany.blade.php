@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">别名</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">企业名称</label>
                 <div class="col-sm-4">
                     {!! Form::text('as_name', $member->itemname, ['class' => 'form-control','placeholder'=>'as_name']) !!}
                     <font color="red">{{ $errors->first('as_name') }}</font>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 标题</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">联系电话</label>
                 <div class="col-sm-4">
                     {!! Form::text('seo_title', $member->mobile, ['class' => 'form-control','placeholder'=>'seo_title']) !!}
                     <font color="red">{{ $errors->first('seo_title') }}</font>
@@ -49,16 +49,16 @@
             </div>
 
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 关键字</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">证件号</label>
                 <div class="col-sm-4">
                     {!! Form::text('seo_key', $member->cardno, ['class' => 'form-control','placeholder'=>'seo_key']) !!}
                     <font color="red">{{ $errors->first('seo_key') }}</font>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">seo 描述</label>
+                <label for="inputPassword3" class="col-sm-2 control-label">法定代表人姓名</label>
                 <div class="col-sm-4">
-                    {!! Form::textarea('seo_desc',  $member->cardno, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('seo_desc',  $member->ownername, ['class' => 'form-control']) !!}
                     <font color="red">{{ $errors->first('seo_desc') }}</font>
                 </div>
             </div>
