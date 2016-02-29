@@ -84,7 +84,6 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
 
 Route::get('broadcast', function () {
     event(new App\Events\UserRegisteredEvent('Sohel Amin'));
-
     return 'Event has been fired!';
 });
 
