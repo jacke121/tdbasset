@@ -44,6 +44,8 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::post('zq/checkUpdate', 'backend\ZqController@checkUpdate');
     Route::resource('zq','backend\ZqController');
     Route::resource('message','backend\MessageController');
+    Route::resource('collects','backend\CollectController');
+    Route::resource('applys','backend\ApplyController');
 
     Route::resource('tags','backend\TagsController');
     Route::resource('user','backend\UserController');
