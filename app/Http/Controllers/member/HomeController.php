@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use App\Model\Apply;
+use App\Model\Collect;
 class HomeController extends Controller {
 
 
@@ -72,5 +73,4 @@ class HomeController extends Controller {
 	{
 		//
 	}
-
 }

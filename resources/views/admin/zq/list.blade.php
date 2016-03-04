@@ -15,6 +15,7 @@
             <th>所属分类</th>
             <th>所在地</th>
             <th>状态</th>
+            <th>收藏/申请</th>
             <th>创建时间</th>
             <th class="text-right">操作</th>
         </tr>
@@ -26,6 +27,7 @@
                 <td>{{ App\Model\Zq::getZqType($v->types) }}</td>
                 <td>{{ $v->o_province }} - {{ $v->o_city }} -{{ $v->o_contry }}</td>
                 <td>@if(isset($v->status)&&($v->status>0))<font color="green">已通过</font>@else <font color="red">未通过</font>@endif</td>
+                <td><a href="{{url('member/m/collects?zid='.$v->id )}}">{{ $v->collects }}</a>/<a href="{{url('member/m/applys?zid='.$v->id )}}">{{ $v->applys }}</a></td>
                 <td>{{ $v->created_at }}</td>
                 <td class="text-right">
                     @if($v->status==0)

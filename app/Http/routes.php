@@ -63,6 +63,10 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
 Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::any('/{name?}','member\HomeController@index');
     Route::get('index', 'member\HomeController@index');
+
+    Route::get('m/collects','member\SocialController@collect');
+    Route::get('m/applys','member\SocialController@apply');
+
     Route::resource('content','member\ContentController');
     Route::resource('article','member\ArticleController');
     Route::resource('tags','member\TagsController');
@@ -79,7 +83,6 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::controller('center','member\CenterController');
     Route::get('zqList/index','member\ZqListController@index');
     Route::controller('authe','member\AuthenticateController');
-
 });
 
 Route::get('broadcast', function () {
