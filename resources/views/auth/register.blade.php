@@ -93,6 +93,9 @@
                 if (mobile.length == 0 || mobile.length != 11 || (!myreg.test(mobile))) {
                     returnVal = false;
                     customError = "请输入正确的手机格式!";
+                    if (!$('#btnSendCode').hasClass('disabled')) {
+                        $('#btnSendCode').addClass('disabled');
+                    }
                 } else if (!checkUser("mobile", value)) {
                     returnVal = false;
                     customError = "手机号已存在!";
@@ -112,13 +115,14 @@
         var count = 15; //间隔函数，1秒执行
         var curCount;//当前剩余秒数
         function sendMessage() {
-            curCount = count;
             //设置button效果，开始计时
-            if ($('#btnSendCode').hasClass('disabled')) return;
-            $('#btnSendCode').addClass('disabled');
-
+            if ($('#btnSendCode').hasClass('disabled')) {
+                return;
+            }
+            curCount = count;
             // $("#btnSendCode").attr("disabled", "true");
             $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
+            $('#btnSendCode').addClass('disabled');
             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
             var code = "122345";
             var url = "/auth/sendsms";
@@ -170,7 +174,9 @@
         function SetRemainTime() {
             if (curCount == 0) {
                 window.clearInterval(InterValObj);//停止计时器
-                $("#btnSendCode").removeClass('disabled');
+                if( $("#btnSendCode").parent().parent().children("span[class='error']").length>0){
+                    $("#btnSendCode").removeClass('disabled');
+                }
                 // $("#btnSendCode").removeAttr("disabled");//启用按钮
                 $("#btnSendCode").html("重新发送验证码");
             }
