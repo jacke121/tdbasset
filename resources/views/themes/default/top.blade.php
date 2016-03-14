@@ -20,7 +20,7 @@
                     <div style=" float:right;">
                         <a href="/auth/login" class="login" style="margin-right:10px;">登录</a>
                         <a href="/auth/register/handler" class="login" style="background:#0092D7; margin-right:14px;">注册</a>
-                        <a href="'/member/index" class="f14" style="margin-right:15px;">个人中心</a>
+                        <a href="/member/index" class="f14" style="margin-right:15px;">个人中心</a>
                         <a href="#"><img src="{{ URL::asset('/')}}images/top_qq.jpg" width="16" height="17" style="margin-right:5px;"></a>
                         <a href="#"><img src="{{ URL::asset('/')}}images/top_weixin.jpg" width="18" height="17"></a>
                     </div>
