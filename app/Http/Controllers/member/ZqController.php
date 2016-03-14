@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Input, Notification,Redirect, Auth,Cache;
 use App\Model\Zq;
+use App\Model\Apply;
+use App\Model\Collect;
 
 class ZqController extends Controller
 {

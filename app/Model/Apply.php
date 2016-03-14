@@ -19,4 +19,10 @@ class Apply extends Model
         $model = self::select()->where(['uid'=>$uid,'zid'=>$zid]);
         return $model;
     }
+
+    public static function getApplyListByZid($zid)
+    {
+        $model = self::select()->where(['zid'=>$zid])->orderBy('id', 'DESC')->paginate(10);;
+        return $model;
+    }
 }

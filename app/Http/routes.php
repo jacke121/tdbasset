@@ -44,6 +44,8 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
     Route::post('zq/checkUpdate', 'backend\ZqController@checkUpdate');
     Route::resource('zq','backend\ZqController');
     Route::resource('message','backend\MessageController');
+    Route::resource('collects','backend\CollectController');
+    Route::resource('applys','backend\ApplyController');
 
     Route::resource('tags','backend\TagsController');
     Route::resource('user','backend\UserController');
@@ -61,6 +63,10 @@ Route::group(['prefix'=>'backend','middleware'=>'backauth'],function(){
 Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::any('/{name?}','member\HomeController@index');
     Route::get('index', 'member\HomeController@index');
+
+    Route::get('m/collects','member\SocialController@collect');
+    Route::get('m/applys','member\SocialController@apply');
+
     Route::resource('content','member\ContentController');
     Route::resource('article','member\ArticleController');
     Route::resource('tags','member\TagsController');
@@ -77,7 +83,6 @@ Route::group(['prefix'=>'member','middleware'=>'auth'],function(){
     Route::controller('center','member\CenterController');
     Route::get('zqList/index','member\ZqListController@index');
     Route::controller('authe','member\AuthenticateController');
-
 });
 
 Route::get('broadcast', function () {

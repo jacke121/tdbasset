@@ -214,7 +214,7 @@
                         @foreach($newsList as $k=> $v)
                         <div class="newsCon">
                             <div class="ncPic">
-                                <img src="../images/zhibo.jpg">
+                                <img width="163" height="109" src="{{empty($v->pic)?('../images/zhibo.jpg'):('uploads/'.$v->pic)}}">
                             </div>
                             <div class="ncTxt">
                                 <a target="_blank" href="{{ url(route('article.show',['id'=>$v->id ])) }}" class="ta">{{$v->title}}</a>

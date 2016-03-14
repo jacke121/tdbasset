@@ -10,6 +10,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\Member;
 use Illuminate\Http\Request;
 use Input, Notification,Redirect, Auth,Cache;
 use App\Model\Zq;
@@ -22,9 +23,40 @@ class ZqController extends Controller
         conversionClassPath(__CLASS__);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('backend.content.zq.index', ['zqList' => Zq::orderBy('id', 'DESC')->paginate(10)]);
+         $itemname =  $request->input('itemname');
+         if(is_null($itemname)){
+             $where = [];
+             $typeId = $request->input('typeId');
+             if(is_null($typeId)||$typeId==0){
+                 $typeId = 0;
+             }else{
+                 $where = array_merge($where,['types'=>$typeId]);
+             }
+
+             $status = $request->input('status');
+             if(is_null($status)||$status==-1){
+                 $status = -1;
+             }else{
+                 $where = array_merge($where,['status'=>$status]);
+             }
+             if(count($where)>0){
+                 $zqList = Zq::where($where)->orderBy('id', 'DESC')->paginate(10);
+             }else{
+                 $zqList = Zq::orderBy('id', 'DESC')->paginate(10);
+             }
+             $itemname="";
+         }else{
+             $typeId = 0;
+             $status = -1;
+            $member =  Member::where('itemname','like','%'.trim($itemname).'%')->get();
+             if(!empty($member)){
+                 $zqList = Zq::where(['uid'=>$member[0]->id])->orderBy('id', 'DESC')->paginate(10);
+             }
+         }
+
+        return view('backend.content.zq.index', ['zqList' => $zqList,'typeId'=>$typeId,'status'=>$status,'itemname'=>$itemname]);
     }
     public function create()
     {

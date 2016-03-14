@@ -37,8 +37,10 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
     public static function getmemberNameBymemberId($memberId)
     {
 
+        if(empty(self::select()->find($memberId))){
+            return  '用户不存在';
+        }
         $memberName = self::getmemberArr($memberId);
-
         return !empty($memberName) ? $memberName : '用户不存在';
 
     }
