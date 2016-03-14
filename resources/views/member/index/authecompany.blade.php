@@ -141,14 +141,16 @@
                             if(msg['State']>0){
                                 alert(msg['MsgState']);
                             }else{
-                                var $box = $("#yunfeidiv");
-                                $box.css({
+                                $("#yunfeidiv").css({
                                     //设置弹出层距离左边的位置
                                     left: ($("body").width() - $box.width()) / 2 - 20 + "px",
-                                    //设置弹出层距离上面的位置
-                                    top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
+//                //设置弹出层距离上面的位置
+//                top: ($(window).height() - $box.height()) / 2 + $(window).scrollTop() + "px",
                                     display: "block"
                                 });
+                                var div1=document.getElementById("yunfeidiv");
+                                div1.style.top=(document.documentElement.clientHeight-div1.offsetHeight)/2+"px";
+                                div1.style.left=(document.documentElement.clientWidth-div1.offsetWidth)/2+"px";
 //                                $(".tan").css("display","");
                             }
                         }
