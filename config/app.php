@@ -201,8 +201,7 @@ return [
         'HTML' => Illuminate\Html\HtmlFacade::class,
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
-        'Captcha' => Mews\Captcha\Facades\Captcha::class,
-        'cUrl'=>anlutor\cUrl\cURL::class
+        'Captcha' => Mews\Captcha\Facades\Captcha::class
     ],
 
 ];
