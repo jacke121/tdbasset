@@ -123,9 +123,7 @@
                     // $(element).html("<font color='green'>√</font>");
                 },
                 submitHandler: function(form){
-
-                    var filepath=$("#imgfile").files;
-                    alert(filepath);
+//                    var filepath=$("#imgfile").files;
                     $("#bg").css({
                         display: "block", height: $(document).height()
                     });
