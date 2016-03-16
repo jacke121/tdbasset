@@ -236,7 +236,7 @@ class AuthController extends Controller
         $member_log->save();
         $userid = $member->id;
             $ip = $_SERVER['REMOTE_ADDR'];
-            Event::fire(new UserRegisteredEvent("111"));
+//            Event::fire(new UserRegisteredEvent("111"));
             return parent::returnJson(0, "注册成功");
             //后边就不写了，主要是拿到登录用户信息就好
             // return redirect()->to('/member/index');
