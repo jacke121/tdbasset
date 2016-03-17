@@ -4,5 +4,6 @@
 .project
 .settings/
 .buildpath
+/vendor/
 /public/uploads
 /public/uploads/images

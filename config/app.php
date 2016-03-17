@@ -147,8 +147,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Krucas\Notification\NotificationServiceProvider::class,
-        YuanChao\Editor\EndaEditorServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class
+        YuanChao\Editor\EndaEditorServiceProvider::class
+//        Mews\Captcha\CaptchaServiceProvider::class
     ],
 
     /*
@@ -201,7 +201,7 @@ return [
         'HTML' => Illuminate\Html\HtmlFacade::class,
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
-        'Captcha' => Mews\Captcha\Facades\Captcha::class
+//        'Captcha' => Mews\Captcha\Facades\Captcha::class
     ],
 
 ];

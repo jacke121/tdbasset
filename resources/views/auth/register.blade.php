@@ -20,6 +20,7 @@
     <!-- <script src="{{ asset('/js/register.js') }}"></script> -->
     <script type="text/javascript">
         $(document).ready(function () {
+            changecode();
             $("#formregister").validate({
                 errorClass: "error",
                 errorElement: "span",
@@ -185,6 +186,11 @@
                 $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             }
         }
+        function  changecode() {
+            $url = "{{ URL('kit/captcha') }}";
+            $url = $url + "/" + Math.random();
+            $("#acheckcode").css("background-image","url("+$url+")");
+        }
     </script>
 </head>
 
@@ -239,6 +245,16 @@
                 <div class="int">
                     <span class="intface renface"></span>
                     <input type="text" placeholder="手机认证：请填写收到的验证码" name="checkCode" class="ren">
+                    @if ($errors->any())
+                        <span id="checkcodeAlt" data-info="checkcode"
+                              style="color: #E15F63"> {{ $errors->getBag('default')->first('checkCode') }}</span>
+                    @endif
+                </div>
+                <div class="int">
+                    <span class="intface renface"></span>
+                    <input type="text" placeholder="填写右边验证码" name="captcha" class="ren">
+                    {{--<input type="text" class="intspe" name="captcha">--}}
+                    <a id="acheckcode" href="javascript:;" onclick="changecode();" class="code"></a>
                     @if ($errors->any())
                         <span id="checkcodeAlt" data-info="checkcode"
                               style="color: #E15F63"> {{ $errors->getBag('default')->first('checkCode') }}</span>
