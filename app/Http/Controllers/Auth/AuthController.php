@@ -219,7 +219,11 @@ class AuthController extends Controller
         $checkCode = Session::get("m" . $member->mobile);
         Log::error('registrer:' . $member->mobile . "session:" . $checkCode . "getcode:" . Input::get('checkCode'));
         if (!$checkCode || $checkCode != Input::get('checkCode')) {
-            return parent::returnJson(1, "验证码输入错误");
+            return parent::returnJson(1, "短信验证码输入错误");
+        }
+        Log::error('checkcaptcha:session:' . Session::get('milkcaptcha') . "getcode:" .  Input::get('captcha'));
+        if (Session::get('milkcaptcha') !=  Input::get('captcha')) {
+            return parent::returnJson(1, "图片验证码错误");
         }
         $member->name = Input::get('name');
         $member->email = $member->name . "126.com";// Input::get('email');
