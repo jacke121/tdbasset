@@ -125,14 +125,14 @@
             $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             $('#btnSendCode').addClass('disabled');
             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-            var code = "122345";
+
             var url = "/auth/sendsms";
             $.ajax({
                 type: "POST", //用POST方式传输
                 url: url, //目标地址
                 headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')},
                 data: {
-                    type_data: "register", mobile: $("#mobile").val(), msg: code
+                    type_data: "register", mobile: $("#mobile").val()
                 },
                 // 　　dataType: "json", //数据格式:JSON
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -143,11 +143,10 @@
                         //有异常
                         alert(msg['MsgState']);
                         curCount = 0;
-                    } else {
                     }
                 },
             });
-        }
+        };
 
         var checkUser = function (column, value) {
             var returnVal = false;
