@@ -186,10 +186,9 @@
                 $("#btnSendCode").html(curCount);//"请在" + curCount + "秒内输入验证码");
             }
         }
-        function  changecode() {
-            $url = "{{ URL('/kit/captcha') }}";
-            $url = $url + "/" + Math.random();
-            $("#acheckcode").css("background-image","url("+$url+")");
+        function changecode() {
+            var url =  "{{ url('kit/captcha') }}" + "/" + Math.random();
+            $("#acheckcode").css("background-image","url("+url+")");
         }
     </script>
 </head>
