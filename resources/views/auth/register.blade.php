@@ -187,7 +187,7 @@
             }
         }
         function  changecode() {
-            $url = "{{ URL('kit/captcha') }}";
+            $url = "{{ URL('/kit/captcha') }}";
             $url = $url + "/" + Math.random();
             $("#acheckcode").css("background-image","url("+$url+")");
         }
