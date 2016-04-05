@@ -66,7 +66,8 @@
                     {!! Form::open([
                         'url' => array('/backend/authe/view', $v->id),
                         'method' => 'get',
-                        'class'=>'btn_form'
+                        'class'=>'btn_form',
+                        'target'=>"_blank"
                     ]) !!}
                     <button type="submit" class="btn btn-info">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
