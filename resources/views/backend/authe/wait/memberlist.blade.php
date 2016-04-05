@@ -74,7 +74,8 @@
                                 {!! Form::open([
                                     'url' => array('/backend/authe/approve', $v->id),
                                     'method' => 'get',
-                                    'class'=>'btn_form'
+                                    'class'=>'btn_form',
+                                    'target'=>'_blank'
                                 ]) !!}
 
                                 <button type="submit" class="btn btn-info">
