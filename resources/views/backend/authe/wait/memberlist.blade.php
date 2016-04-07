@@ -46,7 +46,7 @@
                             <th width="80px">会员名称</th>
                             <th width="50px">手机号</th>
                             <th width="150px">创建时间</th>
-                            <th width="200px" class="text-right">操作</th>
+                            <th width="200px" class="text-center">操作</th>
                         </tr>
 
                         @foreach($data as $k=> $v)

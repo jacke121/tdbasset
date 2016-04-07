@@ -45,9 +45,9 @@
             <th  width="80px">会员类型</th>
             <th  width="80px">会员名称</th>
             <th  width="80px">手机号</th>
-            <th  width="80px">创建时间</th>
+            <th  width="120px">创建时间</th>
             <th  width="80px">账号状态</th>
-            <th  width="160px" class="text-right">操作</th>
+            <th  width="240px" class="text-center">操作</th>
         </tr>
         @foreach($data as $k=> $v)
             <tr>
@@ -77,7 +77,8 @@
                     {!! Form::open([
                         'url' => array('/backend/authe/view', $v->id),
                         'method' => 'get',
-                        'class'=>'btn_form'
+                        'class'=>'btn_form',
+                        'target'=>"_blank"
                     ]) !!}
 
                     <button type="submit" class="btn btn-info">

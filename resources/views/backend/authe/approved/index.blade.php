@@ -32,8 +32,6 @@
                     <iframe name="typescomment" frameborder=0 id="framemember"	style="width:1000px;height:750px;scrolling:no;"
                             src="{{ asset('/')}}backend/authe/approved?way=1">
                     </iframe>
-
-
                 </div>
             </div>
         </div>
